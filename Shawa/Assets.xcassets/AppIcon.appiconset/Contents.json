@@ -1,0 +1,14 @@
+{
+  "images" : [
+    {
+      "filename" : "vasilevsky_a_Shawarma_delivery_app_icon_84021993-5536-4b62-b36b-e2dc257d5928.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
