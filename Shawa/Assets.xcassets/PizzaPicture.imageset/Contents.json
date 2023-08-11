@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "bavarskaya-klassik.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

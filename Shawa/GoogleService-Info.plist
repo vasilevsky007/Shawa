@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>267197835430-u4kj2m3qhaac5b2qfdpc16hpp8i6c8fs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.267197835430-u4kj2m3qhaac5b2qfdpc16hpp8i6c8fs</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>267197835430-q7ru01vqjrvlc305ba62qereea2nbq2n.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBQ2AI9bET2vL007bArvHhLxVimhnkkBLg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>267197835430</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gmail.alex.vasilevski007.Shawa</string>
+	<key>PROJECT_ID</key>
+	<string>tritpo-sushiapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tritpo-sushiapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:267197835430:ios:3bd81535f46f5f13d3ac67</string>
+</dict>
+</plist>
