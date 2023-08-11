@@ -46,10 +46,25 @@ struct MainMenuView: View {
         Rectangle().ignoresSafeArea().foregroundColor(.white)
     }
     
+    var contentBody: some View {
+        ZStack(alignment: .top) {
+            Color.clear
+            if searchResultsShown {
+                searchResultsBody
+                    .padding(.horizontal, 24.5)
+                    .transition(.move(edge: .top).animation(.easeInOut(duration: 1))
+                        .combined(with: .asymmetric(insertion: .opacity.animation(.easeIn(duration: 0.5).delay(0.5)),
+                                                    removal: .opacity.animation(.easeOut(duration: 0.3)))))
+            } else {
+                mainMenuBody.transition(.move(edge: .bottom).animation(.easeInOut(duration: 1)))
+            }
+        }
+    }
+    
     var headerBody: some View {
         VStack {
             Header(leadingAction: firebase.logout, trailingAction: {
-                //TODO: open cart
+                //TODO: open cart, change leadingaction to open menu
             })
             PrettyTextField(text: $enteredSearch, label: "Search for meals", submitLabel: .search, color: .lighterBrown, image: "SearchIcon",width: nil, height: 45, focusState: $searchBoxFocused, focusedValue: true )
                 .overlay(alignment: .trailing) {
@@ -131,23 +146,7 @@ struct MainMenuView: View {
             }.padding(.all, 24)
         }.ignoresSafeArea(edges:.bottom)
     }
- 
-    
-    var contentBody: some View {
-        ZStack(alignment: .top) {
-            Color.clear
-            if searchResultsShown {
-                searchResultsBody
-                    .padding(.horizontal, 24.5)
-                    .transition(.move(edge: .top).animation(.easeInOut(duration: 1))
-                        .combined(with: .asymmetric(insertion: .opacity.animation(.easeIn(duration: 0.5).delay(0.5)),
-                                                    removal: .opacity.animation(.easeOut(duration: 0.3)))))
-            } else {
-                mainMenuBody.transition(.move(edge: .bottom).animation(.easeInOut(duration: 1)))
-            }
-        }
-    }
-    
+     
     var fetchingProgressBody: some View {
         ZStack {
             if (app.isFetchingMenu) {

@@ -11,7 +11,8 @@ struct SectionMenuView: View {
     var displayingSection: Menu.Section
     @Binding var menu: Menu
     @Binding var tappedItem: Menu.Item?
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss) private var dismissThisView
+    @GestureState private var dragOffset = CGSize.zero
     
     private struct DrawingConstants {
         static let gridSpacing: CGFloat = 16
@@ -21,7 +22,7 @@ struct SectionMenuView: View {
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: { dismiss() }).padding(.horizontal, 24.5)
+                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }).padding(.horizontal, 24.5)
                 
                 Text(displayingSection.rawValue)
                     .foregroundColor(.deafultBrown)
@@ -63,6 +64,11 @@ struct SectionMenuView: View {
         .toolbar {
             
         }
+        .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
+            if(value.startLocation.x < 50 && value.translation.width > 100) {
+                dismissThisView()
+            }
+        }))
     }
     
     var backgroundBody: some View {
