@@ -13,7 +13,7 @@ import FirebaseAuth
 class ShavaAppSwiftUI: ObservableObject {
     @Published var model = ShavaApp()
     @Published var menu = Menu()
-    
+    @Published private var currentOrder = Order()
     
     var isLoggedIn: Bool {
         if (model.currentAuthenticationState == .authenticated) {
@@ -39,6 +39,21 @@ class ShavaAppSwiftUI: ObservableObject {
         }
     }
     
+    var isCartEmpty: Bool {
+        currentOrder.orderItems.isEmpty
+    }
+    
+    var numberOfItemsInCart: Int {
+        var numberOfItems = 0;
+        for orderItem in currentOrder.orderItems {
+            numberOfItems += orderItem.value
+        }
+        return numberOfItems;
+    }
+    
+    var cartItems: [Order.Item:Int] {
+        currentOrder.orderItems
+    }
     
     func clearMenu() {
         withAnimation {
@@ -112,6 +127,35 @@ class ShavaAppSwiftUI: ObservableObject {
         }
 
     }
+    
+    func addOneItem(_ item: Order.Item) {
+        
+    }
+    
+    func removeOneItem(_ item: Order.Item) {
+        
+    }
+    
+    func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+        
+    }
+    
+    func removeOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+        
+    }
+    
+    func updatePhoneNumber(_ newValue: String?) {
+        
+    }
+    
+    func updateAddress(_ newValue: String?) {
+        
+    }
+    
+    func updateComment(_ newValue: String?) {
+        
+    }
+    
     
 //    TODO: possibly refactor buttonstate
     @Published var loginButtonState: ActionButtonState = .enabled(title: "Log In", systemImage: "")
