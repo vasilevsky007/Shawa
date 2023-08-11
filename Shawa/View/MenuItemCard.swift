@@ -28,7 +28,7 @@ struct MenuItemCard: View {
                 RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                     .foregroundColor(.white)
                 VStack(alignment: .leading) {
-                    let imageSize = geometry.size.width - 2 * DrawingConstants.allPadding
+                    var imageSize = (geometry.size.width - 2 * DrawingConstants.allPadding) > 0 ? (geometry.size.width - 2 * DrawingConstants.allPadding) : nil
                     if let imageData = thisItem.image {
                         if let uiImage = UIImage(data: imageData){
                             Image(uiImage: uiImage)
@@ -70,8 +70,11 @@ struct MenuItemCard: View {
 
 struct MenuItemCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuItemCard(Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"))
-            .frame(width: 160, height: 220)
-            .previewDevice("iPhone 11 Pro")
+        ZStack{
+            Color.red
+            MenuItemCard(Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"))
+                       .frame(width: 160, height: 220)
+                       .previewDevice("iPhone 11 Pro")
+        }       
     }
 }
