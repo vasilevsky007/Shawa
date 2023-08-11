@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SectionMenuView: View {
     var displayingSection: Menu.Section
-    @Binding var menu: Menu
+    var menuItems: Set<Menu.Item>
     @Binding var tappedItem: Menu.Item?
     @Environment(\.dismiss) private var dismissThisView
     @GestureState private var dragOffset = CGSize.zero
@@ -45,7 +45,7 @@ struct SectionMenuView: View {
                     RoundedRectangle(cornerRadius: 30).ignoresSafeArea(edges: .bottom).padding(.top, 8).foregroundColor(.veryLightBrown2)
                     ScrollView {
                         LazyVGrid(columns: [GridItem(spacing: DrawingConstants.gridSpacing),GridItem(spacing: DrawingConstants.gridSpacing)], spacing: DrawingConstants.gridSpacing) {
-                            ForEach(menu.items.filter({ $0.belogsTo == displayingSection }), id: \.self.id) { item in
+                            ForEach(menuItems.filter({ $0.belogsTo == displayingSection }), id: \.self.id) { item in
                                 Button {
                                     tappedItem = item
                                 } label: {
@@ -77,11 +77,11 @@ struct SectionMenuView: View {
     
 }
 
-struct SectionMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var menu =  Menu()
-        @State var ti: Menu.Item?
-        SectionMenuView(displayingSection: .Shawarma, menu: $menu, tappedItem: $ti)
-            .previewDevice("iPhone 11 Pro")
-    }
-}
+//struct SectionMenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        @State var menu =  Menu()
+//        @State var ti: Menu.Item?
+//        SectionMenuView(displayingSection: .Shawarma, menu: $menu, tappedItem: $ti)
+//            .previewDevice("iPhone 11 Pro")
+//    }
+//}

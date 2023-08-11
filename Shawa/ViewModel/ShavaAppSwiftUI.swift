@@ -11,8 +11,8 @@ import FirebaseAuth
 
 @MainActor
 class ShavaAppSwiftUI: ObservableObject {
-    @Published var model = ShavaApp()
-    @Published var menu = Menu()
+    @Published private var model = ShavaApp()
+    @Published private var menu = Menu()
     @Published private var currentOrder = Order()
     
     var isLoggedIn: Bool {
@@ -37,6 +37,10 @@ class ShavaAppSwiftUI: ObservableObject {
         } else {
             return false
         }
+    }
+    
+    var menuItems: Set<Menu.Item> {
+        menu.items
     }
     
     var isCartEmpty: Bool {

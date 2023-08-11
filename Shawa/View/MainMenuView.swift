@@ -92,11 +92,11 @@ struct MainMenuView: View {
             if searchResultsShown {
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack(alignment: .leading) {
-                        Text((app.menu.items.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })).isEmpty ? "Nothing found..." : "You may be looking for:")
+                        Text((app.menuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })).isEmpty ? "Nothing found..." : "You may be looking for:")
                             .font(.main(size: 16))
                             .foregroundColor(.deafultBrown)
                         Color.clear.frame(height: 0)
-                        ForEach(app.menu.items.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })) { item in
+                        ForEach(app.menuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })) { item in
                             Button {
                                 tappedItem = item
                             } label: {
@@ -123,10 +123,10 @@ struct MainMenuView: View {
                         VStack {
                             ForEach(Menu.Section.allCases, id: \.self) { section in
                                 NavigationLink {
-                                    SectionMenuView(displayingSection: section, menu: $app.menu, tappedItem: $tappedItem)
+                                    SectionMenuView(displayingSection: section, menuItems: app.menuItems, tappedItem: $tappedItem)
                                 } label: {
                                     MainMenuSection(section: section,
-                                                    items: app.menu.items.filter{ $0.belogsTo == section },
+                                                    items: app.menuItems.filter{ $0.belogsTo == section },
                                                     tappedItem: $tappedItem)
                                        .padding(.top, 12)
                                        .id(section)
