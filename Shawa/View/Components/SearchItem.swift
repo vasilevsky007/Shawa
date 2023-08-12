@@ -1,5 +1,5 @@
 //
-//  SearchItemView.swift
+//  SearchItem.swift
 //  Shawa
 //
 //  Created by Alex on 10.05.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchItemView: View {
+struct SearchItem: View {
     var thisItem: Menu.Item
     
     init(_ thisItem: Menu.Item) {
@@ -65,7 +65,7 @@ struct SearchItemView: View {
 
 struct SearchItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchItemView(Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"))
+        SearchItem(Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"))
             .previewDevice("iPhone 11 Pro")
     }
 }

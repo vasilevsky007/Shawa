@@ -100,7 +100,7 @@ struct MainMenuView: View {
                             Button {
                                 tappedItem = item
                             } label: {
-                                SearchItemView(item)
+                                SearchItem(item)
                             }.transition(.asymmetric(insertion: .push(from: .top), removal: .opacity).animation(.linear(duration: 1)))
                         }
                         Spacer(minLength: 0)
