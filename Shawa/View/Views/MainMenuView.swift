@@ -29,7 +29,9 @@ struct MainMenuView: View {
                     contentBody.padding(.top, 8)
                 }
             }.popover(item: $tappedItem) { item in
-                MenuItemView(item)
+                MenuItemView(item) { selectedItem in
+                    app.addOneCartItem(selectedItem)
+                }
             }
         }
             .onChange(of: searchBoxFocused) { beginFocused in

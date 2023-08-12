@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct MenuItemView: View {
-    var thisItem: Menu.Item
+    let thisItem: Menu.Item
+    let addToCart: (Order.Item) -> Void
     @State var thisOrderItem: Order.Item
     
     @Environment(\.dismiss) private var dismiss
     
-    init(_ item: Menu.Item) {
+    init(_ item: Menu.Item, addToCart: @escaping (Order.Item) -> Void) {
         thisItem = item
         var additions: [Menu.Ingredient:Int] = [:]
         for ingredient in Menu.Ingredient.allCases {
             additions.updateValue(0, forKey: ingredient)
         }
         _thisOrderItem = State(initialValue: Order.Item.init(item: item, additions: additions))
-        
+        self.addToCart = addToCart
     }
     
     private struct DrawingConstants {
@@ -75,7 +76,7 @@ struct MenuItemView: View {
                             
                             Spacer(minLength: 0)
                             PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
-                                
+                                addToCart(thisOrderItem)
                             }.frame(width: 120, height:60).padding(.trailing, 10)
                         }
 
@@ -111,7 +112,6 @@ struct MenuItemView: View {
                         .padding(.all)
                 }
             }
-            .ignoresSafeArea()
     }
     
     func ingredientTagBox(_ ingredient: Menu.Ingredient) -> some View {
@@ -137,12 +137,14 @@ struct MenuItemView: View {
                 .foregroundColor(.lightBrown)
             ForEach(Menu.Ingredient.allCases, id: \.self) { ingredient in
                 HStack {
-                    Text(String(thisOrderItem.additions[ingredient]!))
+                    Text((
+                        thisOrderItem.additions[ingredient]! > -1 ? String(thisOrderItem.additions[ingredient]!) : "No"
+                    ))
                         .font(.main(size: MenuItemView.DrawingConstants.fontSize))
                         .foregroundColor(.lightBrown)
                         .frame(width: 22)
                     Stepper {
-                        Text(ingredient.name)
+                        Text(ingredient.name.lowercased())
                             .font(.main(size: MenuItemView.DrawingConstants.fontSize))
                             .foregroundColor(.lightBrown)
                     } onIncrement: {
@@ -175,12 +177,11 @@ struct MenuItemView_Previews: PreviewProvider {
         Color.red
             .ignoresSafeArea()
             .popover(item: $ab) { item in
-                MenuItemView(item)
+                MenuItemView(item) { addeditem in
+                    print(addeditem)
+                }
 //                    .presentationCompactAdaptation()
             }
-        MenuItemView(ab!)
-            .previewDevice("iPhone 11 Pro")
-            
             
     }
 }

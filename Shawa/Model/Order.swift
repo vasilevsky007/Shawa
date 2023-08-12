@@ -28,12 +28,13 @@ struct Order {
     }
     
     
-    mutating func addOneItem(_ item: Item) {
+    mutating func addOneOrderItem(_ item: Item) {
         if let currentNumber = orderItems[item] {
             orderItems.updateValue(currentNumber + 1, forKey: item)
         } else {
             orderItems.updateValue(1, forKey: item)
         }
+        print(orderItems)
     }
     
     mutating func removeOneItem(_ item: Item) {

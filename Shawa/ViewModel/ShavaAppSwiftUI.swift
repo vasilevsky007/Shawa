@@ -132,8 +132,14 @@ class ShavaAppSwiftUI: ObservableObject {
 
     }
     
-    func addOneItem(_ item: Order.Item) {
-        
+    func addOneCartItem(_ item: Order.Item) {
+        var formattedItem = item
+        for addition in formattedItem.additions.keys {
+            if formattedItem.additions[addition] == 0 {
+                formattedItem.additions.removeValue(forKey: addition)
+            }
+        }
+        currentOrder.addOneOrderItem(formattedItem)
     }
     
     func removeOneItem(_ item: Order.Item) {
