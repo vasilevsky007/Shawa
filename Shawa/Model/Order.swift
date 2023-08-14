@@ -8,9 +8,17 @@
 import Foundation
 
 struct Order {
-    struct Item: Hashable {
+    struct Item: Hashable, Identifiable {
+        var id = UUID()
         var item: Menu.Item
         var additions: [Menu.Ingredient:Int] // ingredint:count
+        var price: Double {
+            var price = self.item.price
+            for additionQuantity in additions.values {
+                price += (additionQuantity > 0 ? Double(additionQuantity) : 0) * Menu.Ingredient.price
+            }
+            return price
+        }
     }
     struct userData {
         var userID: String?
@@ -21,6 +29,13 @@ struct Order {
     private(set) var user: userData
     private(set) var comment: String?
     private(set) var timestamp: Date?
+    var totalPrice: Double {
+        var totalPrice = 0.0
+        for item in orderItems {
+            totalPrice += item.key.price * Double(item.value)
+        }
+        return totalPrice
+    }
     
     init() {
         self.orderItems = [:]
@@ -34,7 +49,6 @@ struct Order {
         } else {
             orderItems.updateValue(1, forKey: item)
         }
-        print(orderItems)
     }
     
     mutating func removeOneItem(_ item: Item) {

@@ -16,7 +16,7 @@ struct Menu {
         case Drinks
     }
     
-    enum Ingredient: String, CaseIterable, Codable {
+    enum Ingredient: String, Identifiable, CaseIterable, Codable {
         case Chiken
         case FreshTomatoes
         case FreshCucumbers
@@ -29,6 +29,10 @@ struct Menu {
         case Pork
         case Beef
         
+        var id : String {
+            self.rawValue
+        }
+        
         var name: String {
             var name = ""
             self.rawValue.map { character in
@@ -40,6 +44,8 @@ struct Menu {
             name.removeFirst()
             return name
         }
+        
+        static var price: Double = 0.5
         
         static func random() -> Self {
             let randomNmber = Int.random(in: Self.allCases.indices)

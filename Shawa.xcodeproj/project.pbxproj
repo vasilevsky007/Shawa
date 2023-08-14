@@ -16,6 +16,8 @@
 		FA1B58BA29E1DBCF00B28785 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FA1B58B929E1DBCF00B28785 /* FirebaseFirestore */; };
 		FA1B58BC29E1DBCF00B28785 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA1B58BB29E1DBCF00B28785 /* FirebaseFirestoreSwift */; };
 		FA1B58BE29E1DBCF00B28785 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = FA1B58BD29E1DBCF00B28785 /* FirebaseInstallations */; };
+		FA2775F02A87C5F000A55405 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775EF2A87C5F000A55405 /* OrderView.swift */; };
+		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA5173CE29BDCC3400F8ADFA /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173CD29BDCC3400F8ADFA /* Menu.swift */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAppView.swift; sourceTree = "<group>"; };
 		FA0B09F829E41A4D00202CFA /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		FA2775EF2A87C5F000A55405 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA5173CD29BDCC3400F8ADFA /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				FA5173C729BC65D600F8ADFA /* MainMenuView.swift */,
 				FAA4238029C0A6CC007818F7 /* SectionMenuView.swift */,
 				FA0B09F829E41A4D00202CFA /* MenuItemView.swift */,
+				FA2775EF2A87C5F000A55405 /* OrderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				FAA8717229BDEBFF0036488A /* MainMenuSection.swift */,
 				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
 				FAA4238429C0B3EC007818F7 /* PrettyButton.swift */,
+				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 			files = (
 				FAE046DE29E1946E00E0929A /* Firebase.swift in Sources */,
 				FAA9F1C729BB9334005D91A7 /* ShavaApp.swift in Sources */,
+				FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */,
 				FAA9F1C529BB8A58005D91A7 /* Fonts.swift in Sources */,
 				FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */,
 				FAA9F1CD29BBC2B2005D91A7 /* PrettyTextField.swift in Sources */,
@@ -295,6 +302,7 @@
 				FAA4238129C0A6CC007818F7 /* SectionMenuView.swift in Sources */,
 				FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */,
 				FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */,
+				FA2775F02A87C5F000A55405 /* OrderView.swift in Sources */,
 				FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */,
 				FAA8717129BDE1BB0036488A /* MenuItemCard.swift in Sources */,
 				FAA4238529C0B3EC007818F7 /* PrettyButton.swift in Sources */,
