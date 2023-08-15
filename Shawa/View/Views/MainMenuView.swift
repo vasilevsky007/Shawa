@@ -170,10 +170,7 @@ struct MainMenuView: View {
                         .background(app.navbar.activeButton == section ? Color.primaryBrown : Color.clear)
                         .clipShape(Capsule())
                         .onTapGesture {
-                            withAnimation(.easeInOut){
-                                app.navbar.activeButton = section
-                                app.navbar.actions[section]!()
-                            }
+                            app.navbar.click(on: section)
                         }
                 }
             }.fixedSize()
@@ -188,7 +185,7 @@ struct MainMenuView: View {
 //    static var previews: some View {
 //        app1 = ShavaAppSwiftUI()
 //        fb = Firebase(app: app1!)
-//        
+//
 //        return MainMenuView().environmentObject(app1!).environmentObject(fb!).previewDevice("iPhone 11 Pro")
 //    }
 //}
