@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderView: View {
     @Environment(\.dismiss) private var dismissThisView
     @GestureState private var dragOffset = CGSize.zero
-    let thisOrder: Order
+    @EnvironmentObject var app: ShavaAppSwiftUI
     
     private struct DrawingConstants {
         static let gridSpacing: CGFloat = 16
@@ -38,7 +38,7 @@ struct OrderView: View {
                     VStack (alignment: .listRowSeparatorTrailing, spacing: 0) {
                         ScrollView {
                             LazyVStack (spacing: DrawingConstants.gridSpacing) {
-                                ForEach(Array(thisOrder.orderItems.keys)) {cartItem in
+                                ForEach(Array(app.cartItems.keys)) {cartItem in
                                     OrderItem(cartItem) { ingredient, item in
     //                                    thisOrder.addOneIngredient(ingredient, to: item)
                                     } removeOneIngredient: { ingredient, item in
@@ -56,7 +56,7 @@ struct OrderView: View {
                                 .font(.montserratBold(size: DrawingConstants.headlineFontSize))
                                 .padding(.trailing, DrawingConstants.padding)
                                 
-                            Text(String(format: "%.2f BYN", thisOrder.totalPrice))
+                            Text(String(format: "%.2f BYN", app.orderPrice))
                                 .foregroundColor(.deafultBrown)
                                 .font(.interBold(size: 20))
                         }
@@ -84,15 +84,17 @@ struct OrderView: View {
 }
 
 struct OrderView_Previews: PreviewProvider {
-    static var order = Order()
-
+    static var app = ShavaAppSwiftUI()
     static var previews: some View {
-        order = Order()
-        order.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-        order.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-        order.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
         
+        app.clearCart()
+        app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
+        app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
+        app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
+
         
-        return OrderView(thisOrder: order).previewDevice("iPhone 11 Pro")
+        return OrderView()
+            .environmentObject(app)
+            .previewDevice("iPhone 11 Pro")
     }
 }

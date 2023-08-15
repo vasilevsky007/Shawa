@@ -51,7 +51,7 @@ struct Order {
         }
     }
     
-    mutating func removeOneItem(_ item: Item) {
+    mutating func removeOneOrderItem(_ item: Item) {
         if let currentNumber = orderItems[item] {
             if currentNumber > 1 {
                 orderItems.updateValue(currentNumber - 1, forKey: item)
@@ -59,6 +59,10 @@ struct Order {
                 orderItems.removeValue(forKey: item)
             }
         }
+    }
+    
+    mutating func clearCart() {
+        orderItems.removeAll()
     }
     
     mutating func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Item) {

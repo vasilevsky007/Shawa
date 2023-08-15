@@ -30,7 +30,7 @@ struct MainMenuView: View {
                 }
             }.popover(item: $tappedItem) { item in
                 MenuItemView(item) { selectedItem in
-                    app.addOneCartItem(selectedItem)
+                    app.addOneOrderItem(selectedItem)
                 }
             }
         }
@@ -183,12 +183,12 @@ struct MainMenuView: View {
 }
 
 //struct MainMenuView_Previews: PreviewProvider {
+//    static var app1: ShavaAppSwiftUI?
+//    static var fb: Firebase?
 //    static var previews: some View {
-//        @State var app1 = ShavaAppSwiftUI()
-//        @State var fb = Firebase(app: app1)
-//        MainMenuView()
-//            .environmentObject(app1)
-//            .environmentObject(fb)
-//            .previewDevice("iPhone 11 Pro")
+//        app1 = ShavaAppSwiftUI()
+//        fb = Firebase(app: app1!)
+//        
+//        return MainMenuView().environmentObject(app1!).environmentObject(fb!).previewDevice("iPhone 11 Pro")
 //    }
 //}

@@ -59,6 +59,10 @@ class ShavaAppSwiftUI: ObservableObject {
         currentOrder.orderItems
     }
     
+    var orderPrice: Double {
+        currentOrder.totalPrice
+    }
+    
     func clearMenu() {
         withAnimation {
             menu.clearMenu()
@@ -97,7 +101,7 @@ class ShavaAppSwiftUI: ObservableObject {
         print("authsuccess1")
         model.currentAuthenticationState = .authenticated
         
-        print(Mirror(reflecting: userInfo).children.compactMap { "\($0.label ?? "Unknown Label"): \($0.value)" }.joined(separator: "\n"))
+//        print(Mirror(reflecting: userInfo).children.compactMap { "\($0.label ?? "Unknown Label"): \($0.value)" }.joined(separator: "\n"))
         //TODO: save user
     }
     
@@ -134,7 +138,7 @@ class ShavaAppSwiftUI: ObservableObject {
 
     }
     
-    func addOneCartItem(_ item: Order.Item) {
+    func addOneOrderItem(_ item: Order.Item) {
         var formattedItem = item
         for addition in formattedItem.additions.keys {
             if formattedItem.additions[addition] == 0 {
@@ -144,8 +148,12 @@ class ShavaAppSwiftUI: ObservableObject {
         currentOrder.addOneOrderItem(formattedItem)
     }
     
-    func removeOneCartItem(_ item: Order.Item) {
-        
+    func removeOneOrderItem(_ item: Order.Item) {
+        currentOrder.removeOneOrderItem(item)
+    }
+    
+    func clearCart () {
+        currentOrder.clearCart()
     }
     
     func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
