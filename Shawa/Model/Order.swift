@@ -61,6 +61,10 @@ struct Order {
         }
     }
     
+    mutating func removeOrderItem(_ item: Item) {
+        orderItems.removeValue(forKey: item)
+    }
+    
     mutating func clearCart() {
         orderItems.removeAll()
     }
@@ -68,23 +72,20 @@ struct Order {
     mutating func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Item) {
         if let numberOfThisItemsInOrder = orderItems[item] {
             var modfiedItem = item;
+            orderItems.removeValue(forKey: item)
             if let currentNumber = modfiedItem.additions[ingredient] {
                 modfiedItem.additions.updateValue(currentNumber + 1, forKey: ingredient)
             } else {
                 modfiedItem.additions.updateValue(1, forKey: ingredient)
             }
-            
-            if let numberOfModifiedItemsInOrder = orderItems[modfiedItem] {
-                orderItems.updateValue(numberOfModifiedItemsInOrder + numberOfThisItemsInOrder, forKey: modfiedItem)
-            } else {
-                orderItems.updateValue(numberOfThisItemsInOrder, forKey: modfiedItem)
-            }
+            orderItems.updateValue(numberOfThisItemsInOrder, forKey: modfiedItem)
         }
     }
     
     mutating func removeOneIngredient(_ ingredient: Menu.Ingredient, to item: Item) {
         if let numberOfThisItemsInOrder = orderItems[item] {
             var modfiedItem = item;
+            orderItems.removeValue(forKey: item)
             if let currentNumber = modfiedItem.additions[ingredient] {
                 if currentNumber > 1 {
                     modfiedItem.additions.updateValue(currentNumber - 1, forKey: ingredient)
@@ -94,12 +95,7 @@ struct Order {
             } else {
                 modfiedItem.additions.updateValue(-1, forKey: ingredient)
             }
-            
-            if let numberOfModifiedItemsInOrder = orderItems[modfiedItem] {
-                orderItems.updateValue(numberOfModifiedItemsInOrder + numberOfThisItemsInOrder, forKey: modfiedItem)
-            } else {
-                orderItems.updateValue(numberOfThisItemsInOrder, forKey: modfiedItem)
-            }
+            orderItems.updateValue(numberOfThisItemsInOrder, forKey: modfiedItem)
         }
     }
     
