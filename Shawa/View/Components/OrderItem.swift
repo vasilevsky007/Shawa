@@ -9,15 +9,10 @@ import SwiftUI
 
 struct OrderItem: View {
     let thisItem: Order.Item
-    let addOneIngredient: (_ ingredient: Menu.Ingredient, _ item: Order.Item) -> Void
-    let removeOneIngredient: (_ ingredient: Menu.Ingredient, _ item: Order.Item) -> Void
+    @EnvironmentObject var app: ShavaAppSwiftUI
     
-    init(_ thisItem: Order.Item,
-         addOneIngredient: @escaping (_ ingredient: Menu.Ingredient, _ item: Order.Item) -> Void,
-         removeOneIngredient: @escaping (_ ingredient: Menu.Ingredient, _ item: Order.Item) -> Void) {
+    init(_ thisItem: Order.Item) {
         self.thisItem = thisItem
-        self.addOneIngredient = addOneIngredient
-        self.removeOneIngredient = removeOneIngredient
     }
     
     private struct DrawingConstants {
@@ -33,94 +28,108 @@ struct OrderItem: View {
             RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                 .strokeBorder(lineWidth: 1)
                 .foregroundColor(.lighterBrown)
-            HStack(alignment: .top) {
-                if let imageData = thisItem.item.image {
-                    if let uiImage = UIImage(data: imageData){
-                        Image(uiImage: uiImage)
-                            .resizable(resizingMode: .stretch)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                            .cornerRadius(DrawingConstants.cornerRadius)
-                            .padding([.leading, .top, .trailing], DrawingConstants.padding)
+            VStack(alignment: .trailing, spacing: 0) {
+                HStack(alignment: .top, spacing: 0) {
+                    if let imageData = thisItem.item.image {
+                        if let uiImage = UIImage(data: imageData){
+                            Image(uiImage: uiImage)
+                                .resizable(resizingMode: .stretch)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
+                                .cornerRadius(DrawingConstants.cornerRadius)
+                                .padding([.trailing, .bottom], DrawingConstants.padding)
+                        } else {
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.system(size: DrawingConstants.imageSize))
+                                .foregroundColor(.gray)
+                                .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
+                                .cornerRadius(DrawingConstants.cornerRadius)
+                                .padding([.trailing, .bottom], DrawingConstants.padding)
+                        }
                     } else {
                         Image(systemName: "exclamationmark.triangle")
                             .font(.system(size: DrawingConstants.imageSize))
                             .foregroundColor(.gray)
                             .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
                             .cornerRadius(DrawingConstants.cornerRadius)
-                            .padding([.leading, .top, .trailing], DrawingConstants.padding)
+                            .padding([.trailing, .bottom], DrawingConstants.padding)
                     }
-                } else {
-                    Image(systemName: "exclamationmark.triangle")
-                        .font(.system(size: DrawingConstants.imageSize))
-                        .foregroundColor(.gray)
-                        .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                        .cornerRadius(DrawingConstants.cornerRadius)
-                        .padding([.leading, .top, .trailing], DrawingConstants.padding)
-                }
-                VStack(alignment: .leading) {
-                    Text(thisItem.item.name)
-                        .font(.main(size: DrawingConstants.headerFontSize))
-                        .foregroundColor(.deafultBrown)
-                        .padding(.top, DrawingConstants.padding)
-                    Text(String(format: "%.2f", thisItem.item.price) + " BYN")
-                        .font(.mainBold(size: DrawingConstants.fontSize))
-                        .foregroundColor(.deafultBrown)
-                    ForEach(thisItem.additions.keys.sorted(by: { a, b in
-                        a.name < b.name
-                    })) { addition in
-                        VStack(alignment: .trailing, spacing: 0) {
-                            ZStack (alignment: .leading) {
-                                Text("+ " + (thisItem.additions[addition]! > 0 ?
-                                             String(thisItem.additions[addition]!) + " x "
-                                             : "No ")
-                                     + addition.name)
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack(alignment: .center) {
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(thisItem.item.name)
+                                    .font(.main(size: DrawingConstants.headerFontSize))
+                                    .foregroundColor(.deafultBrown)
+                                    .padding(.top, DrawingConstants.padding)
+                                Text(String(format: "%.2f", thisItem.item.price) + " BYN")
+                                    .font(.mainBold(size: DrawingConstants.fontSize))
+                                    .foregroundColor(.deafultBrown)
+                            }
+                            Spacer(minLength: 0)
+                            Button(role: .destructive) {
+                                app.removeOrderItem(thisItem)
+                            } label: {
+                                Image(systemName: "trash")
+                                    .font(.main(size: 32))
+                            }.padding(.trailing, 16)
+
+                        }
+
+                        ForEach(thisItem.additions.keys.sorted(by: { a, b in
+                            a.name < b.name
+                        })) { addition in
+                            VStack(alignment: .trailing, spacing: 0) {
+                                ZStack (alignment: .leading) {
+                                    Text("+ " + (thisItem.additions[addition]! > 0 ?
+                                                 String(thisItem.additions[addition]!) + " x "
+                                                 : "No ")
+                                         + addition.name)
+                                    .font(.main(size: DrawingConstants.fontSize))
+                                    .foregroundColor(.deafultBrown)
+                                    Spacer()
+                                    Stepper {
+                                         
+                                    } onIncrement: {
+                                        app.addOneIngredient(addition, to: thisItem)
+                                    } onDecrement: {
+                                        app.removeOneIngredient(addition, to: thisItem)
+                                    }
+                                    .scaleEffect(0.7, anchor: .trailing)
+                                }
+                                Text("+" + (thisItem.additions[addition]! > 0 ?
+                                            String(format: "%.2f", Double(thisItem.additions[addition]!) * Menu.Ingredient.price)
+                                             : "0")
+                                     + " BYN")
                                 .font(.main(size: DrawingConstants.fontSize))
                                 .foregroundColor(.deafultBrown)
-                                Spacer()
-                                Stepper {
-                                     
-                                } onIncrement: {
-                                    addOneIngredient(addition, thisItem)
-                                } onDecrement: {
-                                    removeOneIngredient(addition, thisItem)
-                                }
-                                .scaleEffect(0.7, anchor: .trailing)
                             }
-                            Text("+" + (thisItem.additions[addition]! > 0 ?
-                                         String(Double(thisItem.additions[addition]!) * Menu.Ingredient.price)
-                                         : "0")
-                                 + " BYN")
-                            .font(.main(size: DrawingConstants.fontSize))
-                            .foregroundColor(.deafultBrown)
                         }
+                        Divider()
+                            .overlay{ Color.primaryBrown }
+                            .padding(.top, DrawingConstants.padding)
+
                     }
-                    Divider().overlay{
-                        Color.primaryBrown
-                    }
-                    HStack {
+                }.padding(.all, DrawingConstants.padding)
+                HStack(spacing: 0) {
+                    Stepper {
                         Spacer(minLength: 0)
-                        Text(String(thisItem.price) + " BYN")
-                        .font(.main(size: DrawingConstants.fontSize))
-                        .foregroundColor(.deafultBrown)
+                    } onIncrement: {
+                        app.addOneOrderItem(thisItem)
+                    } onDecrement: {
+                        app.removeOneOrderItem(thisItem)
                     }
-                    Spacer(minLength: 0)
-                        .padding(.bottom, DrawingConstants.padding)
-                }.padding(.trailing, DrawingConstants.padding)
+                    Spacer(minLength: DrawingConstants.padding)
+                    Text(String(format: "%d x %.2f BYN", app.cartItems[thisItem] ?? 0, thisItem.price))
+                        .font(.interBold(size: DrawingConstants.fontSize))
+                    .foregroundColor(.deafultBrown)
+                }
+                .padding([.bottom, .horizontal], DrawingConstants.padding)
+
             }
+
         }
         //.frame(height: DrawingConstants.imageSize + DrawingConstants.padding * 2)
     }
     
 }
 
-struct OrderItem_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]), addOneIngredient: { ingredient, item in
-            
-        }, removeOneIngredient: { ingredient, item in
-            
-        })
-        .previewDevice("iPhone 11 Pro")
-    }
-}

@@ -149,6 +149,7 @@ struct MenuItemView: View {
                             .foregroundColor(.lightBrown)
                     } onIncrement: {
                         if (thisOrderItem.additions[ingredient]!.advanced(by: 1) != 101) {
+                            thisOrderItem.id = UUID()
                             thisOrderItem.additions.updateValue(
                                 thisOrderItem.additions[ingredient]!.advanced(by: 1),
                                 forKey: ingredient)
@@ -156,6 +157,7 @@ struct MenuItemView: View {
                         
                     } onDecrement: {
                         if (thisOrderItem.additions[ingredient]!.advanced(by: -1) != -2) {
+                            thisOrderItem.id = UUID()
                             thisOrderItem.additions.updateValue(
                                 thisOrderItem.additions[ingredient]!.advanced(by: -1),
                                 forKey: ingredient)

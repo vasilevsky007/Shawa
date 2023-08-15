@@ -145,22 +145,39 @@ class ShavaAppSwiftUI: ObservableObject {
                 formattedItem.additions.removeValue(forKey: addition)
             }
         }
-        currentOrder.addOneOrderItem(formattedItem)
+        withAnimation {
+            currentOrder.addOneOrderItem(formattedItem)
+        }
     }
     
     func removeOneOrderItem(_ item: Order.Item) {
-        currentOrder.removeOneOrderItem(item)
+        withAnimation {
+            currentOrder.removeOneOrderItem(item)
+        }
+    }
+    func removeOrderItem(_ item: Order.Item) {
+        withAnimation {
+            currentOrder.removeOrderItem(item)
+        }
     }
     
     func clearCart () {
-        currentOrder.clearCart()
-    }
-    
-    func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+        withAnimation {
+            currentOrder.clearCart()
+        }
         
     }
     
+    func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+        withAnimation {
+            currentOrder.addOneIngredient(ingredient, to: item)
+        }
+    }
+    
     func removeOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+        withAnimation {
+            currentOrder.removeOneIngredient(ingredient, to: item)
+        }
         
     }
     
@@ -172,16 +189,24 @@ class ShavaAppSwiftUI: ObservableObject {
         
     }
     
-    func updateComment(_ newValue: String?) {
+    func updateOrderComment(_ newValue: String?) {
         
     }
     
     
 //    TODO: possibly refactor buttonstate
     @Published var loginButtonState: ActionButtonState = .enabled(title: "Log In", systemImage: "")
+    
     struct NavBar {
         var activeButton: Menu.Section = Menu.Section.allCases.first!
         var actions: Dictionary<Menu.Section, () -> Void> = [:]
+        
+        mutating func click(on section: Menu.Section) {
+            withAnimation(.easeInOut) {
+                activeButton = section
+                actions[section]!()
+            }            
+        }
     }
     
     @Published var navbar = NavBar()

@@ -14,7 +14,7 @@ struct OrderView: View {
     
     private struct DrawingConstants {
         static let gridSpacing: CGFloat = 16
-        static let pagePadding: CGFloat = 32
+        static let pagePadding: CGFloat = 24
         static let padding: CGFloat = 8
         static let cornerRadius: CGFloat = 30
         static let headlineFontSize: CGFloat = 24
@@ -38,16 +38,18 @@ struct OrderView: View {
                     VStack (alignment: .listRowSeparatorTrailing, spacing: 0) {
                         ScrollView {
                             LazyVStack (spacing: DrawingConstants.gridSpacing) {
-                                ForEach(Array(app.cartItems.keys)) {cartItem in
-                                    OrderItem(cartItem) { ingredient, item in
-    //                                    thisOrder.addOneIngredient(ingredient, to: item)
-                                    } removeOneIngredient: { ingredient, item in
-    //                                    thisOrder.removeOneIngredient(ingredient, to: item)
+                                ForEach(Array(app.cartItems.keys.sorted(by: { item1, item2 in
+                                    if item1.item.name != item2.item.name {
+                                        return item1.item.name < item2.item.name
+                                    } else {
+                                        return item1.id.description < item2.id.description
                                     }
+                                }))) {cartItem in
+                                    OrderItem(cartItem)
                                 }
                             }
                             .padding(.top, DrawingConstants.pagePadding)
-                            .padding(.horizontal, DrawingConstants.pagePadding - DrawingConstants.padding)
+                            .padding(.horizontal, DrawingConstants.pagePadding)
                         }
                         Divider().overlay(Color.lighterBrown)
                         HStack(alignment: .center, spacing: 0) {
@@ -59,6 +61,7 @@ struct OrderView: View {
                             Text(String(format: "%.2f BYN", app.orderPrice))
                                 .foregroundColor(.deafultBrown)
                                 .font(.interBold(size: 20))
+                                .frame(width: 136, alignment: .trailing)
                         }
                             .padding(.horizontal, DrawingConstants.pagePadding)
                             .padding(.vertical, DrawingConstants.padding)
@@ -86,15 +89,12 @@ struct OrderView: View {
 struct OrderView_Previews: PreviewProvider {
     static var app = ShavaAppSwiftUI()
     static var previews: some View {
-        
         app.clearCart()
-        app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
+        app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 9.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
         app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
         app.addOneOrderItem(Order.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
 
         
-        return OrderView()
-            .environmentObject(app)
-            .previewDevice("iPhone 11 Pro")
+        return OrderView().environmentObject(app).previewDevice("iPhone 11 Pro")
     }
 }
