@@ -24,7 +24,9 @@ struct OrderView: View {
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }).padding(.horizontal, 24.5)
+                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }, noTrailingLink: true) {
+                    Text("placeholder. will not be seen")
+                }.padding(.horizontal, 24.5)
                 
                 Text("Your order:")
                     .foregroundColor(.deafultBrown)

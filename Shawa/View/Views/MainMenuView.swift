@@ -65,9 +65,10 @@ struct MainMenuView: View {
     
     var headerBody: some View {
         VStack {
-            Header(leadingAction: firebase.logout, trailingAction: {
-                //TODO: open cart, change leadingaction to open menu
-            })
+            Header(leadingAction: firebase.logout) {
+                //TODO: change leadingaction to open menu
+                OrderView()
+            }
             PrettyTextField(text: $enteredSearch, label: "Search for meals", submitLabel: .search, color: .lighterBrown, image: "SearchIcon",width: nil, height: 45, focusState: $searchBoxFocused, focusedValue: true )
                 .overlay(alignment: .trailing) {
                     if searchResultsShown {

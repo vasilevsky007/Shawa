@@ -22,7 +22,9 @@ struct SectionMenuView: View {
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }).padding(.horizontal, 24.5)
+                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }){
+                    OrderView()
+                }.padding(.horizontal, 24.5)
                 
                 Text(displayingSection.rawValue)
                     .foregroundColor(.deafultBrown)
