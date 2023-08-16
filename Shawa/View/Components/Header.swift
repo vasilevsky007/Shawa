@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct Header: View {
+struct Header<TrailingLink>: View where TrailingLink: View {
     var leadingIcon: String
     var leadingAction: () -> Void
-    var trailingAction: ()-> Void
-    init(leadingIcon: String = "MenuIcon", leadingAction: @escaping () -> Void = { }, trailingAction: @escaping () -> Void = { }) {
+    var trailingLink: TrailingLink
+    init(leadingIcon: String = "MenuIcon", leadingAction: @escaping () -> Void = { }, trailingLink: TrailingLink) {
         self.leadingIcon = leadingIcon
         self.leadingAction = leadingAction
-        self.trailingAction = trailingAction
+        self.trailingLink = trailingLink
     }
     var body: some View {
         VStack {
@@ -28,8 +28,8 @@ struct Header: View {
                 Spacer()
                 logoBody
                 Spacer()
-                Button {
-                    trailingAction()
+                NavigationLink {
+                    trailingLink
                 } label: {
                     Image("CartIcon").resizable(resizingMode: .stretch).frame(width: 25, height: 25)
                 }
@@ -48,6 +48,6 @@ struct Header: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        Header()
+        Header(trailingLink: Text("asd"))
     }
 }
