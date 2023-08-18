@@ -23,7 +23,7 @@ struct SectionMenuView: View {
             backgroundBody
             VStack(alignment: .leading) {
                 Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }){
-                    OrderView()
+                    CartView()
                 }.padding(.horizontal, 24.5)
                 
                 Text(displayingSection.rawValue)
