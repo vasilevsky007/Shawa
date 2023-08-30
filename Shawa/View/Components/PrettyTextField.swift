@@ -15,6 +15,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
     var submitLabel: SubmitLabel
     var submitAction: (()->Void)?
     var keyboardType: UIKeyboardType
+    var isSystemImage: Bool
     var image: String
     var color: Color
     var font: Font
@@ -24,7 +25,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
     var focusState: FocusState<FocusStateType>.Binding
     var focusedValue: FocusStateType
     
-    init (text: Binding<String>, label: String = "", isSecured:Bool = false, submitLabel: SubmitLabel = .next, submitAction: (()->Void)? = nil, keyboardType:UIKeyboardType = .default, font: Font = .main(size: 14), color: Color = .accentColor, image: String = "", cornerRadius: CGFloat = 10, width: CGFloat? = 326, height: CGFloat = 50, focusState: FocusState<FocusStateType>.Binding, focusedValue: FocusStateType){
+    init (text: Binding<String>, label: String = "", isSecured:Bool = false, submitLabel: SubmitLabel = .next, submitAction: (()->Void)? = nil, keyboardType:UIKeyboardType = .default, font: Font = .main(size: 14), color: Color = .accentColor, isSystemImage: Bool = false, image: String = "", cornerRadius: CGFloat = 10, width: CGFloat? = 326, height: CGFloat = 50, focusState: FocusState<FocusStateType>.Binding, focusedValue: FocusStateType){
         self.cornerRadius = cornerRadius
         self.text = text
         self.secured = isSecured
@@ -32,6 +33,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
         self.submitLabel = submitLabel
         self.submitAction = submitAction
         self.keyboardType = keyboardType
+        self.isSystemImage = isSystemImage
         self.image = image
         self.color = color
         self.font = font
@@ -79,10 +81,18 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
                     .foregroundColor(color)
                     .font(font)
             }
-            Image(image)
-                .resizable(resizingMode: .stretch)
-                .frame(width: 20, height: 20)
-                .padding(.horizontal, 15)
+            if(isSystemImage){
+                Image(systemName: image)
+                    .resizable(resizingMode: .stretch)
+                    .frame(width: 20, height: 20)
+                    .padding(.horizontal, 15)
+                    .foregroundColor(color)
+            } else {
+                Image(image)
+                    .resizable(resizingMode: .stretch)
+                    .frame(width: 20, height: 20)
+                    .padding(.horizontal, 15)
+            }
         }.frame(width: width, height: height)
     }
 }

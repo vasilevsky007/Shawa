@@ -21,60 +21,61 @@ struct CartView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .top) {
-            backgroundBody
-            VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }, noTrailingLink: true) {
-                    Text("placeholder. will not be seen")
-                }.padding(.horizontal, 24.5)
-                
-                Text("Your order:")
-                    .foregroundColor(.deafultBrown)
-                    .font(.montserratBold(size: 24))
-                    .padding(.horizontal, DrawingConstants.pagePadding)
-                    .padding(.top, DrawingConstants.padding)
-                ZStack {
-                    RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                        .ignoresSafeArea(edges: .bottom)
-                        .foregroundColor(.veryLightBrown2)
-                    VStack (alignment: .listRowSeparatorTrailing, spacing: 0) {
-                        ScrollView {
-                            LazyVStack (spacing: DrawingConstants.gridSpacing) {
-                                ForEach(Array(app.cartItems.keys.sorted(by: { item1, item2 in
-                                    if item1.item.name != item2.item.name {
-                                        return item1.item.name < item2.item.name
-                                    } else {
-                                        return item1.id.description < item2.id.description
+        NavigationView {
+            ZStack(alignment: .top) {
+                backgroundBody
+                VStack(alignment: .leading) {
+                    Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }, noTrailingLink: true) {
+                        Text("placeholder. will not be seen")
+                    }.padding(.horizontal, 24.5)
+                    
+                    Text("Your order:")
+                        .foregroundColor(.deafultBrown)
+                        .font(.montserratBold(size: 24))
+                        .padding(.horizontal, DrawingConstants.pagePadding)
+                        .padding(.top, DrawingConstants.padding)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                            .ignoresSafeArea(edges: .bottom)
+                            .foregroundColor(.veryLightBrown2)
+                        VStack (alignment: .listRowSeparatorTrailing, spacing: 0) {
+                            ScrollView {
+                                LazyVStack (spacing: DrawingConstants.gridSpacing) {
+                                    ForEach(Array(app.cartItems.keys.sorted(by: { item1, item2 in
+                                        if item1.item.name != item2.item.name {
+                                            return item1.item.name < item2.item.name
+                                        } else {
+                                            return item1.id.description < item2.id.description
+                                        }
+                                    }))) {cartItem in
+                                        OrderItem(cartItem)
                                     }
-                                }))) {cartItem in
-                                    OrderItem(cartItem)
                                 }
+                                .padding(.top, DrawingConstants.pagePadding)
+                                .padding(.horizontal, DrawingConstants.pagePadding)
                             }
-                            .padding(.top, DrawingConstants.pagePadding)
-                            .padding(.horizontal, DrawingConstants.pagePadding)
-                        }
-                        .overlay(alignment: .bottomLeading) {
-                            proceedOverlayBody
-                        }
-                        Divider().overlay(Color.lighterBrown)
-                        HStack(alignment: .center, spacing: 0) {
-                            Text("Grand total:")
-                                .foregroundColor(.deafultBrown)
-                                .font(.montserratBold(size: DrawingConstants.headlineFontSize))
-                                .padding(.trailing, DrawingConstants.padding)
+                            .overlay(alignment: .bottomLeading) {
+                                proceedOverlayBody
+                            }
+                            Divider().overlay(Color.lighterBrown)
+                            HStack(alignment: .center, spacing: 0) {
+                                Text("Grand total:")
+                                    .foregroundColor(.deafultBrown)
+                                    .font(.montserratBold(size: DrawingConstants.headlineFontSize))
+                                    .padding(.trailing, DrawingConstants.padding)
                                 
-                            Text(String(format: "%.2f BYN", app.orderPrice))
-                                .foregroundColor(.deafultBrown)
-                                .font(.interBold(size: 20))
-                                .frame(width: 136, alignment: .trailing)
-                        }
+                                Text(String(format: "%.2f BYN", app.orderPrice))
+                                    .foregroundColor(.deafultBrown)
+                                    .font(.interBold(size: 20))
+                                    .frame(width: 136, alignment: .trailing)
+                            }
                             .padding(.horizontal, DrawingConstants.pagePadding)
                             .padding(.bottom, DrawingConstants.padding)
                             .padding(.vertical, DrawingConstants.padding)
-                    }.ignoresSafeArea(edges: .bottom)
+                        }.ignoresSafeArea(edges: .bottom)
+                    }
                 }
             }
-            
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {

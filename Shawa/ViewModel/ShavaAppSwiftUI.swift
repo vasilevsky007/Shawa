@@ -63,6 +63,14 @@ class ShavaAppSwiftUI: ObservableObject {
         currentOrder.totalPrice
     }
     
+    var orderUserdata: Order.UserData {
+        currentOrder.user
+    }
+    
+    var orderComment: String {
+        currentOrder.comment ?? ""
+    }
+    
     func clearMenu() {
         withAnimation {
             menu.clearMenu()
@@ -181,21 +189,25 @@ class ShavaAppSwiftUI: ObservableObject {
         
     }
     
-    func updatePhoneNumber(_ newValue: String?) {
-        
+    func updatePhoneNumber(_ newValue: String) {
+        currentOrder.updatePhoneNumber(newValue == "" ? nil : newValue)
     }
     
-    func updateAddress(_ newValue: String?) {
-        
+    func updateAddress(street: String, house: String, apartament: String) {
+        currentOrder.updateAddress(
+            street: street == "" ? nil : street,
+            house: house == "" ? nil : house,
+            apartament: apartament == "" ? nil : apartament)
     }
     
     func updateOrderComment(_ newValue: String?) {
-        
+        currentOrder.updateComment(newValue == "" ? nil : newValue)
     }
     
     
 //    TODO: possibly refactor buttonstate
     @Published var loginButtonState: ActionButtonState = .enabled(title: "Log In", systemImage: "")
+    @Published var orderButtonState: ActionButtonState = .enabled(title: "Make an order", systemImage: "")
     
     struct NavBar {
         var activeButton: Menu.Section = Menu.Section.allCases.first!

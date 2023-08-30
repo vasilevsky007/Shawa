@@ -27,9 +27,7 @@ struct AuthoriseView: View {
         ZStack(alignment: .top){
             backgroundBody
             contentBody
-        }.preferredColorScheme(.dark).onChange(of: focusedField) { newValue in
-            print("NEW VALUE: ",newValue)
-        }
+        }.preferredColorScheme(.dark)
     }
     
     var backgroundBody: some View {
@@ -120,9 +118,6 @@ struct AuthoriseView: View {
                             }
 
                         }
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-//                            app.loginButtonState = .disabled(title: "Something went wrong...", systemImage: "xmark")
-//                        }
                     }, backgroundColor: .primaryBrown, foregroundColor: .white)
                     .padding(.top, 20)
                 }

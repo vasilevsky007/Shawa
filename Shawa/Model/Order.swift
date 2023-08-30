@@ -20,15 +20,22 @@ struct Order {
             return price
         }
     }
-    struct userData {
+    struct Address {
+        var street: String?
+        var house: String?
+        var apartament: String?
+    }
+    struct UserData {
         var userID: String?
         var phoneNumber: String?
-        var address: String?
+        var address: Address
     }
+    
     private(set) var orderItems: [Item:Int]
-    private(set) var user: userData
+    private(set) var user: UserData
     private(set) var comment: String?
     private(set) var timestamp: Date?
+    
     var totalPrice: Double {
         var totalPrice = 0.0
         for item in orderItems {
@@ -39,7 +46,7 @@ struct Order {
     
     init() {
         self.orderItems = [:]
-        self.user = userData(userID: "", phoneNumber: nil, address: nil)
+        self.user = UserData(userID: "", phoneNumber: nil, address: Address())
     }
     
     
@@ -107,8 +114,10 @@ struct Order {
         user.phoneNumber = newValue
     }
     
-    mutating func updateAddress(_ newValue: String?) {
-        user.address = newValue
+    mutating func updateAddress(street: String?, house: String?, apartament: String?) {
+        user.address.street = street
+        user.address.house = house
+        user.address.apartament = apartament
     }
     
     mutating func updateComment(_ newValue: String?) {
