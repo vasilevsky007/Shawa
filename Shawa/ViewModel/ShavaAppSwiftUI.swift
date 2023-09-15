@@ -11,9 +11,9 @@ import FirebaseAuth
 
 @MainActor
 class ShavaAppSwiftUI: ObservableObject {
-    @Published private var model = ShavaApp()
-    @Published private var menu = Menu()
-    @Published private var currentOrder = Order()
+    @Published private(set) var model = ShavaApp()
+    @Published private(set) var menu = Menu()
+    @Published private(set) var currentOrder = Order()
     
     var isLoggedIn: Bool {
         if (model.currentAuthenticationState == .authenticated) {
@@ -108,7 +108,6 @@ class ShavaAppSwiftUI: ObservableObject {
     func authenticationSuccess(userInfo: User) {
         print("authsuccess1")
         model.currentAuthenticationState = .authenticated
-        
 //        print(Mirror(reflecting: userInfo).children.compactMap { "\($0.label ?? "Unknown Label"): \($0.value)" }.joined(separator: "\n"))
         //TODO: save user
     }
@@ -202,6 +201,10 @@ class ShavaAppSwiftUI: ObservableObject {
     
     func updateOrderComment(_ newValue: String?) {
         currentOrder.updateComment(newValue == "" ? nil : newValue)
+    }
+    
+    func updateOrderUID(_ newValue: String?)  {
+        currentOrder.updateUserID(newValue)
     }
     
     

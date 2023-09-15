@@ -19,6 +19,7 @@ class Firebase: ObservableObject {
     var achievedMenu = [Menu.Item]()
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     private var firestore: Firestore
+    private var realtimeDatabase: DatabaseReference
     
     private func registerAuthStateHandler()  {
           if authStateHandle == nil {
@@ -39,8 +40,9 @@ class Firebase: ObservableObject {
         self.app = app
         FirebaseApp.configure()
         self.firestore = Firestore.firestore()
+        //add database url in .xcconfig & info.plist to stop crash in next line
+        self.realtimeDatabase = Database.database(url: "https://"+(Bundle.main.infoDictionary?["FIREBASE_REALTIME_DATABASE_URL"] as? String)!).reference()
         registerAuthStateHandler()
-        
     }
     
     fileprivate struct FirestoreMenuItem: Codable {
@@ -173,6 +175,47 @@ class Firebase: ObservableObject {
                 self.app.authenticationFailure(reason: error.localizedDescription)
             }
         }
+    }
+    
+    func sendOrder() async throws {
+        var orderItemsRestructurised: Array<[String: Any]> = []
+        var additionsRestructurised: [[String: Any]] = []
+        
+        var autoParsed = try await (JSONSerialization.jsonObject(with: JSONEncoder().encode(app.currentOrder)) as? [String: Any] ?? [:])
+        var orderItems: Array? = autoParsed["orderItems"] as? Array<Any>
+        if orderItems  != nil {
+            orderItemsRestructurised.removeAll()
+            for i in 0..<(orderItems!.count / 2) {
+                var formattedItem = orderItems![i * 2] as! [String:Any]
+                formattedItem["id"] = nil
+                
+                var formattedMenuItem = formattedItem["item"] as! [String:Any]
+                formattedMenuItem["id"] = nil
+                formattedMenuItem["dateAdded"] = nil
+                formattedMenuItem["popularity"] = nil
+                formattedMenuItem["image"] = nil
+                formattedMenuItem["description"] = nil
+                formattedMenuItem["ingredients"] = nil
+                formattedItem["item"] = formattedMenuItem
+                
+                var additions: Array? = formattedItem["additions"] as? Array<Any>
+                if additions != nil {
+                    additionsRestructurised.removeAll()
+                    for j in 0..<(additions!.count / 2) {
+                        additionsRestructurised.append(
+                            ["addition":additions![j * 2], "count":additions![j * 2 + 1]]
+                        )
+                    }
+                    formattedItem["additions"] = additionsRestructurised
+                }
+                
+                orderItemsRestructurised.append(
+                    ["orderItem":formattedItem, "count":orderItems![i * 2 + 1]]
+                )
+            }
+            autoParsed["orderItems"] = orderItemsRestructurised
+        }
+        try await realtimeDatabase.child("ordersAPL").child(app.currentOrder.user.userID!).child(Date.now.debugDescription).setValue(autoParsed)
     }
     
     func logout() {

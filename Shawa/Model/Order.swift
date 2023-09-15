@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Order {
-    struct Item: Hashable, Identifiable {
+struct Order: Codable {
+    struct Item: Hashable, Identifiable, Codable {
         var id = UUID()
         var item: Menu.Item
         var additions: [Menu.Ingredient:Int] // ingredint:count
@@ -20,12 +20,12 @@ struct Order {
             return price
         }
     }
-    struct Address {
+    struct Address: Codable {
         var street: String?
         var house: String?
         var apartament: String?
     }
-    struct UserData {
+    struct UserData: Codable {
         var userID: String?
         var phoneNumber: String?
         var address: Address

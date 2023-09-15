@@ -12,10 +12,16 @@ struct OrderView: View {
     @Environment(\.dismiss) private var dismiss
     @GestureState private var dragOffset = CGSize.zero
     @EnvironmentObject var app: ShavaAppSwiftUI
+    @EnvironmentObject var firebase: Firebase
     
     private enum FocusableField: Hashable {
         case phone, street, house, apartament, comment;
     }
+    
+    private enum OrderSended: Hashable {
+        case sended, notSended;
+    }
+    
     @FocusState private var focusedField: FocusableField?
     
     @State private var enteredPhone = ""
@@ -23,6 +29,7 @@ struct OrderView: View {
     @State private var enteredHouse = ""
     @State private var enteredApartament = ""
     @State private var enteredComment = ""
+    @State private var orderSended = OrderSended.notSended
     
     func loadFromModel() {
         enteredPhone = app.orderUserdata.phoneNumber ?? ""
@@ -32,16 +39,27 @@ struct OrderView: View {
         enteredComment = app.orderComment
     }
     
-    func updateModel() {
-        Task(priority: .userInitiated) {
+    func updateModel() async {
+        switch orderSended {
+        case .sended:
+            app.updatePhoneNumber("")
+            app.updateOrderComment("")
+            app.updateAddress(street: "", house: "", apartament: "")
+            app.clearCart()
+            app.updateOrderUID(firebase.achievedInfoAboutUser?.uid)
+        case.notSended:
             app.updatePhoneNumber(enteredPhone)
             app.updateOrderComment(enteredComment)
             app.updateAddress(street: enteredStreet, house: enteredHouse, apartament: enteredApartament)
+            app.updateOrderUID(firebase.achievedInfoAboutUser?.uid)
         }
+        
     }
     
-    func closethisView () {
-        
+    
+    
+    func closethisView () async {
+        await updateModel()
         dismiss()
     }
     
@@ -57,7 +75,11 @@ struct OrderView: View {
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: { closethisView() }, noTrailingLink: true) {
+                Header(leadingIcon: "BackIcon", leadingAction: {
+                    Task(priority: .userInitiated) {
+                        await closethisView()
+                    }
+                }, noTrailingLink: true) {
                     Text("placeholder. will not be seen")
                 }.padding(.horizontal, 24.5)
                 
@@ -158,9 +180,20 @@ struct OrderView: View {
                             
                             ActionButton(state: $app.orderButtonState, onTap: {
                                 app.orderButtonState = .loading(title: "Loading", systemImage: "")
-//                                Task(priority: .userInitiated) {
-//                                    await firebase.register(email: enteredEmail, password: enteredPassword)
-//                                }
+                                Task(priority: .userInitiated) {
+                                    await updateModel()
+                                    do {
+                                        try await firebase.sendOrder()
+                                        orderSended = .sended
+                                        app.orderButtonState = .disabled(title: "Successfully placed an order", systemImage: "checkmark")
+                                        try! await Task.sleep(for: .seconds(2))
+                                        await closethisView()
+                                    } catch {
+                                        app.orderButtonState = .disabled(title: error.localizedDescription, systemImage: "exclamationmark.octagon")
+                                        try! await Task.sleep(for: .seconds(2))
+                                        app.orderButtonState = .enabled(title: "Make an order", systemImage: "")
+                                    }
+                                }
                             }, backgroundColor: .primaryBrown, foregroundColor: .white)
                         }
                             .scrollContentBackground(.hidden)
@@ -191,7 +224,9 @@ struct OrderView: View {
         }
         .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
             if(value.startLocation.x < 50 && value.translation.width > 100) {
-                closethisView()
+                Task(priority: .userInitiated) {
+                    await closethisView()
+                }
             }
         }))
         .onAppear {
