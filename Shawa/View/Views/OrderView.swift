@@ -187,6 +187,7 @@ struct OrderView: View {
                                         orderSended = .sended
                                         app.orderButtonState = .disabled(title: "Successfully placed an order", systemImage: "checkmark")
                                         try! await Task.sleep(for: .seconds(2))
+                                        app.orderButtonState = .enabled(title: "Make an order", systemImage: "")
                                         await closethisView()
                                     } catch {
                                         app.orderButtonState = .disabled(title: error.localizedDescription, systemImage: "exclamationmark.octagon")
