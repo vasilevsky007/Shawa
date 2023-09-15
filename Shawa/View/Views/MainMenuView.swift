@@ -28,12 +28,13 @@ struct MainMenuView: View {
                     headerBody.padding(.horizontal, 24)
                     contentBody.padding(.top, 8)
                 }
-            }.popover(item: $tappedItem) { item in
+            }.sheet(item: $tappedItem) { item in
                 MenuItemView(item) { selectedItem in
                     app.addOneOrderItem(selectedItem)
                 }
             }
         }
+            .navigationViewStyle(.stack)
             .onChange(of: searchBoxFocused) { beginFocused in
                 if beginFocused {
                     withAnimation(.easeInOut(duration: 1)) {

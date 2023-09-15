@@ -77,6 +77,7 @@ struct CartView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             
