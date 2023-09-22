@@ -71,7 +71,7 @@ struct PrettyButton: View {
 
 struct PrettyButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        PrettyButton(text: "Chicken", systemImage: "slider.vertical.3", onTap: {}).frame(width: 92, height: 41)
+        PrettyButton(text: "Chicken", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 92, height: 41)
         
         PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
             

@@ -19,7 +19,11 @@ struct MainMenuView: View {
     }
     @State private var tappedItem: Menu.Item? = nil;
     @FocusState private var searchBoxFocused: Bool
-    @State private var searchResultsShown = false
+    private enum ShowingContent {
+        case main, searchResults, menu
+    }
+    @State private var contentShowing = ShowingContent.main
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
@@ -38,7 +42,7 @@ struct MainMenuView: View {
             .onChange(of: searchBoxFocused) { beginFocused in
                 if beginFocused {
                     withAnimation(.easeInOut(duration: 1)) {
-                        searchResultsShown = true
+                        contentShowing = .searchResults
                     }
                 }
             }
@@ -52,31 +56,45 @@ struct MainMenuView: View {
     var contentBody: some View {
         ZStack(alignment: .top) {
             Color.clear
-            if searchResultsShown {
+            switch contentShowing {
+            case .main:
+                mainMenuBody.transition(.move(edge: .bottom).animation(.easeInOut(duration: 1)))
+            case .searchResults:
                 searchResultsBody
                     .padding(.horizontal, 24.5)
                     .transition(.move(edge: .top).animation(.easeInOut(duration: 1))
                         .combined(with: .asymmetric(insertion: .opacity.animation(.easeIn(duration: 0.5).delay(0.5)),
-                                                    removal: .opacity.animation(.easeOut(duration: 0.3)))))
-            } else {
-                mainMenuBody.transition(.move(edge: .bottom).animation(.easeInOut(duration: 1)))
+                                                    removal: .opacity.animation(.easeOut(duration: 0.2)))))
+            case .menu:
+                menuBody
+                    .padding(.horizontal, 24.5)
+                    .transition(.move(edge: .top).animation(.easeInOut(duration: 1))
+                        .combined(with: .asymmetric(insertion: .opacity.animation(.easeIn(duration: 0.9).delay(0.1)),
+                                                    removal: .opacity.animation(.easeOut(duration: 0.2)))))
             }
         }
     }
     
     var headerBody: some View {
         VStack {
-            Header(leadingAction: firebase.logout) {
-                //TODO: change leadingaction to open menu
+            Header(leadingIcon: "MenuIcon") {
+                withAnimation {
+                    if contentShowing != .menu {
+                        contentShowing = .menu
+                    } else {
+                        contentShowing = .main
+                    }
+                }
+            } trailingLink: {
                 CartView()
             }
             PrettyTextField(text: $enteredSearch, label: "Search for meals", submitLabel: .search, color: .lighterBrown, image: "SearchIcon",width: nil, height: 45, focusState: $searchBoxFocused, focusedValue: true )
                 .overlay(alignment: .trailing) {
-                    if searchResultsShown {
+                    if contentShowing == .searchResults{
                         Button {
                             withAnimation(.easeInOut(duration: 1)) {
                                 searchBoxFocused = false
-                                searchResultsShown = false
+                                contentShowing = .main
 //                                enteredSearch = ""
                             }
                         } label: {
@@ -92,26 +110,46 @@ struct MainMenuView: View {
     }
     
     var searchResultsBody: some View {
-        VStack{
-            if searchResultsShown {
-                ScrollView(.vertical, showsIndicators: true) {
-                    VStack(alignment: .leading) {
-                        Text((app.menuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })).isEmpty ? "Nothing found..." : "You may be looking for:")
-                            .font(.main(size: 16))
-                            .foregroundColor(.deafultBrown)
-                        Color.clear.frame(height: 0)
-                        ForEach(app.menuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })) { item in
-                            Button {
-                                tappedItem = item
-                            } label: {
-                                SearchItem(item)
-                            }.transition(.asymmetric(insertion: .push(from: .top), removal: .opacity).animation(.linear(duration: 1)))
-                        }
-                        Spacer(minLength: 0)
+        VStack {
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(alignment: .leading) {
+                    Text((app.menuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })).isEmpty ? "Nothing found..." : "You may be looking for:")
+                        .font(.main(size: 16))
+                        .foregroundColor(.deafultBrown)
+                    Color.clear.frame(height: 0)
+                    ForEach(app.menuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })) { item in
+                        Button {
+                            tappedItem = item
+                        } label: {
+                            SearchItem(item)
+                        }.transition(.asymmetric(insertion: .push(from: .top), removal: .opacity).animation(.linear(duration: 1)))
                     }
+                    Spacer(minLength: 0)
                 }
             }
             Color.clear.frame(height: 0)
+        }
+    }
+    
+    var menuBody: some View {
+        return VStack(alignment: .leading) {
+    
+            NavigationLink {
+                
+            } label: {
+                PrettyButton(text: "Profile", unactiveColor: .lightBrown, isActive: false, onTap: {})
+                    .frame(height: 40)
+            }
+            NavigationLink {
+                
+            } label: {
+                PrettyButton(text: "My orders", unactiveColor: .lightBrown, isActive: false, onTap: {})
+                    .frame(height: 40)
+            }
+            PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
+                firebase.logout()
+            }
+                .frame(height: 40)
         }
     }
     
