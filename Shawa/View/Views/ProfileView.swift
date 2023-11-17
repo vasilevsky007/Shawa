@@ -35,23 +35,23 @@ struct ProfileView: View {
     @State private var isEditingPhone = false
     
     func loadUserInfo() {
-                enteredName = firebase.currentUser?.displayName ?? ""
-                enteredEmail = firebase.currentUser?.email ?? ""
-//                enteredPhone = firebase.currentUser?.phoneNumber ?? ""
+        enteredName = firebase.currentUser?.displayName ?? ""
+        enteredEmail = firebase.currentUser?.email ?? ""
+        //                enteredPhone = firebase.currentUser?.phoneNumber ?? ""
     }
     
     func showErrorDescription(_ description: String?) async {
         errorDescription = description
-                try? await Task.sleep(for: .seconds(5))
-                if errorDescription == description {
-                    errorDescription = nil
-                }
+        try? await Task.sleep(for: .seconds(5))
+        if errorDescription == description {
+            errorDescription = nil
+        }
     }
     
     func updateEmail() {
         Task.detached {
             do {
-                try await firebase.currentUser?.updateEmail(to: enteredEmail)
+                try await firebase.updateEmail(to: enteredEmail)
             } catch {
                 await loadUserInfo()
                 await showErrorDescription("Error updating E-mail: " + error.localizedDescription)
@@ -62,9 +62,8 @@ struct ProfileView: View {
     func deleteAccount() {
         Task.detached {
             do {
-                try await firebase.currentUser?.delete()
+                try await firebase.deleteAccount()
             } catch {
-                await loadUserInfo()
                 await showErrorDescription("Error deleting account: " + error.localizedDescription)
             }
         }
@@ -83,9 +82,7 @@ struct ProfileView: View {
     func updateName() {
         Task.detached {
             do {
-                let changeRequest = await firebase.currentUser?.createProfileChangeRequest()
-                changeRequest?.displayName = await enteredName
-                try await changeRequest?.commitChanges()
+                try await firebase.updateName(to: enteredName)
             } catch {
                 await showErrorDescription("Error updating name: " + error.localizedDescription)
             }
@@ -105,7 +102,9 @@ struct ProfileView: View {
     }
     
     var backgroundBody: some View {
-        Rectangle().ignoresSafeArea().foregroundColor(.white)
+        Rectangle()
+            .ignoresSafeArea()
+            .foregroundColor(.white)
     }
     
     var body: some View {

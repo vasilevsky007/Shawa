@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 import SwiftUI
 
 class Firebase: ObservableObject {
-    var app: ShavaAppSwiftUI
+    private var app: ShavaAppSwiftUI
     
     var currentUser: User?
     var achievedMenu = [Menu.Item]()
@@ -209,13 +209,18 @@ class Firebase: ObservableObject {
         }
     }
     
-    func deleteAccount() async {
-        do {
-            try await currentUser?.delete()
-        } catch{
-            //TODO: indicate failure in ui
-            print("error: " + error.localizedDescription)
-        }
+    func deleteAccount() async throws {
+        try await currentUser?.delete()
+    }
+    
+    func updateEmail(to email: String) async throws {
+        try await currentUser?.updateEmail(to: email)
+    }
+    
+    func updateName(to name: String) async throws {
+        let changeRequest = currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = name
+        try await changeRequest?.commitChanges()
     }
     
 }
