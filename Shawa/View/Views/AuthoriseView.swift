@@ -72,34 +72,34 @@ struct AuthoriseView: View {
                     PrettyTextField(
                         text: $enteredEmail,
                         label: "Email",
-                        submitAction: { focusedField = .password },
-                        keyboardType: .emailAddress,
                         color: .lighterBrown,
                         image: "MailIcon",
                         focusState: $focusedField,
-                        focusedValue: .email
-                    )
+                        focusedValue: .email,
+                        keyboardType: .emailAddress) {
+                            focusedField = .password
+                        }
                     PrettyTextField(
                         text: $enteredPassword,
                         label: "Password",
                         isSecured: true,
-                        submitLabel: app.isRegistering ? .next : .done,
-                        submitAction: app.isRegistering ? { focusedField = .confirmPassword } : nil,
                         color: .lighterBrown,
                         image: "LockIcon",
                         focusState: $focusedField,
-                        focusedValue: .password
+                        focusedValue: .password,
+                        submitLabel: app.isRegistering ? .next : .done,
+                        submitAction: app.isRegistering ? { focusedField = .confirmPassword } : nil
                     ).padding(.top, 20)
                     if app.isRegistering {
                         PrettyTextField(
                             text: $enteredPasswordConfirm,
                             label: "Confirm Password",
                             isSecured: true,
-                            submitLabel: .done,
                             color: .lighterBrown,
                             image: "LockIcon",
                             focusState: $focusedField,
-                            focusedValue: .confirmPassword)
+                            focusedValue: .confirmPassword,
+                            submitLabel: .done)
                             .padding(.top, 20)
                             .transition(.offset(x: 0, y: -80).combined(with: .asymmetric(
                                 insertion: .opacity.animation(.linear(duration: 0.4 * DrawingConstants.moveAnimtionTime).delay(0.6 * DrawingConstants.moveAnimtionTime)),

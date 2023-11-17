@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		FA0B09F729E2B56E00202CFA /* ShawaAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */; };
 		FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B09F829E41A4D00202CFA /* MenuItemView.swift */; };
+		FA1AFA152AFE5B2C0092A46A /* PrettyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */; };
+		FA1AFA172AFE5F810092A46A /* PrettyEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */; };
+		FA1AFA192B04E9F10092A46A /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */; };
+		FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */; };
 		FA2775F02A87C5F000A55405 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775EF2A87C5F000A55405 /* CartView.swift */; };
 		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA5173CE29BDCC3400F8ADFA /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173CD29BDCC3400F8ADFA /* Menu.swift */; };
-		FA64F1292A8CE9A400CC8558 /* LongPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F1282A8CE9A400CC8558 /* LongPressButton.swift */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
 		FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D39829BB5D21005A10F8 /* Colors.swift */; };
 		FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */; };
@@ -38,6 +41,7 @@
 		FAA9F1CD29BBC2B2005D91A7 /* PrettyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1CC29BBC2B2005D91A7 /* PrettyTextField.swift */; };
 		FAA9F1D029BBCC69005D91A7 /* ActionButton in Frameworks */ = {isa = PBXBuildFile; productRef = FAA9F1CF29BBCC69005D91A7 /* ActionButton */; };
 		FAAA252229EEC1BD00409A4E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAA252129EEC1BD00409A4E /* Order.swift */; };
+		FAD8E0FD2ABDB098007F95B1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */; };
 		FAE046DE29E1946E00E0929A /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE046DD29E1946E00E0929A /* Firebase.swift */; };
 		FAE046E029E1B24E00E0929A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE046DF29E1B24E00E0929A /* GoogleService-Info.plist */; };
 		FAFAB4572AA8CB4E00D47C23 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FAFAB4562AA8CB4E00D47C23 /* FirebaseAuth */; };
@@ -51,13 +55,16 @@
 /* Begin PBXFileReference section */
 		FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAppView.swift; sourceTree = "<group>"; };
 		FA0B09F829E41A4D00202CFA /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyText.swift; sourceTree = "<group>"; };
+		FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyEditButton.swift; sourceTree = "<group>"; };
+		FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
+		FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextEditor.swift; sourceTree = "<group>"; };
 		FA2775EF2A87C5F000A55405 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		FA2C20682A9FA53100ADA650 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA5173CD29BDCC3400F8ADFA /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
-		FA64F1282A8CE9A400CC8558 /* LongPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressButton.swift; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		FA79D39829BB5D21005A10F8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
@@ -81,6 +88,7 @@
 		FAA9F1C829BB93D2005D91A7 /* ShavaAppSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShavaAppSwiftUI.swift; sourceTree = "<group>"; };
 		FAA9F1CC29BBC2B2005D91A7 /* PrettyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTextField.swift; sourceTree = "<group>"; };
 		FAAA252129EEC1BD00409A4E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		FAE046DD29E1946E00E0929A /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		FAE046DF29E1B24E00E0929A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +120,8 @@
 				FA0B09F829E41A4D00202CFA /* MenuItemView.swift */,
 				FA2775EF2A87C5F000A55405 /* CartView.swift */,
 				FA64F12A2A8F930D00CC8558 /* OrderView.swift */,
+				FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */,
+				FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,7 +136,9 @@
 				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
 				FAA4238429C0B3EC007818F7 /* PrettyButton.swift */,
 				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
-				FA64F1282A8CE9A400CC8558 /* LongPressButton.swift */,
+				FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */,
+				FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */,
+				FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -299,23 +311,27 @@
 			files = (
 				FAE046DE29E1946E00E0929A /* Firebase.swift in Sources */,
 				FAA9F1C729BB9334005D91A7 /* ShavaApp.swift in Sources */,
+				FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */,
 				FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */,
 				FAA9F1C529BB8A58005D91A7 /* Fonts.swift in Sources */,
 				FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */,
 				FAA9F1CD29BBC2B2005D91A7 /* PrettyTextField.swift in Sources */,
 				FAA9F1C329BB7DEF005D91A7 /* AuthoriseView.swift in Sources */,
 				FAA4238129C0A6CC007818F7 /* SectionMenuView.swift in Sources */,
+				FA1AFA152AFE5B2C0092A46A /* PrettyText.swift in Sources */,
 				FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */,
-				FA64F1292A8CE9A400CC8558 /* LongPressButton.swift in Sources */,
 				FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */,
 				FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */,
 				FA2775F02A87C5F000A55405 /* CartView.swift in Sources */,
 				FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */,
 				FAA8717129BDE1BB0036488A /* MenuItemCard.swift in Sources */,
+				FA1AFA192B04E9F10092A46A /* PasswordChangeView.swift in Sources */,
 				FAA4238529C0B3EC007818F7 /* PrettyButton.swift in Sources */,
 				FA5173CE29BDCC3400F8ADFA /* Menu.swift in Sources */,
 				FAAA252229EEC1BD00409A4E /* Order.swift in Sources */,
+				FAD8E0FD2ABDB098007F95B1 /* ProfileView.swift in Sources */,
 				FAA9F1C929BB93D2005D91A7 /* ShavaAppSwiftUI.swift in Sources */,
+				FA1AFA172AFE5F810092A46A /* PrettyEditButton.swift in Sources */,
 				FAA8717329BDEBFF0036488A /* MainMenuSection.swift in Sources */,
 				FA0B09F729E2B56E00202CFA /* ShawaAppView.swift in Sources */,
 				FAA91A0729BB4D03004B3C71 /* IosApp.swift in Sources */,

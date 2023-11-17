@@ -88,7 +88,16 @@ struct MainMenuView: View {
             } trailingLink: {
                 CartView()
             }
-            PrettyTextField(text: $enteredSearch, label: "Search for meals", submitLabel: .search, color: .lighterBrown, image: "SearchIcon",width: nil, height: 45, focusState: $searchBoxFocused, focusedValue: true )
+            PrettyTextField(
+                text: $enteredSearch,
+                label: "Search for meals",
+                color: .lighterBrown,
+                image: "SearchIcon",
+                width: nil,
+                height: 45,
+                focusState: $searchBoxFocused,
+                focusedValue: true,
+                submitLabel: .search )
                 .overlay(alignment: .trailing) {
                     if contentShowing == .searchResults{
                         Button {
@@ -135,7 +144,7 @@ struct MainMenuView: View {
         return VStack(alignment: .leading) {
     
             NavigationLink {
-                
+                ProfileView()
             } label: {
                 PrettyButton(text: "Profile", unactiveColor: .lightBrown, isActive: false, onTap: {})
                     .frame(height: 40)

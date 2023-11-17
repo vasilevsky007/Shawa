@@ -12,6 +12,7 @@ struct PrettyButton: View {
     var systemImage = "noImage"
     var fontsize: CGFloat = 14
     var isSwitch = false
+    var color = Color.primaryBrown
     var unactiveColor = Color.clear
     @State var isActive = false
     var onTap: () -> Void
@@ -21,7 +22,7 @@ struct PrettyButton: View {
             // MARK: active
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.primaryBrown)
+                    .foregroundColor(color)
                 Button {
                     withAnimation {
                         if isSwitch {

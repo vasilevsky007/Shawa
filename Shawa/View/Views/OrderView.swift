@@ -46,17 +46,15 @@ struct OrderView: View {
             app.updateOrderComment("")
             app.updateAddress(street: "", house: "", apartament: "")
             app.clearCart()
-            app.updateOrderUID(firebase.achievedInfoAboutUser?.uid)
+            app.updateOrderUID(firebase.currentUser?.uid)
         case.notSended:
             app.updatePhoneNumber(enteredPhone)
             app.updateOrderComment(enteredComment)
             app.updateAddress(street: enteredStreet, house: enteredHouse, apartament: enteredApartament)
-            app.updateOrderUID(firebase.achievedInfoAboutUser?.uid)
+            app.updateOrderUID(firebase.currentUser?.uid)
         }
         
     }
-    
-    
     
     func closethisView () async {
         await updateModel()
@@ -97,54 +95,55 @@ struct OrderView: View {
                             PrettyTextField(
                                 text: $enteredPhone,
                                 label: "Phone",
-                                submitLabel: .next,
-                                submitAction: { focusedField = .street },
-                                keyboardType: .phonePad,
                                 color: .lighterBrown,
                                 isSystemImage: true,
                                 image: "phone",
                                 width: nil,
                                 focusState: $focusedField,
-                                focusedValue: .phone
-                            )
+                                focusedValue: .phone,
+                                keyboardType: .phonePad,
+                                submitLabel: .next) {
+                                    focusedField = .street
+                                }
+                            
                             Section {
                                 PrettyTextField(
                                     text: $enteredStreet,
                                     label: "Street",
-                                    submitLabel: .next,
-                                    submitAction: { focusedField = .house },
                                     color: .lighterBrown,
                                     isSystemImage: true,
                                     image: "mappin.and.ellipse",
                                     width: nil,
                                     focusState: $focusedField,
-                                    focusedValue: .street
-                                )
+                                    focusedValue: .street,
+                                    submitLabel: .next) {
+                                        focusedField = .house
+                                    }
                                 HStack {
                                     PrettyTextField(
                                         text: $enteredHouse,
                                         label: "House",
-                                        submitLabel: .next,
-                                        submitAction: { focusedField = .apartament },
                                         color: .lighterBrown,
                                         isSystemImage: true,
                                         image: "building.2",
                                         width: nil,
                                         focusState: $focusedField,
-                                        focusedValue: .house
-                                    )
+                                        focusedValue: .house,
+                                        submitLabel: .next) {
+                                            focusedField = .apartament
+                                        }
                                     PrettyTextField(
                                         text: $enteredApartament,
                                         label: "Apartament",
-                                        submitLabel: .done,
-                                        submitAction: { focusedField = nil },
                                         color: .lighterBrown,
                                         isSystemImage: true,
                                         image: "door.right.hand.open",
                                         width: nil,
                                         focusState: $focusedField,
-                                        focusedValue: .apartament
-                                    )
+                                        focusedValue: .apartament,
+                                        submitLabel: .done) {
+                                            focusedField = nil
+                                        }
                                 }
                             } header: {
                                 Text("Address")

@@ -15,7 +15,7 @@ import SwiftUI
 class Firebase: ObservableObject {
     var app: ShavaAppSwiftUI
     
-    var achievedInfoAboutUser: User?
+    var currentUser: User?
     var achievedMenu = [Menu.Item]()
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     private var firestore: Firestore
@@ -25,11 +25,11 @@ class Firebase: ObservableObject {
           if authStateHandle == nil {
               withAnimation(.easeIn) {
                   authStateHandle = Auth.auth().addStateDidChangeListener { _, user in
-                      self.achievedInfoAboutUser = user
-                      if (self.achievedInfoAboutUser == nil) {
+                      self.currentUser = user
+                      if (self.currentUser == nil) {
                           Task { await self.app.initialAuthenticationFailure() }
                       } else {
-                          Task { await self.app.authenticationSuccess(userInfo: self.achievedInfoAboutUser!) }
+                          Task { await self.app.authenticationSuccess(userInfo: self.currentUser!) }
                       }
                   }
               }
@@ -68,7 +68,7 @@ class Firebase: ObservableObject {
         func makeMenuItem() async -> Menu.Item? {
             var belongsTo: Menu.Section?
             let belonsToDocument = try? await belonsToSection.getDocument(as: FirestoreSection.self)
-            if await belonsToDocument != nil {
+            if belonsToDocument != nil {
                 belongsTo = Menu.Section(rawValue: belonsToDocument!.name)
                 if belongsTo == nil {
                     return nil
@@ -81,7 +81,7 @@ class Firebase: ObservableObject {
                 for firestoreIngredient in ingredients {
                     taskGroup.addTask {
                         if let ingredientDocument = try? await firestoreIngredient.getDocument(as: FirestoreIngredient.self) {
-                            return await Menu.Ingredient(rawValue: ingredientDocument.ingredientDocName!)
+                            return Menu.Ingredient(rawValue: ingredientDocument.ingredientDocName!)
                         } else {
                             return nil
                         }
@@ -133,47 +133,29 @@ class Firebase: ObservableObject {
         }
     
     func login(email: String, password: String) async {
-        print("auth start")
-        DispatchQueue.main.async {
-            self.app.startLogin()
-        }
-        
+        await self.app.startLogin()
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            achievedInfoAboutUser = result.user
-            print("User" + (achievedInfoAboutUser?.uid ?? "") + "signed in")
-            DispatchQueue.main.async {
-                withAnimation(.easeIn) {
-                    self.app.authenticationSuccess(userInfo: self.achievedInfoAboutUser!)
-                }
-                
+            currentUser = result.user
+            Task(priority: .userInitiated) {
+                await self.app.authenticationSuccess(userInfo: self.currentUser!)
             }
         } catch {
             print(error)
-            DispatchQueue.main.async {
-                self.app.authenticationFailure(reason: error.localizedDescription)
-            }
+            await self.app.authenticationFailure(reason: error.localizedDescription)
         }
     }
 
     func register(email: String, password: String) async {
-        print("register start")
-        DispatchQueue.main.async {
-            self.app.startRegistration()
-        }
+        await self.app.startRegistration()
         
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            achievedInfoAboutUser = result.user
-            print("User" + (achievedInfoAboutUser?.uid ?? "") + "registred")
-            DispatchQueue.main.async {
-                self.app.authenticationSuccess(userInfo: self.achievedInfoAboutUser!)
-            }
+            currentUser = result.user
+            await self.app.authenticationSuccess(userInfo: self.currentUser!)
         } catch {
             print(error)
-            DispatchQueue.main.async {
-                self.app.authenticationFailure(reason: error.localizedDescription)
-            }
+            await self.app.authenticationFailure(reason: error.localizedDescription)
         }
     }
     
@@ -182,7 +164,7 @@ class Firebase: ObservableObject {
         var additionsRestructurised: [[String: Any]] = []
         
         var autoParsed = try await (JSONSerialization.jsonObject(with: JSONEncoder().encode(app.currentOrder)) as? [String: Any] ?? [:])
-        var orderItems: Array? = autoParsed["orderItems"] as? Array<Any>
+        let orderItems: Array? = autoParsed["orderItems"] as? Array<Any>
         if orderItems  != nil {
             orderItemsRestructurised.removeAll()
             for i in 0..<(orderItems!.count / 2) {
@@ -198,7 +180,7 @@ class Firebase: ObservableObject {
                 formattedMenuItem["ingredients"] = nil
                 formattedItem["item"] = formattedMenuItem
                 
-                var additions: Array? = formattedItem["additions"] as? Array<Any>
+                let additions: Array? = formattedItem["additions"] as? Array<Any>
                 if additions != nil {
                     additionsRestructurised.removeAll()
                     for j in 0..<(additions!.count / 2) {
@@ -229,7 +211,7 @@ class Firebase: ObservableObject {
     
     func deleteAccount() async {
         do {
-            try await achievedInfoAboutUser?.delete()
+            try await currentUser?.delete()
         } catch{
             //TODO: indicate failure in ui
             print("error: " + error.localizedDescription)

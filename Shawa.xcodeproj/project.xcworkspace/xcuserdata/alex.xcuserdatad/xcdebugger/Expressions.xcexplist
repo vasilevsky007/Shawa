@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Firebase.init(app:):Firebase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "realtimeDatabase.reference().getData()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Firebase.init(app:):Firebase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&quot;https://&quot;+(Bundle.main.infoDictionary?[&quot;FIREBASE_REALTIME_DATABASE_URL&quot;] as? String)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OrderView.init():OrderView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Firebase.sendOrder():Firebase.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CartView.init():CartView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "-[FIRDatabaseComponent databaseForApp:URL:]:FIRDatabaseComponent.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

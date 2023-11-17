@@ -106,19 +106,22 @@ class ShavaAppSwiftUI: ObservableObject {
     }
     
     func authenticationSuccess(userInfo: User) {
-        print("authsuccess1")
-        model.currentAuthenticationState = .authenticated
+        withAnimation {
+            model.currentAuthenticationState = .authenticated
+        }
 //        print(Mirror(reflecting: userInfo).children.compactMap { "\($0.label ?? "Unknown Label"): \($0.value)" }.joined(separator: "\n"))
         //TODO: save user
     }
     
     func authenticationFailure(reason error: String) {
-        print("authfailure1")
-        model.currentAuthenticationState = .notAuthenticated
-        loginButtonState = .enabled(title: error, systemImage: "exclamationmark.circle")
-        DispatchQueue.main.schedule(after: .init(.now()).advanced(by: .seconds(5.0)), {
-            self.loginButtonState = .enabled(title: self.model.currentAuthenticationFlow == .login ? "Log In" : "Register", systemImage: "")
-        })
+        withAnimation {
+            model.currentAuthenticationState = .notAuthenticated
+            loginButtonState = .enabled(title: error, systemImage: "exclamationmark.circle")
+            Task(priority: .high) {
+                try? await Task.sleep(for: .seconds(5.0))
+                self.loginButtonState = .enabled(title: self.model.currentAuthenticationFlow == .login ? "Log In" : "Register", systemImage: "")
+            }
+        }
     }
     
     func initialAuthenticationFailure() {
