@@ -13,6 +13,10 @@
 		FA1AFA172AFE5F810092A46A /* PrettyEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */; };
 		FA1AFA192B04E9F10092A46A /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */; };
 		FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */; };
+		FA1AFA1D2B078C310092A46A /* UserOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA1C2B078C310092A46A /* UserOrdersView.swift */; };
+		FA1AFA212B078EB60092A46A /* UserOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA202B078EB60092A46A /* UserOrders.swift */; };
+		FA1AFA232B07A5BC0092A46A /* UserOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA222B07A5BC0092A46A /* UserOrder.swift */; };
+		FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */; };
 		FA2775F02A87C5F000A55405 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775EF2A87C5F000A55405 /* CartView.swift */; };
 		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
@@ -59,6 +63,10 @@
 		FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyEditButton.swift; sourceTree = "<group>"; };
 		FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
 		FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextEditor.swift; sourceTree = "<group>"; };
+		FA1AFA1C2B078C310092A46A /* UserOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrdersView.swift; sourceTree = "<group>"; };
+		FA1AFA202B078EB60092A46A /* UserOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrders.swift; sourceTree = "<group>"; };
+		FA1AFA222B07A5BC0092A46A /* UserOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrder.swift; sourceTree = "<group>"; };
+		FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemUnchangable.swift; sourceTree = "<group>"; };
 		FA2775EF2A87C5F000A55405 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		FA2C20682A9FA53100ADA650 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 				FA64F12A2A8F930D00CC8558 /* OrderView.swift */,
 				FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */,
 				FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */,
+				FA1AFA1C2B078C310092A46A /* UserOrdersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +148,8 @@
 				FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */,
 				FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */,
 				FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */,
+				FA1AFA222B07A5BC0092A46A /* UserOrder.swift */,
+				FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -158,9 +169,11 @@
 		FAA8792529BB52D300F67D6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAC11C9E2BB558C2008BE48A /* Entities */,
 				FAA9F1C629BB9334005D91A7 /* ShavaApp.swift */,
 				FA5173CD29BDCC3400F8ADFA /* Menu.swift */,
 				FAAA252129EEC1BD00409A4E /* Order.swift */,
+				FA1AFA202B078EB60092A46A /* UserOrders.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,6 +230,13 @@
 				FAA9F1C429BB8A58005D91A7 /* Fonts.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FAC11C9E2BB558C2008BE48A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,18 +329,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1AFA1D2B078C310092A46A /* UserOrdersView.swift in Sources */,
 				FAE046DE29E1946E00E0929A /* Firebase.swift in Sources */,
 				FAA9F1C729BB9334005D91A7 /* ShavaApp.swift in Sources */,
 				FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */,
 				FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */,
 				FAA9F1C529BB8A58005D91A7 /* Fonts.swift in Sources */,
+				FA1AFA212B078EB60092A46A /* UserOrders.swift in Sources */,
 				FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */,
 				FAA9F1CD29BBC2B2005D91A7 /* PrettyTextField.swift in Sources */,
 				FAA9F1C329BB7DEF005D91A7 /* AuthoriseView.swift in Sources */,
 				FAA4238129C0A6CC007818F7 /* SectionMenuView.swift in Sources */,
 				FA1AFA152AFE5B2C0092A46A /* PrettyText.swift in Sources */,
+				FA1AFA232B07A5BC0092A46A /* UserOrder.swift in Sources */,
 				FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */,
 				FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */,
+				FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */,
 				FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */,
 				FA2775F02A87C5F000A55405 /* CartView.swift in Sources */,
 				FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */,
@@ -393,7 +417,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -447,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

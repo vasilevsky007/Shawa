@@ -106,6 +106,10 @@ class Firebase: ObservableObject {
             return menuitem
         }
     }
+//    
+//    fileprivate struct FirestoreOrder: Codable {
+//        
+//    }
     
     //    MARK: Intents
     
@@ -160,7 +164,7 @@ class Firebase: ObservableObject {
     }
     
     func sendOrder() async throws {
-        var orderItemsRestructurised: Array<[String: Any]> = []
+        var orderItemsRestructurised: [[String: Any]] = []
         var additionsRestructurised: [[String: Any]] = []
         
         var autoParsed = try await (JSONSerialization.jsonObject(with: JSONEncoder().encode(app.currentOrder)) as? [String: Any] ?? [:])
@@ -198,6 +202,31 @@ class Firebase: ObservableObject {
             autoParsed["orderItems"] = orderItemsRestructurised
         }
         try await realtimeDatabase.child("ordersAPL").child(app.currentOrder.user.userID!).child(Date.now.debugDescription).setValue(autoParsed)
+    }
+    
+    func getUserOrders() async throws {
+        let userOrders = (try await realtimeDatabase.child("ordersAPL").child(currentUser!.uid).getData().value as! [String:[String:Any]]).values
+        for order in userOrders {
+            let comment = order["comment"]
+//            let user: User? = order["user"] as! User?
+            struct FirestoreOrderItemCounted: Codable {
+                struct FirestoreAddition: Codable  {
+                    var count: Int
+                    var addition: String
+                }
+                struct FirestoreOrderItem: Codable  {
+                    var item: FirestoreMenuItem
+                    var additions: [FirestoreAddition]
+                }
+                var count: Int
+                var orderItem: FirestoreMenuItem
+            }
+            let orderItems = order["orderItems"] //as! [FirestoreOrderItemCounted]
+            let i = try JSONSerialization.data(withJSONObject: orderItems)
+            let b = try! JSONDecoder().decode([FirestoreOrderItemCounted].self, from: i)
+            print(comment, b)
+        }
+        print(userOrders)
     }
     
     func logout() {

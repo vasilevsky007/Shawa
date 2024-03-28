@@ -14,6 +14,7 @@ class ShavaAppSwiftUI: ObservableObject {
     @Published private(set) var model = ShavaApp()
     @Published private(set) var menu = Menu()
     @Published private(set) var currentOrder = Order()
+    @Published private(set) var orders = UserOrders()
     
     var isLoggedIn: Bool {
         if (model.currentAuthenticationState == .authenticated) {
@@ -57,6 +58,10 @@ class ShavaAppSwiftUI: ObservableObject {
     
     var cartItems: [Order.Item:Int] {
         currentOrder.orderItems
+    }
+    
+    var userOrders: [Order] {
+        orders.orders.sorted { $0.timestamp! > $1.timestamp! }
     }
     
     var orderPrice: Double {
@@ -109,8 +114,6 @@ class ShavaAppSwiftUI: ObservableObject {
         withAnimation {
             model.currentAuthenticationState = .authenticated
         }
-//        print(Mirror(reflecting: userInfo).children.compactMap { "\($0.label ?? "Unknown Label"): \($0.value)" }.joined(separator: "\n"))
-        //TODO: save user
     }
     
     func authenticationFailure(reason error: String) {
@@ -175,7 +178,6 @@ class ShavaAppSwiftUI: ObservableObject {
         withAnimation {
             currentOrder.clearCart()
         }
-        
     }
     
     func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
@@ -208,6 +210,18 @@ class ShavaAppSwiftUI: ObservableObject {
     
     func updateOrderUID(_ newValue: String?)  {
         currentOrder.updateUserID(newValue)
+    }
+    
+    func addUserOrder(_ order: Order) {
+        withAnimation {
+            orders.addOrder(order)
+        }
+    }
+    
+    func clearUserOrders(_ order: Order) {
+        withAnimation {
+            orders.clearOrders()
+        }
     }
     
     

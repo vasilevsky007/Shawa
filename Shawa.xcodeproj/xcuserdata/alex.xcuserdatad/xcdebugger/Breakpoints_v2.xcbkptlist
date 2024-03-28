@@ -18,38 +18,54 @@
             endingLineNumber = "80"
             landmarkName = "addOneIngredient(_:to:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "86A9F05A-F753-4CEC-8FFD-83D9E570FE99 - 33395c5aef8401c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Shawa.Order.addOneIngredient(_: Shawa.Menu.Ingredient, to: Shawa.Order.Item) -&gt; ()"
-                  moduleName = "Shawa"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alex/XcodeProjects/Shawa/Shawa/Model/Order.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "424">
-               </Location>
-               <Location
-                  uuid = "86A9F05A-F753-4CEC-8FFD-83D9E570FE99 - 33395c5aef8401c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Shawa.Order.addOneIngredient(_: Shawa.Menu.Ingredient, to: Shawa.Order.Item) -&gt; ()"
-                  moduleName = "Shawa"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alex/XcodeProjects/Shawa/Shawa/Model/Order.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "532">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A712A8B3-24A6-4F3F-93F5-EE3E4476CD13"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shawa/ViewModel/Firebase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "getUserOrders()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A79B99E-C6ED-4557-9B64-63FCD61EB5F8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shawa/ViewModel/Firebase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "getUserOrders()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D191AD36-5C10-44A6-B885-DF77AF2CF366"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shawa/ViewModel/Firebase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "getUserOrders()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

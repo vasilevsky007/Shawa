@@ -12,9 +12,7 @@ import FirebaseAuth
 struct ProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @GestureState private var dragOffset = CGSize.zero
-    @EnvironmentObject var app: ShavaAppSwiftUI
     @EnvironmentObject var firebase: Firebase
-    private var user: User?
     
     private enum FocusableField: Hashable {
         case name, comment;

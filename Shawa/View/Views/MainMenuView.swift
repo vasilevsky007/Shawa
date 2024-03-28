@@ -150,7 +150,7 @@ struct MainMenuView: View {
                     .frame(height: 40)
             }
             NavigationLink {
-                
+                UserOrdersView()
             } label: {
                 PrettyButton(text: "My orders", unactiveColor: .lightBrown, isActive: false, onTap: {})
                     .frame(height: 40)

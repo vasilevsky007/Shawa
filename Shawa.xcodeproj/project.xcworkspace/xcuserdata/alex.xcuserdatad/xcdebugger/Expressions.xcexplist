@@ -3,12 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Firebase.init(app:):Firebase.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "realtimeDatabase.reference().getData()">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Firebase.sendOrder():Firebase.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in Firebase.init(app:):Firebase.swift">
@@ -19,16 +14,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Firebase.init(app:):Firebase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "realtimeDatabase.reference().getData()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Firebase.getUserOrders():Firebase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "app.currentOrder.user.userID!">
+            </PersistentString>
+            <PersistentString
+               value = "String(data: i, encoding: .utf8)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "OrderView.init():OrderView.swift">
       </ContextState>
       <ContextState
-         contextName = "Firebase.sendOrder():Firebase.swift">
+         contextName = "-[FIRDatabaseComponent databaseForApp:URL:]:FIRDatabaseComponent.m">
       </ContextState>
       <ContextState
          contextName = "CartView.init():CartView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "-[FIRDatabaseComponent databaseForApp:URL:]:FIRDatabaseComponent.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
