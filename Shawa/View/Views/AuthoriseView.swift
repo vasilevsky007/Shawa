@@ -121,7 +121,7 @@ struct AuthoriseView: View {
                     }, backgroundColor: .primaryBrown, foregroundColor: .white)
                     .padding(.top, 20)
                 }
-                    .formStyle(.columns)
+                    //FIXME: .formStyle(.columns)
                     .frame(width: 326, height: app.isRegistering ? 260 : 190, alignment: .top)
                     .padding(.top, 25)
                 

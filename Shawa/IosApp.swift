@@ -11,20 +11,31 @@ import FirebaseCore
 
 @main
 struct IosApp: App {
-    @State var appViewModel: ShavaAppSwiftUI
-    @State var appFirebase: Firebase
+//    @State var appViewModel: ShavaAppSwiftUI
+//    @State var appFirebase: Firebase
     
     init () {
-        let temp = ShavaAppSwiftUI()
-        appViewModel = temp
-        appFirebase = Firebase(app: temp)
+        FirebaseApp.configure()
+//        let temp = ShavaAppSwiftUI()
+//        appViewModel = temp
+//        appFirebase = Firebase(app: temp)
     }
     
     var body: some Scene {
         WindowGroup {
-        ShawaAppView()
-            .environmentObject(appFirebase)
-            .environmentObject(appViewModel)
+            EmptyView()
+                .task {
+                    let repos = RestaurantFirebaseRepository()
+                    do {
+                        let rest = try await repos.add(restaurant: .init(id: "xd", name: "", menu: [], ingredients: [], sections: []))
+                        print(rest)
+                    } catch {
+                        print(error)
+                    }
+                }
+//        ShawaAppView()
+//            .environmentObject(appFirebase)
+//            .environmentObject(appViewModel)
         }
     }
 }

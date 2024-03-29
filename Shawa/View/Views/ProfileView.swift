@@ -40,7 +40,7 @@ struct ProfileView: View {
     
     func showErrorDescription(_ description: String?) async {
         errorDescription = description
-        try? await Task.sleep(for: .seconds(5))
+        try? await Task.sleep(nanoseconds: 5_000_000_000)
         if errorDescription == description {
             errorDescription = nil
         }
@@ -148,9 +148,9 @@ struct ProfileView: View {
                         .padding(.top, 8)
                         .sheet(isPresented: $isChangingPassword) {
                             PasswordChangeView()
-                                .presentationDetents([.medium])
-                                .presentationBackground(Color.veryLightBrown)
-                                .presentationCornerRadius(DrawingConstants.cornerRadius)
+//                                FIXME: .presentationDetents([.medium])
+//                                .presentationBackground(Color.veryLightBrown)
+//                                .presentationCornerRadius(DrawingConstants.cornerRadius)
                         }
                         PrettyButton(text: "Delete your account", color: .red , isActive: true) {
                             isShowingDeleteAlert = true
@@ -187,7 +187,7 @@ struct ProfileView: View {
             }
             
         }
-        .scrollDismissesKeyboard(.interactively)
+        //FIXME: .scrollDismissesKeyboard(.interactively)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             

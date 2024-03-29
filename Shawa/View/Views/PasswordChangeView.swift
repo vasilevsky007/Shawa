@@ -99,7 +99,11 @@ struct PasswordChangeView: View {
     @State var isChangingPassword =  true
     return Color.red
         .sheet(isPresented: $isChangingPassword) {
-            PasswordChangeView()
-                .presentationDetents([.medium])
+            if #available(iOS 16.0, *) {
+                PasswordChangeView()
+                    .presentationDetents([.medium])
+            } else {
+                // Fallback on earlier versions
+            }
         }
 }

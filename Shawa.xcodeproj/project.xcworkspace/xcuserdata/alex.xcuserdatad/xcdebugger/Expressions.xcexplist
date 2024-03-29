@@ -33,6 +33,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RestaurantFirebaseRepository.getRestaurants():RestaurantFirebaseRepository.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "document">
+            </PersistentString>
+            <PersistentString
+               value = "document.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "OrderView.init():OrderView.swift">
       </ContextState>
       <ContextState
@@ -40,6 +51,17 @@
       </ContextState>
       <ContextState
          contextName = "CartView.init():CartView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in IosApp.body.getter:IosApp.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+            <PersistentString
+               value = "Date().ISO8601Format()">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

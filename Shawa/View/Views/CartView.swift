@@ -38,7 +38,7 @@ struct CartView: View {
                         RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                             .ignoresSafeArea(edges: .bottom)
                             .foregroundColor(.veryLightBrown2)
-                        VStack (alignment: .listRowSeparatorTrailing, spacing: 0) {
+                        VStack (spacing: 0) {//FIXME: alignment: .listRowSeparatorTrailing, spacing: 0) {
                             ScrollView {
                                 LazyVStack (spacing: DrawingConstants.gridSpacing) {
                                     ForEach(Array(app.cartItems.keys.sorted(by: { item1, item2 in

@@ -11,7 +11,7 @@ import FirebaseAuth
 
 @MainActor
 class ShavaAppSwiftUI: ObservableObject {
-    @Published private(set) var model = ShavaApp()
+    @Published private(set) var model = ShavaAppState()
     @Published private(set) var menu = Menu()
     @Published private(set) var currentOrder = Order()
     @Published private(set) var orders = UserOrders()
@@ -121,7 +121,7 @@ class ShavaAppSwiftUI: ObservableObject {
             model.currentAuthenticationState = .notAuthenticated
             loginButtonState = .enabled(title: error, systemImage: "exclamationmark.circle")
             Task(priority: .high) {
-                try? await Task.sleep(for: .seconds(5.0))
+                try? await Task.sleep(nanoseconds: 5_000_000_000)
                 self.loginButtonState = .enabled(title: self.model.currentAuthenticationFlow == .login ? "Log In" : "Register", systemImage: "")
             }
         }

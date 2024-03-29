@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
-struct ShavaApp {
+struct ShavaAppState {
     enum AuthenticationState {
         case notAuthenticated
         case authenticated

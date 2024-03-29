@@ -131,7 +131,7 @@ struct MainMenuView: View {
                             tappedItem = item
                         } label: {
                             SearchItem(item)
-                        }.transition(.asymmetric(insertion: .push(from: .top), removal: .opacity).animation(.linear(duration: 1)))
+                        }//FIXME: .transition(.asymmetric(insertion: .push(from: .top), removal: .opacity).animation(.linear(duration: 1)))
                     }
                     Spacer(minLength: 0)
                 }

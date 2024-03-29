@@ -160,12 +160,10 @@ struct OrderView: View {
                                         .font(.main(size: 14))
                                         .foregroundColor(.lighterBrown)
                                         .toolbar {
-                                            if (focusedField == .comment){
-                                                ToolbarItemGroup(placement: .keyboard) {
-                                                    Spacer()
-                                                    Button("Done") {
-                                                        focusedField = nil
-                                                    }
+                                            ToolbarItemGroup(placement: .keyboard) {
+                                                Spacer()
+                                                Button("Done") {
+                                                    focusedField = nil
                                                 }
                                             }
                                         }
@@ -185,18 +183,18 @@ struct OrderView: View {
                                         try await firebase.sendOrder()
                                         orderSended = .sended
                                         app.orderButtonState = .disabled(title: "Successfully placed an order", systemImage: "checkmark")
-                                        try! await Task.sleep(for: .seconds(2))
+                                        try! await Task.sleep(nanoseconds: 2_000_000_000)
                                         app.orderButtonState = .enabled(title: "Make an order", systemImage: "")
                                         await closethisView()
                                     } catch {
                                         app.orderButtonState = .disabled(title: error.localizedDescription, systemImage: "exclamationmark.octagon")
-                                        try! await Task.sleep(for: .seconds(2))
+                                        try! await Task.sleep(nanoseconds: 2_000_000_000)
                                         app.orderButtonState = .enabled(title: "Make an order", systemImage: "")
                                     }
                                 }
                             }, backgroundColor: .primaryBrown, foregroundColor: .white)
                         }
-                            .scrollContentBackground(.hidden)
+                            //FIXME: .scrollContentBackground(.hidden)
                         Divider().overlay(Color.lighterBrown)
                         HStack(alignment: .center, spacing: 0) {
                             Text("Grand total:")
@@ -217,7 +215,7 @@ struct OrderView: View {
             }
             
         }
-        .scrollDismissesKeyboard(.interactively)
+        //FIXME: .scrollDismissesKeyboard(.interactively)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             
