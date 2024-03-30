@@ -13,7 +13,7 @@ import FirebaseAuth
 class ShavaAppSwiftUI: ObservableObject {
     @Published private(set) var model = ShavaAppState()
     @Published private(set) var menu = Menu()
-    @Published private(set) var currentOrder = Order()
+    @Published private(set) var currentOrder = OldOrder()
     @Published private(set) var orders = UserOrders()
     
     var isLoggedIn: Bool {
@@ -56,11 +56,11 @@ class ShavaAppSwiftUI: ObservableObject {
         return numberOfItems;
     }
     
-    var cartItems: [Order.Item:Int] {
+    var cartItems: [OldOrder.Item:Int] {
         currentOrder.orderItems
     }
     
-    var userOrders: [Order] {
+    var userOrders: [OldOrder] {
         orders.orders.sorted { $0.timestamp! > $1.timestamp! }
     }
     
@@ -68,7 +68,7 @@ class ShavaAppSwiftUI: ObservableObject {
         currentOrder.totalPrice
     }
     
-    var orderUserdata: Order.UserData {
+    var orderUserdata: OldOrder.UserData {
         currentOrder.user
     }
     
@@ -151,7 +151,7 @@ class ShavaAppSwiftUI: ObservableObject {
 
     }
     
-    func addOneOrderItem(_ item: Order.Item) {
+    func addOneOrderItem(_ item: OldOrder.Item) {
         var formattedItem = item
         for addition in formattedItem.additions.keys {
             if formattedItem.additions[addition] == 0 {
@@ -163,12 +163,12 @@ class ShavaAppSwiftUI: ObservableObject {
         }
     }
     
-    func removeOneOrderItem(_ item: Order.Item) {
+    func removeOneOrderItem(_ item: OldOrder.Item) {
         withAnimation {
             currentOrder.removeOneOrderItem(item)
         }
     }
-    func removeOrderItem(_ item: Order.Item) {
+    func removeOrderItem(_ item: OldOrder.Item) {
         withAnimation {
             currentOrder.removeOrderItem(item)
         }
@@ -180,13 +180,13 @@ class ShavaAppSwiftUI: ObservableObject {
         }
     }
     
-    func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+    func addOneIngredient(_ ingredient: Menu.Ingredient, to item: OldOrder.Item) {
         withAnimation {
             currentOrder.addOneIngredient(ingredient, to: item)
         }
     }
     
-    func removeOneIngredient(_ ingredient: Menu.Ingredient, to item: Order.Item) {
+    func removeOneIngredient(_ ingredient: Menu.Ingredient, to item: OldOrder.Item) {
         withAnimation {
             currentOrder.removeOneIngredient(ingredient, to: item)
         }
@@ -212,13 +212,13 @@ class ShavaAppSwiftUI: ObservableObject {
         currentOrder.updateUserID(newValue)
     }
     
-    func addUserOrder(_ order: Order) {
+    func addUserOrder(_ order: OldOrder) {
         withAnimation {
             orders.addOrder(order)
         }
     }
     
-    func clearUserOrders(_ order: Order) {
+    func clearUserOrders(_ order: OldOrder) {
         withAnimation {
             orders.clearOrders()
         }

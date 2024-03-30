@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct OrderItem: View {
-    let thisItem: Order.Item
+    let thisItem: OldOrder.Item
     @EnvironmentObject var app: ShavaAppSwiftUI
     
-    init(_ thisItem: Order.Item) {
+    init(_ thisItem: OldOrder.Item) {
         self.thisItem = thisItem
     }
     

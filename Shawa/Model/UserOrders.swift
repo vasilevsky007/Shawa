@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserOrders {
-    private(set) var orders: Set<Order>
+    private(set) var orders: Set<OldOrder>
     
     init() {
         orders = Set([])
@@ -18,7 +18,7 @@ struct UserOrders {
         orders = Set([])
     }
     
-    mutating func addOrder(_ order: Order) {
+    mutating func addOrder(_ order: OldOrder) {
         orders.insert(order)
     }
 }

@@ -8,4 +8,4 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-FIREBASE_REALTIME_DATABASE_URL=tritpo-sushiapp-default-rtdb.europe-west1.firebasedatabase.app
+FIREBASE_REALTIME_DATABASE_URL=shawaapp-default-rtdb.europe-west1.firebasedatabase.app/

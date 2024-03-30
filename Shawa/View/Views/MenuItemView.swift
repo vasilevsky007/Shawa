@@ -9,18 +9,18 @@ import SwiftUI
 
 struct MenuItemView: View {
     let thisItem: Menu.Item
-    let addToCart: (Order.Item) -> Void
-    @State var thisOrderItem: Order.Item
+    let addToCart: (OldOrder.Item) -> Void
+    @State var thisOrderItem: OldOrder.Item
     
     @Environment(\.dismiss) private var dismiss
     
-    init(_ item: Menu.Item, addToCart: @escaping (Order.Item) -> Void) {
+    init(_ item: Menu.Item, addToCart: @escaping (OldOrder.Item) -> Void) {
         thisItem = item
         var additions: [Menu.Ingredient:Int] = [:]
         for ingredient in Menu.Ingredient.allCases {
             additions.updateValue(0, forKey: ingredient)
         }
-        _thisOrderItem = State(initialValue: Order.Item.init(item: item, additions: additions))
+        _thisOrderItem = State(initialValue: OldOrder.Item.init(item: item, additions: additions))
         self.addToCart = addToCart
     }
     

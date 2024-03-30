@@ -9,13 +9,17 @@ import SwiftUI
 import ActionButton
 
 struct AuthoriseView: View {
+    enum AuthenticationFlow {
+        case login
+        case register
+    }
     
-    @EnvironmentObject var app: ShavaAppSwiftUI
-    @EnvironmentObject var firebase: Firebase
+    @EnvironmentObject private var authentication: FirebaseAuthenticationManager
     
     @State private var enteredEmail = ""
     @State private var enteredPassword = ""
     @State private var enteredPasswordConfirm = ""
+    @State private var currentAuthenticationFlow = AuthenticationFlow.login
     
     private enum FocusableField: Hashable {
         case email, password, confirmPassword;
@@ -87,10 +91,10 @@ struct AuthoriseView: View {
                         image: "LockIcon",
                         focusState: $focusedField,
                         focusedValue: .password,
-                        submitLabel: app.isRegistering ? .next : .done,
-                        submitAction: app.isRegistering ? { focusedField = .confirmPassword } : nil
+                        submitLabel: currentAuthenticationFlow == .register ? .next : .done,
+                        submitAction: currentAuthenticationFlow == .register ? { focusedField = .confirmPassword } : nil
                     ).padding(.top, 20)
-                    if app.isRegistering {
+                    if currentAuthenticationFlow == .register {
                         PrettyTextField(
                             text: $enteredPasswordConfirm,
                             label: "Confirm Password",
@@ -106,29 +110,30 @@ struct AuthoriseView: View {
                                 removal: .opacity.animation(.linear(duration: 0.4 * DrawingConstants.moveAnimtionTime))
                             )))
                     }
-                    ActionButton(state: $app.loginButtonState, onTap: {
-                        app.loginButtonState = .loading(title: "Loading", systemImage: "")
-                        if app.isRegistering {
-                            Task(priority: .userInitiated) {
-                                await firebase.register(email: enteredEmail, password: enteredPassword)
-                            }
-                        } else {
-                            Task(priority: .userInitiated) {
-                                await firebase.login(email: enteredEmail, password: enteredPassword)
-                            }
-
-                        }
-                    }, backgroundColor: .primaryBrown, foregroundColor: .white)
-                    .padding(.top, 20)
+                    //FIXME: make own button
+//                    ActionButton(state: $app.loginButtonState, onTap: {
+//                        app.loginButtonState = .loading(title: "Loading", systemImage: "")
+//                        if app.isRegistering {
+//                            Task(priority: .userInitiated) {
+//                                await firebase.register(email: enteredEmail, password: enteredPassword)
+//                            }
+//                        } else {
+//                            Task(priority: .userInitiated) {
+//                                await firebase.login(email: enteredEmail, password: enteredPassword)
+//                            }
+//
+//                        }
+//                    }, backgroundColor: .primaryBrown, foregroundColor: .white)
+//                    .padding(.top, 20)
                 }
                     //FIXME: .formStyle(.columns)
-                    .frame(width: 326, height: app.isRegistering ? 260 : 190, alignment: .top)
+                    .frame(width: 326, height: currentAuthenticationFlow == .register ? 260 : 190, alignment: .top)
                     .padding(.top, 25)
                 
             }
             .frame(width: 355)
         }
-        .frame(width: 355, height: app.isRegistering ? 470 : 400)
+        .frame(width: 355, height: currentAuthenticationFlow == .register ? 470 : 400)
     }
     
     var authoriseSwitchBody: some View{
@@ -141,24 +146,24 @@ struct AuthoriseView: View {
             RoundedRectangle(cornerRadius: DrawingConstants.elementsCornerRadius)
                 .foregroundColor(.primaryBrown)
                 .frame(width: 169, height: 56)
-                .padding(.leading, app.isRegistering ? 166 : 0)
+                .padding(.leading, currentAuthenticationFlow == .register ? 166 : 0)
             HStack() {
                 Button("Log In") {
                     withAnimation(Animation.spring(response: DrawingConstants.moveAnimtionTime, dampingFraction: 0.7)) {
-                        app.switchToLogin()
+                        currentAuthenticationFlow = .login
                     }
                 }
                 .frame(width: 160, height: 56)
                 .font(.mainBold(size: 16))
-                .foregroundColor(app.isRegistering ? .deafultBrown : .white)
+                .foregroundColor(currentAuthenticationFlow == .register ? .deafultBrown : .white)
                 Button("Sign Up") {
                     withAnimation(Animation.spring(response: DrawingConstants.moveAnimtionTime, dampingFraction: 0.7)) {
-                        app.switchToRegistration()
+                        currentAuthenticationFlow = .register
                     }
                 }
                 .frame(width: 161, height: 56)
                 .font(.main(size: 16))
-                .foregroundColor(app.isRegistering ? .white : .deafultBrown)
+                .foregroundColor(currentAuthenticationFlow == .register ? .white : .deafultBrown)
             }
         }
         .frame(width:332, height: 56, alignment: .center)

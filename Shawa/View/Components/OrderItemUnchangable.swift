@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct OrderItemUnchangable: View {
-    let thisItem: Order.Item
+    let thisItem: OldOrder.Item
     let thisItemCount: Int
     
-    init(_ thisItem: Order.Item, count: Int) {
+    init(_ thisItem: OldOrder.Item, count: Int) {
         self.thisItem = thisItem
         self.thisItemCount = count
     }

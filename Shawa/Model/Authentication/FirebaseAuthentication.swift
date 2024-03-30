@@ -28,11 +28,19 @@ struct FirebaseAuthentication: Authentication {
         currentUser?.phoneNumber
     }
     
-    var isAuthenticated: Bool {
-        currentUser != nil
+    var state: AuthenticationState {
+        if currentUser != nil {
+            return .authenticated
+        } else {
+            if isAuthenticating {
+                return .inProgress
+            } else {
+                return .notAuthenticated
+            }
+        }
     }
     
-    private (set) var isAuthenticating: Bool
+    private var isAuthenticating: Bool
     
     private (set) var isEditing: Bool
     

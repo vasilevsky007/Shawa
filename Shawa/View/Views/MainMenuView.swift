@@ -10,6 +10,7 @@ import SwiftUI
 struct MainMenuView: View {
     @EnvironmentObject var app: ShavaAppSwiftUI
     @EnvironmentObject var firebase: Firebase
+    
     @State private var enteredSearch: String = "" {
         mutating willSet {
             withAnimation {

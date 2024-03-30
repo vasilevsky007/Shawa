@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserOrder: View {
-    var order: Order
+    var order: OldOrder
     
     private struct DrawingConstants {
         static let gridSpacing: CGFloat = 16
@@ -139,8 +139,9 @@ struct UserOrder: View {
 }
 
 #Preview {
-    var o = Order()
+    var o = OldOrder()
     o.addOneOrderItem(.init(item: .init(id: 1, belogsTo: .Shawarma, name: "saddq", price: 14.99, dateAdded: .now, popularity: 21, ingredients: Set(), description: "socdcc cdqin cqd cqicdwnxqdc iqcdw c"), additions: [:]))
+    o.updateAddress(street: "str Asd", house: "h 8", apartament: "ap 12")
     o.updateComment("order comment xddd")
     o.addTimestamp(date: .now)
     return UserOrder(order: o)

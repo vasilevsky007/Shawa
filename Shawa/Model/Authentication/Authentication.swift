@@ -12,8 +12,8 @@ protocol Authentication {
     var name: String? { get }
     var email: String? { get }
     var phone: String? { get }
-    var isAuthenticated: Bool { get }
-    var isAuthenticating: Bool { get }
+    var state: AuthenticationState { get }
+    var isEditing: Bool { get }
     var currentError: Error? { get }
     
     mutating func register(withEmail email: String, password: String) async
@@ -23,4 +23,10 @@ protocol Authentication {
     mutating func updateEmail(to email: String) async
     mutating func updateName(to name: String) async
     mutating func clearError()
+}
+
+enum AuthenticationState {
+    case notAuthenticated
+    case authenticated
+    case inProgress
 }

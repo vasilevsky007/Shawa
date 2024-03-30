@@ -1,5 +1,5 @@
 //
-//  RestaurantFirebaseRepository.swift
+//  FirestoreRestaurantRepository.swift
 //  Shawa
 //
 //  Created by Alex on 28.03.24.
@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct RestaurantFirebaseRepository: RestaurantRepository {
+struct FirestoreRestaurantRepository: RestaurantRepository {
     private var firestore = Firestore.firestore()
     private var decoder = {
         let decoder = Firestore.Decoder()
