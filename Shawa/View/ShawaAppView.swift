@@ -7,36 +7,25 @@
 
 import SwiftUI
 
-struct ShawaAppView: View {
-    @EnvironmentObject var app: ShavaAppSwiftUI
+struct ShawaAppView<RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager, AuthenticationManagerType: AuthenticationManager>: View {
+    @EnvironmentObject private var restaurantManager: RestaurantManagerType
+    @EnvironmentObject private var orderManager: OrderManagerType
+    @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     
     var body: some View {
         ZStack {
-            authirisation().transition(.opacity)
-            mainmenu().transition(.opacity)
+            if authenticationManager.auth.state == .authenticated {
+                MainMenuView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+                    .transition(.opacity)
+            } else {
+                AuthoriseView<AuthenticationManagerType>()
+                    .transition(.opacity)
+            }
+            
         }
         .preferredColorScheme(.light)
         .onAppear {
             UIRefreshControl.appearance().tintColor = UIColor(.lightBrown)
         }
     }
-    
-    @ViewBuilder
-    func mainmenu() -> some View {
-        if (app.isLoggedIn) {
-            MainMenuView().transition(.opacity)
-        } else {
-            Color.clear
-        }
-    }
-    
-    @ViewBuilder
-    func authirisation() -> some View {
-        if (app.isLoggedIn) {
-            Color.clear
-        } else {
-            AuthoriseView()
-        }
-    }
-
 }

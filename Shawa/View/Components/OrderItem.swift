@@ -7,21 +7,32 @@
 
 import SwiftUI
 
-struct OrderItem: View {
-    let thisItem: OldOrder.Item
-    @EnvironmentObject var app: ShavaAppSwiftUI
+fileprivate struct DrawingConstants {
+    static let cornerRadius: CGFloat = 10
+    static let padding: CGFloat = 8
+    static let imageSize: CGFloat = 96
+    static let headerFontSize: CGFloat = 20
+    static let fontSize: CGFloat = 16
+}
+
+struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager>: View {
+    @State private var thisItem: Order.Item
     
-    init(_ thisItem: OldOrder.Item) {
+    @EnvironmentObject private var restaurantManager: RestaurantManagerType
+    @EnvironmentObject private var orderManager: OrderManagerType
+    
+    init(_ thisItem: Order.Item) {
         self.thisItem = thisItem
     }
     
-    private struct DrawingConstants {
-        static let cornerRadius: CGFloat = 10
-        static let padding: CGFloat = 8
-        static let imageSize: CGFloat = 96
-        static let headerFontSize: CGFloat = 20
-        static let fontSize: CGFloat = 16
+    var menuItem: MenuItem {
+        restaurantManager.menuItem(withId: thisItem.itemID)!
     }
+    
+    var numberOfCurrentItems: Int {
+        orderManager.currentOrder.orderItems[thisItem] ?? 0
+    }
+
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -30,80 +41,67 @@ struct OrderItem: View {
                 .foregroundColor(.lighterBrown)
             VStack(alignment: .trailing, spacing: 0) {
                 HStack(alignment: .top, spacing: 0) {
-                    if let imageData = thisItem.item.image {
-                        if let uiImage = UIImage(data: imageData){
-                            Image(uiImage: uiImage)
-                                .resizable(resizingMode: .stretch)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                                .cornerRadius(DrawingConstants.cornerRadius)
-                                .padding([.trailing, .bottom], DrawingConstants.padding)
-                        } else {
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.system(size: DrawingConstants.imageSize))
-                                .foregroundColor(.gray)
-                                .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                                .cornerRadius(DrawingConstants.cornerRadius)
-                                .padding([.trailing, .bottom], DrawingConstants.padding)
-                        }
-                    } else {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: DrawingConstants.imageSize))
-                            .foregroundColor(.gray)
-                            .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                            .cornerRadius(DrawingConstants.cornerRadius)
-                            .padding([.trailing, .bottom], DrawingConstants.padding)
-                    }
+                    LoadableImage(imageUrl: menuItem.image)
+                        .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize, alignment: .center)
+                        .cornerRadius(DrawingConstants.cornerRadius)
+                        .padding([.trailing, .bottom], DrawingConstants.padding)
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading, spacing: 0) {
-                                Text(thisItem.item.name)
+                                Text(menuItem.name)
                                     .font(.main(size: DrawingConstants.headerFontSize))
                                     .foregroundColor(.deafultBrown)
                                     .padding(.top, DrawingConstants.padding)
-                                Text(String(format: "%.2f", thisItem.item.price) + " BYN")
+                                Text(String(format: "%.2f", menuItem.price) + " BYN")
                                     .font(.mainBold(size: DrawingConstants.fontSize))
                                     .foregroundColor(.deafultBrown)
                             }
                             Spacer(minLength: 0)
                             Button(role: .destructive) {
-                                app.removeOrderItem(thisItem)
+                                orderManager.removeOrderItem(thisItem)
                             } label: {
                                 Image(systemName: "trash")
                                     .font(.main(size: 32))
                             }.padding(.trailing, 16)
 
                         }
-
-                        ForEach(thisItem.additions.keys.sorted(by: { a, b in
-                            a.name < b.name
-                        })) { addition in
-                            VStack(alignment: .trailing, spacing: 0) {
-                                ZStack (alignment: .leading) {
-                                    Text("+ " + (thisItem.additions[addition]! > 0 ?
-                                                 String(thisItem.additions[addition]!) + " x "
-                                                 : "No ")
-                                         + addition.name)
-                                    .font(.main(size: DrawingConstants.fontSize))
-                                    .foregroundColor(.deafultBrown)
-                                    Spacer()
-                                    Stepper {
-                                         
-                                    } onIncrement: {
-                                        app.addOneIngredient(addition, to: thisItem)
-                                    } onDecrement: {
-                                        app.removeOneIngredient(addition, to: thisItem)
+//??
+                        
+                        ForEach(thisItem.additions.keys.sorted(), id: \.self) { additionID in
+                            if let addition =  restaurantManager.ingredient(withId: additionID) {
+                                if thisItem.additions[additionID] ?? 0 != 0 {
+                                    VStack(alignment: .trailing, spacing: 0) {
+                                        ZStack (alignment: .leading) {
+                                            Text("+ " + (thisItem.additions[additionID]! > 0 ?
+                                                         String(thisItem.additions[additionID]!) + " x "
+                                                         : "No ")
+                                                 + addition.name)
+                                            .font(.main(size: DrawingConstants.fontSize))
+                                            .foregroundColor(.deafultBrown)
+                                            Spacer()
+                                            Stepper {
+                                                
+                                            } onIncrement: {
+                                                orderManager.addOneIngredient(addition, to: thisItem)
+                                                thisItem.addOneIngredient(addition)
+                                            } onDecrement: {
+                                                orderManager.removeOneIngredient(addition, from: thisItem)
+                                                thisItem.removeOneIngredient(addition)
+                                            }
+                                            .scaleEffect(0.7, anchor: .trailing)
+                                        }
+                                        Text("+" + (thisItem.additions[additionID]! > 0 ?
+                                                    String(format: "%.2f", Double(thisItem.additions[additionID]!) * addition.cost)
+                                                    : "0")
+                                             + " BYN")
+                                        .font(.main(size: DrawingConstants.fontSize))
+                                        .foregroundColor(.deafultBrown)
                                     }
-                                    .scaleEffect(0.7, anchor: .trailing)
                                 }
-                                Text("+" + (thisItem.additions[addition]! > 0 ?
-                                            String(format: "%.2f", Double(thisItem.additions[addition]!) * Menu.Ingredient.price)
-                                             : "0")
-                                     + " BYN")
-                                .font(.main(size: DrawingConstants.fontSize))
-                                .foregroundColor(.deafultBrown)
                             }
                         }
+                        
+//                        ??
                         Divider()
                             .overlay{ Color.primaryBrown }
                             .padding(.top, DrawingConstants.padding)
@@ -114,12 +112,12 @@ struct OrderItem: View {
                     Stepper {
                         Spacer(minLength: 0)
                     } onIncrement: {
-                        app.addOneOrderItem(thisItem)
+                        orderManager.addOneOrderItem(thisItem)
                     } onDecrement: {
-                        app.removeOneOrderItem(thisItem)
+                        orderManager.removeOneOrderItem(thisItem)
                     }
                     Spacer(minLength: DrawingConstants.padding)
-                    Text(String(format: "%d x %.2f BYN", app.cartItems[thisItem] ?? 0, thisItem.price))
+                    Text(String(format: "%d x %.2f BYN", numberOfCurrentItems, thisItem.price))
                         .font(.interBold(size: DrawingConstants.fontSize))
                     .foregroundColor(.deafultBrown)
                 }
@@ -133,3 +131,11 @@ struct OrderItem: View {
     
 }
 
+#Preview {
+    @ObservedObject var om = OrderManagerStub()
+    @ObservedObject var rm = RestaurantManagerStub()
+    om.addOneOrderItem(Order.Item(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
+    return OrderItem<RestaurantManagerStub, OrderManagerStub>(om.currentOrder.orderItems.keys.first!)
+        .environmentObject(om)
+        .environmentObject(rm)
+}

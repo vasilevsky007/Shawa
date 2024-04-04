@@ -1,5 +1,5 @@
 {
-  "originHash" : "023bfb9110be654f1e5d77d319167a66bda6ae27e695a7922d94e6974efe3c49",
+  "originHash" : "c63c63846d9c539229e96de38d6af51417e28c0ee9a0bc48bd0f0f19d923c329",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "7ce7be095bc3ed3c98b009532fe2d7698c132614",
         "version" : "1.2024011601.0"
-      }
-    },
-    {
-      "identity" : "action-button",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftui-library/action-button",
-      "state" : {
-        "revision" : "5c5d92a98ca86bf3c0d7bfe43385e44ffea1d554",
-        "version" : "1.1.0"
       }
     },
     {

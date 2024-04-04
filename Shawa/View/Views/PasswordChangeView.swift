@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-struct PasswordChangeView: View {
+fileprivate struct DrawingConstants {
+    static let pagePadding: CGFloat = 24
+    static let padding: CGFloat = 8
+}
+
+struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: View {
+    @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     @Environment(\.dismiss) private var dismiss
     
-    private struct DrawingConstants {
-        static let pagePadding: CGFloat = 24
-        static let padding: CGFloat = 8
-    }
+    var background: Color? = nil
     
     private enum FocusableField: Hashable {
         case oldPassword, newPassword, newPasswordConfirm;
@@ -22,6 +25,11 @@ struct PasswordChangeView: View {
     @State private var enteredOldPassword = ""
     @State private var enteredNewPassword = ""
     @State private var enteredNewPasswordConfirm = ""
+    
+    private var newPasswordsValidated: Bool {
+        //TODO: better validation
+        enteredNewPassword == enteredNewPasswordConfirm && enteredNewPassword != ""
+    }
     
     @FocusState private var focusedField: FocusableField?
     
@@ -81,17 +89,23 @@ struct PasswordChangeView: View {
                 focusedValue: .newPasswordConfirm
             )
                 .background(.white, in: RoundedRectangle(cornerRadius: 10))
-            
-            PrettyButton(text: "Change Password", isActive: true) {
-                //TODO: change password
+            //TODO: better validation
+            PrettyButton(text: "Change Password", unactiveColor: .red , isActive: newPasswordsValidated) {
+                Task {
+                    await authenticationManager.updatePassword(to: enteredNewPassword)
+                }
             }
-            .disabled(true)
+                .disabled(!newPasswordsValidated)
                 .frame(height: 50)
                 .padding(.top, 8)
             Spacer(minLength: 0)
         }
             .padding(DrawingConstants.pagePadding)
+            .background {
+                background
+            }
             .ignoresSafeArea(.container, edges: .bottom)
+
     }
 }
 
@@ -100,7 +114,7 @@ struct PasswordChangeView: View {
     return Color.red
         .sheet(isPresented: $isChangingPassword) {
             if #available(iOS 16.0, *) {
-                PasswordChangeView()
+                PasswordChangeView<AuthenticationManagerStub>()
                     .presentationDetents([.medium])
             } else {
                 // Fallback on earlier versions

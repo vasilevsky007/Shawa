@@ -14,57 +14,63 @@ struct PrettyButton: View {
     var isSwitch = false
     var color = Color.primaryBrown
     var unactiveColor = Color.clear
-    @State var isActive = false
+    var isActive = false //TODO: was @State
     var onTap: () -> Void
     
     var body: some View {
         GeometryReader { geometry in
-            // MARK: active
-            ZStack(alignment: .center) {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(color)
-                Button {
-                    withAnimation {
-                        if isSwitch {
-                            isActive.toggle()
+            if isActive {
+                // MARK: active
+                ZStack(alignment: .center) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(color)
+                    Button {
+                        withAnimation {
+                            if isSwitch {
+                                //isActive.toggle()
+                            }
+                            onTap()
                         }
-                        onTap()
-                    }
-                } label: {
-                    HStack(alignment: .center) {
-                        if systemImage != "noImage" {
-                            Image(systemName: systemImage)
-                                .foregroundColor(.white)
-                                .font(.system(size: geometry.size.height - 20))
+                    } label: {
+                        HStack(alignment: .center) {
+                            Spacer(minLength: 0)
+                            if systemImage != "noImage" {
+                                Image(systemName: systemImage)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: geometry.size.height - 20))
+                            }
+                            Text(text).font(.main(size: fontsize)).foregroundColor(.white)
+                            Spacer(minLength: 0)
                         }
-                        Text(text).font(.main(size: fontsize)).foregroundColor(.white)
+                        
                     }
-                    
-                }
-            }.opacity(isActive ? 1 : 0)
-            //MARK: unactive
-            ZStack (alignment: .center) {
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(unactiveColor)
-                Button {
-                    withAnimation {
-                        if isSwitch {
-                            isActive.toggle()
+                }.transition(.opacity)
+            } else {
+                //MARK: unactive
+                ZStack (alignment: .center) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(unactiveColor)
+                    Button {
+                        withAnimation {
+                            if isSwitch {
+                                //isActive.toggle()
+                            }
+                            onTap()
                         }
-                        onTap()
-                    }
-                } label: {
-                    HStack(alignment: .center) {
-                        if systemImage != "noImage" {
-                            Image(systemName: systemImage)
-                                .foregroundColor(.deafultBrown)
-                                .font(.system(size: geometry.size.height - 20))
+                    } label: {
+                        HStack(alignment: .center) {
+                            Spacer(minLength: 0)
+                            if systemImage != "noImage" {
+                                Image(systemName: systemImage)
+                                    .foregroundColor(.deafultBrown)
+                                    .font(.system(size: geometry.size.height - 20))
+                            }
+                            Text(text).font(.main(size: fontsize)).foregroundColor(.deafultBrown)
+                            Spacer(minLength: 0)
                         }
-                        Text(text).font(.main(size: fontsize)).foregroundColor(.deafultBrown)
                     }
-                    
-                }
-            }.opacity(isActive ? 0 : 1)
+                }.transition(.opacity)
+            }
         }
 
     }
@@ -77,5 +83,9 @@ struct PrettyButtonView_Previews: PreviewProvider {
         PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
             
         }.frame(width: 120, height:60).padding(.trailing, 10)
+        
+        PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
+            print("logout")
+        }.frame(height: 40)
     }
 }

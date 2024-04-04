@@ -22,6 +22,7 @@ protocol Authentication {
     mutating func deleteAccount() async
     mutating func updateEmail(to email: String) async
     mutating func updateName(to name: String) async
+    mutating func updatePassword(to password: String) async
     mutating func clearError()
 }
 

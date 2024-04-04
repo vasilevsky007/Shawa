@@ -7,38 +7,38 @@
 
 import SwiftUI
 
-struct UserOrder: View {
-    var order: OldOrder
+fileprivate struct DrawingConstants {
+    static let gridSpacing: CGFloat = 16
+    static let padding: CGFloat = 8
+    static let cornerRadius: CGFloat = 16
+    static let headlineFontSize: CGFloat = 24
+}
+
+struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
+    @EnvironmentObject var restaurantManager: RestaurantManagerType
     
-    private struct DrawingConstants {
-        static let gridSpacing: CGFloat = 16
-        static let padding: CGFloat = 8
-        static let cornerRadius: CGFloat = 16
-        static let headlineFontSize: CGFloat = 24
-    }
+    var order: Order
+    
+
     
     var timeBody: some View {
         HStack(spacing: 0){
             Spacer()
-            Text(order.timestamp!, style: .date)
-                .padding(.trailing, DrawingConstants.padding)
-                .foregroundColor(.lighterBrown)
-                .font(.main(size: 16))
-            Text(order.timestamp!, style: .time)
-                .foregroundColor(.lighterBrown)
-                .font(.main(size: 16))
+            if let timestamp = order.timestamp {
+                Text(order.timestamp!, style: .date)
+                    .padding(.trailing, DrawingConstants.padding)
+                    .foregroundColor(.lighterBrown)
+                    .font(.main(size: 16))
+                Text(order.timestamp!, style: .time)
+                    .foregroundColor(.lighterBrown)
+                    .font(.main(size: 16))
+            }
         }
     }
     
     var itemsBody: some View {
-        ForEach(Array(order.orderItems.keys.sorted(by: { item1, item2 in
-            if item1.item.name != item2.item.name {
-                return item1.item.name < item2.item.name
-            } else {
-                return item1.id.description < item2.id.description
-            }
-        }))) {item in
-            OrderItemUnchangable(item, count: order.orderItems[item]!)
+        ForEach(order.orderItems.keys.sorted(by: { $0.id < $1.id })) { item in
+            OrderItemUnchangable<RestaurantManagerType>(item, count: order.orderItems[item]!)
         }
     }
     
@@ -77,7 +77,7 @@ struct UserOrder: View {
         }
         if let house = order.user.address.house {
             VStack {
-                Text("Street")
+                Text("House")
                     .foregroundColor(.deafultBrown)
                     .font(.mainBold(size: 16))
             }
@@ -89,7 +89,7 @@ struct UserOrder: View {
         }
         if let apartament = order.user.address.apartament {
             VStack {
-                Text("Street")
+                Text("Apartament")
                     .foregroundColor(.deafultBrown)
                     .font(.mainBold(size: 16))
             }
@@ -139,10 +139,14 @@ struct UserOrder: View {
 }
 
 #Preview {
-    var o = OldOrder()
-    o.addOneOrderItem(.init(item: .init(id: 1, belogsTo: .Shawarma, name: "saddq", price: 14.99, dateAdded: .now, popularity: 21, ingredients: Set(), description: "socdcc cdqin cqd cqicdwnxqdc iqcdw c"), additions: [:]))
+    @ObservedObject var rm = RestaurantManagerStub()
+    var o = Order()
+    o.addOneOrderItem(.init(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
     o.updateAddress(street: "str Asd", house: "h 8", apartament: "ap 12")
     o.updateComment("order comment xddd")
     o.addTimestamp(date: .now)
-    return UserOrder(order: o)
+    o.addOneIngredient(rm.restaurants.value!.first!.ingredients.first!, to: o.orderItems.first!.key)
+    return UserOrder<RestaurantManagerStub>(order: o)
+        .padding()
+        .environmentObject(rm)
 }

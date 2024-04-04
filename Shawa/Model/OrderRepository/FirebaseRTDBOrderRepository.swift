@@ -30,14 +30,14 @@ struct FirebaseRTDBOrderRepository {
             try await realtimeDatabase
                 .child("orders")
                 .child(userID)
-                .getData().value as! [String:[String:Any]]
-        )
-            .values
-        
-        for order in userOrders {
-            guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
-            guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
-            result.append(orderDecoded)
+                .getData().value as? [String:[String:Any]]
+        )?.values
+        if let userOrders = userOrders {
+            for order in userOrders {
+                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
+                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
+                result.append(orderDecoded)
+            }
         }
         return result
     }

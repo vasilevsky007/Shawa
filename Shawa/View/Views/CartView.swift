@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct CartView: View {
+fileprivate struct DrawingConstants {
+    static let gridSpacing: CGFloat = 16
+    static let pagePadding: CGFloat = 24
+    static let padding: CGFloat = 8
+    static let cornerRadius: CGFloat = 30
+    static let headlineFontSize: CGFloat = 24
+}
+
+struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager>: View {
+    @EnvironmentObject private var orderManager: OrderManagerType
+    
     @Environment(\.dismiss) private var dismissThisView
     @GestureState private var dragOffset = CGSize.zero
-    @EnvironmentObject var app: ShavaAppSwiftUI
-    
-    private struct DrawingConstants {
-        static let gridSpacing: CGFloat = 16
-        static let pagePadding: CGFloat = 24
-        static let padding: CGFloat = 8
-        static let cornerRadius: CGFloat = 30
-        static let headlineFontSize: CGFloat = 24
-    }
     
     var body: some View {
         NavigationView {
@@ -41,14 +42,8 @@ struct CartView: View {
                         VStack (spacing: 0) {//FIXME: alignment: .listRowSeparatorTrailing, spacing: 0) {
                             ScrollView {
                                 LazyVStack (spacing: DrawingConstants.gridSpacing) {
-                                    ForEach(Array(app.cartItems.keys.sorted(by: { item1, item2 in
-                                        if item1.item.name != item2.item.name {
-                                            return item1.item.name < item2.item.name
-                                        } else {
-                                            return item1.id.description < item2.id.description
-                                        }
-                                    }))) {cartItem in
-                                        OrderItem(cartItem)
+                                    ForEach(Array(orderManager.currentOrder.orderItems.keys)) { item in
+                                        OrderItem<RestaurantManagerType, OrderManagerType>(item)
                                     }
                                 }
                                 .padding(.top, DrawingConstants.pagePadding)
@@ -63,11 +58,10 @@ struct CartView: View {
                                     .foregroundColor(.deafultBrown)
                                     .font(.montserratBold(size: DrawingConstants.headlineFontSize))
                                     .padding(.trailing, DrawingConstants.padding)
-                                
-                                Text(String(format: "%.2f BYN", app.orderPrice))
+                                Spacer(minLength: 0)
+                                Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
                                     .foregroundColor(.deafultBrown)
                                     .font(.interBold(size: 20))
-                                    .frame(width: 136, alignment: .trailing)
                             }
                             .padding(.horizontal, DrawingConstants.pagePadding)
                             .padding(.bottom, DrawingConstants.padding)
@@ -95,9 +89,9 @@ struct CartView: View {
     
     var proceedOverlayBody: some View {
         NavigationLink {
-            OrderView()
+            OrderView<AuthenticationManagerType,OrderManagerType>()
         } label: {
-            if (!app.isCartEmpty) {
+            if (!orderManager.isCurrentOrderEmpty) {
                 ZStack {
                     Capsule()
                         .foregroundColor(.primaryBrown)
@@ -119,15 +113,13 @@ struct CartView: View {
     }
 }
 
-struct CartView_Previews: PreviewProvider {
-    static var app = ShavaAppSwiftUI()
-    static var previews: some View {
-        app.clearCart()
-        app.addOneOrderItem(OldOrder.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 9.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-        app.addOneOrderItem(OldOrder.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-        app.addOneOrderItem(OldOrder.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-
-        
-        return CartView().environmentObject(app).previewDevice("iPhone 11 Pro")
-    }
+#Preview {
+    @ObservedObject var am = AuthenticationManagerStub()
+    @ObservedObject var rm = RestaurantManagerStub()
+    @ObservedObject var om = OrderManagerStub()
+    om.addOneOrderItem(Order.Item(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
+    return CartView<AuthenticationManagerStub,RestaurantManagerStub, OrderManagerStub>()
+        .environmentObject(am)
+        .environmentObject(rm)
+        .environmentObject(om)
 }

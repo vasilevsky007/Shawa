@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct MenuItemView: View {
-    let thisItem: Menu.Item
-    let addToCart: (OldOrder.Item) -> Void
-    @State var thisOrderItem: OldOrder.Item
+    let thisItem: MenuItem
+    let restaurant: Restaurant
+    let addToCart: (Order.Item) -> Void
+    @State private var thisOrderItem: Order.Item
     
     @Environment(\.dismiss) private var dismiss
     
-    init(_ item: Menu.Item, addToCart: @escaping (OldOrder.Item) -> Void) {
-        thisItem = item
-        var additions: [Menu.Ingredient:Int] = [:]
-        for ingredient in Menu.Ingredient.allCases {
-            additions.updateValue(0, forKey: ingredient)
+    init(_ menuItem: MenuItem,belongsTo restaurant: Restaurant, addToCart: @escaping (Order.Item) -> Void) {
+        thisItem = menuItem
+        var additions = [String : Int]()
+        for ingredient in restaurant.ingredients {
+            additions.updateValue(0, forKey: ingredient.id)
         }
-        _thisOrderItem = State(initialValue: OldOrder.Item.init(item: item, additions: additions))
+        _thisOrderItem = State(initialValue: Order.Item(menuItem: menuItem, availibleAdditions: restaurant.ingredients))
         self.addToCart = addToCart
+        self.restaurant = restaurant
     }
     
     private struct DrawingConstants {
@@ -42,14 +44,13 @@ struct MenuItemView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
                         let imageSize = geometry.size.width
-                        if let imageData = thisItem.image {
-                            if let uiImage = UIImage(data: imageData){
-                                Image(uiImage: uiImage)
-                                    .resizable(resizingMode: .stretch)
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: imageSize)
-                            } else {
-                                Image(systemName: "exclamationmark.triangle")
+                        if let imageUrl = thisItem.image {
+                            AsyncImage(url: imageUrl) { image in
+                                image
+                                    .fillWithoutStretch()
+                                    .frame(width: imageSize, alignment: .center)
+                            } placeholder: {
+                                ProgressView()
                                     .font(.system(size: 64))
                                     .foregroundColor(.gray)
                                     .frame(width: imageSize, height: imageSize / 2)
@@ -67,11 +68,15 @@ struct MenuItemView: View {
                                     .foregroundColor(.deafultBrown)
                                     .padding(.all, DrawingConstants.allPadding)
                                     .padding([.leading, .top, .trailing], DrawingConstants.additionalPadding)
-                                Text(String(format: "%.2f", thisItem.price) + " BYN")
-                                    .font(.mainBold(size: DrawingConstants.subheaderSize))
-                                    .foregroundColor(.deafultBrown)
-                                    .padding([.horizontal, .top], DrawingConstants.allPadding)
-                                    .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
+                                Text(
+                                    "\(String(format: "%.2f", thisItem.price))"
+                                    + ((thisOrderItem.price - thisItem.price) == 0.0 ? " BYN" :
+                                        "\(String(format: "%+.2f", thisOrderItem.price - thisItem.price)) BYN")
+                                )
+                                .font(.mainBold(size: DrawingConstants.subheaderSize))
+                                .foregroundColor(.deafultBrown)
+                                .padding([.horizontal, .top], DrawingConstants.allPadding)
+                                .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
                             }
                             
                             Spacer(minLength: 0)
@@ -79,88 +84,83 @@ struct MenuItemView: View {
                                 addToCart(thisOrderItem)
                             }.frame(width: 120, height:60).padding(.trailing, 10)
                         }
-
+                        
                         LazyVGrid(columns: [.init(.adaptive(minimum: 100), spacing: DrawingConstants.ingredientsGridSpacing, alignment: .center)], alignment: .center, spacing: DrawingConstants.ingredientsGridSpacing) {
-                            ForEach(thisItem.ingredients.sorted(by: { $0.rawValue > $1.rawValue }), id: \.self) { ingredient in
-                                ingredientTagBox(ingredient)
+                            ForEach(thisItem.ingredientIDs.sorted(), id: \.self) { ingredientId in
+                                ingredientTagBox(id: ingredientId)
                             }
                         }
-                            .padding(.all, DrawingConstants.allPadding)
-                            .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
+                        .padding(.all, DrawingConstants.allPadding)
+                        .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
                         Text(thisItem.description)
                             .font(.main(size: MenuItemView.DrawingConstants.fontSize))
                             .foregroundColor(.deafultBrown)
                             .padding(.all, DrawingConstants.allPadding)
                             .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
-                        if (thisItem.belogsTo != .Drinks) {
-                            ingredientsAdder
-                                .padding(.all, DrawingConstants.allPadding)
-                                .padding(.horizontal, DrawingConstants.additionalPadding)
-                        }
+                        //FIXME: no ingredient items                        if (thisItem.belogsTo != .Drinks) {
+                        ingredientsAdder
+                            .padding(.all, DrawingConstants.allPadding)
+                            .padding(.horizontal, DrawingConstants.additionalPadding)
+                        //                        }
                     }
                 }
-
-            }
-        }
-            .overlay(alignment: .topTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 40))
-                        .foregroundColor(.lighterBrown)
-                        .padding(.all)
-                }
-            }
-    }
-    
-    func ingredientTagBox(_ ingredient: Menu.Ingredient) -> some View {
-        ZStack(alignment: .center) {
-            Capsule()
-                .stroke(lineWidth: 2)
-                .foregroundColor(.primaryBrown)
                 
-            Text (ingredient.name)
-                .font(.main(size: MenuItemView.DrawingConstants.fontSize))
-                .foregroundColor(.lightBrown)
-                .multilineTextAlignment(.center)
-                .padding(.vertical, 2)
+            }
         }
-        .frame(minHeight: MenuItemView.DrawingConstants.headerSize)
+        .overlay(alignment: .topTrailing) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 40))
+                    .foregroundColor(.lighterBrown)
+                    .padding(.all)
+            }
+        }
+    }
+    @ViewBuilder
+    func ingredientTagBox(id: String) -> some View {
+        if let ingredient = restaurant.ingredients.first(where: {$0.id == id}) {
+            ZStack(alignment: .center) {
+                Capsule()
+                    .stroke(lineWidth: 2)
+                    .foregroundColor(.primaryBrown)
+                
+                Text (ingredient.name)
+                    .font(.main(size: MenuItemView.DrawingConstants.fontSize))
+                    .foregroundColor(.lightBrown)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 2)
+            }
+            .frame(minHeight: MenuItemView.DrawingConstants.headerSize)
+        }
     }
     
     var ingredientsAdder: some View {
-        @State var a = 0.4
-        return VStack (alignment: .leading) {
+        VStack (alignment: .leading) {
             Text("Add ingredients")
                 .font(.main(size: DrawingConstants.subheaderSize))
                 .foregroundColor(.lightBrown)
-            ForEach(Menu.Ingredient.allCases, id: \.self) { ingredient in
+            ForEach(restaurant.ingredients) { ingredient in
                 HStack {
                     Text((
-                        thisOrderItem.additions[ingredient]! > -1 ? String(thisOrderItem.additions[ingredient]!) : "No"
+                        thisOrderItem.additions[ingredient.id]! > -1 ? String(thisOrderItem.additions[ingredient.id]!) : "No"
                     ))
-                        .font(.main(size: MenuItemView.DrawingConstants.fontSize))
-                        .foregroundColor(.lightBrown)
-                        .frame(width: 22)
+                    .font(.main(size: MenuItemView.DrawingConstants.fontSize))
+                    .foregroundColor(.lightBrown)
+                    .frame(width: 22)
                     Stepper {
                         Text(ingredient.name.lowercased())
                             .font(.main(size: MenuItemView.DrawingConstants.fontSize))
                             .foregroundColor(.lightBrown)
                     } onIncrement: {
-                        if (thisOrderItem.additions[ingredient]!.advanced(by: 1) != 101) {
-                            thisOrderItem.id = UUID()
-                            thisOrderItem.additions.updateValue(
-                                thisOrderItem.additions[ingredient]!.advanced(by: 1),
-                                forKey: ingredient)
+                        if (thisOrderItem.additions[ingredient.id]!.advanced(by: 1) != 101) {
+                            thisOrderItem.addOneIngredient(ingredient)
                         }
                         
                     } onDecrement: {
-                        if (thisOrderItem.additions[ingredient]!.advanced(by: -1) != -2) {
-                            thisOrderItem.id = UUID()
-                            thisOrderItem.additions.updateValue(
-                                thisOrderItem.additions[ingredient]!.advanced(by: -1),
-                                forKey: ingredient)
+                        if (thisOrderItem.additions[ingredient.id]!.advanced(by: -1) != -2) {
+                            thisOrderItem.removeOneIngredient(ingredient)
                         }
                     }
                 }
@@ -169,21 +169,25 @@ struct MenuItemView: View {
     }
 }
 
-
-
-
 struct MenuItemView_Previews: PreviewProvider {
     
     static var previews: some View {
-        @State var ab: Menu.Item? = Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion, .HalapenyoPepper, .PickledCucumbers], description: "jfehlka s;dladc iweq j;kdls'dc iwqf hldj;k'l,fd jfehlkas;d ladc iweqj;kdls'dc iwqj;k'l,fd jfeh lkas;d ladc iweq j;k dlfjkd s'dc iwqfh ldj;k 'l,fd jfe hlkas;dl adc iweqj ;kdls'dc iwq fhldj ;k'l, fd")
+        @ObservedObject var restm = RestaurantManagerStub()
+        @State var item: MenuItem? = RestaurantManagerStub().allMenuItems.first!
         Color.red
             .ignoresSafeArea()
-            .popover(item: $ab) { item in
-                MenuItemView(item) { addeditem in
-                    print(addeditem)
+            .popover(item: $item) { item in
+                if #available(iOS 16.0, *) {
+                    MenuItemView(item, belongsTo: restm.restaurants.value!.first!) { addeditem in
+                        print(addeditem)
+                    }
+                    .presentationDetents([.extraLarge])
+                } else {
+                    MenuItemView(item, belongsTo: restm.restaurants.value!.first!) { addeditem in
+                        print(addeditem)
+                    }
                 }
-//                    .presentationCompactAdaptation()
             }
-            
+        
     }
 }

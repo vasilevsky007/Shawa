@@ -10,15 +10,50 @@ import Foundation
 struct Order: Codable, Identifiable {
     struct Item: Hashable, Identifiable, Codable {
         var itemID: String
-        var additions: [String:Int] // ingredint:count
-//        FIXME: price calculation
-        var price: Double
+        ///ingredientID : count
+        private(set) var additions: [String:Int]
+        private(set) var price: Double
+        ///computed, menuitem ID+ additionIDs : counts
         var id: String {
             var result = itemID
             for (ingredientID, count) in additions {
                 result += " " + ingredientID + ":" + String(count)
             }
             return result
+        }
+        
+        init(menuItem: MenuItem, availibleAdditions: [Ingredient]) {
+            itemID = menuItem.id
+            price = menuItem.price
+            additions = [String:Int]()
+            for addition in availibleAdditions {
+                additions.updateValue(0, forKey: addition.id)
+            }
+        }
+        
+        mutating func addOneIngredient(_ ingredient: Ingredient) {
+            if let currentNumber = self.additions[ingredient.id] {
+                self.additions.updateValue(currentNumber + 1, forKey: ingredient.id)
+                self.price += currentNumber < 0 ? 0 : ingredient.cost
+            } else {
+                self.additions.updateValue(1, forKey: ingredient.id)
+                self.price += ingredient.cost
+            }
+        }
+        
+        mutating func removeOneIngredient(_ ingredient: Ingredient) {
+            if let currentNumber = self.additions[ingredient.id] {
+                if currentNumber > 0 {
+                    self.additions.updateValue(currentNumber - 1, forKey: ingredient.id)
+                    self.price -= ingredient.cost
+                } else {
+                    if currentNumber == 0 {
+                        self.additions.updateValue(-1, forKey: ingredient.id)
+                    }
+                }
+            } else {
+                self.additions.updateValue(-1, forKey: ingredient.id)
+            }
         }
     }
     
@@ -80,33 +115,21 @@ struct Order: Codable, Identifiable {
         orderItems.removeAll()
     }
     
-    mutating func addOneIngredient(_ ingredient: Menu.Ingredient, to item: Item) {
+    mutating func addOneIngredient(_ ingredient: Ingredient, to item: Item) {
         if let numberOfThisItemsInOrder = orderItems[item] {
-            var modfiedItem = item;
+            var modifiedItem = item
+            modifiedItem.addOneIngredient(ingredient)
             orderItems.removeValue(forKey: item)
-            if let currentNumber = modfiedItem.additions[ingredient.id] {
-                modfiedItem.additions.updateValue(currentNumber + 1, forKey: ingredient.id)
-            } else {
-                modfiedItem.additions.updateValue(1, forKey: ingredient.id)
-            }
-            orderItems.updateValue(numberOfThisItemsInOrder, forKey: modfiedItem)
+            orderItems.updateValue(numberOfThisItemsInOrder, forKey: modifiedItem)
         }
     }
     
-    mutating func removeOneIngredient(_ ingredient: Menu.Ingredient, to item: Item) {
+    mutating func removeOneIngredient(_ ingredient: Ingredient, from item: Item) {
         if let numberOfThisItemsInOrder = orderItems[item] {
-            var modfiedItem = item;
+            var modifiedItem = item;
+            modifiedItem.removeOneIngredient(ingredient)
             orderItems.removeValue(forKey: item)
-            if let currentNumber = modfiedItem.additions[ingredient.id] {
-                if currentNumber > 1 {
-                    modfiedItem.additions.updateValue(currentNumber - 1, forKey: ingredient.id)
-                } else {
-                    modfiedItem.additions.removeValue(forKey: ingredient.id)
-                }
-            } else {
-                modfiedItem.additions.updateValue(-1, forKey: ingredient.id)
-            }
-            orderItems.updateValue(numberOfThisItemsInOrder, forKey: modfiedItem)
+            orderItems.updateValue(numberOfThisItemsInOrder, forKey: modifiedItem)
         }
     }
     

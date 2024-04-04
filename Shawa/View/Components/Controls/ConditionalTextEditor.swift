@@ -8,25 +8,37 @@
 import Foundation
 import SwiftUI
 
-@ViewBuilder func conditionalTextEditor(isEditing: Binding<Bool>, value: Binding<String>, systemImage: String, onEditingEnded: @escaping () -> Void) -> some View {
-    if isEditing.wrappedValue {
-        PrettyTextField<String>(text: value, color: .lighterBrown, isSystemImage: true, image: systemImage, width: nil)
-            .background(.white, in: RoundedRectangle(cornerRadius: 10))
-            .overlay(alignment: .trailing) {
-                PrettyEditButton(isEditing: isEditing, color: .lighterBrown){
-                    onEditingEnded()
-                }
-                    .padding(.trailing, 6)
-            }
-    } else {
-        PrettyText(value.wrappedValue, color: .lighterBrown, width: nil)
-            .background(.white, in: RoundedRectangle(cornerRadius: 10))
-            .overlay(alignment: .trailing) {
-                PrettyEditButton(isEditing: isEditing, color: .lighterBrown) {
-                    onEditingEnded()
-                }
-                    .padding(.trailing, 6)
-            }
-    }
+struct ConditionalTextEditor: View {
+    @Binding var isEditing: Bool
+    @Binding var value: String
+    let systemImage: String
+    let onEditingEnded: () -> Void
     
+    var body: some View {
+        if isEditing {
+            PrettyTextField<String>(text: $value, color: .lighterBrown, isSystemImage: true, image: systemImage, width: nil)
+                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+                .overlay(alignment: .trailing) {
+                    PrettyEditButton(isEditing: $isEditing, color: .lighterBrown){
+                        onEditingEnded()
+                    }
+                    .padding(.trailing, 6)
+                }
+        } else {
+            PrettyLabel(value, systemImage: systemImage, color: .lighterBrown, width: nil)
+                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+                .overlay(alignment: .trailing) {
+                    PrettyEditButton(isEditing: $isEditing, color: .lighterBrown) {
+                        onEditingEnded()
+                    }
+                    .padding(.trailing, 6)
+                }
+        }
+    }
+}
+
+#Preview {
+    @State var e = false
+    @State var v = "asd"
+    return ConditionalTextEditor(isEditing: $e, value: $v, systemImage: "globe", onEditingEnded: {}).padding()
 }

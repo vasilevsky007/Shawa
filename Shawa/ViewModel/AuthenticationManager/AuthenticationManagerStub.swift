@@ -1,21 +1,22 @@
 //
-//  FirebaseAuthenticationManager.swift
+//  AuthenticationManagerStub.swift
 //  Shawa
 //
-//  Created by Alex on 30.03.24.
+//  Created by Alex on 31.03.24.
 //
 
-import SwiftUI
+import Foundation
 
 @MainActor
-class FirebaseAuthenticationManager: AuthenticationManager {
-    @Published private(set) var auth: Authentication = FirebaseAuthentication()
+class AuthenticationManagerStub: AuthenticationManager {
+    var auth: Authentication = AuthenticationStub()
     
     func register(withEmail email: String, password: String) async {
-        await auth.register(withEmail: email, password: password)
+        
     }
     
     func login(withEmail email: String, password: String) async {
+        try? await Task.sleep(nanoseconds: 2_000_000_000)
         await auth.login(withEmail: email, password: password)
     }
     
@@ -24,22 +25,22 @@ class FirebaseAuthenticationManager: AuthenticationManager {
     }
     
     func deleteAccount() async {
-        await auth.deleteAccount()
+        
     }
     
     func updateEmail(to email: String) async {
-        await auth.updateEmail(to: email)
+        
     }
     
     func updateName(to name: String) async {
-        await auth.updateName(to: name)
+        
     }
     
     func updatePassword(to password: String) async {
-        await auth.updatePassword(to: password)
+        
     }
     
     func clearError() {
-        auth.clearError()
+        
     }
 }

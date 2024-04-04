@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MenuItemCard: View {
-    var thisItem: Menu.Item
+    var thisItem: MenuItem
     
-    init(_ item: Menu.Item) {
+    init(_ item: MenuItem) {
         thisItem = item
     }
     
@@ -28,31 +28,11 @@ struct MenuItemCard: View {
                 RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                     .foregroundColor(.white)
                 VStack(alignment: .leading) {
-                    var imageSize = (geometry.size.width - 2 * DrawingConstants.allPadding) > 0 ? (geometry.size.width - 2 * DrawingConstants.allPadding) : nil
-                    if let imageData = thisItem.image {
-                        if let uiImage = UIImage(data: imageData){
-                            Image(uiImage: uiImage)
-                                .resizable(resizingMode: .stretch)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: imageSize, height: imageSize)
-                                .cornerRadius(DrawingConstants.imageCornerRadius)
-                                .padding(.top, DrawingConstants.additionalVerticalPadding)
-                        } else {
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.system(size: 64))
-                                .foregroundColor(.gray)
-                                .frame(width: imageSize, height: imageSize)
-                                .cornerRadius(DrawingConstants.imageCornerRadius)
-                                .padding(.top, DrawingConstants.additionalVerticalPadding)
-                        }
-                    } else {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: 64))
-                            .foregroundColor(.gray)
-                            .frame(width: imageSize, height: imageSize)
-                            .cornerRadius(DrawingConstants.imageCornerRadius)
-                            .padding(.top, DrawingConstants.additionalVerticalPadding)
-                    }
+                    let imageSize = (geometry.size.width - 2 * DrawingConstants.allPadding) > 0 ? (geometry.size.width - 2 * DrawingConstants.allPadding) : nil
+                    LoadableImage(imageUrl: thisItem.image)
+                        .frame(width: imageSize, height: imageSize, alignment: .center)
+                        .cornerRadius(DrawingConstants.imageCornerRadius)
+                        .padding(.top, DrawingConstants.additionalVerticalPadding)
                     Spacer(minLength: 0)
                     Text(thisItem.name)
                         .font(.main(size: DrawingConstants.fontSize))
@@ -72,9 +52,8 @@ struct MenuItemCardView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
             Color.red
-            MenuItemCard(Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"))
-                       .frame(width: 160, height: 220)
-                       .previewDevice("iPhone 11 Pro")
-        }       
+            MenuItemCard(RestaurantManagerStub().restaurants.value!.first!.menu.first!)
+                .frame(width: 160, height: 220)
+        }.previewDevice("iPhone 11 Pro")
     }
 }

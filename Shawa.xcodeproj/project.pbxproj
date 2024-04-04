@@ -9,30 +9,30 @@
 /* Begin PBXBuildFile section */
 		FA0B09F729E2B56E00202CFA /* ShawaAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */; };
 		FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B09F829E41A4D00202CFA /* MenuItemView.swift */; };
-		FA1AFA152AFE5B2C0092A46A /* PrettyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */; };
+		FA1AFA152AFE5B2C0092A46A /* PrettyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */; };
 		FA1AFA172AFE5F810092A46A /* PrettyEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */; };
 		FA1AFA192B04E9F10092A46A /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */; };
 		FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */; };
 		FA1AFA1D2B078C310092A46A /* UserOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA1C2B078C310092A46A /* UserOrdersView.swift */; };
-		FA1AFA212B078EB60092A46A /* UserOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA202B078EB60092A46A /* UserOrders.swift */; };
 		FA1AFA232B07A5BC0092A46A /* UserOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA222B07A5BC0092A46A /* UserOrder.swift */; };
 		FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */; };
 		FA2775F02A87C5F000A55405 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775EF2A87C5F000A55405 /* CartView.swift */; };
 		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
-		FA5173CE29BDCC3400F8ADFA /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173CD29BDCC3400F8ADFA /* Menu.swift */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
 		FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D39829BB5D21005A10F8 /* Colors.swift */; };
+		FA82F1A92BBE8EBC00AD2C12 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */; };
+		FA82F1AB2BBE912700AD2C12 /* DrawingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */; };
 		FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */; };
 		FA8DDEF029BC551E004DAE5C /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEEF29BC551E004DAE5C /* Montserrat-Bold.ttf */; };
 		FA8DDEF229BC5646004DAE5C /* DM-Sans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEF129BC5646004DAE5C /* DM-Sans-Bold.ttf */; };
 		FA8DDEF429BC567D004DAE5C /* DM-Sans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEF329BC567D004DAE5C /* DM-Sans-Regular.ttf */; };
-		FAA4238129C0A6CC007818F7 /* SectionMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238029C0A6CC007818F7 /* SectionMenuView.swift */; };
+		FAA4238129C0A6CC007818F7 /* RestaurantMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238029C0A6CC007818F7 /* RestaurantMenuView.swift */; };
 		FAA4238329C0A809007818F7 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238229C0A809007818F7 /* Header.swift */; };
 		FAA4238529C0B3EC007818F7 /* PrettyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238429C0B3EC007818F7 /* PrettyButton.swift */; };
 		FAA8717129BDE1BB0036488A /* MenuItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8717029BDE1BB0036488A /* MenuItemCard.swift */; };
-		FAA8717329BDEBFF0036488A /* MainMenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8717229BDEBFF0036488A /* MainMenuSection.swift */; };
+		FAA8717329BDEBFF0036488A /* MainMenuRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8717229BDEBFF0036488A /* MainMenuRestaurant.swift */; };
 		FAA91A0729BB4D03004B3C71 /* IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA91A0629BB4D03004B3C71 /* IosApp.swift */; };
 		FAA91A0B29BB4D04004B3C71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */; };
 		FAA91A0E29BB4D04004B3C71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA91A0D29BB4D04004B3C71 /* Preview Assets.xcassets */; };
@@ -40,11 +40,7 @@
 		FAA9F1BE29BB7872005D91A7 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9F1BC29BB7872005D91A7 /* Inter-Regular.ttf */; };
 		FAA9F1C329BB7DEF005D91A7 /* AuthoriseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA91A0829BB4D03004B3C71 /* AuthoriseView.swift */; };
 		FAA9F1C529BB8A58005D91A7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1C429BB8A58005D91A7 /* Fonts.swift */; };
-		FAA9F1C729BB9334005D91A7 /* ShavaAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1C629BB9334005D91A7 /* ShavaAppState.swift */; };
-		FAA9F1C929BB93D2005D91A7 /* ShavaAppSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1C829BB93D2005D91A7 /* ShavaAppSwiftUI.swift */; };
 		FAA9F1CD29BBC2B2005D91A7 /* PrettyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1CC29BBC2B2005D91A7 /* PrettyTextField.swift */; };
-		FAA9F1D029BBCC69005D91A7 /* ActionButton in Frameworks */ = {isa = PBXBuildFile; productRef = FAA9F1CF29BBCC69005D91A7 /* ActionButton */; };
-		FAAA252229EEC1BD00409A4E /* OldOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAA252129EEC1BD00409A4E /* OldOrder.swift */; };
 		FAC11CB12BB55F85008BE48A /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CAF2BB55F85008BE48A /* Restaurant.swift */; };
 		FAC11CB22BB55F85008BE48A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CB02BB55F85008BE48A /* Ingredient.swift */; };
 		FAC11CB42BB56004008BE48A /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CB32BB56004008BE48A /* MenuSection.swift */; };
@@ -72,19 +68,24 @@
 		FAC11CF12BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF02BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift */; };
 		FAC11CF42BB882D7008BE48A /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF32BB882D7008BE48A /* OrderManager.swift */; };
 		FAC11CF62BB8832E008BE48A /* FirebaseRTDBOrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF52BB8832E008BE48A /* FirebaseRTDBOrderManager.swift */; };
+		FAC11CFA2BB89EDD008BE48A /* SearchArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF92BB89EDD008BE48A /* SearchArea.swift */; };
+		FAC11CFC2BB8ABFC008BE48A /* SwiftUIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CFB2BB8ABFC008BE48A /* SwiftUIHelpers.swift */; };
+		FAC11CFE2BB8B546008BE48A /* RestaurantManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CFD2BB8B546008BE48A /* RestaurantManagerStub.swift */; };
+		FAC11D002BB8B612008BE48A /* OrderManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CFF2BB8B612008BE48A /* OrderManagerStub.swift */; };
+		FAC11D022BB8B6D1008BE48A /* AuthenticationManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11D012BB8B6D1008BE48A /* AuthenticationManagerStub.swift */; };
+		FAC11D042BB8B715008BE48A /* AuthenticationStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11D032BB8B715008BE48A /* AuthenticationStub.swift */; };
 		FAD8E0FD2ABDB098007F95B1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */; };
-		FAE046DE29E1946E00E0929A /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE046DD29E1946E00E0929A /* Firebase.swift */; };
+		FADFB98C2BB97AD2002F1633 /* LoadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAppView.swift; sourceTree = "<group>"; };
 		FA0B09F829E41A4D00202CFA /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
-		FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyText.swift; sourceTree = "<group>"; };
+		FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyLabel.swift; sourceTree = "<group>"; };
 		FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyEditButton.swift; sourceTree = "<group>"; };
 		FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
 		FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextEditor.swift; sourceTree = "<group>"; };
 		FA1AFA1C2B078C310092A46A /* UserOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrdersView.swift; sourceTree = "<group>"; };
-		FA1AFA202B078EB60092A46A /* UserOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrders.swift; sourceTree = "<group>"; };
 		FA1AFA222B07A5BC0092A46A /* UserOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrder.swift; sourceTree = "<group>"; };
 		FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemUnchangable.swift; sourceTree = "<group>"; };
 		FA2775EF2A87C5F000A55405 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
@@ -92,19 +93,20 @@
 		FA2C20682A9FA53100ADA650 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
-		FA5173CD29BDCC3400F8ADFA /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		FA79D39829BB5D21005A10F8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingConstants.swift; sourceTree = "<group>"; };
 		FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		FA8DDEEE29BBD491004DAE5C /* Shawa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shawa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8DDEEF29BC551E004DAE5C /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		FA8DDEF129BC5646004DAE5C /* DM-Sans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DM-Sans-Bold.ttf"; sourceTree = "<group>"; };
 		FA8DDEF329BC567D004DAE5C /* DM-Sans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DM-Sans-Regular.ttf"; sourceTree = "<group>"; };
-		FAA4238029C0A6CC007818F7 /* SectionMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionMenuView.swift; sourceTree = "<group>"; };
+		FAA4238029C0A6CC007818F7 /* RestaurantMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuView.swift; sourceTree = "<group>"; };
 		FAA4238229C0A809007818F7 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		FAA4238429C0B3EC007818F7 /* PrettyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyButton.swift; sourceTree = "<group>"; };
 		FAA8717029BDE1BB0036488A /* MenuItemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCard.swift; sourceTree = "<group>"; };
-		FAA8717229BDEBFF0036488A /* MainMenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuSection.swift; sourceTree = "<group>"; };
+		FAA8717229BDEBFF0036488A /* MainMenuRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuRestaurant.swift; sourceTree = "<group>"; };
 		FAA91A0629BB4D03004B3C71 /* IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosApp.swift; sourceTree = "<group>"; };
 		FAA91A0829BB4D03004B3C71 /* AuthoriseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseView.swift; sourceTree = "<group>"; };
 		FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,10 +114,7 @@
 		FAA9F1BB29BB7872005D91A7 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FAA9F1BC29BB7872005D91A7 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Regular.ttf"; path = "Shawa/View/Fonts/Inter-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		FAA9F1C429BB8A58005D91A7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		FAA9F1C629BB9334005D91A7 /* ShavaAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShavaAppState.swift; path = Shawa/Model/ShavaAppState.swift; sourceTree = SOURCE_ROOT; };
-		FAA9F1C829BB93D2005D91A7 /* ShavaAppSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShavaAppSwiftUI.swift; sourceTree = "<group>"; };
 		FAA9F1CC29BBC2B2005D91A7 /* PrettyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTextField.swift; sourceTree = "<group>"; };
-		FAAA252129EEC1BD00409A4E /* OldOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldOrder.swift; sourceTree = "<group>"; };
 		FAC11CAF2BB55F85008BE48A /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		FAC11CB02BB55F85008BE48A /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		FAC11CB32BB56004008BE48A /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
@@ -136,8 +135,14 @@
 		FAC11CF02BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRTDBOrderRepository.swift; sourceTree = "<group>"; };
 		FAC11CF32BB882D7008BE48A /* OrderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
 		FAC11CF52BB8832E008BE48A /* FirebaseRTDBOrderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRTDBOrderManager.swift; sourceTree = "<group>"; };
+		FAC11CF92BB89EDD008BE48A /* SearchArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArea.swift; sourceTree = "<group>"; };
+		FAC11CFB2BB8ABFC008BE48A /* SwiftUIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHelpers.swift; sourceTree = "<group>"; };
+		FAC11CFD2BB8B546008BE48A /* RestaurantManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManagerStub.swift; sourceTree = "<group>"; };
+		FAC11CFF2BB8B612008BE48A /* OrderManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManagerStub.swift; sourceTree = "<group>"; };
+		FAC11D012BB8B6D1008BE48A /* AuthenticationManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerStub.swift; sourceTree = "<group>"; };
+		FAC11D032BB8B715008BE48A /* AuthenticationStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStub.swift; sourceTree = "<group>"; };
 		FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		FAE046DD29E1946E00E0929A /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +154,6 @@
 				FAC11CC72BB5776E008BE48A /* FirebaseDatabase in Frameworks */,
 				FAC11CC12BB5776E008BE48A /* FirebaseAnalyticsSwift in Frameworks */,
 				FAC11CC32BB5776E008BE48A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				FAA9F1D029BBCC69005D91A7 /* ActionButton in Frameworks */,
 				FAC11CC52BB5776E008BE48A /* FirebaseAuth in Frameworks */,
 				FAC11CCB2BB5776E008BE48A /* FirebaseFirestore in Frameworks */,
 				FAC11CCD2BB5776E008BE48A /* FirebaseFirestoreSwift in Frameworks */,
@@ -164,7 +168,7 @@
 			children = (
 				FAA91A0829BB4D03004B3C71 /* AuthoriseView.swift */,
 				FA5173C729BC65D600F8ADFA /* MainMenuView.swift */,
-				FAA4238029C0A6CC007818F7 /* SectionMenuView.swift */,
+				FAA4238029C0A6CC007818F7 /* RestaurantMenuView.swift */,
 				FA0B09F829E41A4D00202CFA /* MenuItemView.swift */,
 				FA2775EF2A87C5F000A55405 /* CartView.swift */,
 				FA64F12A2A8F930D00CC8558 /* OrderView.swift */,
@@ -180,14 +184,23 @@
 			children = (
 				FAC11CE32BB8267F008BE48A /* Controls */,
 				FAC11CE42BB8275D008BE48A /* MainMenu */,
+				FA82F1A72BBC441000AD2C12 /* UserOrders */,
 				FAA4238229C0A809007818F7 /* Header.swift */,
-				FA1AFA222B07A5BC0092A46A /* UserOrder.swift */,
 				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
 				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
-				FA1AFA142AFE5B2C0092A46A /* PrettyText.swift */,
-				FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */,
+				FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */,
+				FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		FA82F1A72BBC441000AD2C12 /* UserOrders */ = {
+			isa = PBXGroup;
+			children = (
+				FA1AFA222B07A5BC0092A46A /* UserOrder.swift */,
+				FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */,
+			);
+			path = UserOrders;
 			sourceTree = "<group>";
 		};
 		FAA8792429BB52BD00F67D6E /* View */ = {
@@ -197,6 +210,7 @@
 				FA2775ED2A87B4FC00A55405 /* Views */,
 				FAA9F1AB29BB6D3D005D91A7 /* Fonts */,
 				FA79D39829BB5D21005A10F8 /* Colors.swift */,
+				FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */,
 				FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */,
 			);
 			path = View;
@@ -209,10 +223,6 @@
 				FAC11CBA2BB56DDC008BE48A /* RestaurantRepository */,
 				FAC11CE52BB84A7B008BE48A /* OrderRepository */,
 				FAC11CD42BB71088008BE48A /* Authentication */,
-				FAA9F1C629BB9334005D91A7 /* ShavaAppState.swift */,
-				FA5173CD29BDCC3400F8ADFA /* Menu.swift */,
-				FAAA252129EEC1BD00409A4E /* OldOrder.swift */,
-				FA1AFA202B078EB60092A46A /* UserOrders.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,8 +233,6 @@
 				FAC11CE02BB82259008BE48A /* AuthenticationManager */,
 				FAC11CDB2BB8215A008BE48A /* RestaurantManager */,
 				FAC11CF22BB882B7008BE48A /* OrderManager */,
-				FAA9F1C829BB93D2005D91A7 /* ShavaAppSwiftUI.swift */,
-				FAE046DD29E1946E00E0929A /* Firebase.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -278,10 +286,10 @@
 		FAC11C9E2BB558C2008BE48A /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				FAC11CB02BB55F85008BE48A /* Ingredient.swift */,
 				FAC11CAF2BB55F85008BE48A /* Restaurant.swift */,
-				FAC11CB32BB56004008BE48A /* MenuSection.swift */,
 				FAC11CB52BB5604D008BE48A /* MenuItem.swift */,
+				FAC11CB02BB55F85008BE48A /* Ingredient.swift */,
+				FAC11CB32BB56004008BE48A /* MenuSection.swift */,
 				FAC11CE62BB84AF4008BE48A /* Order.swift */,
 			);
 			path = Entities;
@@ -301,6 +309,7 @@
 			children = (
 				FAC11CD22BB6CE47008BE48A /* FirebaseHelpers.swift */,
 				FAC11CE82BB8537E008BE48A /* Loadable.swift */,
+				FAC11CFB2BB8ABFC008BE48A /* SwiftUIHelpers.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -310,6 +319,7 @@
 			children = (
 				FAC11CD92BB814B9008BE48A /* Authentication.swift */,
 				FAC11CD52BB710FB008BE48A /* FirebaseAuthentication.swift */,
+				FAC11D032BB8B715008BE48A /* AuthenticationStub.swift */,
 			);
 			path = "Authentication\U001b";
 			sourceTree = "<group>";
@@ -319,6 +329,7 @@
 			children = (
 				FAC11CEA2BB856CD008BE48A /* RestaurantManager.swift */,
 				FAC11CDC2BB82199008BE48A /* FirestoreRestaurantManager.swift */,
+				FAC11CFD2BB8B546008BE48A /* RestaurantManagerStub.swift */,
 			);
 			path = RestaurantManager;
 			sourceTree = "<group>";
@@ -328,6 +339,7 @@
 			children = (
 				FAC11CEC2BB85A79008BE48A /* AuthenticationManager.swift */,
 				FAC11CE12BB82270008BE48A /* FirebaseAuthenticationManager.swift */,
+				FAC11D012BB8B6D1008BE48A /* AuthenticationManagerStub.swift */,
 			);
 			path = AuthenticationManager;
 			sourceTree = "<group>";
@@ -339,6 +351,7 @@
 				FAA4238429C0B3EC007818F7 /* PrettyButton.swift */,
 				FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */,
 				FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */,
+				FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -346,8 +359,9 @@
 		FAC11CE42BB8275D008BE48A /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				FAA8717229BDEBFF0036488A /* MainMenuRestaurant.swift */,
+				FAC11CF92BB89EDD008BE48A /* SearchArea.swift */,
 				FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */,
-				FAA8717229BDEBFF0036488A /* MainMenuSection.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -366,6 +380,7 @@
 			children = (
 				FAC11CF32BB882D7008BE48A /* OrderManager.swift */,
 				FAC11CF52BB8832E008BE48A /* FirebaseRTDBOrderManager.swift */,
+				FAC11CFF2BB8B612008BE48A /* OrderManagerStub.swift */,
 			);
 			path = OrderManager;
 			sourceTree = "<group>";
@@ -387,7 +402,6 @@
 			);
 			name = Shawa;
 			packageProductDependencies = (
-				FAA9F1CF29BBCC69005D91A7 /* ActionButton */,
 				FAC11CC02BB5776E008BE48A /* FirebaseAnalyticsSwift */,
 				FAC11CC22BB5776E008BE48A /* FirebaseAnalyticsWithoutAdIdSupport */,
 				FAC11CC42BB5776E008BE48A /* FirebaseAuth */,
@@ -424,7 +438,6 @@
 			);
 			mainGroup = FAA919FA29BB4D03004B3C71;
 			packageReferences = (
-				FAA9F1CE29BBCC69005D91A7 /* XCRemoteSwiftPackageReference "action-button" */,
 				FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FAA919FA29BB4D03004B3C71;
@@ -465,30 +478,34 @@
 				FA1AFA1D2B078C310092A46A /* UserOrdersView.swift in Sources */,
 				FAC11CBC2BB56E54008BE48A /* FirestoreRestaurantRepository.swift in Sources */,
 				FAC11CF42BB882D7008BE48A /* OrderManager.swift in Sources */,
-				FAE046DE29E1946E00E0929A /* Firebase.swift in Sources */,
-				FAA9F1C729BB9334005D91A7 /* ShavaAppState.swift in Sources */,
+				FAC11CFA2BB89EDD008BE48A /* SearchArea.swift in Sources */,
 				FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */,
 				FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */,
 				FAC11CE22BB82270008BE48A /* FirebaseAuthenticationManager.swift in Sources */,
 				FAA9F1C529BB8A58005D91A7 /* Fonts.swift in Sources */,
-				FA1AFA212B078EB60092A46A /* UserOrders.swift in Sources */,
+				FA82F1A92BBE8EBC00AD2C12 /* ActionButton.swift in Sources */,
 				FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */,
+				FAC11D002BB8B612008BE48A /* OrderManagerStub.swift in Sources */,
 				FAA9F1CD29BBC2B2005D91A7 /* PrettyTextField.swift in Sources */,
 				FAA9F1C329BB7DEF005D91A7 /* AuthoriseView.swift in Sources */,
-				FAA4238129C0A6CC007818F7 /* SectionMenuView.swift in Sources */,
-				FA1AFA152AFE5B2C0092A46A /* PrettyText.swift in Sources */,
+				FAA4238129C0A6CC007818F7 /* RestaurantMenuView.swift in Sources */,
+				FA1AFA152AFE5B2C0092A46A /* PrettyLabel.swift in Sources */,
 				FA1AFA232B07A5BC0092A46A /* UserOrder.swift in Sources */,
 				FAC11CEB2BB856CD008BE48A /* RestaurantManager.swift in Sources */,
+				FADFB98C2BB97AD2002F1633 /* LoadableImage.swift in Sources */,
+				FAC11CFE2BB8B546008BE48A /* RestaurantManagerStub.swift in Sources */,
 				FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */,
 				FAC11CB62BB5604D008BE48A /* MenuItem.swift in Sources */,
 				FAC11CBE2BB570F4008BE48A /* RestaurantRepository.swift in Sources */,
 				FAC11CF12BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift in Sources */,
 				FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */,
 				FAC11CED2BB85A79008BE48A /* AuthenticationManager.swift in Sources */,
+				FAC11D022BB8B6D1008BE48A /* AuthenticationManagerStub.swift in Sources */,
 				FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */,
 				FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */,
 				FAC11CB42BB56004008BE48A /* MenuSection.swift in Sources */,
 				FA2775F02A87C5F000A55405 /* CartView.swift in Sources */,
+				FA82F1AB2BBE912700AD2C12 /* DrawingConstants.swift in Sources */,
 				FAC11CDA2BB814B9008BE48A /* Authentication.swift in Sources */,
 				FAC11CD62BB710FB008BE48A /* FirebaseAuthentication.swift in Sources */,
 				FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */,
@@ -497,17 +514,16 @@
 				FA1AFA192B04E9F10092A46A /* PasswordChangeView.swift in Sources */,
 				FAC11CDD2BB82199008BE48A /* FirestoreRestaurantManager.swift in Sources */,
 				FAA4238529C0B3EC007818F7 /* PrettyButton.swift in Sources */,
-				FA5173CE29BDCC3400F8ADFA /* Menu.swift in Sources */,
-				FAAA252229EEC1BD00409A4E /* OldOrder.swift in Sources */,
 				FAD8E0FD2ABDB098007F95B1 /* ProfileView.swift in Sources */,
-				FAA9F1C929BB93D2005D91A7 /* ShavaAppSwiftUI.swift in Sources */,
 				FA1AFA172AFE5F810092A46A /* PrettyEditButton.swift in Sources */,
-				FAA8717329BDEBFF0036488A /* MainMenuSection.swift in Sources */,
+				FAA8717329BDEBFF0036488A /* MainMenuRestaurant.swift in Sources */,
 				FAC11CE72BB84AF4008BE48A /* Order.swift in Sources */,
 				FA0B09F729E2B56E00202CFA /* ShawaAppView.swift in Sources */,
+				FAC11D042BB8B715008BE48A /* AuthenticationStub.swift in Sources */,
 				FAC11CF62BB8832E008BE48A /* FirebaseRTDBOrderManager.swift in Sources */,
 				FAA91A0729BB4D03004B3C71 /* IosApp.swift in Sources */,
 				FAC11CE92BB8537E008BE48A /* Loadable.swift in Sources */,
+				FAC11CFC2BB8ABFC008BE48A /* SwiftUIHelpers.swift in Sources */,
 				FAA4238329C0A809007818F7 /* Header.swift in Sources */,
 				FAC11CB22BB55F85008BE48A /* Ingredient.swift in Sources */,
 			);
@@ -719,14 +735,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FAA9F1CE29BBCC69005D91A7 /* XCRemoteSwiftPackageReference "action-button" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swiftui-library/action-button";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -738,11 +746,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FAA9F1CF29BBCC69005D91A7 /* ActionButton */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FAA9F1CE29BBCC69005D91A7 /* XCRemoteSwiftPackageReference "action-button" */;
-			productName = ActionButton;
-		};
 		FAC11CC02BB5776E008BE48A /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

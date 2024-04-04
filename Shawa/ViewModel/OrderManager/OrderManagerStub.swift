@@ -1,52 +1,40 @@
 //
-//  FirebaseRTDBOrderManager.swift
+//  OrderManagerStub.swift
 //  Shawa
 //
-//  Created by Alex on 30.03.24.
+//  Created by Alex on 31.03.24.
 //
 
 import SwiftUI
 
 @MainActor
-class FirebaseRTDBOrderManager: OrderManager {
-    private var repository = FirebaseRTDBOrderRepository()
+class OrderManagerStub: OrderManager {
+    @Published private(set) var userOrders: Loadable<[Order]> = .loaded([
+        order, order, order, order
+    ])
     
-    @Published private(set) var userOrders: Loadable<[Order]> = .notLoaded(error: nil)
-    @Published private(set) var currentOrder = Order()
-    
-    var isCurrentOrderEmpty: Bool {
-        currentOrder.orderItems.isEmpty
-    }
-    
-    private func updateUserOrders(newOrders: Loadable<[Order]>) {
-        withAnimation {
-            userOrders = newOrders
-        }
-    }
+    @Published private(set) var currentOrder: Order = .init()
     
     func sendCurrentOrder() async throws {
-        currentOrder.addTimestamp(date: .now)
-        let sendTask = Task.detached {
-            try await self.repository.sendOrder(self.currentOrder)
-        }
-        try await sendTask.result.get()
-        currentOrder = Order()
+        print(currentOrder)
+        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        throw DecodingError.dataCorrupted(.init(codingPath: .init(), debugDescription: "xdddddd"))
     }
     
     func getUserOrders(uid: String) async throws {
-        updateUserOrders(newOrders: .loading(last: userOrders.value))
-        Task.detached {
-            do {
-                let ordersLoaded = try await self.repository.getUserOrders(userID: uid)
-                Task {
-                    await self.updateUserOrders(newOrders: .loaded(ordersLoaded))
-                }
-            } catch {
-                Task {
-                    await self.updateUserOrders(newOrders: .notLoaded(error: error))
-                }
+        withAnimation {
+            userOrders = .loading(last: userOrders.value)
+        }
+        Task {
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                userOrders = .loaded(userOrders.value!)
             }
         }
+    }
+    
+    var isCurrentOrderEmpty: Bool {
+        currentOrder.orderItems.isEmpty
     }
     
     func addOneOrderItem(_ item: Order.Item) {
@@ -107,5 +95,17 @@ class FirebaseRTDBOrderManager: OrderManager {
         withAnimation {
             currentOrder.addTimestamp(date: date)
         }
+    }
+    private static var offset: TimeInterval = 0
+    private static var order: Order {
+        let rm = RestaurantManagerStub()
+        var o = Order()
+        o.addOneOrderItem(.init(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
+        o.updateAddress(street: "str Asd", house: "h 8", apartament: "ap 12")
+        o.updateComment("order comment xddd")
+        o.addTimestamp(date: .now.addingTimeInterval(offset))
+        offset -= 10000
+        o.addOneIngredient(rm.restaurants.value!.first!.ingredients.first!, to: o.orderItems.first!.key)
+        return o
     }
 }

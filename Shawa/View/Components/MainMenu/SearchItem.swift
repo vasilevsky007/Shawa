@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SearchItem: View {
-    var thisItem: Menu.Item
+    var thisItem: MenuItem
     
-    init(_ thisItem: Menu.Item) {
+    init(_ thisItem: MenuItem) {
         self.thisItem = thisItem
     }
     
@@ -21,30 +21,10 @@ struct SearchItem: View {
                 .foregroundColor(.lighterBrown)
             HStack(alignment: .center) {
                 let imageSize: CGFloat = 64
-                if let imageData = thisItem.image {
-                    if let uiImage = UIImage(data: imageData){
-                        Image(uiImage: uiImage)
-                            .resizable(resizingMode: .stretch)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: imageSize, height: imageSize)
-                            .cornerRadius(10)
-                            .padding(.leading, 8)
-                    } else {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: 64))
-                            .foregroundColor(.gray)
-                            .frame(width: imageSize, height: imageSize)
-                            .cornerRadius(10)
-                            .padding(.leading, 8)
-                    }
-                } else {
-                    Image(systemName: "exclamationmark.triangle")
-                        .font(.system(size: 64))
-                        .foregroundColor(.gray)
-                        .frame(width: imageSize, height: imageSize)
-                        .cornerRadius(10)
-                        .padding(.leading, 8)
-                }
+                LoadableImage(imageUrl: thisItem.image)
+                    .frame(width: imageSize, height: imageSize, alignment: .center)
+                    .cornerRadius(10)
+                    .padding(.leading, 8)
                 VStack(alignment: .leading) {
                     Text(thisItem.name)
                         .font(.main(size: 16))
@@ -63,9 +43,15 @@ struct SearchItem: View {
     
 }
 
-struct SearchItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchItem(Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 8.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"))
-            .previewDevice("iPhone 11 Pro")
-    }
+#Preview {
+    SearchItem(.init(
+        id: "",
+        sectionIDs: Set<String>(),
+        name: "Item1 xdd",
+        price: 8.99,
+        image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"),
+        dateAdded: Date(),
+        popularity: 123,
+        ingredientIDs: Set<String>(),
+        description: ""))
 }

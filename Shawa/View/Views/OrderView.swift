@@ -8,11 +8,20 @@
 import SwiftUI
 import ActionButton
 
-struct OrderView: View {
+fileprivate struct DrawingConstants {
+    static let gridSpacing: CGFloat = 16
+    static let pagePadding: CGFloat = 24
+    static let padding: CGFloat = 8
+    static let cornerRadius: CGFloat = 30
+    static let headlineFontSize: CGFloat = 24
+}
+
+struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerType: OrderManager>: View {
+    @EnvironmentObject private var orderManager: OrderManagerType
+    @EnvironmentObject private var authenticationManager: AuthenticationManagerType
+    
     @Environment(\.dismiss) private var dismiss
     @GestureState private var dragOffset = CGSize.zero
-    @EnvironmentObject var app: ShavaAppSwiftUI
-    @EnvironmentObject var firebase: Firebase
     
     private enum FocusableField: Hashable {
         case phone, street, house, apartament, comment;
@@ -30,43 +39,43 @@ struct OrderView: View {
     @State private var enteredApartament = ""
     @State private var enteredComment = ""
     @State private var orderSended = OrderSended.notSended
+    @State private var sendButtonState = ActionButton.State.active(label: "Make an order")
     
-    func loadFromModel() {
-        enteredPhone = app.orderUserdata.phoneNumber ?? ""
-        enteredStreet = app.orderUserdata.address.street ?? ""
-        enteredHouse = app.orderUserdata.address.house ?? ""
-        enteredApartament = app.orderUserdata.address.apartament ?? ""
-        enteredComment = app.orderComment
+    private var apartamentImage: String {
+        if #available(iOS 16.0, *) {
+            "door.right.hand.open"
+        } else {
+            "key"
+        }
     }
     
-    func updateModel() async {
-        switch orderSended {
-        case .sended:
-            app.updatePhoneNumber("")
-            app.updateOrderComment("")
-            app.updateAddress(street: "", house: "", apartament: "")
-            app.clearCart()
-            app.updateOrderUID(firebase.currentUser?.uid)
-        case.notSended:
-            app.updatePhoneNumber(enteredPhone)
-            app.updateOrderComment(enteredComment)
-            app.updateAddress(street: enteredStreet, house: enteredHouse, apartament: enteredApartament)
-            app.updateOrderUID(firebase.currentUser?.uid)
-        }
-        
+    func loadFromModel() {
+        enteredPhone = orderManager.currentOrder.user.phoneNumber ?? ""
+        enteredStreet = orderManager.currentOrder.user.address.street ?? ""
+        enteredHouse = orderManager.currentOrder.user.address.house ?? ""
+        enteredApartament = orderManager.currentOrder.user.address.apartament ?? ""
+        enteredComment = orderManager.currentOrder.comment ?? ""
+    }
+    
+    func saveToModel() async {
+//        switch orderSended {
+//        case .sended:
+//            orderManager.updatePhoneNumber("")
+//            orderManager.updateComment("")
+//            orderManager.updateAddress(street: "", house: "", apartament: "")
+//            //FIXME: MB NOT NEDED orderManager .clearCart()
+//            orderManager.updateUserID(authenticationManager.auth.uid)
+//        case.notSended:
+            orderManager.updatePhoneNumber(enteredPhone)
+            orderManager.updateComment(enteredComment)
+            orderManager.updateAddress(street: enteredStreet, house: enteredHouse, apartament: enteredApartament)
+            orderManager.updateUserID(authenticationManager.auth.uid)
+//        }
     }
     
     func closethisView () async {
-        await updateModel()
+        await saveToModel()
         dismiss()
-    }
-    
-    private struct DrawingConstants {
-        static let gridSpacing: CGFloat = 16
-        static let pagePadding: CGFloat = 24
-        static let padding: CGFloat = 8
-        static let cornerRadius: CGFloat = 30
-        static let headlineFontSize: CGFloat = 24
     }
     
     var body: some View {
@@ -92,109 +101,8 @@ struct OrderView: View {
                         .foregroundColor(.veryLightBrown2)
                     VStack (spacing: 0) {
                         Form {
-                            PrettyTextField(
-                                text: $enteredPhone,
-                                label: "Phone",
-                                color: .lighterBrown,
-                                isSystemImage: true,
-                                image: "phone",
-                                width: nil,
-                                focusState: $focusedField,
-                                focusedValue: .phone,
-                                keyboardType: .phonePad,
-                                submitLabel: .next) {
-                                    focusedField = .street
-                                }
-                            
-                            Section {
-                                PrettyTextField(
-                                    text: $enteredStreet,
-                                    label: "Street",
-                                    color: .lighterBrown,
-                                    isSystemImage: true,
-                                    image: "mappin.and.ellipse",
-                                    width: nil,
-                                    focusState: $focusedField,
-                                    focusedValue: .street,
-                                    submitLabel: .next) {
-                                        focusedField = .house
-                                    }
-                                HStack {
-                                    PrettyTextField(
-                                        text: $enteredHouse,
-                                        label: "House",
-                                        color: .lighterBrown,
-                                        isSystemImage: true,
-                                        image: "building.2",
-                                        width: nil,
-                                        focusState: $focusedField,
-                                        focusedValue: .house,
-                                        submitLabel: .next) {
-                                            focusedField = .apartament
-                                        }
-                                    PrettyTextField(
-                                        text: $enteredApartament,
-                                        label: "Apartament",
-                                        color: .lighterBrown,
-                                        isSystemImage: true,
-                                        image: "door.right.hand.open",
-                                        width: nil,
-                                        focusState: $focusedField,
-                                        focusedValue: .apartament,
-                                        submitLabel: .done) {
-                                            focusedField = nil
-                                        }
-                                }
-                            } header: {
-                                Text("Address")
-                                    .font(.main(size: 16))
-                                    .foregroundColor(.deafultBrown)
-                            } .textCase(nil)
-                            Section {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(lineWidth: 1)
-                                        .foregroundColor(.lighterBrown)
-                                    TextEditor(text: $enteredComment)
-                                        .focused($focusedField, equals: .comment)
-                                        .font(.main(size: 14))
-                                        .foregroundColor(.lighterBrown)
-                                        .toolbar {
-                                            ToolbarItemGroup(placement: .keyboard) {
-                                                Spacer()
-                                                Button("Done") {
-                                                    focusedField = nil
-                                                }
-                                            }
-                                        }
-                                        .padding(.horizontal, DrawingConstants.padding)
-                                } .frame(minHeight: 50)
-                            } header: {
-                                Text("Comments to your order")
-                                    .font(.main(size: 16))
-                                    .foregroundColor(.deafultBrown)
-                            } .textCase(nil)
-                            
-                            ActionButton(state: $app.orderButtonState, onTap: {
-                                app.orderButtonState = .loading(title: "Loading", systemImage: "")
-                                Task(priority: .userInitiated) {
-                                    await updateModel()
-                                    do {
-                                        try await firebase.sendOrder()
-                                        orderSended = .sended
-                                        app.orderButtonState = .disabled(title: "Successfully placed an order", systemImage: "checkmark")
-                                        try! await Task.sleep(nanoseconds: 2_000_000_000)
-                                        app.orderButtonState = .enabled(title: "Make an order", systemImage: "")
-                                        await closethisView()
-                                    } catch {
-                                        app.orderButtonState = .disabled(title: error.localizedDescription, systemImage: "exclamationmark.octagon")
-                                        try! await Task.sleep(nanoseconds: 2_000_000_000)
-                                        app.orderButtonState = .enabled(title: "Make an order", systemImage: "")
-                                    }
-                                }
-                            }, backgroundColor: .primaryBrown, foregroundColor: .white)
-                        }
-                            //FIXME: .scrollContentBackground(.hidden)
+                            formContent
+                        }.defaultBackgroundHidden()
                         Divider().overlay(Color.lighterBrown)
                         HStack(alignment: .center, spacing: 0) {
                             Text("Grand total:")
@@ -202,7 +110,7 @@ struct OrderView: View {
                                 .font(.montserratBold(size: DrawingConstants.headlineFontSize))
                                 .padding(.trailing, DrawingConstants.padding)
                                 
-                            Text(String(format: "%.2f BYN", app.orderPrice))
+                            Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
                                 .foregroundColor(.deafultBrown)
                                 .font(.interBold(size: 20))
                                 .frame(width: 136, alignment: .trailing)
@@ -232,20 +140,120 @@ struct OrderView: View {
         }
     }
     
+    @ViewBuilder
+    var formContent: some View {
+        PrettyTextField(
+            text: $enteredPhone,
+            label: "Phone",
+            color: .lighterBrown,
+            isSystemImage: true,
+            image: "phone",
+            width: nil,
+            focusState: $focusedField,
+            focusedValue: .phone,
+            keyboardType: .phonePad,
+            submitLabel: .next) {
+                focusedField = .street
+            }
+        
+        Section {
+            PrettyTextField(
+                text: $enteredStreet,
+                label: "Street",
+                color: .lighterBrown,
+                isSystemImage: true,
+                image: "mappin.and.ellipse",
+                width: nil,
+                focusState: $focusedField,
+                focusedValue: .street,
+                submitLabel: .next) {
+                    focusedField = .house
+                }
+            HStack {
+                PrettyTextField(
+                    text: $enteredHouse,
+                    label: "House",
+                    color: .lighterBrown,
+                    isSystemImage: true,
+                    image: "building.2",
+                    width: nil,
+                    focusState: $focusedField,
+                    focusedValue: .house,
+                    submitLabel: .next) {
+                        focusedField = .apartament
+                    }
+                PrettyTextField(
+                    text: $enteredApartament,
+                    label: "Apartament",
+                    color: .lighterBrown,
+                    isSystemImage: true,
+                    image: apartamentImage,
+                    width: nil,
+                    focusState: $focusedField,
+                    focusedValue: .apartament,
+                    submitLabel: .done) {
+                        focusedField = nil
+                    }
+            }
+        } header: {
+            Text("Address")
+                .font(.main(size: 16))
+                .foregroundColor(.deafultBrown)
+        }.textCase(nil)
+        Section {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(lineWidth: 1)
+                    .foregroundColor(.lighterBrown)
+                TextEditor(text: $enteredComment)
+                    .focused($focusedField, equals: .comment)
+                    .font(.main(size: 14))
+                    .foregroundColor(.lighterBrown)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                focusedField = nil
+                            }
+                        }
+                    }
+                    .padding(.horizontal, DrawingConstants.padding)
+            } .frame(minHeight: 50)
+        } header: {
+            Text("Comments to your order")
+                .font(.main(size: 16))
+                .foregroundColor(.deafultBrown)
+        } .textCase(nil)
+        ActionButton(state: sendButtonState) {
+            sendButtonState = .loading(label: "Loading")
+            Task {
+                //TODO: check order sending correctly
+                await saveToModel()
+                do {
+                    try await orderManager.sendCurrentOrder()
+                    sendButtonState = .disabled(label: "Successfully placed an order")
+                    try? await Task.sleep(nanoseconds: 2_000_000_000)
+                    await closethisView()
+                } catch {
+                    sendButtonState = .disabled(label: "Error: \(error.localizedDescription)")
+                    try? await Task.sleep(nanoseconds: 2_000_000_000)
+                    sendButtonState = .active(label: "Make an order")
+                }
+            }
+        }
+    }
+    
     var backgroundBody: some View {
         Rectangle().ignoresSafeArea().foregroundColor(.white)
     }
 }
 
-struct OrderView_Previews: PreviewProvider {
-    static var app = ShavaAppSwiftUI()
-    static var previews: some View {
-        app.clearCart()
-        app.addOneOrderItem(OldOrder.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa1", price: 9.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-        app.addOneOrderItem(OldOrder.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-        app.addOneOrderItem(OldOrder.Item(item: Menu.Item(id: 1, belogsTo: .Shawarma, name: "Shawa2", price: 6.99, image: UIImage(named: "ShawarmaPicture")!.pngData()!, dateAdded: Date(), popularity: 2, ingredients: [.Cheese, .Chiken, .Onion], description: "jiqdlcmqc fqdwhj;ksm'qwd qfhdwoj;ks;qds ewoq;jdklso;ef"), additions: [.Cheese:2, .Beef:1, .Onion:-1, .FreshCucumbers:3, .Pork: 1]))
-
-        
-        return OrderView().environmentObject(app).previewDevice("iPhone 11 Pro")
-    }
+#Preview {
+    @ObservedObject var am = AuthenticationManagerStub()
+    @ObservedObject var rm = RestaurantManagerStub()
+    @ObservedObject var om = OrderManagerStub()
+    om.addOneOrderItem(Order.Item(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
+    return OrderView<AuthenticationManagerStub, OrderManagerStub>()
+        .environmentObject(am)
+        .environmentObject(om)
 }

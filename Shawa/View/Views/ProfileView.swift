@@ -9,10 +9,19 @@ import SwiftUI
 import ActionButton
 import FirebaseAuth
 
-struct ProfileView: View {
+private struct DrawingConstants {
+    static let gridSpacing: CGFloat = 16
+    static let pagePadding: CGFloat = 24
+    static let padding: CGFloat = 8
+    static let cornerRadius: CGFloat = 30
+    static let headlineFontSize: CGFloat = 24
+}
+
+struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
+    @EnvironmentObject private var authenticationManager: AuthenticationManagerType
+    
     @Environment(\.dismiss) private var dismiss
     @GestureState private var dragOffset = CGSize.zero
-    @EnvironmentObject var firebase: Firebase
     
     private enum FocusableField: Hashable {
         case name, comment;
@@ -26,44 +35,30 @@ struct ProfileView: View {
     @State private var enteredName = ""
     @State private var enteredEmail = ""
     //    @State private var enteredPhone = ""
-    @State private var errorDescription: String? = nil
+    private var errorDescription: String? {
+        authenticationManager.auth.currentError?.localizedDescription
+    }
     
     @State private var isEditingName = false
     @State private var isEditingEmail = false
     @State private var isEditingPhone = false
     
     func loadUserInfo() {
-        enteredName = firebase.currentUser?.displayName ?? ""
-        enteredEmail = firebase.currentUser?.email ?? ""
+        enteredName = authenticationManager.auth.name ?? ""
+        enteredEmail = authenticationManager.auth.email ?? ""
         //                enteredPhone = firebase.currentUser?.phoneNumber ?? ""
     }
     
-    func showErrorDescription(_ description: String?) async {
-        errorDescription = description
-        try? await Task.sleep(nanoseconds: 5_000_000_000)
-        if errorDescription == description {
-            errorDescription = nil
-        }
-    }
-    
     func updateEmail() {
-        Task.detached {
-            do {
-                try await firebase.updateEmail(to: enteredEmail)
-            } catch {
-                await loadUserInfo()
-                await showErrorDescription("Error updating E-mail: " + error.localizedDescription)
-            }
+        Task {
+            await authenticationManager.updateEmail(to: enteredEmail)
+            loadUserInfo()
         }
     }
     
     func deleteAccount() {
-        Task.detached {
-            do {
-                try await firebase.deleteAccount()
-            } catch {
-                await showErrorDescription("Error deleting account: " + error.localizedDescription)
-            }
+        Task {
+            await authenticationManager.deleteAccount()
         }
     }
     
@@ -78,25 +73,13 @@ struct ProfileView: View {
     //    }
     
     func updateName() {
-        Task.detached {
-            do {
-                try await firebase.updateName(to: enteredName)
-            } catch {
-                await showErrorDescription("Error updating name: " + error.localizedDescription)
-            }
+        Task {
+            await authenticationManager.updateName(to: enteredName)
         }
     }
     
     func closeThisView () {
         dismiss()
-    }
-    
-    private struct DrawingConstants {
-        static let gridSpacing: CGFloat = 16
-        static let pagePadding: CGFloat = 24
-        static let padding: CGFloat = 8
-        static let cornerRadius: CGFloat = 30
-        static let headlineFontSize: CGFloat = 24
     }
     
     var backgroundBody: some View {
@@ -128,13 +111,13 @@ struct ProfileView: View {
                         Text("Name")
                             .font(.main(size: 16))
                             .foregroundColor(.deafultBrown)
-                        conditionalTextEditor(isEditing: $isEditingName, value: $enteredName, systemImage: "person") {
+                        ConditionalTextEditor(isEditing: $isEditingName, value: $enteredName, systemImage: "person") {
                             updateName()
                         }
                         Text("E-mail")
                             .font(.main(size: 16))
                             .foregroundColor(.deafultBrown)
-                        conditionalTextEditor(isEditing: $isEditingEmail, value: $enteredEmail, systemImage: "envelope") {
+                        ConditionalTextEditor(isEditing: $isEditingEmail, value: $enteredEmail, systemImage: "envelope") {
                             updateEmail()
                         }
                         //                        Text("Phone number")
@@ -147,10 +130,19 @@ struct ProfileView: View {
                         .frame(height: 50)
                         .padding(.top, 8)
                         .sheet(isPresented: $isChangingPassword) {
-                            PasswordChangeView()
-//                                FIXME: .presentationDetents([.medium])
-//                                .presentationBackground(Color.veryLightBrown)
-//                                .presentationCornerRadius(DrawingConstants.cornerRadius)
+                            if #available(iOS 16.0, *) {
+                                if #available(iOS 16.4, *) {
+                                    PasswordChangeView<AuthenticationManagerType>(background: .veryLightBrown)
+                                        .presentationDetents([.medium])
+                                        .presentationCornerRadius(DrawingConstants.cornerRadius)
+                                } else {
+                                    PasswordChangeView<AuthenticationManagerType>(background: .veryLightBrown)
+                                        .presentationDetents([.medium])
+                                }
+                            } else {
+                                PasswordChangeView<AuthenticationManagerType>(background: .veryLightBrown)
+                            }
+
                         }
                         PrettyButton(text: "Delete your account", color: .red , isActive: true) {
                             isShowingDeleteAlert = true
@@ -203,12 +195,7 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var app = ShavaAppSwiftUI()
-    static var fire = Firebase(app: app)
-    static var previews: some View {
-        return ProfileView()
-            .environmentObject(app)
-            .previewDevice("iPhone 11 Pro")
-    }
+#Preview {
+    ProfileView<AuthenticationManagerStub>()
+        .environmentObject(AuthenticationManagerStub())
 }
