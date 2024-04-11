@@ -185,10 +185,10 @@
 				FAC11CE32BB8267F008BE48A /* Controls */,
 				FAC11CE42BB8275D008BE48A /* MainMenu */,
 				FA82F1A72BBC441000AD2C12 /* UserOrders */,
+				FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */,
 				FAA4238229C0A809007818F7 /* Header.swift */,
 				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
 				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
-				FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */,
 				FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */,
 			);
 			path = Components;

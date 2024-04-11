@@ -6,13 +6,6 @@
 //
 
 import SwiftUI
-import ActionButton
-
-fileprivate struct DrawingConstants {
-    static let borderWidth: CGFloat = 1
-    static let moveAnimtionTime: Double = 1
-    static let elementsCornerRadius: CGFloat = 10
-}
 
 struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
@@ -20,7 +13,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
     @State private var enteredEmail = ""
     @State private var enteredPassword = ""
     @State private var enteredPasswordConfirm = ""
-    @State private var currentAuthenticationFlow = AuthenticationFlow.login
+    @State private var currentAuthenticationFlow = AuthenticationFlow.register
     @FocusState private var focusedField: FocusableField?
     
     enum AuthenticationFlow {
@@ -57,65 +50,126 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
         }
     }
     
-    var body: some View {
-        ZStack(alignment: .top){
-            backgroundBody
-            contentBody
-        }.preferredColorScheme(.dark)
+    private let moveAnimtionTime: Double = 1
+    private var isPhone: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
     }
     
-    var backgroundBody: some View {
+    
+    var body: some View {
+        VStack(spacing: 0){
+            Spacer(minLength: 0)
+            contentBody
+            Spacer(minLength: 0)
+        }
+            .background {
+                backgroundBody
+            }
+            .ignoresSafeArea(.container)
+            .preferredColorScheme(.dark)
+            .animation(.default, value: focusedField)
+    }
+    
+    private var backgroundBody: some View {
         ZStack {
-            Image("LoginBackgroundImage")
-                .frame(width: 100, height: 100) //MARK: bogus??
-                .ignoresSafeArea(.all)
+            Image(.loginBackground)
+                .fillWithoutStretch()
             Rectangle()
                 .foregroundStyle(LinearGradient(colors: [.deafultBrown,.clear], startPoint: .top, endPoint: .bottom))
-                .ignoresSafeArea(.all)
         }
     }
     
-    var contentBody: some View {
-        VStack(alignment: .center){
+    private var contentBody: some View {
+        VStack(alignment: .center, spacing: 0){
+            if (!isPhone || focusedField == nil) {
+                logoBody
+                    .padding(.vertical, .Constants.AuthoriseView.logoPadding)
+            }
+            
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Authorise")
+                    .font(.montserratBold(size: 24))
+                    .padding(.vertical, .Constants.tripleSpacing)
+                    .foregroundColor(.deafultBrown)
+                authoriseSwitchBody
+                if #available(iOS 16.0, *) {
+                    Form {
+                        authoriseContentBody
+                    }
+                    .formStyle(.columns)
+                    .padding(.vertical, .Constants.tripleSpacing)
+                    .padding(.horizontal, .Constants.AuthoriseView.Switch.bouncerInset)
+                } else {
+                    VStack {
+                        authoriseContentBody
+                    }
+                    .padding(.vertical, .Constants.tripleSpacing)
+                    .padding(.horizontal, .Constants.AuthoriseView.Switch.bouncerInset)
+                }
+                
+            }.padding(.horizontal, .Constants.doubleSpacing)
+                .background(.white, in: .rect(cornerRadius: .Constants.blockCornerRadius))
+            .padding(.horizontal, isPhone ? .Constants.doubleSpacing : 0)
+            .frame(width: isPhone ? nil : .Constants.AuthoriseView.padFormWidth)
+                
+        }
+    }
+    
+    var logoBody: some View {
+        VStack(alignment: .center) {
             Text("Shawa")
-                .frame(width: 172, height: 67, alignment: .center)
-                .padding(.top, 50.0)
                 .font(.logo(size: 50))
                 .foregroundColor(.white)
             Text("We deliver it hot!")
                 .font(.logo(size: 16))
-                .frame(width: 172, height: 20, alignment: .center)
                 .foregroundColor(.white)
+        }
+    }
+    
+    var authoriseSwitchBody: some View{
+        GeometryReader { geometry in
+            let buttonWidth = geometry.size.width / 2
             
-            ZStack(alignment: .topLeading) {
-                RoundedRectangle(cornerRadius: 30).foregroundColor(.white)
-                VStack(alignment: .center) {
-                    Text("Authorise")
-                        .frame(width: 307, alignment: .leading)
-                        .font(.montserratBold(size: 24))
-                        .padding(.all, 24)
-                        .foregroundColor(.deafultBrown)
-                    authoriseSwitchBody
-                    if #available(iOS 16.0, *) {
-                        Form {
-                            authoriseContentBody
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                    .strokeBorder(lineWidth: .Constants.borderWidth)
+                    .frame(
+                        width: (buttonWidth - .Constants.AuthoriseView.Switch.bouncerInset) * 2,
+                        height: .Constants.lineElementHeight
+                    )
+                    .padding(.horizontal, .Constants.AuthoriseView.Switch.bouncerInset)
+                    .foregroundColor(.deafultBrown)
+                
+                RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                    .foregroundColor(.primaryBrown)
+                    .frame(width: buttonWidth, height: .Constants.AuthoriseView.Switch.bouncerHeight)
+                    .padding(.leading, currentAuthenticationFlow == .register ? buttonWidth - .Constants.AuthoriseView.Switch.bouncerInset : 0)
+                
+                HStack(spacing: 0) {
+                    Button{
+                        withAnimation(Animation.spring(response: moveAnimtionTime, dampingFraction: 0.7)) {
+                            currentAuthenticationFlow = .login
                         }
-                            .formStyle(.columns)
-                            .frame(width: 326, height: currentAuthenticationFlow == .register ? 260 : 190, alignment: .top)
-                            .padding(.top, 25)
-                    } else {
-                        VStack {
-                            authoriseContentBody
+                    } label: {
+                        Text("Log In")
+                            .frame(width: buttonWidth, height: .Constants.AuthoriseView.Switch.bouncerHeight)
+                            .font(currentAuthenticationFlow == .login ? .mainBold(size: 16) : .main(size: 16))
+                            .foregroundColor(currentAuthenticationFlow == .login ? .white : .deafultBrown)
+                    }
+                    Button{
+                        withAnimation(Animation.spring(response: moveAnimtionTime, dampingFraction: 0.7)) {
+                            currentAuthenticationFlow = .register
                         }
-                            .frame(width: 326, height: currentAuthenticationFlow == .register ? 260 : 190, alignment: .top)
-                            .padding(.top, 25)
+                    } label: {
+                        Text("Sign Up")
+                            .frame(width: buttonWidth, height: .Constants.AuthoriseView.Switch.bouncerHeight)
+                            .font(currentAuthenticationFlow == .register ? .mainBold(size: 16) : .main(size: 16))
+                            .foregroundColor(currentAuthenticationFlow == .register ? .white : .deafultBrown)
                     }
                     
-                }.frame(width: 355)
+                }
             }
-                .frame(width: 355, height: currentAuthenticationFlow == .register ? 470 : 400)
-                .padding(.top, 75)
-        }
+        }.frame(height: .Constants.AuthoriseView.Switch.bouncerHeight, alignment: .center)
     }
     
     @ViewBuilder
@@ -140,7 +194,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
             focusedValue: .password,
             submitLabel: currentAuthenticationFlow == .register ? .next : .done,
             submitAction: currentAuthenticationFlow == .register ? { focusedField = .confirmPassword } : nil
-        ).padding(.top, 20)
+        ).padding(.top, .Constants.doubleSpacing)
         if currentAuthenticationFlow == .register {
             PrettyTextField(
                 text: $enteredPasswordConfirm,
@@ -151,10 +205,14 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                 focusState: $focusedField,
                 focusedValue: .confirmPassword,
                 submitLabel: .done)
-            .padding(.top, 20)
-            .transition(.offset(x: 0, y: -80).combined(with: .asymmetric(
-                insertion: .opacity.animation(.linear(duration: 0.4 * DrawingConstants.moveAnimtionTime).delay(0.6 * DrawingConstants.moveAnimtionTime)),
-                removal: .opacity.animation(.linear(duration: 0.4 * DrawingConstants.moveAnimtionTime))
+            .padding(.top, .Constants.doubleSpacing)
+            .transition(
+                .offset(x: 0, y: -(.Constants.lineElementHeight + .Constants.doubleSpacing))
+                .combined(with: .asymmetric(
+                    insertion: .opacity
+                        .animation(.easeIn(duration: 0.3 * moveAnimtionTime).delay(0.7 * moveAnimtionTime)),
+                    removal: .opacity
+                        .animation(.easeOut(duration: 0.3 * moveAnimtionTime))
             )))
         }
         ActionButton(state: loginButtonState, disabledColor: .red) {
@@ -168,40 +226,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                     await authenticationManager.register(withEmail: enteredEmail, password: enteredPassword)
                 }
             }
-        }.padding(.top, 20)
-    }
-    
-    var authoriseSwitchBody: some View{
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: DrawingConstants.elementsCornerRadius)
-                .strokeBorder(lineWidth: DrawingConstants.borderWidth)
-                .frame(width: 326, height: 50)
-                .padding(.leading, 3)
-                .foregroundColor(.deafultBrown)
-            RoundedRectangle(cornerRadius: DrawingConstants.elementsCornerRadius)
-                .foregroundColor(.primaryBrown)
-                .frame(width: 169, height: 56)
-                .padding(.leading, currentAuthenticationFlow == .register ? 166 : 0)
-            HStack() {
-                Button("Log In") {
-                    withAnimation(Animation.spring(response: DrawingConstants.moveAnimtionTime, dampingFraction: 0.7)) {
-                        currentAuthenticationFlow = .login
-                    }
-                }
-                .frame(width: 160, height: 56)
-                .font(.mainBold(size: 16))
-                .foregroundColor(currentAuthenticationFlow == .register ? .deafultBrown : .white)
-                Button("Sign Up") {
-                    withAnimation(Animation.spring(response: DrawingConstants.moveAnimtionTime, dampingFraction: 0.7)) {
-                        currentAuthenticationFlow = .register
-                    }
-                }
-                .frame(width: 161, height: 56)
-                .font(.main(size: 16))
-                .foregroundColor(currentAuthenticationFlow == .register ? .white : .deafultBrown)
-            }
-        }
-        .frame(width:332, height: 56, alignment: .center)
+        }.padding(.top, .Constants.doubleSpacing)
     }
 }
 

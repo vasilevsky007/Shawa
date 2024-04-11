@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let gridSpacing: CGFloat = 16
-    static let pagePadding: CGFloat = 24
-    static let padding: CGFloat = 8
-    static let cornerRadius: CGFloat = 30
-    static let headlineFontSize: CGFloat = 24
-}
-
 struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: RestaurantManager>: View {
     @EnvironmentObject private var orderManager: OrderManagerType
     
@@ -41,26 +33,26 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
                     closeThisView()
                 }, noTrailingLink: true) {
                     Text("placeholder. will not be seen")
-                }.padding(.horizontal, 24.5)
+                }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Your orders:")
                     .foregroundColor(.deafultBrown)
                     .font(.montserratBold(size: 24))
-                    .padding(.horizontal, DrawingConstants.pagePadding)
-                    .padding(.top, DrawingConstants.padding)
+                    .padding(.horizontal, .Constants.horizontalSafeArea)
+                    .padding(.top, .Constants.standardSpacing)
                 ZStack {
-                    RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                    RoundedRectangle(cornerRadius: .Constants.blockCornerRadius)
                         .ignoresSafeArea(edges: .bottom)
                         .foregroundColor(.veryLightBrown2)
                     ScrollView {
-                        LazyVStack (alignment: .leading, spacing: 8) {
+                        LazyVStack (alignment: .leading, spacing: .Constants.standardSpacing) {
                             fetchingProgressBody
                             if let orders = orderManager.userOrders.value {
                                 ForEach(orders.sorted(by: { $0.timestamp! > $1.timestamp! })) { order in
                                     UserOrder<RestaurantManagerType>(order: order)
                                 }
                             }
-                        }.padding(DrawingConstants.pagePadding)
+                        }.padding(.Constants.horizontalSafeArea)
                     }
                     .refreshControlColor(.deafultBrown)
                     .refreshable {
@@ -101,7 +93,7 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
             }
             Color.clear
         }
-        .frame(minWidth: 0, minHeight: orderManager.userOrders.isLoading ? 30 : 0)
+        .frame(minWidth: 0, minHeight: orderManager.userOrders.isLoading ? .Constants.spinnerHeight : 0)
     }
 }
 

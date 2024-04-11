@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager, AuthenticationManagerType: AuthenticationManager>: View {
+struct MainMenuView<RestaurantManagerType: RestaurantManager,
+                    OrderManagerType: OrderManager,
+                    AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
     @EnvironmentObject private var orderManager: OrderManagerType
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
@@ -21,10 +23,10 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
             ZStack(alignment: .top) {
                 backgroundBody
                 VStack {
-                    headerBody.padding(.horizontal, 24)
+                    headerBody.padding(.horizontal, .Constants.horizontalSafeArea)
                     if (showingMenu) {
                         dropMenuBody
-                            .padding(.horizontal, 24.5)
+                            .padding(.horizontal, .Constants.horizontalSafeArea)
                             .transition(
                                 .move(edge: .top).animation(.easeInOut(duration: 1))
                                 .combined(with:
@@ -38,7 +40,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
                         
                     }
                     VStack {
-                        SearchArea<RestaurantManagerType>(tappedItem: $tappedItem, searchBoxFocused: $showingSearch).padding(.horizontal, 24)
+                        SearchArea<RestaurantManagerType>(tappedItem: $tappedItem, searchBoxFocused: $showingSearch).padding(.horizontal, .Constants.horizontalSafeArea)
                         if !showingSearch{
                             mainMenuBody
                                 .transition(.move(edge: .bottom).animation(.easeInOut(duration: 1)))
@@ -70,14 +72,12 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
     
     
     var headerBody: some View {
-        VStack {
-            Header(leadingIcon: "MenuIcon") {
-                withAnimation {
-                    showingMenu.toggle()
-                }
-            } trailingLink: {
-                CartView<AuthenticationManagerType, RestaurantManagerType, OrderManagerType>()
+        Header(leadingIcon: "MenuIcon") {
+            withAnimation {
+                showingMenu.toggle()
             }
+        } trailingLink: {
+            CartView<AuthenticationManagerType, RestaurantManagerType, OrderManagerType>()
         }
     }
     
@@ -90,39 +90,39 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
             } label: {
                 PrettyButton(text: "Profile", unactiveColor: .lightBrown, isActive: false, onTap: {})
                     .disabled(true)
-                    .frame(height: 40)
+                    .frame(height: .Constants.lineElementHeight)
             }
             NavigationLink {
                 UserOrdersView<OrderManagerType, RestaurantManagerType>(userID: authenticationManager.auth.uid ?? "")
             } label: {
                 PrettyButton(text: "My orders", unactiveColor: .lightBrown, isActive: false, onTap: {})
                     .disabled(true)
-                    .frame(height: 40)
+                    .frame(height: .Constants.lineElementHeight)
             }
             PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
                 authenticationManager.logout()
             }
-            .frame(height: 40)
+            .frame(height: .Constants.lineElementHeight)
         }
     }
     
     var mainMenuBody: some View {
         
         ZStack(alignment: .top) {
-            Rectangle().cornerRadius(30).foregroundColor(.veryLightBrown)
+            Rectangle().cornerRadius(.Constants.blockCornerRadius).foregroundColor(.veryLightBrown)
             VStack {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
                         LazyVStack {
                             fetchingProgressBody
-                                .padding(.top, 24)
+                                .padding(.top, .Constants.tripleSpacing)
                             if let restaurants = restaurantManager.restaurants.value {
                                 ForEach(restaurants) { restaurant in
                                     NavigationLink {
                                         RestaurantMenuView<AuthenticationManagerType, RestaurantManagerType, OrderManagerType>(restaurantId: restaurant.id, tappedItem: $tappedItem)
                                     } label: {
                                         MainMenuRestaurant(restaurant: restaurant, tappedItem: $tappedItem)
-                                            .padding(.bottom, 12)
+                                            .padding(.bottom, .Constants.doubleSpacing)
                                         
 //FIXME: navigation stuff                                            .id(section)
 //                                            .onAppear(){
@@ -141,7 +141,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
                         restaurantManager.loadRestaurants()
                     }
                 }
-            }.padding(.horizontal, 24)
+            }.padding(.horizontal, .Constants.tripleSpacing)
         }.ignoresSafeArea(edges:.bottom)
     }
     
@@ -161,7 +161,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
             }
             Color.clear
         }
-        .frame(minWidth: 0, minHeight: restaurantManager.restaurants.isLoading ? 30 : 0)
+        .frame(height: restaurantManager.restaurants.isLoading ? .Constants.spinnerHeight : 0)
     }
     
     var navigationBody: some View {

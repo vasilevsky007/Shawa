@@ -15,6 +15,8 @@ struct MenuItemView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    private let fontSize: CGFloat = 16
+    
     init(_ menuItem: MenuItem,belongsTo restaurant: Restaurant, addToCart: @escaping (Order.Item) -> Void) {
         thisItem = menuItem
         var additions = [String : Int]()
@@ -24,16 +26,6 @@ struct MenuItemView: View {
         _thisOrderItem = State(initialValue: Order.Item(menuItem: menuItem, availibleAdditions: restaurant.ingredients))
         self.addToCart = addToCart
         self.restaurant = restaurant
-    }
-    
-    private struct DrawingConstants {
-        static let allPadding: CGFloat = 2
-        static let additionalPadding: CGFloat = 16
-        static let headerSize: CGFloat = 32
-        static let subheaderSize: CGFloat = 24
-        static let fontSize: CGFloat = 16
-        static let ingredientsGridSpacing: CGFloat = 8
-        
     }
     
     var body: some View {
@@ -51,7 +43,6 @@ struct MenuItemView: View {
                                     .frame(width: imageSize, alignment: .center)
                             } placeholder: {
                                 ProgressView()
-                                    .font(.system(size: 64))
                                     .foregroundColor(.gray)
                                     .frame(width: imageSize, height: imageSize / 2)
                             }
@@ -64,43 +55,40 @@ struct MenuItemView: View {
                         HStack(alignment: .center, spacing: 0) {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(thisItem.name)
-                                    .font(.main(size: DrawingConstants.headerSize))
+                                    .font(.main(size: 32))
                                     .foregroundColor(.deafultBrown)
-                                    .padding(.all, DrawingConstants.allPadding)
-                                    .padding([.leading, .top, .trailing], DrawingConstants.additionalPadding)
+                                    .padding([.leading, .top, .trailing], .Constants.doubleSpacing)
                                 Text(
                                     "\(String(format: "%.2f", thisItem.price))"
                                     + ((thisOrderItem.price - thisItem.price) == 0.0 ? " BYN" :
                                         "\(String(format: "%+.2f", thisOrderItem.price - thisItem.price)) BYN")
                                 )
-                                .font(.mainBold(size: DrawingConstants.subheaderSize))
+                                .font(.mainBold(size: 24))
                                 .foregroundColor(.deafultBrown)
-                                .padding([.horizontal, .top], DrawingConstants.allPadding)
-                                .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
+                                .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                             }
                             
                             Spacer(minLength: 0)
                             PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
                                 addToCart(thisOrderItem)
-                            }.frame(width: 120, height:60).padding(.trailing, 10)
+                            }
+                                .frame(width: .Constants.MenuItemView.addButtonWidth, height:.Constants.MenuItemView.addButtonHeight)
+                                .padding(.trailing, .Constants.standardSpacing)
                         }
                         
-                        LazyVGrid(columns: [.init(.adaptive(minimum: 100), spacing: DrawingConstants.ingredientsGridSpacing, alignment: .center)], alignment: .center, spacing: DrawingConstants.ingredientsGridSpacing) {
+                        LazyVGrid(columns: [.init(.adaptive(minimum: .Constants.MenuItemView.ingredientBoxMinWidth), spacing: .Constants.standardSpacing, alignment: .center)], alignment: .center, spacing: .Constants.standardSpacing) {
                             ForEach(thisItem.ingredientIDs.sorted(), id: \.self) { ingredientId in
                                 ingredientTagBox(id: ingredientId)
                             }
                         }
-                        .padding(.all, DrawingConstants.allPadding)
-                        .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
+                        .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                         Text(thisItem.description)
-                            .font(.main(size: MenuItemView.DrawingConstants.fontSize))
+                            .font(.main(size: fontSize))
                             .foregroundColor(.deafultBrown)
-                            .padding(.all, DrawingConstants.allPadding)
-                            .padding([.leading, .bottom, .trailing], DrawingConstants.additionalPadding)
+                            .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                         //FIXME: no ingredient items                        if (thisItem.belogsTo != .Drinks) {
                         ingredientsAdder
-                            .padding(.all, DrawingConstants.allPadding)
-                            .padding(.horizontal, DrawingConstants.additionalPadding)
+                            .padding(.horizontal, .Constants.doubleSpacing)
                         //                        }
                     }
                 }
@@ -127,31 +115,31 @@ struct MenuItemView: View {
                     .foregroundColor(.primaryBrown)
                 
                 Text (ingredient.name)
-                    .font(.main(size: MenuItemView.DrawingConstants.fontSize))
+                    .font(.main(size: fontSize))
                     .foregroundColor(.lightBrown)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 2)
             }
-            .frame(minHeight: MenuItemView.DrawingConstants.headerSize)
+            .frame(minHeight: .Constants.MenuItemView.ingredientBoxHeight)
         }
     }
     
     var ingredientsAdder: some View {
         VStack (alignment: .leading) {
             Text("Add ingredients")
-                .font(.main(size: DrawingConstants.subheaderSize))
+                .font(.main(size: 24))
                 .foregroundColor(.lightBrown)
             ForEach(restaurant.ingredients) { ingredient in
                 HStack {
                     Text((
                         thisOrderItem.additions[ingredient.id]! > -1 ? String(thisOrderItem.additions[ingredient.id]!) : "No"
                     ))
-                    .font(.main(size: MenuItemView.DrawingConstants.fontSize))
+                    .font(.main(size: fontSize))
                     .foregroundColor(.lightBrown)
                     .frame(width: 22)
                     Stepper {
                         Text(ingredient.name.lowercased())
-                            .font(.main(size: MenuItemView.DrawingConstants.fontSize))
+                            .font(.main(size: fontSize))
                             .foregroundColor(.lightBrown)
                     } onIncrement: {
                         if (thisOrderItem.additions[ingredient.id]!.advanced(by: 1) != 101) {

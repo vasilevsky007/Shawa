@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// you have to ensure enclosing in frame.
 struct MenuItemCard: View {
     var thisItem: MenuItem
     
@@ -14,46 +15,34 @@ struct MenuItemCard: View {
         thisItem = item
     }
     
-    private struct DrawingConstants {
-        static var cornerRadius: CGFloat = 15
-        static var imageCornerRadius: CGFloat = 10
-        static var allPadding: CGFloat = 10
-        static var additionalVerticalPadding: CGFloat = 5
-        static var fontSize: CGFloat = 14
-    }
-    
     var body: some View {
-        ZStack(alignment: .leading) {
-            GeometryReader { geometry in
-                RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                    .foregroundColor(.white)
-                VStack(alignment: .leading) {
-                    let imageSize = (geometry.size.width - 2 * DrawingConstants.allPadding) > 0 ? (geometry.size.width - 2 * DrawingConstants.allPadding) : nil
-                    LoadableImage(imageUrl: thisItem.image)
-                        .frame(width: imageSize, height: imageSize, alignment: .center)
-                        .cornerRadius(DrawingConstants.imageCornerRadius)
-                        .padding(.top, DrawingConstants.additionalVerticalPadding)
-                    Spacer(minLength: 0)
-                    Text(thisItem.name)
-                        .font(.main(size: DrawingConstants.fontSize))
-                        .foregroundColor(.deafultBrown)
-                    Text(String(format: "%.2f", thisItem.price) + " BYN")
-                        .font(.mainBold(size: DrawingConstants.fontSize))
-                        .foregroundColor(.deafultBrown)
-                        .padding(.bottom, DrawingConstants.additionalVerticalPadding)
-                }
-                .padding(.all, DrawingConstants.allPadding)
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: 0) {
+                LoadableImage(imageUrl: thisItem.image)
+                    .frame(width: geometry.size.width, height: geometry.size.width, alignment: .center)
+                    .cornerRadius(.Constants.elementCornerRadius)
+                    .padding(.bottom, .Constants.standardSpacing)
+                Text(thisItem.name)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                    .font(.main(size: 14))
+                    .foregroundColor(.deafultBrown)
+                Spacer(minLength: 0)
+                Text(String(format: "%.2f", thisItem.price) + " BYN")
+                    .font(.mainBold(size: 14))
+                    .foregroundColor(.deafultBrown)
             }
         }
+        .padding(.all, .Constants.standardSpacing)
+        .padding(.vertical, .Constants.halfSpacing)
+        .background(Color.white, in: .rect(cornerRadius: .Constants.MenuItemCard.cornerRadius))
     }
 }
 
-struct MenuItemCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack{
-            Color.red
-            MenuItemCard(RestaurantManagerStub().restaurants.value!.first!.menu.first!)
-                .frame(width: 160, height: 220)
-        }.previewDevice("iPhone 11 Pro")
+#Preview {
+    ZStack{
+        Color.red
+        MenuItemCard(RestaurantManagerStub().restaurants.value!.first!.menu.first!)
+            .frame(width: 160, height: 232)
     }
 }

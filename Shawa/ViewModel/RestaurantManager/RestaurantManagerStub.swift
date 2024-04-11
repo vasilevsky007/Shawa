@@ -18,7 +18,7 @@ class RestaurantManagerStub: RestaurantManager {
             id: "1",
             name: "rest1",
             menu: [
-                .init(id: "1", sectionIDs: .init(arrayLiteral: "1"), name: "цйу", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
+                .init(id: "1", sectionIDs: .init(arrayLiteral: "1"), name: "Agdsuhbjlk;lm geyaduhjlskm ufeyhodijakmo gufehdijkm yguefhoidjskm hefij", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
                 .init(id: "2", sectionIDs: .init(arrayLiteral: "1"), name: "цйу", price: 5.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
                 .init(id: "3", sectionIDs: .init(arrayLiteral: "1"), name: "цйу", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
                 .init(id: "4", sectionIDs: .init(arrayLiteral: "1"), name: "цйу", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),

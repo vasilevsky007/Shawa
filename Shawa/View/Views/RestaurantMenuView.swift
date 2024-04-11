@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let gridSpacing: CGFloat = 16
-}
-
 struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager>: View {
     var restaurantId: String
     @Binding var tappedItem: MenuItem?
@@ -30,26 +26,26 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
             VStack(alignment: .leading) {
                 Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }){
                     CartView<AuthenticationManagerType,RestaurantManagerType, OrderManagerType>()
-                }.padding(.horizontal, 24.5)
+                }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text(restaurant.name)
                     .foregroundColor(.deafultBrown)
                     .font(.montserratBold(size: 24))
-                    .padding(.horizontal, 32)
-                    .padding(.top, 8)
+                    .padding(.top, .Constants.standardSpacing)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 
                 ScrollView (.horizontal, showsIndicators: false) {
                     LazyHStack {
                         PrettyButton(text: "Filter", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 96, height: 40).padding(.leading, 24.5)
                         PrettyButton(text: "Popularity", isActive: true, onTap: {}).frame(width: 96, height: 40)
-                        PrettyButton(text: "High Price", onTap: {}).frame(width: 88, height: 40)
+                        PrettyButton(text: "High Price", onTap: {}).frame(width: 96, height: 40)
                         PrettyButton(text: "Low Price", onTap: {}).frame(width: 88, height: 40)
                         PrettyButton(text: "Newest", onTap: {}).frame(width: 72, height: 40)
                         PrettyButton(text: "Oldest", onTap: {}).frame(width: 72, height: 40)
                     }.fixedSize()
                 }
                 ScrollView {
-                    LazyVStack(spacing: 16) {
+                    LazyVStack(spacing: .Constants.doubleSpacing) {
                         ForEach(restaurant.sections) { thisSection in
                             section(thisSection)
                         }
@@ -74,22 +70,25 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
     @ViewBuilder
     func section(_ section: MenuSection) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 30).ignoresSafeArea(edges: .bottom).padding(.top, 8).foregroundColor(.veryLightBrown2)
+            RoundedRectangle(cornerRadius: .Constants.blockCornerRadius)
+                .ignoresSafeArea(edges: .bottom)
+                .padding(.top, .Constants.standardSpacing)
+                .foregroundColor(.veryLightBrown2)
             VStack(alignment: .leading) {
                 Text(section.name)
                     .foregroundColor(.deafultBrown)
                     .font(.montserratBold(size: 24))
-                LazyVGrid(columns: .init(repeating: GridItem(spacing: DrawingConstants.gridSpacing), count: 2 ), spacing: DrawingConstants.gridSpacing) {
+                LazyVGrid(columns: .init(repeating: GridItem(spacing: .Constants.doubleSpacing), count: 2 ), spacing: .Constants.doubleSpacing) {
                     ForEach(restaurant.menu.filter{ $0.sectionIDs.contains(section.id) }) { item in
                         Button {
                             tappedItem = item
                         } label: {
                             MenuItemCard(item)
-                                .aspectRatio(8/11, contentMode: .fit)
+                                .aspectRatio(62/90, contentMode: .fit)
                         }
                     }
                 }
-            }.padding(.horizontal, 24).padding(.vertical, 32)
+            }.padding(.horizontal, .Constants.tripleSpacing).padding(.vertical, .Constants.quadripleSpacing)
         }
     }
     

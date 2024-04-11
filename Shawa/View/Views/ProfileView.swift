@@ -6,16 +6,8 @@
 //
 
 import SwiftUI
-import ActionButton
 import FirebaseAuth
 
-private struct DrawingConstants {
-    static let gridSpacing: CGFloat = 16
-    static let pagePadding: CGFloat = 24
-    static let padding: CGFloat = 8
-    static let cornerRadius: CGFloat = 30
-    static let headlineFontSize: CGFloat = 24
-}
 
 struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
@@ -96,18 +88,18 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                     closeThisView()
                 }, noTrailingLink: true) {
                     Text("placeholder. will not be seen")
-                }.padding(.horizontal, 24.5)
+                }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Profile")
                     .foregroundColor(.deafultBrown)
                     .font(.montserratBold(size: 24))
-                    .padding(.horizontal, DrawingConstants.pagePadding)
-                    .padding(.top, DrawingConstants.padding)
+                    .padding(.horizontal, .Constants.horizontalSafeArea)
+                    .padding(.top, .Constants.standardSpacing)
                 ZStack {
-                    RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                    RoundedRectangle(cornerRadius: .Constants.blockCornerRadius)
                         .ignoresSafeArea(edges: .bottom)
                         .foregroundColor(.veryLightBrown2)
-                    VStack (alignment: .leading, spacing: 8) {
+                    VStack (alignment: .leading, spacing: .Constants.standardSpacing) {
                         Text("Name")
                             .font(.main(size: 16))
                             .foregroundColor(.deafultBrown)
@@ -127,14 +119,14 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                         PrettyButton(text: "Change Password", isActive: true) {
                             isChangingPassword = true
                         }
-                        .frame(height: 50)
-                        .padding(.top, 8)
+                        .frame(height: .Constants.lineElementHeight)
+                        .padding(.top, .Constants.standardSpacing)
                         .sheet(isPresented: $isChangingPassword) {
                             if #available(iOS 16.0, *) {
                                 if #available(iOS 16.4, *) {
                                     PasswordChangeView<AuthenticationManagerType>(background: .veryLightBrown)
                                         .presentationDetents([.medium])
-                                        .presentationCornerRadius(DrawingConstants.cornerRadius)
+                                        .presentationCornerRadius(.Constants.blockCornerRadius)
                                 } else {
                                     PasswordChangeView<AuthenticationManagerType>(background: .veryLightBrown)
                                         .presentationDetents([.medium])
@@ -147,8 +139,8 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                         PrettyButton(text: "Delete your account", color: .red , isActive: true) {
                             isShowingDeleteAlert = true
                         }
-                        .frame(height: 50)
-                        .padding(.top, 8)
+                        .frame(height: .Constants.lineElementHeight)
+                        .padding(.top, .Constants.standardSpacing)
                         .alert("Confirm deleting", isPresented: $isShowingDeleteAlert) {
                             Button("Yes", role: .destructive) {
                                 deleteAccount()
@@ -164,17 +156,17 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                                 Text(errorDescriptionUnwrapped)
                                     .font(.main(size: 16))
                                     .foregroundColor(.red)
-                                    .padding(.all, DrawingConstants.padding)
-                                    .frame(minWidth: geometry.size.width, minHeight: 50)
+                                    .padding(.all, .Constants.standardSpacing)
+                                    .frame(minWidth: geometry.size.width, minHeight: .Constants.lineElementHeight)
                                     .background {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(lineWidth: 1)
+                                        RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                                            .stroke(lineWidth: .Constants.borderWidth)
                                             .foregroundColor(.red)
                                     }
-                            }.padding(.top, 8)
+                            }.padding(.top, .Constants.standardSpacing)
                         }
                         Spacer(minLength: 0)
-                    }.padding(DrawingConstants.pagePadding)
+                    }.padding(.Constants.horizontalSafeArea)
                 }.ignoresSafeArea( .container)
             }
             

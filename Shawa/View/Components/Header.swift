@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let iconSize: CGFloat = 25
-    static let logoFont: CGFloat = 19
-}
 
 struct Header<TrailingLink>: View where TrailingLink: View {
     var leadingIcon: String
@@ -26,41 +22,37 @@ struct Header<TrailingLink>: View where TrailingLink: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    leadingAction()
-                } label: {
-                    Image(leadingIcon)
-                        .resizable(resizingMode: .stretch)
-                        .frame(width: DrawingConstants.iconSize, height: DrawingConstants.iconSize)
-                }                
-                Spacer()
-                logoBody
-                Spacer()
-                if !noTrailingLink {
-                    NavigationLink {
-                        trailingLink()
-                    } label: {
-                        Image("CartIcon")
-                            .resizable(resizingMode: .stretch)
-                            .frame(width: DrawingConstants.iconSize, height: DrawingConstants.iconSize)
-                    }
-                } else {
-                    Spacer().frame(width: 25)
-                }
-
-                
+        HStack {
+            Button {
+                leadingAction()
+            } label: {
+                Image(leadingIcon)
+                    .resizable(resizingMode: .stretch)
+                    .frame(width: .Constants.Header.iconSize, height: .Constants.Header.iconSize)
             }
-        }
+            Spacer()
+            logoBody
+            Spacer()
+            if !noTrailingLink {
+                NavigationLink {
+                    trailingLink()
+                } label: {
+                    Image("CartIcon")
+                        .resizable(resizingMode: .stretch)
+                        .frame(width: .Constants.Header.iconSize, height: .Constants.Header.iconSize)
+                }
+            } else {
+                Color.clear.frame(width: .Constants.Header.iconSize)
+            }
+        }.frame(height: .Constants.Header.height, alignment: .top)
     }
     var logoBody: some View {
         HStack {
             Image("Logo")
                 .resizable(resizingMode: .stretch)
-                .frame(width: DrawingConstants.iconSize, height: DrawingConstants.iconSize)
+                .frame(width: .Constants.Header.iconSize, height: .Constants.Header.iconSize)
             Text("Shawa")
-                .font(.logo(size: DrawingConstants.logoFont))
+                .font(.logo(size: 19))
                 .foregroundColor(.deafultBrown)
         }
     }

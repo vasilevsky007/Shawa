@@ -7,19 +7,14 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let cornerRadius: CGFloat = 10
-    static let padding: CGFloat = 8
-    static let imageSize: CGFloat = 96
-    static let headerFontSize: CGFloat = 20
-    static let fontSize: CGFloat = 16
-}
-
 struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
     
     let thisItem: Order.Item
     let thisItemCount: Int
+    
+    private let headerFontSize: CGFloat = 20
+    private let fontSize: CGFloat = 16
     
     private var thisMenuItem: MenuItem? {
         restaurantManager.menuItem(withId: thisItem.itemID)
@@ -33,34 +28,34 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+            RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
                 .strokeBorder(lineWidth: 1)
                 .foregroundColor(.lighterBrown)
             VStack(alignment: .trailing, spacing: 0) {
                 HStack(alignment: .top, spacing: 0) {
                     if let imageUrl = thisMenuItem?.image {
                         LoadableImage(imageUrl: imageUrl)
-                            .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                            .cornerRadius(DrawingConstants.cornerRadius)
-                            .padding([.trailing, .bottom], DrawingConstants.padding)
+                            .frame(width: .Constants.OrderItemUnchangable.imageSize, height: .Constants.OrderItemUnchangable.imageSize)
+                            .cornerRadius(.Constants.elementCornerRadius)
+                            .padding([.trailing, .bottom], .Constants.standardSpacing)
                     } else {
                         Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: DrawingConstants.imageSize))
+                            .font(.system(size: .Constants.OrderItemUnchangable.imageSize))
                             .foregroundColor(.gray)
-                            .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize)
-                            .cornerRadius(DrawingConstants.cornerRadius)
-                            .padding([.trailing, .bottom], DrawingConstants.padding)
+                            .frame(width: .Constants.OrderItemUnchangable.imageSize, height: .Constants.OrderItemUnchangable.imageSize)
+                            .cornerRadius(.Constants.elementCornerRadius)
+                            .padding([.trailing, .bottom], .Constants.standardSpacing)
                     }
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(thisMenuItem?.name ?? "Item not found in current menu")
-                                    .font(.main(size: DrawingConstants.headerFontSize))
+                                    .font(.main(size: headerFontSize))
                                     .foregroundColor(.deafultBrown)
-                                    .padding(.top, DrawingConstants.padding)
+                                    .padding(.top, .Constants.standardSpacing)
                                 if let price = thisMenuItem?.price {
                                     Text(String(format: "%.2f", price) + " BYN")
-                                        .font(.mainBold(size: DrawingConstants.fontSize))
+                                        .font(.mainBold(size: fontSize))
                                         .foregroundColor(.deafultBrown)
                                 }
                             }
@@ -71,26 +66,26 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
                         ForEach(thisItem.additions.keys.sorted(), id: \.self) { additionID in
                             VStack(alignment: .trailing, spacing: 0) {
                                 Text(ingredientNameAndCountLocalized(id: additionID))
-                                .font(.main(size: DrawingConstants.fontSize))
+                                .font(.main(size: fontSize))
                                 .foregroundColor(.deafultBrown)
                                 
                                 Text(ingredientCostLocalized(id: additionID))
-                                .font(.main(size: DrawingConstants.fontSize))
+                                .font(.main(size: fontSize))
                                 .foregroundColor(.deafultBrown)
                             }
                         }
                         Divider()
                             .overlay{ Color.primaryBrown }
-                            .padding(.top, DrawingConstants.padding)
+                            .padding(.top, .Constants.standardSpacing)
 
                     }
-                }.padding(.all, DrawingConstants.padding)
+                }.padding(.all, .Constants.standardSpacing)
                 HStack(spacing: 0) {
                     Text(String(format: "%d x %.2f BYN", thisItemCount, thisItem.price))
-                        .font(.interBold(size: DrawingConstants.fontSize))
+                        .font(.interBold(size: fontSize))
                     .foregroundColor(.deafultBrown)
                 }
-                .padding([.bottom, .horizontal], DrawingConstants.padding)
+                .padding([.bottom, .horizontal], .Constants.standardSpacing)
 
             }
 
@@ -113,7 +108,7 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
             menuItem: rm.allMenuItems.first!,
             availibleAdditions: rm.restaurants.value!.first!.ingredients),
         count: 1)
-    .frame(height: DrawingConstants.imageSize + DrawingConstants.padding * 2)
+    .frame(height: .Constants.OrderItemUnchangable.imageSize + .Constants.doubleSpacing)
     .padding()
     .environmentObject(rm)
 }

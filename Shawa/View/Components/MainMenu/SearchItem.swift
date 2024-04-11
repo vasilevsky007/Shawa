@@ -16,20 +16,20 @@ struct SearchItem: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(lineWidth: 1)
+            RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                .strokeBorder(lineWidth: .Constants.borderWidth)
                 .foregroundColor(.lighterBrown)
             HStack(alignment: .center) {
-                let imageSize: CGFloat = 64
+                let imageSize: CGFloat = .Constants.SearchItem.imageSize
                 LoadableImage(imageUrl: thisItem.image)
                     .frame(width: imageSize, height: imageSize, alignment: .center)
-                    .cornerRadius(10)
-                    .padding(.leading, 8)
+                    .cornerRadius(.Constants.elementCornerRadius)
+                    .padding(.leading, .Constants.standardSpacing)
                 VStack(alignment: .leading) {
                     Text(thisItem.name)
                         .font(.main(size: 16))
                         .foregroundColor(.deafultBrown)
-                        .padding(.top, 8)
+                        .padding(.top, .Constants.standardSpacing)
                     Text(String(format: "%.2f", thisItem.price) + " BYN")
                         .font(.mainBold(size: 14))
                         .foregroundColor(.deafultBrown)
@@ -37,7 +37,7 @@ struct SearchItem: View {
                 }
             }
         }
-        .frame(height: 80)
+        .frame(height: .Constants.SearchItem.height)
         
     }
     

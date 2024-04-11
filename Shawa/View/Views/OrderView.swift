@@ -6,15 +6,6 @@
 //
 
 import SwiftUI
-import ActionButton
-
-fileprivate struct DrawingConstants {
-    static let gridSpacing: CGFloat = 16
-    static let pagePadding: CGFloat = 24
-    static let padding: CGFloat = 8
-    static let cornerRadius: CGFloat = 30
-    static let headlineFontSize: CGFloat = 24
-}
 
 struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerType: OrderManager>: View {
     @EnvironmentObject private var orderManager: OrderManagerType
@@ -88,15 +79,15 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                     }
                 }, noTrailingLink: true) {
                     Text("placeholder. will not be seen")
-                }.padding(.horizontal, 24.5)
+                }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Please provide some info to order:")
                     .foregroundColor(.deafultBrown)
                     .font(.montserratBold(size: 24))
-                    .padding(.horizontal, DrawingConstants.pagePadding)
-                    .padding(.top, DrawingConstants.padding)
+                    .padding(.horizontal, .Constants.horizontalSafeArea)
+                    .padding(.top, .Constants.standardSpacing)
                 ZStack {
-                    RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                    RoundedRectangle(cornerRadius: .Constants.blockCornerRadius)
                         .ignoresSafeArea(edges: .bottom)
                         .foregroundColor(.veryLightBrown2)
                     VStack (spacing: 0) {
@@ -107,17 +98,17 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                         HStack(alignment: .center, spacing: 0) {
                             Text("Grand total:")
                                 .foregroundColor(.deafultBrown)
-                                .font(.montserratBold(size: DrawingConstants.headlineFontSize))
-                                .padding(.trailing, DrawingConstants.padding)
+                                .font(.montserratBold(size: 24))
+                                .padding(.trailing, .Constants.standardSpacing)
                                 
                             Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
                                 .foregroundColor(.deafultBrown)
                                 .font(.interBold(size: 20))
-                                .frame(width: 136, alignment: .trailing)
+                                .frame(width: .Constants.OrderView.priceWidth, alignment: .trailing)
                         }
-                            .padding(.horizontal, DrawingConstants.pagePadding)
-                            .padding(.bottom, DrawingConstants.padding)
-                            .padding(.vertical, DrawingConstants.padding)
+                            .padding(.horizontal, .Constants.horizontalSafeArea)
+                            .padding(.bottom, .Constants.standardSpacing)
+                            .padding(.vertical, .Constants.standardSpacing)
                     }.ignoresSafeArea( .container)
                 }
             }
@@ -202,8 +193,8 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
         }.textCase(nil)
         Section {
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(lineWidth: 1)
+                RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                    .stroke(lineWidth: .Constants.borderWidth)
                     .foregroundColor(.lighterBrown)
                 TextEditor(text: $enteredComment)
                     .focused($focusedField, equals: .comment)
@@ -217,8 +208,8 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                             }
                         }
                     }
-                    .padding(.horizontal, DrawingConstants.padding)
-            } .frame(minHeight: 50)
+                    .padding(.horizontal, .Constants.standardSpacing)
+            }.frame(minHeight: .Constants.lineElementHeight)
         } header: {
             Text("Comments to your order")
                 .font(.main(size: 16))

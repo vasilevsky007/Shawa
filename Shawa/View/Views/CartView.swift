@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let gridSpacing: CGFloat = 16
-    static let pagePadding: CGFloat = 24
-    static let padding: CGFloat = 8
-    static let cornerRadius: CGFloat = 30
-    static let headlineFontSize: CGFloat = 24
-}
-
 struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager>: View {
     @EnvironmentObject private var orderManager: OrderManagerType
     
@@ -27,27 +19,27 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
                 backgroundBody
                 VStack(alignment: .leading) {
                     Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }, noTrailingLink: true) {
-                        Text("placeholder. will not be seen")
-                    }.padding(.horizontal, 24.5)
+                        Text("")
+                    }.padding(.horizontal, .Constants.horizontalSafeArea)
                     
                     Text("Your order:")
                         .foregroundColor(.deafultBrown)
                         .font(.montserratBold(size: 24))
-                        .padding(.horizontal, DrawingConstants.pagePadding)
-                        .padding(.top, DrawingConstants.padding)
+                        .padding(.horizontal, .Constants.horizontalSafeArea)
+                        .padding(.top, .Constants.standardSpacing)
                     ZStack {
-                        RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                        RoundedRectangle(cornerRadius: .Constants.blockCornerRadius)
                             .ignoresSafeArea(edges: .bottom)
                             .foregroundColor(.veryLightBrown2)
                         VStack (spacing: 0) {//FIXME: alignment: .listRowSeparatorTrailing, spacing: 0) {
                             ScrollView {
-                                LazyVStack (spacing: DrawingConstants.gridSpacing) {
+                                LazyVStack (spacing: .Constants.doubleSpacing) {
                                     ForEach(Array(orderManager.currentOrder.orderItems.keys)) { item in
                                         OrderItem<RestaurantManagerType, OrderManagerType>(item)
                                     }
                                 }
-                                .padding(.top, DrawingConstants.pagePadding)
-                                .padding(.horizontal, DrawingConstants.pagePadding)
+                                .padding(.top, .Constants.tripleSpacing)
+                                .padding(.horizontal, .Constants.horizontalSafeArea)
                             }
                             .overlay(alignment: .bottomLeading) {
                                 proceedOverlayBody
@@ -56,16 +48,16 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
                             HStack(alignment: .center, spacing: 0) {
                                 Text("Grand total:")
                                     .foregroundColor(.deafultBrown)
-                                    .font(.montserratBold(size: DrawingConstants.headlineFontSize))
-                                    .padding(.trailing, DrawingConstants.padding)
+                                    .font(.montserratBold(size: 24))
+                                    .padding(.trailing, .Constants.standardSpacing)
                                 Spacer(minLength: 0)
                                 Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
                                     .foregroundColor(.deafultBrown)
                                     .font(.interBold(size: 20))
                             }
-                            .padding(.horizontal, DrawingConstants.pagePadding)
-                            .padding(.bottom, DrawingConstants.padding)
-                            .padding(.vertical, DrawingConstants.padding)
+                            .padding(.horizontal, .Constants.horizontalSafeArea)
+                            .padding(.bottom, .Constants.standardSpacing)
+                            .padding(.vertical, .Constants.standardSpacing)
                         }.ignoresSafeArea(edges: .bottom)
                     }
                 }
@@ -96,7 +88,7 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
                     Capsule()
                         .foregroundColor(.primaryBrown)
                     Capsule()
-                        .stroke(lineWidth: 2)
+                        .stroke(lineWidth: .Constants.doubleBorderWidth)
                         .foregroundColor(.lighterBrown)
                     VStack(spacing: 0) {
                         Text("Proceed")
@@ -107,9 +99,9 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
                 }
             }
         }
-        .frame(width: 100, height: 50)
-        .padding(.horizontal, DrawingConstants.pagePadding)
-        .padding(.all, DrawingConstants.padding / 2)
+        .frame(width: .Constants.CartView.proceedOverlayWidth, height: .Constants.CartView.proceedOverlayHeight)
+        .padding(.horizontal, .Constants.horizontalSafeArea)
+        .padding(.all, .Constants.halfSpacing)
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 struct PrettyButton: View {
     var text: String
     var systemImage = "noImage"
-    var fontsize: CGFloat = 14
+    var fontsize: CGFloat = 16
     var isSwitch = false
     var color = Color.primaryBrown
     var unactiveColor = Color.clear
@@ -22,7 +22,7 @@ struct PrettyButton: View {
             if isActive {
                 // MARK: active
                 ZStack(alignment: .center) {
-                    RoundedRectangle(cornerRadius: 10)
+                    RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
                         .foregroundColor(color)
                     Button {
                         withAnimation {
@@ -37,18 +37,17 @@ struct PrettyButton: View {
                             if systemImage != "noImage" {
                                 Image(systemName: systemImage)
                                     .foregroundColor(.white)
-                                    .font(.system(size: geometry.size.height - 20))
+                                    .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
                             }
                             Text(text).font(.main(size: fontsize)).foregroundColor(.white)
                             Spacer(minLength: 0)
-                        }
-                        
+                        }.padding(.all, .Constants.standardSpacing)
                     }
                 }.transition(.opacity)
             } else {
                 //MARK: unactive
                 ZStack (alignment: .center) {
-                    RoundedRectangle(cornerRadius: 10)
+                    RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
                         .strokeBorder(unactiveColor)
                     Button {
                         withAnimation {
@@ -63,11 +62,11 @@ struct PrettyButton: View {
                             if systemImage != "noImage" {
                                 Image(systemName: systemImage)
                                     .foregroundColor(.deafultBrown)
-                                    .font(.system(size: geometry.size.height - 20))
+                                    .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
                             }
                             Text(text).font(.main(size: fontsize)).foregroundColor(.deafultBrown)
                             Spacer(minLength: 0)
-                        }
+                        }.padding(.all, .Constants.standardSpacing)
                     }
                 }.transition(.opacity)
             }
@@ -76,16 +75,16 @@ struct PrettyButton: View {
     }
 }
 
-struct PrettyButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        PrettyButton(text: "Chicken", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 92, height: 41)
+#Preview {
+    PrettyButton(text: "Chicken", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 120, height: 41)
+}
+#Preview {
+    PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
         
-        PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
-            
-        }.frame(width: 120, height:60).padding(.trailing, 10)
-        
+    }.frame(width: 120, height:60).padding(.trailing, 10)
+}
+#Preview {
         PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
             print("logout")
         }.frame(height: 40)
     }
-}

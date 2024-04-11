@@ -33,9 +33,9 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
         color: Color = .accentColor,
         isSystemImage: Bool = false,
         image: String = "",
-        cornerRadius: CGFloat = 10,
-        width: CGFloat? = 326,
-        height: CGFloat = 50,
+        cornerRadius: CGFloat = .Constants.elementCornerRadius,
+        width: CGFloat? = nil,
+        height: CGFloat = .Constants.lineElementHeight,
         focusState: FocusState<FocusStateType>.Binding? = nil,
         focusedValue: FocusStateType? = nil,
         keyboardType:UIKeyboardType = .default,
@@ -70,7 +70,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
             .onSubmit {
                 submitAction?()
             }
-            .padding(.leading, 50)
+            .padding(.leading, .Constants.PrettyTextField.fieldsLeadingPadding)
             .foregroundColor(color)
             .font(font)
     }
@@ -85,7 +85,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
             .onSubmit {
                 submitAction?()
             }
-            .padding(.leading, 50)
+            .padding(.leading, .Constants.PrettyTextField.fieldsLeadingPadding)
             .foregroundColor(color)
             .font(font)
     }
@@ -93,14 +93,14 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
     @ViewBuilder var imageView: some View {
         if(isSystemImage){
             Image(systemName: image)
-                .font(.main(size: 20))
+                .font(.main(size: .Constants.PrettyTextField.imageSize))
                 .foregroundColor(color)
-                .padding(.horizontal, 15)
+                .padding(.horizontal, .Constants.PrettyTextField.imagePadding)
         } else {
             Image(image)
                 .resizable(resizingMode: .stretch)
-                .frame(width: 20, height: 20)
-                .padding(.horizontal, 15)
+                .frame(width: .Constants.PrettyTextField.imageSize, height: .Constants.PrettyTextField.imageSize)
+                .padding(.horizontal, .Constants.PrettyTextField.imagePadding)
         }
     }
     
@@ -108,7 +108,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
 
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: cornerRadius)
-                .strokeBorder(lineWidth: 1)
+                .strokeBorder(lineWidth: .Constants.borderWidth)
                 .foregroundColor(color)
             if secured{
                 if let focusState = focusState, let focusedValue = focusedValue {
@@ -131,3 +131,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
     }
 }
 
+#Preview {
+    @State var t = "hello"
+    return PrettyTextField<Bool>(text: $t,isSystemImage:true, image: "globe")
+}

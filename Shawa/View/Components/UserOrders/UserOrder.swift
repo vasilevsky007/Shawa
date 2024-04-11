@@ -7,26 +7,19 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let gridSpacing: CGFloat = 16
-    static let padding: CGFloat = 8
-    static let cornerRadius: CGFloat = 16
-    static let headlineFontSize: CGFloat = 24
-}
-
 struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
     @EnvironmentObject var restaurantManager: RestaurantManagerType
     
     var order: Order
     
-
+    private let headlineFontSize: CGFloat = 24
     
     var timeBody: some View {
         HStack(spacing: 0){
             Spacer()
             if let timestamp = order.timestamp {
                 Text(order.timestamp!, style: .date)
-                    .padding(.trailing, DrawingConstants.padding)
+                    .padding(.trailing, .Constants.standardSpacing)
                     .foregroundColor(.lighterBrown)
                     .font(.main(size: 16))
                 Text(order.timestamp!, style: .time)
@@ -47,13 +40,13 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
         HStack(alignment: .center, spacing: 0) {
             Text("Grand total:")
                 .foregroundColor(.deafultBrown)
-                .font(.montserratBold(size: DrawingConstants.headlineFontSize))
-                .padding(.trailing, DrawingConstants.padding)
+                .font(.montserratBold(size: headlineFontSize))
+                .padding(.trailing, .Constants.standardSpacing)
             Spacer(minLength: 0)
             Text(String(format: "%.2f BYN", order.totalPrice))
                 .foregroundColor(.deafultBrown)
                 .font(.interBold(size: 20))
-                .frame(width: 136, alignment: .trailing)
+                .frame(width: .Constants.UserOrder.priceWidth, alignment: .trailing)
         }
     }
     
@@ -61,8 +54,8 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
         Divider().overlay(Color.lighterBrown)
         Text("Address:")
             .foregroundColor(.deafultBrown)
-            .font(.montserratBold(size: DrawingConstants.headlineFontSize))
-            .padding(.trailing, DrawingConstants.padding)
+            .font(.montserratBold(size: headlineFontSize))
+            .padding(.trailing, .Constants.standardSpacing)
         if let street = order.user.address.street {
             VStack {
                 Text("Street")
@@ -108,8 +101,8 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
             HStack(alignment: .center, spacing: 0) {
                 Text("Comment:")
                     .foregroundColor(.deafultBrown)
-                    .font(.montserratBold(size: DrawingConstants.headlineFontSize))
-                    .padding(.trailing, DrawingConstants.padding)
+                    .font(.montserratBold(size: headlineFontSize))
+                    .padding(.trailing, .Constants.standardSpacing)
                 Spacer(minLength: 0)
             }
             Text(comment)
@@ -119,20 +112,20 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
     }
     
     var body: some View {
-        LazyVStack (alignment: .leading, spacing: DrawingConstants.gridSpacing) {
+        LazyVStack (alignment: .leading, spacing: .Constants.doubleSpacing) {
             timeBody
             itemsBody
             addressBody
             commentBody
             priceBody
         }
-        .padding(.all, DrawingConstants.padding)
+        .padding(.all, .Constants.standardSpacing)
         .background {
             ZStack {
-                RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                RoundedRectangle(cornerRadius: .Constants.UserOrder.cornerRadius)
                     .fill(Color.veryLightBrown)
-                RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                    .stroke(Color.deafultBrown, lineWidth: 2)
+                RoundedRectangle(cornerRadius: .Constants.UserOrder.cornerRadius)
+                    .stroke(Color.deafultBrown, lineWidth: .Constants.doubleBorderWidth)
             }
         }
     }

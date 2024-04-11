@@ -24,7 +24,7 @@ struct SearchArea<RestaurantManagerType: RestaurantManager>: View {
                 color: .lighterBrown,
                 image: "SearchIcon",
                 width: nil,
-                height: 45,
+                height: .Constants.lineElementHeight,
                 focusState: $focused,
                 focusedValue: true,
                 submitLabel: .search )
@@ -71,12 +71,6 @@ struct SearchArea<RestaurantManagerType: RestaurantManager>: View {
             }
         }
         .animation(.default, value: enteredSearch)
-    }
-    
-    var z = 0.0
-    mutating func a() -> Animation {
-        z += 1.2
-        return .easeIn(duration: 0.5).delay(z - 0.2)
     }
 }
 

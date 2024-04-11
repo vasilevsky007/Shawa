@@ -41,8 +41,8 @@ struct MainMenuRestaurant: View {
                     tappedItem = menuItem
                 } label: {
                     MenuItemCard(menuItem)
-                        .frame(width: 155, height: 215)
-                        .padding(.trailing, 8)
+                        .frame(width: .Constants.MainMenuRestaurant.cardWidth, height: .Constants.MainMenuRestaurant.cardHeight)
+                        .padding(.trailing, .Constants.standardSpacing)
                 }
             }
         }
@@ -51,5 +51,5 @@ struct MainMenuRestaurant: View {
 
 #Preview {
     @State var tapped: MenuItem? = nil
-    return MainMenuRestaurant(restaurant: RestaurantManagerStub().restaurants.value!.first!, tappedItem: $tapped)
+    return MainMenuRestaurant(restaurant: RestaurantManagerStub().restaurants.value!.first!, tappedItem: $tapped).background(Color.green)
 }

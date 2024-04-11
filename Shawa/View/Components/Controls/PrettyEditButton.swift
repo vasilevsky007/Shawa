@@ -19,8 +19,8 @@ struct PrettyEditButton: View {
     init (isEditing: Binding<Bool>,
           font: Font = .main(size: 14),
           color: Color = .red,
-          cornerRadius: CGFloat = 10,
-          height: CGFloat = 38,
+          cornerRadius: CGFloat = .Constants.elementCornerRadius,
+          height: CGFloat = .Constants.PrettyEditButton.defaultHeight,
           onEditingEnded: @escaping () -> Void) {
         self.isEditing = isEditing
         self.cornerRadius = cornerRadius
@@ -42,11 +42,11 @@ struct PrettyEditButton: View {
         }
         .foregroundColor(color)
         .font(font)
-        .padding([.leading, .trailing], 16)
+        .padding(.all, .Constants.doubleSpacing)
         .frame(height: height)
         .background {
             RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(lineWidth: 1)
+                .stroke(lineWidth: .Constants.borderWidth)
                 .foregroundStyle(color)
         }
     }
@@ -54,5 +54,5 @@ struct PrettyEditButton: View {
 
 #Preview {
     @State var a = false
-    return PrettyEditButton(isEditing: $a, onEditingEnded: {})
+    return PrettyEditButton(isEditing: $a, onEditingEnded: {print(a)})
 }

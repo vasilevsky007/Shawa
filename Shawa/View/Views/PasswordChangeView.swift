@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let pagePadding: CGFloat = 24
-    static let padding: CGFloat = 8
-}
-
 struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     @Environment(\.dismiss) private var dismiss
@@ -60,7 +55,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .oldPassword
             )
-                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             
             Text("New password")
                 .font(.main(size: 16))
@@ -74,7 +69,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .newPassword
             )
-                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             
             Text("Confirm new password")
                 .font(.main(size: 16))
@@ -88,7 +83,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .newPasswordConfirm
             )
-                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             //TODO: better validation
             PrettyButton(text: "Change Password", unactiveColor: .red , isActive: newPasswordsValidated) {
                 Task {
@@ -96,11 +91,11 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 }
             }
                 .disabled(!newPasswordsValidated)
-                .frame(height: 50)
-                .padding(.top, 8)
+                .frame(height: .Constants.lineElementHeight)
+                .padding(.top, .Constants.standardSpacing)
             Spacer(minLength: 0)
         }
-            .padding(DrawingConstants.pagePadding)
+            .padding(.Constants.horizontalSafeArea)
             .background {
                 background
             }

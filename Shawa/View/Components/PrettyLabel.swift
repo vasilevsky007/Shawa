@@ -20,9 +20,9 @@ struct PrettyLabel: View {
           systemImage: String? = nil,
           font: Font = .main(size: 14),
           color: Color = .accentColor,
-          cornerRadius: CGFloat = 10,
-          width: CGFloat? = 326,
-          height: CGFloat = 50){
+          cornerRadius: CGFloat = .Constants.elementCornerRadius,
+          width: CGFloat? = nil,
+          height: CGFloat = .Constants.lineElementHeight){
         self.cornerRadius = cornerRadius
         self.text = text
         self.systemImage = systemImage
@@ -39,7 +39,7 @@ struct PrettyLabel: View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .strokeBorder(lineWidth: 1)
                 .foregroundColor(color)
-            HStack(spacing: 13) {
+            HStack(spacing: .Constants.PrettyLabel.spacing) {
                 if let systemImage = systemImage {
                     Image(systemName: systemImage)
                         .font(.main(size: 20))
@@ -47,7 +47,7 @@ struct PrettyLabel: View {
                 Text(text).foregroundColor(color).font(font)
                     
             }
-                .padding(.horizontal, 15)
+                .padding(.horizontal, .Constants.PrettyLabel.spacing)
                 .foregroundColor(color)
                 .font(font)
         }.frame(width: width, height: height)
@@ -56,5 +56,5 @@ struct PrettyLabel: View {
 
 
 #Preview {
-    PrettyLabel("hello world", systemImage: "globe")
+    PrettyLabel("hello world", systemImage: "globe", width: 100)
 }

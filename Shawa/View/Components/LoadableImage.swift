@@ -20,7 +20,7 @@ struct LoadableImage: View {
             }
         } else {
             Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 64))
+                .font(.system(size: .Constants.LoadableImage.errorImageSize))
                 .foregroundColor(.gray)
         }
     }

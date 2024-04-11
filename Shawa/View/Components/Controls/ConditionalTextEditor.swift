@@ -17,21 +17,21 @@ struct ConditionalTextEditor: View {
     var body: some View {
         if isEditing {
             PrettyTextField<String>(text: $value, color: .lighterBrown, isSystemImage: true, image: systemImage, width: nil)
-                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
                 .overlay(alignment: .trailing) {
                     PrettyEditButton(isEditing: $isEditing, color: .lighterBrown){
                         onEditingEnded()
                     }
-                    .padding(.trailing, 6)
+                    .padding(.all, .Constants.halfSpacing)
                 }
         } else {
-            PrettyLabel(value, systemImage: systemImage, color: .lighterBrown, width: nil)
-                .background(.white, in: RoundedRectangle(cornerRadius: 10))
+            PrettyLabel(value, systemImage: systemImage, color: .lighterBrown)
+                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
                 .overlay(alignment: .trailing) {
                     PrettyEditButton(isEditing: $isEditing, color: .lighterBrown) {
                         onEditingEnded()
                     }
-                    .padding(.trailing, 6)
+                    .padding(.all, .Constants.halfSpacing)
                 }
         }
     }

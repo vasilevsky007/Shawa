@@ -11,16 +11,22 @@ struct ActionButton: View {
     private var state: State
     private var action: () -> Void
     private var height: CGFloat
+    private var tint: Color
+    private var font: Font
     private var color: Color
     private var disabledColor: Color
     
     init(state: State,
          height: CGFloat = .Constants.lineElementHeight,
+         font: Font = .mainBold(size: 16),
+         tint: Color = .white,
          color: Color = .primaryBrown,
          disabledColor: Color = .gray,
          action: @escaping () -> Void) {
         self.state = state
         self.height = height
+        self.tint = tint
+        self.font = font
         self.color = color
         self.disabledColor = disabledColor
         self.action = action
@@ -39,18 +45,18 @@ struct ActionButton: View {
                 Spacer(minLength: 0)
                 if state.isLoading {
                     ProgressView()
-                        .tint(.white)
+                        .tint(tint)
                 }
                 Text(state.label)
-                    .font(.mainBold(size: 16))
-                    .foregroundStyle(.white)
+                    .font(font)
+                    .foregroundStyle(tint)
                 Spacer(minLength: 0)
             }
         }
         .frame(minHeight: height)
         .background(
             state.isEnabled ? color : disabledColor,
-            in: RoundedRectangle(cornerRadius: .Constants.cornerRadius)
+            in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
         )
     }
 }

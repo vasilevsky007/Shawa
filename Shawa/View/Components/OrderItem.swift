@@ -2,18 +2,11 @@
 //  OrderItem.swift
 //  Shawa
 //
-//  Created by Alex on 12.0DrawingConstants.padding.23.
+//  Created by Alex on 12.08.23.
 //
 
 import SwiftUI
 
-fileprivate struct DrawingConstants {
-    static let cornerRadius: CGFloat = 10
-    static let padding: CGFloat = 8
-    static let imageSize: CGFloat = 96
-    static let headerFontSize: CGFloat = 20
-    static let fontSize: CGFloat = 16
-}
 
 struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager>: View {
     @State private var thisItem: Order.Item
@@ -32,28 +25,29 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
     var numberOfCurrentItems: Int {
         orderManager.currentOrder.orderItems[thisItem] ?? 0
     }
-
+    
+    private let mainFontSize: CGFloat = 16
     
     var body: some View {
         ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+            RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
                 .strokeBorder(lineWidth: 1)
                 .foregroundColor(.lighterBrown)
             VStack(alignment: .trailing, spacing: 0) {
                 HStack(alignment: .top, spacing: 0) {
                     LoadableImage(imageUrl: menuItem.image)
-                        .frame(width: DrawingConstants.imageSize, height: DrawingConstants.imageSize, alignment: .center)
-                        .cornerRadius(DrawingConstants.cornerRadius)
-                        .padding([.trailing, .bottom], DrawingConstants.padding)
+                        .frame(width: .Constants.OrderItem.imageSize, height: .Constants.OrderItem.imageSize, alignment: .center)
+                        .cornerRadius(.Constants.elementCornerRadius)
+                        .padding([.trailing, .bottom], .Constants.standardSpacing)
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .center) {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(menuItem.name)
-                                    .font(.main(size: DrawingConstants.headerFontSize))
+                                    .font(.main(size: 20))
                                     .foregroundColor(.deafultBrown)
-                                    .padding(.top, DrawingConstants.padding)
+                                    .padding(.top, .Constants.standardSpacing)
                                 Text(String(format: "%.2f", menuItem.price) + " BYN")
-                                    .font(.mainBold(size: DrawingConstants.fontSize))
+                                    .font(.mainBold(size: mainFontSize))
                                     .foregroundColor(.deafultBrown)
                             }
                             Spacer(minLength: 0)
@@ -61,11 +55,10 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                                 orderManager.removeOrderItem(thisItem)
                             } label: {
                                 Image(systemName: "trash")
-                                    .font(.main(size: 32))
-                            }.padding(.trailing, 16)
+                                    .font(.main(size: .Constants.OrderItem.deleteIconSize))
+                            }.padding(.trailing, .Constants.doubleSpacing)
 
                         }
-//??
                         
                         ForEach(thisItem.additions.keys.sorted(), id: \.self) { additionID in
                             if let addition =  restaurantManager.ingredient(withId: additionID) {
@@ -76,7 +69,7 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                                                          String(thisItem.additions[additionID]!) + " x "
                                                          : "No ")
                                                  + addition.name)
-                                            .font(.main(size: DrawingConstants.fontSize))
+                                            .font(.main(size: mainFontSize))
                                             .foregroundColor(.deafultBrown)
                                             Spacer()
                                             Stepper {
@@ -94,20 +87,19 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                                                     String(format: "%.2f", Double(thisItem.additions[additionID]!) * addition.cost)
                                                     : "0")
                                              + " BYN")
-                                        .font(.main(size: DrawingConstants.fontSize))
+                                        .font(.main(size: mainFontSize))
                                         .foregroundColor(.deafultBrown)
                                     }
                                 }
                             }
                         }
                         
-//                        ??
                         Divider()
                             .overlay{ Color.primaryBrown }
-                            .padding(.top, DrawingConstants.padding)
+                            .padding(.top, .Constants.standardSpacing)
 
                     }
-                }.padding(.all, DrawingConstants.padding)
+                }.padding(.all, .Constants.standardSpacing)
                 HStack(spacing: 0) {
                     Stepper {
                         Spacer(minLength: 0)
@@ -116,17 +108,17 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                     } onDecrement: {
                         orderManager.removeOneOrderItem(thisItem)
                     }
-                    Spacer(minLength: DrawingConstants.padding)
+                    Spacer(minLength: .Constants.standardSpacing)
                     Text(String(format: "%d x %.2f BYN", numberOfCurrentItems, thisItem.price))
-                        .font(.interBold(size: DrawingConstants.fontSize))
+                        .font(.interBold(size: mainFontSize))
                     .foregroundColor(.deafultBrown)
                 }
-                .padding([.bottom, .horizontal], DrawingConstants.padding)
+                .padding([.bottom, .horizontal], .Constants.standardSpacing)
 
             }
 
         }
-        //.frame(height: DrawingConstants.imageSize + DrawingConstants.padding * 2)
+        //.frame(height: .Constants.OrderItem.imageSize + .Constants.OrderItem.padding * 2)
     }
     
 }
