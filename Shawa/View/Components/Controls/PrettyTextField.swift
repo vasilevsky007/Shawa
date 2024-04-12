@@ -11,7 +11,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
     var cornerRadius: CGFloat
     var text: Binding<String>
     var secured: Bool
-    var label: String
+    var label: LocalizedStringKey
     var submitLabel: SubmitLabel
     var submitAction: (()->Void)?
     var keyboardType: UIKeyboardType
@@ -27,7 +27,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
     
     init (
         text: Binding<String>,
-        label: String = "",
+        label: LocalizedStringKey = "",
         isSecured:Bool = false,
         font: Font = .main(size: 14),
         color: Color = .accentColor,
@@ -132,6 +132,6 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
 }
 
 #Preview {
-    @State var t = "hello"
-    return PrettyTextField<Bool>(text: $t,isSystemImage:true, image: "globe")
+    @State var t = ""
+    return PrettyTextField<Bool>(text: $t,label: "", isSystemImage:true, image: "globe")
 }

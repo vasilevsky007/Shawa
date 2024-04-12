@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrettyButton: View {
-    var text: String
+    var text: LocalizedStringKey
     var systemImage = "noImage"
     var fontsize: CGFloat = 16
     var isSwitch = false
@@ -76,7 +76,7 @@ struct PrettyButton: View {
 }
 
 #Preview {
-    PrettyButton(text: "Chicken", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 120, height: 41)
+    PrettyButton(text: "", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 120, height: 41)
 }
 #Preview {
     PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {

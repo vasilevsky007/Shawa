@@ -10,9 +10,9 @@ import Foundation
 struct AuthenticationStub: Authentication {
     private(set) var uid: String?
     
-    private(set) var name: String?
+    private(set) var name: String? = "user Name"
     
-    private(set) var email: String?
+    private(set) var email: String? = "esd@email.com"
     
     private(set) var phone: String?
     

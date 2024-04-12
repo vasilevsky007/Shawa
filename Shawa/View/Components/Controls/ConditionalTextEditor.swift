@@ -25,7 +25,7 @@ struct ConditionalTextEditor: View {
                     .padding(.all, .Constants.halfSpacing)
                 }
         } else {
-            PrettyLabel(value, systemImage: systemImage, color: .lighterBrown)
+            PrettyLabel(LocalizedStringKey(value), systemImage: systemImage, color: .lighterBrown)
                 .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
                 .overlay(alignment: .trailing) {
                     PrettyEditButton(isEditing: $isEditing, color: .lighterBrown) {

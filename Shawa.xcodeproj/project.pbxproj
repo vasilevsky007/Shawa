@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA0B09F729E2B56E00202CFA /* ShawaAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */; };
 		FA0B09F929E41A4D00202CFA /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B09F829E41A4D00202CFA /* MenuItemView.swift */; };
+		FA0E911C2BC912B400F74031 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FA0E911B2BC912B400F74031 /* Localizable.xcstrings */; };
 		FA1AFA152AFE5B2C0092A46A /* PrettyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */; };
 		FA1AFA172AFE5F810092A46A /* PrettyEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */; };
 		FA1AFA192B04E9F10092A46A /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAppView.swift; sourceTree = "<group>"; };
 		FA0B09F829E41A4D00202CFA /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		FA0E911B2BC912B400F74031 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyLabel.swift; sourceTree = "<group>"; };
 		FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyEditButton.swift; sourceTree = "<group>"; };
 		FA1AFA182B04E9F10092A46A /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */,
 				FAA91A0C29BB4D04004B3C71 /* Preview Content */,
 				FA2C20682A9FA53100ADA650 /* debug.xcconfig */,
+				FA0E911B2BC912B400F74031 /* Localizable.xcstrings */,
 			);
 			path = Shawa;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = FAA919FA29BB4D03004B3C71;
 			packageReferences = (
@@ -460,6 +464,7 @@
 				FAA91A0E29BB4D04004B3C71 /* Preview Assets.xcassets in Resources */,
 				FA8DDEF029BC551E004DAE5C /* Montserrat-Bold.ttf in Resources */,
 				FAA91A0B29BB4D04004B3C71 /* Assets.xcassets in Resources */,
+				FA0E911C2BC912B400F74031 /* Localizable.xcstrings in Resources */,
 				FA8DDEF429BC567D004DAE5C /* DM-Sans-Regular.ttf in Resources */,
 				FAA9F1BD29BB7872005D91A7 /* Inter-Bold.ttf in Resources */,
 				FAA9F1BE29BB7872005D91A7 /* Inter-Regular.ttf in Resources */,

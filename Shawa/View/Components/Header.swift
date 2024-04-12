@@ -60,6 +60,6 @@ struct Header<TrailingLink>: View where TrailingLink: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        Header(trailingLink: {Text("hello")})
+        Header(trailingLink: {Text("")})
     }
 }

@@ -94,7 +94,7 @@ extension CGFloat {
             static let ingredientBoxHeight: CGFloat = 32
             static let ingredientBoxMinWidth: CGFloat = 100
             static let addButtonHeight: CGFloat = 60
-            static let addButtonWidth: CGFloat = 130
+            static let addButtonWidth: CGFloat = 160
         }
         
         struct CartView {

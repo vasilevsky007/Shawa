@@ -13,7 +13,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
     @State private var enteredEmail = ""
     @State private var enteredPassword = ""
     @State private var enteredPasswordConfirm = ""
-    @State private var currentAuthenticationFlow = AuthenticationFlow.register
+    @State private var currentAuthenticationFlow = AuthenticationFlow.login
     @FocusState private var focusedField: FocusableField?
     
     enum AuthenticationFlow {

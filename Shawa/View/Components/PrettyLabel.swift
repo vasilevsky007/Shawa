@@ -9,14 +9,14 @@ import SwiftUI
 
 struct PrettyLabel: View {
     var cornerRadius: CGFloat
-    var text: String
+    var text: LocalizedStringKey
     var systemImage: String?
     var color: Color
     var font: Font
     var height: CGFloat
     var width: CGFloat?
     
-    init (_ text: String,
+    init (_ text: LocalizedStringKey,
           systemImage: String? = nil,
           font: Font = .main(size: 14),
           color: Color = .accentColor,
@@ -44,8 +44,11 @@ struct PrettyLabel: View {
                     Image(systemName: systemImage)
                         .font(.main(size: 20))
                 }
-                Text(text).foregroundColor(color).font(font)
-                    
+                
+                Text(text)
+                    .font(font)
+                    .foregroundColor(color)
+                    .tint(color)
             }
                 .padding(.horizontal, .Constants.PrettyLabel.spacing)
                 .foregroundColor(color)
@@ -56,5 +59,5 @@ struct PrettyLabel: View {
 
 
 #Preview {
-    PrettyLabel("hello world", systemImage: "globe", width: 100)
+    PrettyLabel("hello world", systemImage: "globe", color: .red, width: 100)
 }

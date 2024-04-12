@@ -93,13 +93,13 @@ class FirebaseRTDBOrderManager: OrderManager {
     
     func updateAddress(street: String?, house: String?, apartament: String?) {
         withAnimation {
-            currentOrder.updateAddress(street: street, house: house, apartament: apartament)
+            currentOrder.updateAddress(street: street, house: house, apartament: apartament == "" ? nil : apartament)
         }
     }
     
     func updateComment(_ newValue: String?) {
         withAnimation {
-            currentOrder.updateComment(newValue)
+            currentOrder.updateComment(newValue == "" ? nil : newValue)
         }
     }
     

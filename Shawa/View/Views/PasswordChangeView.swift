@@ -42,7 +42,35 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                         .padding(.top)
                 }
             }
+                .padding(.horizontal, .Constants.horizontalSafeArea)
+                .padding(.top, .Constants.standardSpacing)
             Spacer(minLength: 0)
+            if #available(iOS 16.4, *) {
+                ScrollView {
+                    scrollContentBody
+                    .padding(.Constants.horizontalSafeArea)
+                    .background {
+                        background
+                    }
+                }
+                .scrollIndicators(.never)
+                .scrollBounceBehavior(.basedOnSize)
+            } else {
+                ScrollView {
+                    scrollContentBody
+                        .padding(.Constants.horizontalSafeArea)
+                        .background {
+                            background
+                        }
+                }
+            }
+        }
+            .ignoresSafeArea(.container, edges: .bottom)
+
+    }
+    
+    private var scrollContentBody: some View {
+        VStack (alignment: .leading, spacing: 8) {
             Text("Old password")
                 .font(.main(size: 16))
                 .foregroundColor(.deafultBrown)
@@ -55,13 +83,13 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .oldPassword
             )
-                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+            .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             
             Text("New password")
                 .font(.main(size: 16))
                 .foregroundColor(.deafultBrown)
             PrettyTextField(
-                text: $enteredNewPassword, 
+                text: $enteredNewPassword,
                 color: .lighterBrown,
                 isSystemImage: true,
                 image: "lock",
@@ -69,7 +97,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .newPassword
             )
-                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+            .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             
             Text("Confirm new password")
                 .font(.main(size: 16))
@@ -83,24 +111,18 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .newPasswordConfirm
             )
-                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+            .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             //TODO: better validation
             PrettyButton(text: "Change Password", unactiveColor: .red , isActive: newPasswordsValidated) {
                 Task {
                     await authenticationManager.updatePassword(to: enteredNewPassword)
                 }
             }
-                .disabled(!newPasswordsValidated)
-                .frame(height: .Constants.lineElementHeight)
-                .padding(.top, .Constants.standardSpacing)
+            .disabled(!newPasswordsValidated)
+            .frame(height: .Constants.lineElementHeight)
+            .padding(.top, .Constants.standardSpacing)
             Spacer(minLength: 0)
         }
-            .padding(.Constants.horizontalSafeArea)
-            .background {
-                background
-            }
-            .ignoresSafeArea(.container, edges: .bottom)
-
     }
 }
 

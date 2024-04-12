@@ -57,7 +57,7 @@ struct FirebaseAuthentication: Authentication {
         do {
             withAnimation {
                 isAuthenticating = true
-                currentError = nil
+                clearError()
             }
             let task = Task.detached {
                 try await Auth.auth().createUser(withEmail: email, password: password)
@@ -72,6 +72,10 @@ struct FirebaseAuthentication: Authentication {
                 currentError = error
                 isAuthenticating = false
             }
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                clearError()
+            }
         }
     }
     
@@ -79,7 +83,7 @@ struct FirebaseAuthentication: Authentication {
         do {
             withAnimation {
                 isAuthenticating = true
-                currentError = nil
+                clearError()
             }
             let task = Task.detached {
                 try await Auth.auth().signIn(withEmail: email, password: password)
@@ -94,27 +98,33 @@ struct FirebaseAuthentication: Authentication {
                 currentError = error
                 isAuthenticating = false
             }
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                clearError()
+            }
         }
     }
     
     @MainActor mutating func logout() {
         do {
             try withAnimation {
-                currentError = nil
+                clearError()
                 try Auth.auth().signOut()
                 currentUser = Auth.auth().currentUser
             }
         } catch {
             withAnimation {
                 currentError = error
+                clearError()
             }
+
         }
     }
     
     @MainActor mutating func deleteAccount() async {
         do {
             withAnimation {
-                currentError = nil
+                clearError()
                 isEditing = true
             }
             let task = Task.detached {
@@ -131,13 +141,17 @@ struct FirebaseAuthentication: Authentication {
                 isEditing = false
                 currentUser = Auth.auth().currentUser
             }
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                clearError()
+            }
         }
     }
     
     @MainActor mutating func updateEmail(to email: String) async {
         do {
             withAnimation {
-                currentError = nil
+                clearError()
                 isEditing = true
             }
             let task = Task.detached {
@@ -154,13 +168,17 @@ struct FirebaseAuthentication: Authentication {
                 isEditing = false
                 currentUser = Auth.auth().currentUser
             }
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                clearError()
+            }
         }
     }
     
     @MainActor mutating func updateName(to name: String) async {
         do {
             withAnimation {
-                currentError = nil
+                clearError()
                 isEditing = true
             }
             let task = Task.detached {
@@ -179,13 +197,17 @@ struct FirebaseAuthentication: Authentication {
                 isEditing = false
                 currentUser = Auth.auth().currentUser
             }
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                clearError()
+            }
         }
     }
     
     @MainActor mutating func updatePassword(to password: String) async {
         do {
             withAnimation {
-                currentError = nil
+                clearError()
                 isEditing = true
             }
             let task = Task.detached {
@@ -201,6 +223,10 @@ struct FirebaseAuthentication: Authentication {
                 currentError = error
                 isEditing = false
                 currentUser = Auth.auth().currentUser
+            }
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            withAnimation {
+                clearError()
             }
         }
     }
