@@ -26,6 +26,7 @@ class FirebaseRTDBOrderManager: OrderManager {
     
     func sendCurrentOrder() async throws {
         currentOrder.addTimestamp(date: .now)
+        currentOrder.updateState(.sended)
         let sendTask = Task.detached {
             try await self.repository.sendOrder(self.currentOrder)
         }

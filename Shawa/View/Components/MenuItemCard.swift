@@ -26,11 +26,11 @@ struct MenuItemCard: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .font(.main(size: 14))
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                 Spacer(minLength: 0)
                 Text(String(format: "%.2f", thisItem.price) + " BYN")
                     .font(.mainBold(size: 14))
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
             }
         }
         .padding(.all, .Constants.standardSpacing)

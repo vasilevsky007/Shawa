@@ -73,7 +73,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
         VStack (alignment: .leading, spacing: 8) {
             Text("Old password")
                 .font(.main(size: 16))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
             PrettyTextField(
                 text: $enteredOldPassword,
                 color: .lighterBrown,
@@ -87,7 +87,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
             
             Text("New password")
                 .font(.main(size: 16))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
             PrettyTextField(
                 text: $enteredNewPassword,
                 color: .lighterBrown,
@@ -101,7 +101,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
             
             Text("Confirm new password")
                 .font(.main(size: 16))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
             PrettyTextField(
                 text: $enteredNewPasswordConfirm,
                 color: .lighterBrown,

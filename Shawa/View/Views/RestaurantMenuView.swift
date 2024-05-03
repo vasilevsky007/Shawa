@@ -29,7 +29,7 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
                 }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text(restaurant.name)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.montserratBold(size: 24))
                     .padding(.top, .Constants.standardSpacing)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -76,7 +76,7 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
                 .foregroundColor(.veryLightBrown2)
             VStack(alignment: .leading) {
                 Text(section.name)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.montserratBold(size: 24))
                 LazyVGrid(columns: .init(repeating: GridItem(spacing: .Constants.doubleSpacing), count: 2 ), spacing: .Constants.doubleSpacing) {
                     ForEach(restaurant.menu.filter{ $0.sectionIDs.contains(section.id) }) { item in

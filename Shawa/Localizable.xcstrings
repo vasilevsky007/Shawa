@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%@ BYN" : {
       "localizations" : {
@@ -66,6 +73,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Адрес"
+          }
+        }
+      }
+    },
+    "Administator App" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administator App"
           }
         }
       }
@@ -340,6 +357,16 @@
         }
       }
     },
+    "Menu edit" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирование меню"
+          }
+        }
+      }
+    },
     "My orders" : {
       "localizations" : {
         "ru" : {
@@ -486,6 +513,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профиль"
+          }
+        }
+      }
+    },
+    "Received orders" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полученные заказы"
           }
         }
       }

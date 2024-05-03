@@ -15,7 +15,7 @@ struct MainMenuRestaurant: View {
             HStack{
                 Text(restaurant.name)
                     .font(.main(size: 16))
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(Color.defaultBrown)
                 Spacer()
                 Text("See All")
                     .foregroundColor(.lightBrown)

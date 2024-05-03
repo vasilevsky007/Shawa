@@ -12,7 +12,15 @@ struct FirebaseRTDBOrderRepository {
     private var realtimeDatabase: DatabaseReference
     
     init() {
-        self.realtimeDatabase = Database.database(url: "https://"+(Bundle.main.infoDictionary?["FIREBASE_REALTIME_DATABASE_URL"] as? String)!).reference()
+        var urlFromPlist: String? {
+            guard let path = Bundle.main.path(forResource: "RTDBSettings", ofType: "plist"),
+                  let dict = NSDictionary(contentsOfFile: path),
+                  let url = dict["FIREBASE_REALTIME_DATABASE_URL"] as? String else {
+                return nil
+            }
+            return url
+        }
+        self.realtimeDatabase = Database.database(url: urlFromPlist!).reference()
     }
     
     func sendOrder(_ order: Order) async throws {

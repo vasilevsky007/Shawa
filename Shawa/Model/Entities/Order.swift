@@ -69,11 +69,16 @@ struct Order: Codable, Identifiable {
         var address: Address
     }
     
+    enum OrderState: String, Codable, CaseIterable {
+        case sended, confirmed, onDelivery, delivered, canceled, unspecified
+    }
+    
     private(set) var id = UUID()
     private(set) var orderItems: [Item:Int]
     private(set) var user: UserData
     private(set) var comment: String?
     private(set) var timestamp: Date?
+    private(set) var state: OrderState
     
     var totalPrice: Double {
         var totalPrice = 0.0
@@ -86,6 +91,7 @@ struct Order: Codable, Identifiable {
     init() {
         self.orderItems = [:]
         self.user = UserData(userID: "userid", phoneNumber: nil, address: Address())
+        self.state = .unspecified
     }
     
     
@@ -153,5 +159,9 @@ struct Order: Codable, Identifiable {
     
     mutating func addTimestamp (date: Date) {
         timestamp = date
+    }
+    
+    mutating func updateState (_ newValue: OrderState) {
+        state = newValue
     }
 }

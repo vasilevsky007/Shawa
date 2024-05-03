@@ -56,7 +56,7 @@ struct MenuItemView: View {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(thisItem.name)
                                     .font(.main(size: 32))
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                                     .padding([.leading, .top, .trailing], .Constants.doubleSpacing)
                                 Text(
                                     "\(String(format: "%.2f", thisItem.price))"
@@ -64,7 +64,7 @@ struct MenuItemView: View {
                                         "\(String(format: "%+.2f", thisOrderItem.price - thisItem.price)) BYN")
                                 )
                                 .font(.mainBold(size: 24))
-                                .foregroundColor(.deafultBrown)
+                                .foregroundColor(.defaultBrown)
                                 .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                             }
                             
@@ -84,7 +84,7 @@ struct MenuItemView: View {
                         .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                         Text(thisItem.description)
                             .font(.main(size: fontSize))
-                            .foregroundColor(.deafultBrown)
+                            .foregroundColor(.defaultBrown)
                             .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                         //FIXME: no ingredient items                        if (thisItem.belogsTo != .Drinks) {
                         ingredientsAdder

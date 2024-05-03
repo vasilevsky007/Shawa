@@ -53,7 +53,7 @@ struct Header<TrailingLink>: View where TrailingLink: View {
                 .frame(width: .Constants.Header.iconSize, height: .Constants.Header.iconSize)
             Text("Shawa")
                 .font(.logo(size: 19))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(Color.defaultBrown)
         }
     }
 }

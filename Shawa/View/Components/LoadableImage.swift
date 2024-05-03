@@ -16,7 +16,7 @@ struct LoadableImage: View {
                     .fillWithoutStretch()
             } placeholder: {
                 ProgressView()
-                    .tint(.deafultBrown)
+                    .tint(.defaultBrown)
             }
         } else {
             Image(systemName: "exclamationmark.triangle")

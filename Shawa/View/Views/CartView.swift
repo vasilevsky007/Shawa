@@ -23,7 +23,7 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
                     }.padding(.horizontal, .Constants.horizontalSafeArea)
                     
                     Text("Your order:")
-                        .foregroundColor(.deafultBrown)
+                        .foregroundColor(Color.defaultBrown)
                         .font(.montserratBold(size: 24))
                         .padding(.horizontal, .Constants.horizontalSafeArea)
                         .padding(.top, .Constants.standardSpacing)
@@ -47,12 +47,12 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
                             Divider().overlay(Color.lighterBrown)
                             HStack(alignment: .center, spacing: 0) {
                                 Text("Grand total:")
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                                     .font(.montserratBold(size: 24))
                                     .padding(.trailing, .Constants.standardSpacing)
                                 Spacer(minLength: 0)
                                 Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                                     .font(.interBold(size: 20))
                             }
                             .padding(.horizontal, .Constants.horizontalSafeArea)

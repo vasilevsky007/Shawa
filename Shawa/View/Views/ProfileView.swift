@@ -91,7 +91,7 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                 }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Profile")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.montserratBold(size: 24))
                     .padding(.horizontal, .Constants.horizontalSafeArea)
                     .padding(.top, .Constants.standardSpacing)
@@ -102,19 +102,19 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                     VStack (alignment: .leading, spacing: .Constants.standardSpacing) {
                         Text("Name")
                             .font(.main(size: 16))
-                            .foregroundColor(.deafultBrown)
+                            .foregroundColor(.defaultBrown)
                         ConditionalTextEditor(isEditing: $isEditingName, value: $enteredName, systemImage: "person") {
                             updateName()
                         }
                         Text("E-mail")
                             .font(.main(size: 16))
-                            .foregroundColor(.deafultBrown)
+                            .foregroundColor(.defaultBrown)
                         ConditionalTextEditor(isEditing: $isEditingEmail, value: $enteredEmail, systemImage: "envelope") {
                             updateEmail()
                         }
                         //                        Text("Phone number")
                         //                            .font(.main(size: 16))
-                        //                            .foregroundColor(.deafultBrown)
+                        //                            .foregroundColor(.defaultBrown)
                         //                        conditionalTextEditor(isEditing: $isEditingPhone, value: $enteredPhone, systemImage: "phone.down")
                         PrettyButton(text: "Change Password", isActive: true) {
                             isChangingPassword = true

@@ -133,7 +133,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
                             }
                         }
                     }
-                    .refreshControlColor(.deafultBrown)
+                    .refreshControlColor(.defaultBrown)
                     .refreshable {
                         restaurantManager.loadRestaurants()
                     }
@@ -152,7 +152,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
                 HStack(spacing: 0){
                     Spacer(minLength: 0)
                     ProgressView()
-                        .tint(.deafultBrown)
+                        .tint(.defaultBrown)
                         .scaleEffect(1.5)
                     Spacer(minLength: 0)
                 }.transition(.asymmetric(

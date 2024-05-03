@@ -61,10 +61,10 @@ struct PrettyButton: View {
                             Spacer(minLength: 0)
                             if systemImage != "noImage" {
                                 Image(systemName: systemImage)
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                                     .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
                             }
-                            Text(text).font(.main(size: fontsize)).foregroundColor(.deafultBrown)
+                            Text(text).font(.main(size: fontsize)).foregroundColor(.defaultBrown)
                             Spacer(minLength: 0)
                         }.padding(.all, .Constants.standardSpacing)
                     }

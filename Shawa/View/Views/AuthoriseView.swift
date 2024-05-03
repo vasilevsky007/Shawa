@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
+    var isAdmin: Bool = false
+    
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     
     @State private var enteredEmail = ""
@@ -16,7 +18,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
     @State private var currentAuthenticationFlow = AuthenticationFlow.login
     @FocusState private var focusedField: FocusableField?
     
-    enum AuthenticationFlow {
+    private enum AuthenticationFlow {
         case login
         case register
     }
@@ -75,7 +77,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
             Image(.loginBackground)
                 .fillWithoutStretch()
             Rectangle()
-                .foregroundStyle(LinearGradient(colors: [.deafultBrown,.clear], startPoint: .top, endPoint: .bottom))
+                .foregroundStyle(LinearGradient(colors: [.defaultBrown,.clear], startPoint: .top, endPoint: .bottom))
         }
     }
     
@@ -90,7 +92,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                 Text("Authorise")
                     .font(.montserratBold(size: 24))
                     .padding(.vertical, .Constants.tripleSpacing)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                 authoriseSwitchBody
                 if #available(iOS 16.0, *) {
                     Form {
@@ -120,7 +122,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
             Text("Shawa")
                 .font(.logo(size: 50))
                 .foregroundColor(.white)
-            Text("We deliver it hot!")
+            Text(isAdmin ? "Administator App" : "We deliver it hot!")
                 .font(.logo(size: 16))
                 .foregroundColor(.white)
         }
@@ -138,7 +140,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                         height: .Constants.lineElementHeight
                     )
                     .padding(.horizontal, .Constants.AuthoriseView.Switch.bouncerInset)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                 
                 RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
                     .foregroundColor(.primaryBrown)
@@ -154,7 +156,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                         Text("Log In")
                             .frame(width: buttonWidth, height: .Constants.AuthoriseView.Switch.bouncerHeight)
                             .font(currentAuthenticationFlow == .login ? .mainBold(size: 16) : .main(size: 16))
-                            .foregroundColor(currentAuthenticationFlow == .login ? .white : .deafultBrown)
+                            .foregroundColor(currentAuthenticationFlow == .login ? .white : .defaultBrown)
                     }
                     Button{
                         withAnimation(Animation.spring(response: moveAnimtionTime, dampingFraction: 0.7)) {
@@ -164,7 +166,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                         Text("Sign Up")
                             .frame(width: buttonWidth, height: .Constants.AuthoriseView.Switch.bouncerHeight)
                             .font(currentAuthenticationFlow == .register ? .mainBold(size: 16) : .main(size: 16))
-                            .foregroundColor(currentAuthenticationFlow == .register ? .white : .deafultBrown)
+                            .foregroundColor(currentAuthenticationFlow == .register ? .white : .defaultBrown)
                     }
                     
                 }

@@ -82,7 +82,7 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                 }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Please provide some info to order:")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.montserratBold(size: 24))
                     .padding(.horizontal, .Constants.horizontalSafeArea)
                     .padding(.top, .Constants.standardSpacing)
@@ -97,12 +97,12 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                         Divider().overlay(Color.lighterBrown)
                         HStack(alignment: .center, spacing: 0) {
                             Text("Grand total:")
-                                .foregroundColor(.deafultBrown)
+                                .foregroundColor(.defaultBrown)
                                 .font(.montserratBold(size: 24))
                                 .padding(.trailing, .Constants.standardSpacing)
                                 
                             Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
-                                .foregroundColor(.deafultBrown)
+                                .foregroundColor(.defaultBrown)
                                 .font(.interBold(size: 20))
                                 .frame(width: .Constants.OrderView.priceWidth, alignment: .trailing)
                         }
@@ -189,7 +189,7 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
         } header: {
             Text("Address")
                 .font(.main(size: 16))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
         }.textCase(nil)
         Section {
             ZStack {
@@ -213,7 +213,7 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
         } header: {
             Text("Comments to your order")
                 .font(.main(size: 16))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
         } .textCase(nil)
         ActionButton(state: sendButtonState) {
             sendButtonState = .loading(label: "Loading")

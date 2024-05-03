@@ -22,7 +22,65 @@
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
-		FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D39829BB5D21005A10F8 /* Colors.swift */; };
+		FA7CE42C2BE3A655005EEA88 /* ShawaAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE42B2BE3A655005EEA88 /* ShawaAdminApp.swift */; };
+		FA7CE43B2BE3A90B005EEA88 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CAF2BB55F85008BE48A /* Restaurant.swift */; };
+		FA7CE43C2BE3A90F005EEA88 /* RestaurantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CBD2BB570F4008BE48A /* RestaurantRepository.swift */; };
+		FA7CE43D2BE3A913005EEA88 /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CEE2BB85DCE008BE48A /* OrderRepository.swift */; };
+		FA7CE43E2BE3A918005EEA88 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CD92BB814B9008BE48A /* Authentication.swift */; };
+		FA7CE43F2BE3A91F005EEA88 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CEC2BB85A79008BE48A /* AuthenticationManager.swift */; };
+		FA7CE4402BE3A924005EEA88 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CEA2BB856CD008BE48A /* RestaurantManager.swift */; };
+		FA7CE4412BE3A929005EEA88 /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF32BB882D7008BE48A /* OrderManager.swift */; };
+		FA7CE4422BE3A941005EEA88 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CB52BB5604D008BE48A /* MenuItem.swift */; };
+		FA7CE4432BE3A949005EEA88 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CB02BB55F85008BE48A /* Ingredient.swift */; };
+		FA7CE4442BE3A94D005EEA88 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CB32BB56004008BE48A /* MenuSection.swift */; };
+		FA7CE4452BE3A951005EEA88 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CE62BB84AF4008BE48A /* Order.swift */; };
+		FA7CE4462BE3A962005EEA88 /* FirestoreRestaurantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CBB2BB56E54008BE48A /* FirestoreRestaurantRepository.swift */; };
+		FA7CE4472BE3A966005EEA88 /* FirebaseRTDBOrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF02BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift */; };
+		FA7CE4482BE3A96A005EEA88 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CD52BB710FB008BE48A /* FirebaseAuthentication.swift */; };
+		FA7CE4492BE3A96D005EEA88 /* AuthenticationStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11D032BB8B715008BE48A /* AuthenticationStub.swift */; };
+		FA7CE44A2BE3A974005EEA88 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CE12BB82270008BE48A /* FirebaseAuthenticationManager.swift */; };
+		FA7CE44B2BE3A976005EEA88 /* AuthenticationManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11D012BB8B6D1008BE48A /* AuthenticationManagerStub.swift */; };
+		FA7CE44C2BE3A97B005EEA88 /* FirestoreRestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CDC2BB82199008BE48A /* FirestoreRestaurantManager.swift */; };
+		FA7CE44D2BE3A97E005EEA88 /* RestaurantManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CFD2BB8B546008BE48A /* RestaurantManagerStub.swift */; };
+		FA7CE44E2BE3A982005EEA88 /* FirebaseRTDBOrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CF52BB8832E008BE48A /* FirebaseRTDBOrderManager.swift */; };
+		FA7CE44F2BE3A984005EEA88 /* OrderManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CFF2BB8B612008BE48A /* OrderManagerStub.swift */; };
+		FA7CE4512BE3A99F005EEA88 /* ConditionalTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA1A2B04EC4A0092A46A /* ConditionalTextEditor.swift */; };
+		FA7CE4522BE3A99F005EEA88 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */; };
+		FA7CE4532BE3A99F005EEA88 /* PrettyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238429C0B3EC007818F7 /* PrettyButton.swift */; };
+		FA7CE4542BE3A99F005EEA88 /* PrettyEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA162AFE5F810092A46A /* PrettyEditButton.swift */; };
+		FA7CE45E2BE3AA3D005EEA88 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE45D2BE3AA3D005EEA88 /* FirebaseAnalytics */; };
+		FA7CE4602BE3AA44005EEA88 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE45F2BE3AA44005EEA88 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		FA7CE4622BE3AA4A005EEA88 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE4612BE3AA4A005EEA88 /* FirebaseAuth */; };
+		FA7CE4642BE3AA55005EEA88 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE4632BE3AA55005EEA88 /* FirebaseDatabase */; };
+		FA7CE4662BE3AA5A005EEA88 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE4652BE3AA5A005EEA88 /* FirebaseDatabaseSwift */; };
+		FA7CE4682BE3AA62005EEA88 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE4672BE3AA62005EEA88 /* FirebaseFirestore */; };
+		FA7CE46A2BE3AA68005EEA88 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CE4692BE3AA68005EEA88 /* FirebaseFirestoreSwift */; };
+		FA7CE46B2BE3AB00005EEA88 /* FirebaseHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CD22BB6CE47008BE48A /* FirebaseHelpers.swift */; };
+		FA7CE46C2BE3AB41005EEA88 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CE82BB8537E008BE48A /* Loadable.swift */; };
+		FA7CE46D2BE3AB44005EEA88 /* SwiftUIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CFB2BB8ABFC008BE48A /* SwiftUIHelpers.swift */; };
+		FA7CE46F2BE3AB97005EEA88 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA91A0D29BB4D04004B3C71 /* Preview Assets.xcassets */; };
+		FA7CE4712BE3AC38005EEA88 /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4392BE3A8AF005EEA88 /* TabMenuView.swift */; };
+		FA7CE4722BE3AC3D005EEA88 /* ShawaAdminAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE42D2BE3A655005EEA88 /* ShawaAdminAppView.swift */; };
+		FA7CE4742BE3ACDE005EEA88 /* DrawingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */; };
+		FA7CE4752BE3AFE1005EEA88 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1C429BB8A58005D91A7 /* Fonts.swift */; };
+		FA7CE47E2BE3B400005EEA88 /* PrettyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9F1CC29BBC2B2005D91A7 /* PrettyTextField.swift */; };
+		FA7CE47F2BE3B415005EEA88 /* PrettyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */; };
+		FA7CE4802BE3B418005EEA88 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238229C0A809007818F7 /* Header.swift */; };
+		FA7CE4812BE3B41E005EEA88 /* LoadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */; };
+		FA7CE4822BE3B465005EEA88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */; };
+		FA7CE4852BE3BED4005EEA88 /* AuthoriseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA91A0829BB4D03004B3C71 /* AuthoriseView.swift */; };
+		FA7CE4872BE3C57F005EEA88 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA7CE4862BE3C57F005EEA88 /* GoogleService-Info.plist */; };
+		FA7CE4892BE3C6BD005EEA88 /* RTDBSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA7CE4882BE3C6BD005EEA88 /* RTDBSettings.plist */; };
+		FA7CE48A2BE3C6BD005EEA88 /* RTDBSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA7CE4882BE3C6BD005EEA88 /* RTDBSettings.plist */; };
+		FA7CE48B2BE3CC44005EEA88 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FA0E911B2BC912B400F74031 /* Localizable.xcstrings */; };
+		FA7CE48C2BE3CD09005EEA88 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEEF29BC551E004DAE5C /* Montserrat-Bold.ttf */; };
+		FA7CE48D2BE3CD0E005EEA88 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9F1BC29BB7872005D91A7 /* Inter-Regular.ttf */; };
+		FA7CE48E2BE3CD12005EEA88 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9F1BB29BB7872005D91A7 /* Inter-Bold.ttf */; };
+		FA7CE48F2BE3CD14005EEA88 /* DM-Sans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEF329BC567D004DAE5C /* DM-Sans-Regular.ttf */; };
+		FA7CE4902BE3CD17005EEA88 /* DM-Sans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEF129BC5646004DAE5C /* DM-Sans-Bold.ttf */; };
+		FA7CE4912BE3CD19005EEA88 /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
+		FA7CE4962BE3D2F1005EEA88 /* MenuEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */; };
+		FA7CE4982BE3D354005EEA88 /* ReceivedOrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */; };
 		FA82F1A92BBE8EBC00AD2C12 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */; };
 		FA82F1AB2BBE912700AD2C12 /* DrawingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */; };
 		FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */; };
@@ -34,7 +92,7 @@
 		FAA4238529C0B3EC007818F7 /* PrettyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4238429C0B3EC007818F7 /* PrettyButton.swift */; };
 		FAA8717129BDE1BB0036488A /* MenuItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8717029BDE1BB0036488A /* MenuItemCard.swift */; };
 		FAA8717329BDEBFF0036488A /* MainMenuRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8717229BDEBFF0036488A /* MainMenuRestaurant.swift */; };
-		FAA91A0729BB4D03004B3C71 /* IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA91A0629BB4D03004B3C71 /* IosApp.swift */; };
+		FAA91A0729BB4D03004B3C71 /* ShawaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA91A0629BB4D03004B3C71 /* ShawaApp.swift */; };
 		FAA91A0B29BB4D04004B3C71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */; };
 		FAA91A0E29BB4D04004B3C71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA91A0D29BB4D04004B3C71 /* Preview Assets.xcassets */; };
 		FAA9F1BD29BB7872005D91A7 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9F1BB29BB7872005D91A7 /* Inter-Bold.ttf */; };
@@ -79,6 +137,23 @@
 		FADFB98C2BB97AD2002F1633 /* LoadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FA7CE4592BE3AA0C005EEA88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA919FB29BB4D03004B3C71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA91A0229BB4D03004B3C71;
+			remoteInfo = Shawa;
+		};
+		FA7CE45B2BE3AA20005EEA88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA919FB29BB4D03004B3C71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA91A0229BB4D03004B3C71;
+			remoteInfo = Shawa;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAppView.swift; sourceTree = "<group>"; };
 		FA0B09F829E41A4D00202CFA /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
@@ -92,11 +167,18 @@
 		FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemUnchangable.swift; sourceTree = "<group>"; };
 		FA2775EF2A87C5F000A55405 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
-		FA2C20682A9FA53100ADA650 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
-		FA79D39829BB5D21005A10F8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FA7CE4292BE3A655005EEA88 /* ShawaAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShawaAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7CE42B2BE3A655005EEA88 /* ShawaAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAdminApp.swift; sourceTree = "<group>"; };
+		FA7CE42D2BE3A655005EEA88 /* ShawaAdminAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAdminAppView.swift; sourceTree = "<group>"; };
+		FA7CE4392BE3A8AF005EEA88 /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
+		FA7CE4862BE3C57F005EEA88 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FA7CE4882BE3C6BD005EEA88 /* RTDBSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RTDBSettings.plist; sourceTree = "<group>"; };
+		FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ShawaAdmin-Info.plist"; sourceTree = "<group>"; };
+		FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEditorView.swift; sourceTree = "<group>"; };
+		FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedOrdersListView.swift; sourceTree = "<group>"; };
 		FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingConstants.swift; sourceTree = "<group>"; };
 		FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
@@ -109,7 +191,7 @@
 		FAA4238429C0B3EC007818F7 /* PrettyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyButton.swift; sourceTree = "<group>"; };
 		FAA8717029BDE1BB0036488A /* MenuItemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCard.swift; sourceTree = "<group>"; };
 		FAA8717229BDEBFF0036488A /* MainMenuRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuRestaurant.swift; sourceTree = "<group>"; };
-		FAA91A0629BB4D03004B3C71 /* IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosApp.swift; sourceTree = "<group>"; };
+		FAA91A0629BB4D03004B3C71 /* ShawaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaApp.swift; sourceTree = "<group>"; };
 		FAA91A0829BB4D03004B3C71 /* AuthoriseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoriseView.swift; sourceTree = "<group>"; };
 		FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA91A0D29BB4D04004B3C71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -148,6 +230,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA7CE4262BE3A655005EEA88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7CE4662BE3AA5A005EEA88 /* FirebaseDatabaseSwift in Frameworks */,
+				FA7CE45E2BE3AA3D005EEA88 /* FirebaseAnalytics in Frameworks */,
+				FA7CE4622BE3AA4A005EEA88 /* FirebaseAuth in Frameworks */,
+				FA7CE46A2BE3AA68005EEA88 /* FirebaseFirestoreSwift in Frameworks */,
+				FA7CE4642BE3AA55005EEA88 /* FirebaseDatabase in Frameworks */,
+				FA7CE4602BE3AA44005EEA88 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				FA7CE4682BE3AA62005EEA88 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAA91A0029BB4D03004B3C71 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,6 +292,42 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		FA7CE42A2BE3A655005EEA88 /* ShawaAdminSpecific */ = {
+			isa = PBXGroup;
+			children = (
+				FA7CE4372BE3A872005EEA88 /* View */,
+				FA7CE42B2BE3A655005EEA88 /* ShawaAdminApp.swift */,
+				FA7CE4862BE3C57F005EEA88 /* GoogleService-Info.plist */,
+			);
+			path = ShawaAdminSpecific;
+			sourceTree = "<group>";
+		};
+		FA7CE4372BE3A872005EEA88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA7CE4382BE3A883005EEA88 /* Views */,
+				FA7CE42D2BE3A655005EEA88 /* ShawaAdminAppView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA7CE4382BE3A883005EEA88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA7CE4392BE3A8AF005EEA88 /* TabMenuView.swift */,
+				FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */,
+				FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA7CE4572BE3AA0C005EEA88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA82F1A72BBC441000AD2C12 /* UserOrders */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +343,6 @@
 				FA2775EE2A87B57E00A55405 /* Components */,
 				FA2775ED2A87B4FC00A55405 /* Views */,
 				FAA9F1AB29BB6D3D005D91A7 /* Fonts */,
-				FA79D39829BB5D21005A10F8 /* Colors.swift */,
 				FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */,
 				FA0B09F629E2B56E00202CFA /* ShawaAppView.swift */,
 			);
@@ -242,8 +373,12 @@
 		FAA919FA29BB4D03004B3C71 = {
 			isa = PBXGroup;
 			children = (
+				FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */,
 				FAA91A0529BB4D03004B3C71 /* Shawa */,
+				FA7CE42A2BE3A655005EEA88 /* ShawaAdminSpecific */,
 				FA8DDEEE29BBD491004DAE5C /* Shawa.app */,
+				FA7CE4292BE3A655005EEA88 /* ShawaAdmin.app */,
+				FA7CE4572BE3AA0C005EEA88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,11 +389,10 @@
 				FAA8792629BB532900F67D6E /* ViewModel */,
 				FAA8792429BB52BD00F67D6E /* View */,
 				FAC11CD12BB6CE09008BE48A /* Utility */,
-				FAA91A0629BB4D03004B3C71 /* IosApp.swift */,
+				FAA91A0629BB4D03004B3C71 /* ShawaApp.swift */,
 				FAC11CCE2BB6AED7008BE48A /* GoogleService-Info.plist */,
 				FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */,
 				FAA91A0C29BB4D04004B3C71 /* Preview Content */,
-				FA2C20682A9FA53100ADA650 /* debug.xcconfig */,
 				FA0E911B2BC912B400F74031 /* Localizable.xcstrings */,
 			);
 			path = Shawa;
@@ -374,6 +508,7 @@
 			children = (
 				FAC11CEE2BB85DCE008BE48A /* OrderRepository.swift */,
 				FAC11CF02BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift */,
+				FA7CE4882BE3C6BD005EEA88 /* RTDBSettings.plist */,
 			);
 			path = OrderRepository;
 			sourceTree = "<group>";
@@ -391,6 +526,34 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA7CE4282BE3A655005EEA88 /* ShawaAdmin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7CE4362BE3A657005EEA88 /* Build configuration list for PBXNativeTarget "ShawaAdmin" */;
+			buildPhases = (
+				FA7CE4252BE3A655005EEA88 /* Sources */,
+				FA7CE4262BE3A655005EEA88 /* Frameworks */,
+				FA7CE4272BE3A655005EEA88 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA7CE45A2BE3AA0C005EEA88 /* PBXTargetDependency */,
+				FA7CE45C2BE3AA20005EEA88 /* PBXTargetDependency */,
+			);
+			name = ShawaAdmin;
+			packageProductDependencies = (
+				FA7CE45D2BE3AA3D005EEA88 /* FirebaseAnalytics */,
+				FA7CE45F2BE3AA44005EEA88 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				FA7CE4612BE3AA4A005EEA88 /* FirebaseAuth */,
+				FA7CE4632BE3AA55005EEA88 /* FirebaseDatabase */,
+				FA7CE4652BE3AA5A005EEA88 /* FirebaseDatabaseSwift */,
+				FA7CE4672BE3AA62005EEA88 /* FirebaseFirestore */,
+				FA7CE4692BE3AA68005EEA88 /* FirebaseFirestoreSwift */,
+			);
+			productName = ShawaAdmin;
+			productReference = FA7CE4292BE3A655005EEA88 /* ShawaAdmin.app */;
+			productType = "com.apple.product-type.application";
+		};
 		FAA91A0229BB4D03004B3C71 /* Shawa */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAA91A1129BB4D04004B3C71 /* Build configuration list for PBXNativeTarget "Shawa" */;
@@ -424,9 +587,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					FA7CE4282BE3A655005EEA88 = {
+						CreatedOnToolsVersion = 15.3;
+					};
 					FAA91A0229BB4D03004B3C71 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -449,11 +615,30 @@
 			projectRoot = "";
 			targets = (
 				FAA91A0229BB4D03004B3C71 /* Shawa */,
+				FA7CE4282BE3A655005EEA88 /* ShawaAdmin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA7CE4272BE3A655005EEA88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7CE46F2BE3AB97005EEA88 /* Preview Assets.xcassets in Resources */,
+				FA7CE4872BE3C57F005EEA88 /* GoogleService-Info.plist in Resources */,
+				FA7CE48E2BE3CD12005EEA88 /* Inter-Bold.ttf in Resources */,
+				FA7CE48C2BE3CD09005EEA88 /* Montserrat-Bold.ttf in Resources */,
+				FA7CE48B2BE3CC44005EEA88 /* Localizable.xcstrings in Resources */,
+				FA7CE48F2BE3CD14005EEA88 /* DM-Sans-Regular.ttf in Resources */,
+				FA7CE48A2BE3C6BD005EEA88 /* RTDBSettings.plist in Resources */,
+				FA7CE4912BE3CD19005EEA88 /* tangak.otf in Resources */,
+				FA7CE4902BE3CD17005EEA88 /* DM-Sans-Bold.ttf in Resources */,
+				FA7CE4822BE3B465005EEA88 /* Assets.xcassets in Resources */,
+				FA7CE48D2BE3CD0E005EEA88 /* Inter-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAA91A0129BB4D03004B3C71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,6 +650,7 @@
 				FA8DDEF029BC551E004DAE5C /* Montserrat-Bold.ttf in Resources */,
 				FAA91A0B29BB4D04004B3C71 /* Assets.xcassets in Resources */,
 				FA0E911C2BC912B400F74031 /* Localizable.xcstrings in Resources */,
+				FA7CE4892BE3C6BD005EEA88 /* RTDBSettings.plist in Resources */,
 				FA8DDEF429BC567D004DAE5C /* DM-Sans-Regular.ttf in Resources */,
 				FAA9F1BD29BB7872005D91A7 /* Inter-Bold.ttf in Resources */,
 				FAA9F1BE29BB7872005D91A7 /* Inter-Regular.ttf in Resources */,
@@ -474,6 +660,53 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA7CE4252BE3A655005EEA88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7CE4492BE3A96D005EEA88 /* AuthenticationStub.swift in Sources */,
+				FA7CE4512BE3A99F005EEA88 /* ConditionalTextEditor.swift in Sources */,
+				FA7CE4522BE3A99F005EEA88 /* ActionButton.swift in Sources */,
+				FA7CE4532BE3A99F005EEA88 /* PrettyButton.swift in Sources */,
+				FA7CE4542BE3A99F005EEA88 /* PrettyEditButton.swift in Sources */,
+				FA7CE4852BE3BED4005EEA88 /* AuthoriseView.swift in Sources */,
+				FA7CE42C2BE3A655005EEA88 /* ShawaAdminApp.swift in Sources */,
+				FA7CE43F2BE3A91F005EEA88 /* AuthenticationManager.swift in Sources */,
+				FA7CE4742BE3ACDE005EEA88 /* DrawingConstants.swift in Sources */,
+				FA7CE43D2BE3A913005EEA88 /* OrderRepository.swift in Sources */,
+				FA7CE43C2BE3A90F005EEA88 /* RestaurantRepository.swift in Sources */,
+				FA7CE43B2BE3A90B005EEA88 /* Restaurant.swift in Sources */,
+				FA7CE4412BE3A929005EEA88 /* OrderManager.swift in Sources */,
+				FA7CE44C2BE3A97B005EEA88 /* FirestoreRestaurantManager.swift in Sources */,
+				FA7CE46D2BE3AB44005EEA88 /* SwiftUIHelpers.swift in Sources */,
+				FA7CE44D2BE3A97E005EEA88 /* RestaurantManagerStub.swift in Sources */,
+				FA7CE4402BE3A924005EEA88 /* RestaurantManager.swift in Sources */,
+				FA7CE4482BE3A96A005EEA88 /* FirebaseAuthentication.swift in Sources */,
+				FA7CE4462BE3A962005EEA88 /* FirestoreRestaurantRepository.swift in Sources */,
+				FA7CE4802BE3B418005EEA88 /* Header.swift in Sources */,
+				FA7CE43E2BE3A918005EEA88 /* Authentication.swift in Sources */,
+				FA7CE4812BE3B41E005EEA88 /* LoadableImage.swift in Sources */,
+				FA7CE44B2BE3A976005EEA88 /* AuthenticationManagerStub.swift in Sources */,
+				FA7CE44A2BE3A974005EEA88 /* FirebaseAuthenticationManager.swift in Sources */,
+				FA7CE4712BE3AC38005EEA88 /* TabMenuView.swift in Sources */,
+				FA7CE44F2BE3A984005EEA88 /* OrderManagerStub.swift in Sources */,
+				FA7CE47F2BE3B415005EEA88 /* PrettyLabel.swift in Sources */,
+				FA7CE4422BE3A941005EEA88 /* MenuItem.swift in Sources */,
+				FA7CE4982BE3D354005EEA88 /* ReceivedOrdersListView.swift in Sources */,
+				FA7CE4752BE3AFE1005EEA88 /* Fonts.swift in Sources */,
+				FA7CE44E2BE3A982005EEA88 /* FirebaseRTDBOrderManager.swift in Sources */,
+				FA7CE4452BE3A951005EEA88 /* Order.swift in Sources */,
+				FA7CE46C2BE3AB41005EEA88 /* Loadable.swift in Sources */,
+				FA7CE46B2BE3AB00005EEA88 /* FirebaseHelpers.swift in Sources */,
+				FA7CE47E2BE3B400005EEA88 /* PrettyTextField.swift in Sources */,
+				FA7CE4722BE3AC3D005EEA88 /* ShawaAdminAppView.swift in Sources */,
+				FA7CE4442BE3A94D005EEA88 /* MenuSection.swift in Sources */,
+				FA7CE4432BE3A949005EEA88 /* Ingredient.swift in Sources */,
+				FA7CE4962BE3D2F1005EEA88 /* MenuEditorView.swift in Sources */,
+				FA7CE4472BE3A966005EEA88 /* FirebaseRTDBOrderRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAA919FF29BB4D03004B3C71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,7 +736,6 @@
 				FAC11CB62BB5604D008BE48A /* MenuItem.swift in Sources */,
 				FAC11CBE2BB570F4008BE48A /* RestaurantRepository.swift in Sources */,
 				FAC11CF12BB85DE5008BE48A /* FirebaseRTDBOrderRepository.swift in Sources */,
-				FA79D39929BB5D21005A10F8 /* Colors.swift in Sources */,
 				FAC11CED2BB85A79008BE48A /* AuthenticationManager.swift in Sources */,
 				FAC11D022BB8B6D1008BE48A /* AuthenticationManagerStub.swift in Sources */,
 				FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */,
@@ -526,7 +758,7 @@
 				FA0B09F729E2B56E00202CFA /* ShawaAppView.swift in Sources */,
 				FAC11D042BB8B715008BE48A /* AuthenticationStub.swift in Sources */,
 				FAC11CF62BB8832E008BE48A /* FirebaseRTDBOrderManager.swift in Sources */,
-				FAA91A0729BB4D03004B3C71 /* IosApp.swift in Sources */,
+				FAA91A0729BB4D03004B3C71 /* ShawaApp.swift in Sources */,
 				FAC11CE92BB8537E008BE48A /* Loadable.swift in Sources */,
 				FAC11CFC2BB8ABFC008BE48A /* SwiftUIHelpers.swift in Sources */,
 				FAA4238329C0A809007818F7 /* Header.swift in Sources */,
@@ -536,10 +768,97 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FA7CE45A2BE3AA0C005EEA88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA91A0229BB4D03004B3C71 /* Shawa */;
+			targetProxy = FA7CE4592BE3AA0C005EEA88 /* PBXContainerItemProxy */;
+		};
+		FA7CE45C2BE3AA20005EEA88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA91A0229BB4D03004B3C71 /* Shawa */;
+			targetProxy = FA7CE45B2BE3AA20005EEA88 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		FA7CE4342BE3A657005EEA88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Shawa/Preview Content\"";
+				DEVELOPMENT_TEAM = NBYQDHH5LM;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ShawaAdmin-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Shawa Admin";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.alex.vasilevski007.ShawaAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA7CE4352BE3A657005EEA88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Shawa/Preview Content\"";
+				DEVELOPMENT_TEAM = NBYQDHH5LM;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ShawaAdmin-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Shawa Admin";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.alex.vasilevski007.ShawaAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FAA91A0F29BB4D04004B3C71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA2C20682A9FA53100ADA650 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -656,12 +975,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Shawa/Preview Content\"";
 				DEVELOPMENT_TEAM = NBYQDHH5LM;
 				ENABLE_PREVIEWS = YES;
+				FIREBASE_REALTIME_DATABASE_URL = "shawaapp-default-rtdb.europe-west1.firebasedatabase.app/";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Shawa/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Shawa;
@@ -688,12 +1009,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Shawa/Preview Content\"";
 				DEVELOPMENT_TEAM = NBYQDHH5LM;
 				ENABLE_PREVIEWS = YES;
+				FIREBASE_REALTIME_DATABASE_URL = "shawaapp-default-rtdb.europe-west1.firebasedatabase.app/";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Shawa/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Shawa;
@@ -719,6 +1042,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA7CE4362BE3A657005EEA88 /* Build configuration list for PBXNativeTarget "ShawaAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7CE4342BE3A657005EEA88 /* Debug */,
+				FA7CE4352BE3A657005EEA88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAA919FE29BB4D03004B3C71 /* Build configuration list for PBXProject "Shawa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -751,6 +1083,41 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FA7CE45D2BE3AA3D005EEA88 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		FA7CE45F2BE3AA44005EEA88 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		FA7CE4612BE3AA4A005EEA88 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FA7CE4632BE3AA55005EEA88 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		FA7CE4652BE3AA5A005EEA88 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		FA7CE4672BE3AA62005EEA88 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FA7CE4692BE3AA68005EEA88 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		FAC11CC02BB5776E008BE48A /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FAC11CBF2BB5776E008BE48A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

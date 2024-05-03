@@ -39,12 +39,12 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
         Divider().overlay(Color.lighterBrown)
         HStack(alignment: .center, spacing: 0) {
             Text("Grand total:")
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
                 .font(.montserratBold(size: headlineFontSize))
                 .padding(.trailing, .Constants.standardSpacing)
             Spacer(minLength: 0)
             Text(String(format: "%.2f BYN", order.totalPrice))
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
                 .font(.interBold(size: 20))
                 .frame(width: .Constants.UserOrder.priceWidth, alignment: .trailing)
         }
@@ -53,42 +53,42 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
     @ViewBuilder var addressBody: some View {
         Divider().overlay(Color.lighterBrown)
         Text("Address:")
-            .foregroundColor(.deafultBrown)
+            .foregroundColor(.defaultBrown)
             .font(.montserratBold(size: headlineFontSize))
             .padding(.trailing, .Constants.standardSpacing)
         if let street = order.user.address.street {
             VStack {
                 Text("Street")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.mainBold(size: 16))
             }
             VStack {
                 Text(street)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.main(size: 16))
             }
         }
         if let house = order.user.address.house {
             VStack {
                 Text("House")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.mainBold(size: 16))
             }
             VStack {
                 Text(house)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.main(size: 16))
             }
         }
         if let apartament = order.user.address.apartament {
             VStack {
                 Text("Apartament")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.mainBold(size: 16))
             }
             VStack {
                 Text(apartament)
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.main(size: 16))
             }
         }
@@ -100,13 +100,13 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
             Divider().overlay(Color.lighterBrown)
             HStack(alignment: .center, spacing: 0) {
                 Text("Comment:")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.montserratBold(size: headlineFontSize))
                     .padding(.trailing, .Constants.standardSpacing)
                 Spacer(minLength: 0)
             }
             Text(comment)
-                .foregroundColor(.deafultBrown)
+                .foregroundColor(.defaultBrown)
                 .font(.main(size: 16))
         }
     }
@@ -125,7 +125,7 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
                 RoundedRectangle(cornerRadius: .Constants.UserOrder.cornerRadius)
                     .fill(Color.veryLightBrown)
                 RoundedRectangle(cornerRadius: .Constants.UserOrder.cornerRadius)
-                    .stroke(Color.deafultBrown, lineWidth: .Constants.doubleBorderWidth)
+                    .stroke(Color.defaultBrown, lineWidth: .Constants.doubleBorderWidth)
             }
         }
     }

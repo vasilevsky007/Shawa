@@ -1,22 +1,24 @@
 //
-//  ShawaAppView.swift
-//  Shawa
+//  ShawaAdminAppView.swift
+//  ShawaAdmin
 //
-//  Created by Alex on 9.04.23.
+//  Created by Alex on 2.05.24.
 //
 
 import SwiftUI
 
-struct ShawaAppView<RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager, AuthenticationManagerType: AuthenticationManager>: View {
+struct ShawaAdminAppView<RestaurantManagerType: RestaurantManager,
+                         OrderManagerType: OrderManager,
+                         AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     
     var body: some View {
         ZStack {
             if authenticationManager.auth.state == .authenticated {
-                MainMenuView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+                TabMenuView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
                     .transition(.opacity)
             } else {
-                AuthoriseView<AuthenticationManagerType>()
+                AuthoriseView<AuthenticationManagerType>(isAdmin: true)
                     .transition(.opacity)
             }
             

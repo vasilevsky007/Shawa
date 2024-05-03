@@ -48,7 +48,7 @@ struct SearchArea<RestaurantManagerType: RestaurantManager>: View {
                     VStack(alignment: .leading) {
                         Text((restaurantManager.allMenuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })).isEmpty ? "Nothing found..." : "You may be looking for:")
                             .font(.main(size: 16))
-                            .foregroundColor(.deafultBrown)
+                            .foregroundColor(.defaultBrown)
                         Color.clear.frame(height: 0)
                         ForEach(restaurantManager.allMenuItems.filter({ $0.name.lowercased().contains(enteredSearch.lowercased()) })) { item in
                             Button {

@@ -28,11 +28,11 @@ struct SearchItem: View {
                 VStack(alignment: .leading) {
                     Text(thisItem.name)
                         .font(.main(size: 16))
-                        .foregroundColor(.deafultBrown)
+                        .foregroundColor(.defaultBrown)
                         .padding(.top, .Constants.standardSpacing)
                     Text(String(format: "%.2f", thisItem.price) + " BYN")
                         .font(.mainBold(size: 14))
-                        .foregroundColor(.deafultBrown)
+                        .foregroundColor(.defaultBrown)
                     Spacer(minLength: 0)
                 }
             }

@@ -51,12 +51,12 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(thisMenuItem?.name ?? "Item not found in current menu")
                                     .font(.main(size: headerFontSize))
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                                     .padding(.top, .Constants.standardSpacing)
                                 if let price = thisMenuItem?.price {
                                     Text(String(format: "%.2f", price) + " BYN")
                                         .font(.mainBold(size: fontSize))
-                                        .foregroundColor(.deafultBrown)
+                                        .foregroundColor(.defaultBrown)
                                 }
                             }
                             Spacer(minLength: 0)
@@ -67,11 +67,11 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
                             VStack(alignment: .trailing, spacing: 0) {
                                 Text(ingredientNameAndCountLocalized(id: additionID))
                                 .font(.main(size: fontSize))
-                                .foregroundColor(.deafultBrown)
+                                .foregroundColor(.defaultBrown)
                                 
                                 Text(ingredientCostLocalized(id: additionID))
                                 .font(.main(size: fontSize))
-                                .foregroundColor(.deafultBrown)
+                                .foregroundColor(.defaultBrown)
                             }
                         }
                         Divider()
@@ -83,7 +83,7 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
                 HStack(spacing: 0) {
                     Text(String(format: "%d x %.2f BYN", thisItemCount, thisItem.price))
                         .font(.interBold(size: fontSize))
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                 }
                 .padding([.bottom, .horizontal], .Constants.standardSpacing)
 

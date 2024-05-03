@@ -1,5 +1,5 @@
 //
-//  IosApp.swift
+//  ShawaApp.swift
 //  Shawa
 //
 //  Created by Alex on 10.03.23.
@@ -10,7 +10,7 @@ import FirebaseCore
 
 
 @main
-struct IosApp: App {
+struct ShawaApp: App {
     @State var restaurantManager: FirestoreRestaurantManager
     @State var orderManager: FirebaseRTDBOrderManager
     @State var authenticationManager: FirebaseAuthenticationManager
@@ -26,6 +26,7 @@ struct IosApp: App {
 //        rm = RestaurantManagerStub()
 //        om  = OrderManagerStub()
 //        om.addOneOrderItem(Order.Item(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
+        Font.printAllFonts()
     }
     
     var body: some Scene {

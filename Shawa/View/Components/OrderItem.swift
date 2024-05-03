@@ -44,11 +44,11 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(menuItem.name)
                                     .font(.main(size: 20))
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                                     .padding(.top, .Constants.standardSpacing)
                                 Text(String(format: "%.2f", menuItem.price) + " BYN")
                                     .font(.mainBold(size: mainFontSize))
-                                    .foregroundColor(.deafultBrown)
+                                    .foregroundColor(.defaultBrown)
                             }
                             Spacer(minLength: 0)
                             Button(role: .destructive) {
@@ -70,7 +70,7 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                                                          : "No ")
                                                  + addition.name)
                                             .font(.main(size: mainFontSize))
-                                            .foregroundColor(.deafultBrown)
+                                            .foregroundColor(.defaultBrown)
                                             Spacer()
                                             Stepper {
                                                 
@@ -88,7 +88,7 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                                                     : "0")
                                              + " BYN")
                                         .font(.main(size: mainFontSize))
-                                        .foregroundColor(.deafultBrown)
+                                        .foregroundColor(.defaultBrown)
                                     }
                                 }
                             }
@@ -111,7 +111,7 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                     Spacer(minLength: .Constants.standardSpacing)
                     Text(String(format: "%d x %.2f BYN", numberOfCurrentItems, thisItem.price))
                         .font(.interBold(size: mainFontSize))
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                 }
                 .padding([.bottom, .horizontal], .Constants.standardSpacing)
 

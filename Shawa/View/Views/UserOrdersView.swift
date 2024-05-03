@@ -36,7 +36,7 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
                 }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Your orders:")
-                    .foregroundColor(.deafultBrown)
+                    .foregroundColor(.defaultBrown)
                     .font(.montserratBold(size: 24))
                     .padding(.horizontal, .Constants.horizontalSafeArea)
                     .padding(.top, .Constants.standardSpacing)
@@ -54,7 +54,7 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
                             }
                         }.padding(.Constants.horizontalSafeArea)
                     }
-                    .refreshControlColor(.deafultBrown)
+                    .refreshControlColor(.defaultBrown)
                     .refreshable {
                         //TODO: load orders from firebase
                         try? await orderManager.getUserOrders(uid: userID)
@@ -84,7 +84,7 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
                 HStack(spacing: 0){
                     Spacer(minLength: 0)
                     ProgressView()
-                        .tint(.deafultBrown)
+                        .tint(.defaultBrown)
                         .scaleEffect(1.5)
                     Spacer(minLength: 0)
                 }.transition(.asymmetric(
