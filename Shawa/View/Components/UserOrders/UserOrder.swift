@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
+struct UserOrder<RestaurantManagerType: RestaurantManager, OrderManagerType: OrderManager>: View {
     @EnvironmentObject var restaurantManager: RestaurantManagerType
+    @EnvironmentObject var orderManager: OrderManagerType
     
+    var isAdmin: Bool = false
     var order: Order
     
     private let headlineFontSize: CGFloat = 24
@@ -18,11 +20,11 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
         HStack(spacing: 0){
             Spacer()
             if let timestamp = order.timestamp {
-                Text(order.timestamp!, style: .date)
+                Text(timestamp, style: .date)
                     .padding(.trailing, .Constants.standardSpacing)
                     .foregroundColor(.lighterBrown)
                     .font(.main(size: 16))
-                Text(order.timestamp!, style: .time)
+                Text(timestamp, style: .time)
                     .foregroundColor(.lighterBrown)
                     .font(.main(size: 16))
             }
@@ -31,7 +33,11 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
     
     var itemsBody: some View {
         ForEach(order.orderItems.keys.sorted(by: { $0.id < $1.id })) { item in
-            OrderItemUnchangable<RestaurantManagerType>(item, count: order.orderItems[item]!)
+            OrderItemUnchangable<RestaurantManagerType>(
+                item,
+                count: order.orderItems[item]!,
+                isAdmin: isAdmin
+            )
         }
     }
     
@@ -111,19 +117,45 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
         }
     }
     
+    @ViewBuilder var statusBody: some View {
+            Divider().overlay(Color.lighterBrown)
+            HStack(alignment: .center, spacing: 0) {
+                Text("Order status:")
+                    .foregroundColor(.defaultBrown)
+                    .font(.montserratBold(size: headlineFontSize))
+                    .padding(.trailing, .Constants.standardSpacing)
+                Spacer(minLength: 0)
+            }
+        SegmentedProgressBar(
+            currentState: order.state ,
+            allCases: order.state == .cancelled ? [.sended,.confirmed,.cancelled] : [.sended, .confirmed, .delivering, .delivered],
+            activeColor: order.state == .cancelled ? .red : .primaryBrown) { tappedCase in
+                if isAdmin {
+                    Task {
+                        try await orderManager.updateOrderState(to: tappedCase, in: order)
+                    }
+                }
+            }
+            
+            Text(LocalizedStringKey(order.state?.description ?? "Error"))
+                .foregroundColor(.defaultBrown)
+                .font(.main(size: 16))
+    }
+    
     var body: some View {
         LazyVStack (alignment: .leading, spacing: .Constants.doubleSpacing) {
             timeBody
             itemsBody
             addressBody
             commentBody
+            statusBody
             priceBody
         }
         .padding(.all, .Constants.standardSpacing)
         .background {
             ZStack {
                 RoundedRectangle(cornerRadius: .Constants.UserOrder.cornerRadius)
-                    .fill(Color.veryLightBrown)
+                    .fill(isAdmin ? Color.clear : Color.veryLightBrown)
                 RoundedRectangle(cornerRadius: .Constants.UserOrder.cornerRadius)
                     .stroke(Color.defaultBrown, lineWidth: .Constants.doubleBorderWidth)
             }
@@ -133,13 +165,16 @@ struct UserOrder<RestaurantManagerType: RestaurantManager>: View {
 
 #Preview {
     @ObservedObject var rm = RestaurantManagerStub()
+    @ObservedObject var om = OrderManagerStub()
     var o = Order()
     o.addOneOrderItem(.init(menuItem: rm.allMenuItems.first!, availibleAdditions: rm.restaurants.value!.first!.ingredients))
     o.updateAddress(street: "str Asd", house: "h 8", apartament: "ap 12")
     o.updateComment("order comment xddd")
     o.addTimestamp(date: .now)
     o.addOneIngredient(rm.restaurants.value!.first!.ingredients.first!, to: o.orderItems.first!.key)
-    return UserOrder<RestaurantManagerStub>(order: o)
+    o.updateState(.delivering)
+    return UserOrder<RestaurantManagerStub, OrderManagerStub>(order: o)
         .padding()
         .environmentObject(rm)
+        .environmentObject(om)
 }

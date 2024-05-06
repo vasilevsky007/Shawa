@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-struct FirebaseRTDBOrderRepository {
+struct FirebaseRTDBOrderRepository: OrderRepository {
     private var realtimeDatabase: DatabaseReference
     
     init() {
@@ -42,6 +42,54 @@ struct FirebaseRTDBOrderRepository {
         )?.values
         if let userOrders = userOrders {
             for order in userOrders {
+                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
+                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
+                result.append(orderDecoded)
+            }
+        }
+        return result
+    }
+    
+    func startListeningToALLOrders(publishNewOrders: @escaping ([Order]) -> Void) {
+        realtimeDatabase
+            .child("orders")
+            .observe(.value) { snapshot in
+                let orders = Self.processAllOrders(snapshot: snapshot)
+                publishNewOrders(orders)
+            }
+    }
+    
+    func stopListeningToALLOrders() {
+        realtimeDatabase
+            .child("orders")
+            .removeAllObservers()
+    }
+    
+    func updateOrderState(to state: Order.OrderState, in order: Order) async throws {
+        try await realtimeDatabase.child("orders")
+            .child(order.user.userID ?? "unknown")
+            .child(order.id.uuidString)
+            .child("state")
+            .setValue(state.rawValue)
+    }
+    
+    private static func processAllOrders(snapshot: DataSnapshot) -> [Order] {
+        var result = [Order]()
+        let ordersByUsers = (
+            snapshot.value as? [String:[String:[String:Any]]]
+        )?.values
+        if let ordersByUsers = ordersByUsers {
+            
+            let ordersByIds = ordersByUsers.map { ordersByUser in
+                ordersByUser.values
+            }
+            var ordersArray = [[String:Any]]()
+            for i in ordersByIds.indices {
+                for i2 in ordersByIds[i].indices {
+                    ordersArray.append(ordersByIds[i][i2])
+                }
+            }
+            for order in ordersArray {
                 guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
                 guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
                 result.append(orderDecoded)

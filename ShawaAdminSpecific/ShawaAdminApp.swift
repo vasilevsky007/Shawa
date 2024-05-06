@@ -16,9 +16,8 @@ struct ShawaAdminApp: App {
     init () {
         FirebaseApp.configure()
         restaurantManager = FirestoreRestaurantManager()
-        orderManager = FirebaseRTDBOrderManager()
+        orderManager = FirebaseRTDBOrderManager(isAdmin: true)
         authenticationManager = FirebaseAuthenticationManager()
-        Font.printAllFonts()
     }
     
     var body: some Scene {

@@ -12,6 +12,7 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
     
     let thisItem: Order.Item
     let thisItemCount: Int
+    let isAdmin: Bool
     
     private let headerFontSize: CGFloat = 20
     private let fontSize: CGFloat = 16
@@ -20,9 +21,10 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
         restaurantManager.menuItem(withId: thisItem.itemID)
     }
     
-    init(_ thisItem: Order.Item, count: Int) {
+    init(_ thisItem: Order.Item, count: Int, isAdmin: Bool) {
         self.thisItem = thisItem
         self.thisItemCount = count
+        self.isAdmin = isAdmin
     }
     
     
@@ -33,18 +35,20 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
                 .foregroundColor(.lighterBrown)
             VStack(alignment: .trailing, spacing: 0) {
                 HStack(alignment: .top, spacing: 0) {
-                    if let imageUrl = thisMenuItem?.image {
-                        LoadableImage(imageUrl: imageUrl)
-                            .frame(width: .Constants.OrderItemUnchangable.imageSize, height: .Constants.OrderItemUnchangable.imageSize)
-                            .cornerRadius(.Constants.elementCornerRadius)
-                            .padding([.trailing, .bottom], .Constants.standardSpacing)
-                    } else {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: .Constants.OrderItemUnchangable.imageSize))
-                            .foregroundColor(.gray)
-                            .frame(width: .Constants.OrderItemUnchangable.imageSize, height: .Constants.OrderItemUnchangable.imageSize)
-                            .cornerRadius(.Constants.elementCornerRadius)
-                            .padding([.trailing, .bottom], .Constants.standardSpacing)
+                    if !isAdmin {
+                        if let imageUrl = thisMenuItem?.image {
+                            LoadableImage(imageUrl: imageUrl)
+                                .frame(width: .Constants.OrderItemUnchangable.imageSize, height: .Constants.OrderItemUnchangable.imageSize)
+                                .cornerRadius(.Constants.elementCornerRadius)
+                                .padding([.trailing, .bottom], .Constants.standardSpacing)
+                        } else {
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.system(size: .Constants.OrderItemUnchangable.imageSize))
+                                .foregroundColor(.gray)
+                                .frame(width: .Constants.OrderItemUnchangable.imageSize, height: .Constants.OrderItemUnchangable.imageSize)
+                                .cornerRadius(.Constants.elementCornerRadius)
+                                .padding([.trailing, .bottom], .Constants.standardSpacing)
+                        }
                     }
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .center) {
@@ -65,13 +69,15 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
                         
                         ForEach(thisItem.additions.keys.sorted(), id: \.self) { additionID in
                             VStack(alignment: .trailing, spacing: 0) {
-                                Text(ingredientNameAndCountLocalized(id: additionID))
-                                .font(.main(size: fontSize))
-                                .foregroundColor(.defaultBrown)
-                                
-                                Text(ingredientCostLocalized(id: additionID))
-                                .font(.main(size: fontSize))
-                                .foregroundColor(.defaultBrown)
+                                if isIngredientHaveToBeShown(id: additionID) {
+                                    Text(ingredientNameAndCountLocalized(id: additionID))
+                                        .font(.main(size: fontSize))
+                                        .foregroundColor(.defaultBrown)
+                                    
+                                    Text(ingredientCostLocalized(id: additionID))
+                                        .font(.main(size: fontSize))
+                                        .foregroundColor(.defaultBrown)
+                                }
                             }
                         }
                         Divider()
@@ -92,6 +98,10 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
         }
     }
     
+    func isIngredientHaveToBeShown(id ingredientId: String) -> Bool {
+        thisItem.additions[ingredientId]! != 0
+    }
+    
     func ingredientNameAndCountLocalized(id ingredientId: String) -> LocalizedStringKey {
         "+ \(thisItem.additions[ingredientId]! > 0 ? String(thisItem.additions[ingredientId]!) + " x " : "No ") \(restaurantManager.ingredient(withId: ingredientId)?.name ?? "Ingredient not found in current menu")"
     }
@@ -107,7 +117,7 @@ struct OrderItemUnchangable<RestaurantManagerType: RestaurantManager>: View {
         .init(
             menuItem: rm.allMenuItems.first!,
             availibleAdditions: rm.restaurants.value!.first!.ingredients),
-        count: 1)
+        count: 1, isAdmin: false)
     .frame(height: .Constants.OrderItemUnchangable.imageSize + .Constants.doubleSpacing)
     .padding()
     .environmentObject(rm)

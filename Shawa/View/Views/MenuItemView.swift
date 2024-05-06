@@ -52,7 +52,7 @@ struct MenuItemView: View {
                                 .foregroundColor(.gray)
                                 .frame(width: imageSize, height: imageSize / 2)
                         }
-                        HStack(alignment: .center, spacing: 0) {
+                        HStack(alignment: .center, spacing: .Constants.standardSpacing) {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(thisItem.name)
                                     .font(.main(size: 32))
@@ -67,12 +67,12 @@ struct MenuItemView: View {
                                 .foregroundColor(.defaultBrown)
                                 .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                             }
-                            
-                            Spacer(minLength: 0)
                             PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
                                 addToCart(thisOrderItem)
                             }
-                                .frame(width: .Constants.MenuItemView.addButtonWidth, height:.Constants.MenuItemView.addButtonHeight)
+                                .frame(height:.Constants.MenuItemView.addButtonHeight)
+                                .frame(idealWidth: .Constants.MenuItemView.addButtonWidth,
+                                       maxWidth: .Constants.MenuItemView.addButtonMaxWidth)
                                 .padding(.trailing, .Constants.standardSpacing)
                         }
                         

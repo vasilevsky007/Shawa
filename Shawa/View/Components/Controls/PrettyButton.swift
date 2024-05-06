@@ -11,80 +11,81 @@ struct PrettyButton: View {
     var text: LocalizedStringKey
     var systemImage = "noImage"
     var fontsize: CGFloat = 16
-    var isSwitch = false
     var color = Color.primaryBrown
     var unactiveColor = Color.clear
-    var isActive = false //TODO: was @State
+    var isActive = false
+    var infiniteWidth = false
     var onTap: () -> Void
+    
+    @State private var totalWidth: CGFloat? = nil
     
     var body: some View {
         GeometryReader { geometry in
-            if isActive {
-                // MARK: active
-                ZStack(alignment: .center) {
-                    RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
-                        .foregroundColor(color)
-                    Button {
-                        withAnimation {
-                            if isSwitch {
-                                //isActive.toggle()
-                            }
-                            onTap()
-                        }
-                    } label: {
-                        HStack(alignment: .center) {
-                            Spacer(minLength: 0)
-                            if systemImage != "noImage" {
-                                Image(systemName: systemImage)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
-                            }
-                            Text(text).font(.main(size: fontsize)).foregroundColor(.white)
-                            Spacer(minLength: 0)
-                        }.padding(.all, .Constants.standardSpacing)
+            Button {
+                withAnimation {
+                    onTap()
+                }
+            } label: {
+                HStack(alignment: .center, spacing: 0) {
+                    if (infiniteWidth) {
+                        Spacer(minLength: 0)
                     }
-                }.transition(.opacity)
-            } else {
-                //MARK: unactive
-                ZStack (alignment: .center) {
-                    RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
-                        .strokeBorder(unactiveColor)
-                    Button {
-                        withAnimation {
-                            if isSwitch {
-                                //isActive.toggle()
-                            }
-                            onTap()
-                        }
-                    } label: {
-                        HStack(alignment: .center) {
-                            Spacer(minLength: 0)
-                            if systemImage != "noImage" {
-                                Image(systemName: systemImage)
-                                    .foregroundColor(.defaultBrown)
-                                    .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
-                            }
-                            Text(text).font(.main(size: fontsize)).foregroundColor(.defaultBrown)
-                            Spacer(minLength: 0)
-                        }.padding(.all, .Constants.standardSpacing)
+                    if systemImage != "noImage" {
+                        Image(systemName: systemImage)
+                            .foregroundStyle(isActive ? Color.init(uiColor: .systemBackground) : .defaultBrown)
+                            .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
+                            .padding(.trailing, .Constants.standardSpacing)
+                    } else {
+                        Color.clear
+                            .frame(width: 1, height: geometry.size.height - .Constants.PrettyButton.imageInsets)
                     }
-                }.transition(.opacity)
+                    Text(text)
+                        .font(.main(size: fontsize))
+                        .foregroundColor(isActive ? Color.init(uiColor: .systemBackground) : .defaultBrown)
+                    if (infiniteWidth) {
+                        Spacer(minLength: 0)
+                    }
+                }
+                .padding(.all, .Constants.standardSpacing)
+                .background {
+                    GeometryReader { geometry in
+                        Group {
+                            if isActive {
+                                RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                                    .foregroundStyle(color)
+                            } else {
+                                RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
+                                    .strokeBorder(unactiveColor)
+                            }
+                        }.onAppear {
+                            DispatchQueue.main.async {
+                                withAnimation {
+                                    totalWidth = geometry.frame(in: .local).size.width
+                                }
+                                
+                            }
+                        }
+                    }
+                }
             }
         }
-
+        .frame(width: infiniteWidth ? nil : totalWidth)
     }
 }
 
 #Preview {
-    PrettyButton(text: "", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 120, height: 41)
+    PrettyButton(text: "sended", systemImage: "slider.vertical.3", unactiveColor: .lightBrown, onTap: {})
+        .frame(height: .Constants.lineElementHeight)
 }
 #Preview {
     PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
         
-    }.frame(width: 120, height:60).padding(.trailing, 10)
+    }.frame(height:60)
+        .frame(idealWidth: 80, maxWidth: 160)
+        .padding(.trailing, 10)
 }
 #Preview {
-        PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
-            print("logout")
-        }.frame(height: 40)
-    }
+    PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false, infiniteWidth: true) {
+        print("logout")
+    }.frame(height: 40)
+}

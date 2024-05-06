@@ -11,10 +11,12 @@ import Foundation
 protocol OrderManager: ObservableObject {
     var userOrders: Loadable<[Order]> { get }
     var currentOrder: Order { get }
+    var allOrders: [Order] { get }
     
     var isCurrentOrderEmpty: Bool { get }
     
     func sendCurrentOrder() async throws
+    func updateOrderState(to state: Order.OrderState, in order: Order) async throws
     func getUserOrders(uid: String) async throws
     
     func addOneOrderItem(_ item: Order.Item)

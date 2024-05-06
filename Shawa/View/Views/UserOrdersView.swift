@@ -49,7 +49,7 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
                             fetchingProgressBody
                             if let orders = orderManager.userOrders.value {
                                 ForEach(orders.sorted(by: { $0.timestamp! > $1.timestamp! })) { order in
-                                    UserOrder<RestaurantManagerType>(order: order)
+                                    UserOrder<RestaurantManagerType, OrderManagerType>(order: order)
                                 }
                             }
                         }.padding(.Constants.horizontalSafeArea)

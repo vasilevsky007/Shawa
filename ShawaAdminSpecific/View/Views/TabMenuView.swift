@@ -12,7 +12,11 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
                    AuthenticationManagerType: AuthenticationManager>: View {
     var body: some View {
         TabView {
-            ReceivedOrdersListView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+            ZStack(alignment: .top) {
+                Color.veryLightBrown2
+                    .ignoresSafeArea()
+                ReceivedOrdersListView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+            }
                 .tabItem {
                     VStack(alignment: .center) {
                         Text("Received orders")
@@ -21,7 +25,11 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
                             .renderingMode(.template)
                     }
                 }
-            MenuEditorView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+            ZStack(alignment: .top) {
+                Color.veryLightBrown2
+                    .ignoresSafeArea()
+                MenuEditorView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+            }
                 .tabItem {
                     VStack(alignment: .center) {
                         Text("Menu edit")
@@ -32,7 +40,8 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
                 }
         }
         .onAppear{
-            UITabBar.appearance().unselectedItemTintColor = UIColor.lighterBrown
+            UITabBar.appearance().unselectedItemTintColor = .lighterBrown
+            UITabBar.appearance().backgroundColor = .systemBackground
         }
     }
 }

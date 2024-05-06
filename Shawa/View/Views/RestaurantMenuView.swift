@@ -36,7 +36,8 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
                 
                 ScrollView (.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        PrettyButton(text: "Filter", systemImage: "slider.vertical.3", isSwitch: true, unactiveColor: .lightBrown, onTap: {}).frame(width: 96, height: 40).padding(.leading, 24.5)
+                        //TODO: rework frames
+                        PrettyButton(text: "Filter", systemImage: "slider.vertical.3", unactiveColor: .lightBrown, onTap: {}).frame(width: 96, height: 40).padding(.leading, 24.5)
                         PrettyButton(text: "Popularity", isActive: true, onTap: {}).frame(width: 96, height: 40)
                         PrettyButton(text: "High Price", onTap: {}).frame(width: 96, height: 40)
                         PrettyButton(text: "Low Price", onTap: {}).frame(width: 88, height: 40)

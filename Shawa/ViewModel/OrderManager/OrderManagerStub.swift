@@ -9,16 +9,24 @@ import SwiftUI
 
 @MainActor
 class OrderManagerStub: OrderManager {
+    
     @Published private(set) var userOrders: Loadable<[Order]> = .loaded([
         order, order, order, order
     ])
     
     @Published private(set) var currentOrder: Order = .init()
     
+    @Published private(set) var allOrders: [Order] = []
+    
     func sendCurrentOrder() async throws {
         print(currentOrder)
         try? await Task.sleep(nanoseconds: 2_000_000_000)
         throw DecodingError.dataCorrupted(.init(codingPath: .init(), debugDescription: "xdddddd"))
+    }
+    
+    func updateOrderState(to state: Order.OrderState, in order: Order) async throws {
+        guard let index = allOrders.firstIndex(where: { $0.id == order.id }) else { return }
+        allOrders[index].updateState(state)
     }
     
     func getUserOrders(uid: String) async throws {

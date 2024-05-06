@@ -113,7 +113,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
             )
             .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             //TODO: better validation
-            PrettyButton(text: "Change Password", unactiveColor: .red , isActive: newPasswordsValidated) {
+            PrettyButton(text: "Change Password", unactiveColor: .red , isActive: newPasswordsValidated, infiniteWidth: true) {
                 Task {
                     await authenticationManager.updatePassword(to: enteredNewPassword)
                 }

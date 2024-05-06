@@ -116,7 +116,7 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                         //                            .font(.main(size: 16))
                         //                            .foregroundColor(.defaultBrown)
                         //                        conditionalTextEditor(isEditing: $isEditingPhone, value: $enteredPhone, systemImage: "phone.down")
-                        PrettyButton(text: "Change Password", isActive: true) {
+                        PrettyButton(text: "Change Password", isActive: true, infiniteWidth: true) {
                             isChangingPassword = true
                         }
                         .frame(height: .Constants.lineElementHeight)
@@ -136,11 +136,10 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
                             }
 
                         }
-                        PrettyButton(text: "Delete your account", color: .red , isActive: true) {
+                        PrettyButton(text: "Delete your account", color: .red , isActive: true, infiniteWidth: true) {
                             isShowingDeleteAlert = true
                         }
                         .frame(height: .Constants.lineElementHeight)
-                        .padding(.top, .Constants.standardSpacing)
                         .alert("Confirm deleting", isPresented: $isShowingDeleteAlert) {
                             Button("Yes", role: .destructive) {
                                 deleteAccount()

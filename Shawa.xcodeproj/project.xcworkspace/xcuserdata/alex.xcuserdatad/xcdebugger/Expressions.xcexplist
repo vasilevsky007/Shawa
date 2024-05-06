@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "FirebaseRTDBOrderRepository.getAllOrders():FirebaseRTDBOrderRepository.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in OrderItem.thisItem.getter:OrderItem.swift">
          <PersistentStrings>
             <PersistentString
@@ -139,6 +142,17 @@
             </PersistentString>
             <PersistentString
                value = "document.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FirebaseRTDBOrderRepository.getAllOrders():FirebaseRTDBOrderRepository.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ordersByUser">
+            </PersistentString>
+            <PersistentString
+               value = "orderByUser.values">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

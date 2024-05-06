@@ -19,7 +19,7 @@ extension CGFloat {
         static let spinnerHeight: CGFloat = 30
         
         static let standardSpacing: CGFloat = 8
-        static let halfSpacing: CGFloat = 4
+        static let halfSpacing: CGFloat = standardSpacing / 2
         static let doubleSpacing: CGFloat = 2 * standardSpacing
         static let tripleSpacing: CGFloat = 3 * standardSpacing
         static let quadripleSpacing: CGFloat = 4 * standardSpacing
@@ -45,6 +45,13 @@ extension CGFloat {
         
         struct PrettyEditButton {
             static let defaultHeight: CGFloat = 40
+        }
+        
+        struct SegmentedProgressBar {
+            static let borderWidth: CGFloat = 4
+            static let barHeight: CGFloat = 12
+            static let circleHeight: CGFloat = 24
+            static let height: CGFloat = 40
         }
         
         struct Header {
@@ -94,7 +101,8 @@ extension CGFloat {
             static let ingredientBoxHeight: CGFloat = 32
             static let ingredientBoxMinWidth: CGFloat = 100
             static let addButtonHeight: CGFloat = 60
-            static let addButtonWidth: CGFloat = 160
+            static let addButtonWidth: CGFloat = 130
+            static let addButtonMaxWidth: CGFloat = 160
         }
         
         struct CartView {
@@ -104,6 +112,10 @@ extension CGFloat {
         
         struct OrderView {
             static let priceWidth: CGFloat = 136
+        }
+        
+        struct ReceivedOrdersListView {
+            static let filterItemHeight: CGFloat = 36
         }
     }
 }

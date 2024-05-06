@@ -117,6 +117,17 @@
         }
       }
     },
+    "cancelled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отменённый"
+          }
+        }
+      }
+    },
     "Change Password" : {
       "localizations" : {
         "ru" : {
@@ -177,12 +188,45 @@
         }
       }
     },
+    "confirmed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "подтверждённый"
+          }
+        }
+      }
+    },
     "Delete your account" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить мой аккаунт"
+          }
+        }
+      }
+    },
+    "delivered" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "доставленный"
+          }
+        }
+      }
+    },
+    "delivering" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "доставлемый"
           }
         }
       }
@@ -447,6 +491,60 @@
         }
       }
     },
+    "Order cancelled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заказ отменён"
+          }
+        }
+      }
+    },
+    "Order confirmed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заказ подтверждён"
+          }
+        }
+      }
+    },
+    "Order delivered" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заказ доставлен"
+          }
+        }
+      }
+    },
+    "Order sended" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заказ отправлен"
+          }
+        }
+      }
+    },
+    "Order status:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус заказа:"
+          }
+        }
+      }
+    },
     "Password" : {
       "localizations" : {
         "ru" : {
@@ -573,6 +671,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Показать все"
+          }
+        }
+      }
+    },
+    "sended" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отправленный"
+          }
+        }
+      }
+    },
+    "Sent for delivery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заказ отдан в доставку"
           }
         }
       }

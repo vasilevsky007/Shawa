@@ -13,6 +13,28 @@ class FirebaseRTDBOrderManager: OrderManager {
     
     @Published private(set) var userOrders: Loadable<[Order]> = .notLoaded(error: nil)
     @Published private(set) var currentOrder = Order()
+    @Published private(set) var allOrders = [Order]()
+    
+    init(isAdmin: Bool = false) {
+        if (isAdmin) {
+            repository.startListeningToALLOrders{ [weak self] orders in
+                Task {
+                    withAnimation {
+                        self?.allOrders = orders.sorted{ order1, order2 in
+                            if let time1 = order1.timestamp, let time2 = order2.timestamp {
+                                return time1 < time2
+                            }
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    deinit {
+        repository.stopListeningToALLOrders()
+    }
     
     var isCurrentOrderEmpty: Bool {
         currentOrder.orderItems.isEmpty
@@ -32,6 +54,13 @@ class FirebaseRTDBOrderManager: OrderManager {
         }
         try await sendTask.result.get()
         currentOrder = Order()
+    }
+    
+    func updateOrderState(to state: Order.OrderState, in order: Order) async throws {
+        let sendTask = Task.detached {
+            try await self.repository.updateOrderState(to: state, in: order)
+        }
+        try await sendTask.result.get()
     }
     
     func getUserOrders(uid: String) async throws {

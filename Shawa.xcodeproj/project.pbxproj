@@ -22,6 +22,8 @@
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
+		FA72E7812BE909B9007F1CF3 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72E7802BE909B8007F1CF3 /* FlowLayout.swift */; };
+		FA72E7822BE909B9007F1CF3 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72E7802BE909B8007F1CF3 /* FlowLayout.swift */; };
 		FA7CE42C2BE3A655005EEA88 /* ShawaAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE42B2BE3A655005EEA88 /* ShawaAdminApp.swift */; };
 		FA7CE43B2BE3A90B005EEA88 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CAF2BB55F85008BE48A /* Restaurant.swift */; };
 		FA7CE43C2BE3A90F005EEA88 /* RestaurantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11CBD2BB570F4008BE48A /* RestaurantRepository.swift */; };
@@ -81,6 +83,10 @@
 		FA7CE4912BE3CD19005EEA88 /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA7CE4962BE3D2F1005EEA88 /* MenuEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */; };
 		FA7CE4982BE3D354005EEA88 /* ReceivedOrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */; };
+		FA7CE4992BE4F91E005EEA88 /* OrderItemUnchangable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */; };
+		FA7CE49A2BE4F930005EEA88 /* UserOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA222B07A5BC0092A46A /* UserOrder.swift */; };
+		FA7CE49D2BE635DE005EEA88 /* SegmentedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */; };
+		FA7CE49E2BE635DE005EEA88 /* SegmentedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */; };
 		FA82F1A92BBE8EBC00AD2C12 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */; };
 		FA82F1AB2BBE912700AD2C12 /* DrawingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */; };
 		FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */; };
@@ -170,15 +176,17 @@
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		FA72E7802BE909B8007F1CF3 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		FA7CE4292BE3A655005EEA88 /* ShawaAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShawaAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7CE42B2BE3A655005EEA88 /* ShawaAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAdminApp.swift; sourceTree = "<group>"; };
 		FA7CE42D2BE3A655005EEA88 /* ShawaAdminAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShawaAdminAppView.swift; sourceTree = "<group>"; };
 		FA7CE4392BE3A8AF005EEA88 /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
 		FA7CE4862BE3C57F005EEA88 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA7CE4882BE3C6BD005EEA88 /* RTDBSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RTDBSettings.plist; sourceTree = "<group>"; };
-		FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ShawaAdmin-Info.plist"; sourceTree = "<group>"; };
+		FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShawaAdmin-Info.plist"; sourceTree = "<group>"; };
 		FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEditorView.swift; sourceTree = "<group>"; };
 		FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedOrdersListView.swift; sourceTree = "<group>"; };
+		FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressBar.swift; sourceTree = "<group>"; };
 		FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA82F1AA2BBE912700AD2C12 /* DrawingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingConstants.swift; sourceTree = "<group>"; };
 		FA8320D42A0B9FB6000C37B9 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
@@ -281,13 +289,9 @@
 			isa = PBXGroup;
 			children = (
 				FAC11CE32BB8267F008BE48A /* Controls */,
+				FA7CE49B2BE63569005EEA88 /* Shared */,
 				FAC11CE42BB8275D008BE48A /* MainMenu */,
 				FA82F1A72BBC441000AD2C12 /* UserOrders */,
-				FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */,
-				FAA4238229C0A809007818F7 /* Header.swift */,
-				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
-				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
-				FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -298,6 +302,7 @@
 				FA7CE4372BE3A872005EEA88 /* View */,
 				FA7CE42B2BE3A655005EEA88 /* ShawaAdminApp.swift */,
 				FA7CE4862BE3C57F005EEA88 /* GoogleService-Info.plist */,
+				FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */,
 			);
 			path = ShawaAdminSpecific;
 			sourceTree = "<group>";
@@ -326,6 +331,19 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA7CE49B2BE63569005EEA88 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FA1AFA142AFE5B2C0092A46A /* PrettyLabel.swift */,
+				FAA4238229C0A809007818F7 /* Header.swift */,
+				FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */,
+				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
+				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
+				FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		FA82F1A72BBC441000AD2C12 /* UserOrders */ = {
@@ -373,7 +391,6 @@
 		FAA919FA29BB4D03004B3C71 = {
 			isa = PBXGroup;
 			children = (
-				FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */,
 				FAA91A0529BB4D03004B3C71 /* Shawa */,
 				FA7CE42A2BE3A655005EEA88 /* ShawaAdminSpecific */,
 				FA8DDEEE29BBD491004DAE5C /* Shawa.app */,
@@ -447,6 +464,7 @@
 				FAC11CD22BB6CE47008BE48A /* FirebaseHelpers.swift */,
 				FAC11CE82BB8537E008BE48A /* Loadable.swift */,
 				FAC11CFB2BB8ABFC008BE48A /* SwiftUIHelpers.swift */,
+				FA72E7802BE909B8007F1CF3 /* FlowLayout.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -687,13 +705,17 @@
 				FA7CE43E2BE3A918005EEA88 /* Authentication.swift in Sources */,
 				FA7CE4812BE3B41E005EEA88 /* LoadableImage.swift in Sources */,
 				FA7CE44B2BE3A976005EEA88 /* AuthenticationManagerStub.swift in Sources */,
+				FA7CE4992BE4F91E005EEA88 /* OrderItemUnchangable.swift in Sources */,
 				FA7CE44A2BE3A974005EEA88 /* FirebaseAuthenticationManager.swift in Sources */,
 				FA7CE4712BE3AC38005EEA88 /* TabMenuView.swift in Sources */,
 				FA7CE44F2BE3A984005EEA88 /* OrderManagerStub.swift in Sources */,
 				FA7CE47F2BE3B415005EEA88 /* PrettyLabel.swift in Sources */,
 				FA7CE4422BE3A941005EEA88 /* MenuItem.swift in Sources */,
 				FA7CE4982BE3D354005EEA88 /* ReceivedOrdersListView.swift in Sources */,
+				FA7CE49E2BE635DE005EEA88 /* SegmentedProgressBar.swift in Sources */,
 				FA7CE4752BE3AFE1005EEA88 /* Fonts.swift in Sources */,
+				FA7CE49A2BE4F930005EEA88 /* UserOrder.swift in Sources */,
+				FA72E7822BE909B9007F1CF3 /* FlowLayout.swift in Sources */,
 				FA7CE44E2BE3A982005EEA88 /* FirebaseRTDBOrderManager.swift in Sources */,
 				FA7CE4452BE3A951005EEA88 /* Order.swift in Sources */,
 				FA7CE46C2BE3AB41005EEA88 /* Loadable.swift in Sources */,
@@ -720,6 +742,7 @@
 				FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */,
 				FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */,
 				FAC11CE22BB82270008BE48A /* FirebaseAuthenticationManager.swift in Sources */,
+				FA7CE49D2BE635DE005EEA88 /* SegmentedProgressBar.swift in Sources */,
 				FAA9F1C529BB8A58005D91A7 /* Fonts.swift in Sources */,
 				FA82F1A92BBE8EBC00AD2C12 /* ActionButton.swift in Sources */,
 				FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */,
@@ -759,6 +782,7 @@
 				FAC11D042BB8B715008BE48A /* AuthenticationStub.swift in Sources */,
 				FAC11CF62BB8832E008BE48A /* FirebaseRTDBOrderManager.swift in Sources */,
 				FAA91A0729BB4D03004B3C71 /* ShawaApp.swift in Sources */,
+				FA72E7812BE909B9007F1CF3 /* FlowLayout.swift in Sources */,
 				FAC11CE92BB8537E008BE48A /* Loadable.swift in Sources */,
 				FAC11CFC2BB8ABFC008BE48A /* SwiftUIHelpers.swift in Sources */,
 				FAA4238329C0A809007818F7 /* Header.swift in Sources */,
@@ -796,7 +820,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ShawaAdmin-Info.plist";
+				INFOPLIST_FILE = "ShawaAdminSpecific/ShawaAdmin-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Shawa Admin";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -834,7 +858,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ShawaAdmin-Info.plist";
+				INFOPLIST_FILE = "ShawaAdminSpecific/ShawaAdmin-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Shawa Admin";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

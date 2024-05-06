@@ -88,18 +88,18 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
             NavigationLink {
                 ProfileView<AuthenticationManagerType>()
             } label: {
-                PrettyButton(text: "Profile", unactiveColor: .lightBrown, isActive: false, onTap: {})
+                PrettyButton(text: "Profile", unactiveColor: .lightBrown, isActive: false, infiniteWidth: true, onTap: {})
                     .disabled(true)
                     .frame(height: .Constants.lineElementHeight)
             }
             NavigationLink {
                 UserOrdersView<OrderManagerType, RestaurantManagerType>(userID: authenticationManager.auth.uid ?? "")
             } label: {
-                PrettyButton(text: "My orders", unactiveColor: .lightBrown, isActive: false, onTap: {})
+                PrettyButton(text: "My orders", unactiveColor: .lightBrown, isActive: false, infiniteWidth: true, onTap: {})
                     .disabled(true)
                     .frame(height: .Constants.lineElementHeight)
             }
-            PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
+            PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false, infiniteWidth: true) {
                 authenticationManager.logout()
             }
             .frame(height: .Constants.lineElementHeight)
