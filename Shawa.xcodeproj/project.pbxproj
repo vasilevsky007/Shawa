@@ -296,6 +296,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		FA72E7A52BEB9583007F1CF3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		FA7CE42A2BE3A655005EEA88 /* ShawaAdminSpecific */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7CE4382BE3A883005EEA88 /* Views */,
+				FA72E7A52BEB9583007F1CF3 /* Components */,
 				FA7CE42D2BE3A655005EEA88 /* ShawaAdminAppView.swift */,
 			);
 			path = View;

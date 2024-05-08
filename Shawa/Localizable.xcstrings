@@ -645,6 +645,16 @@
         }
       }
     },
+    "Restaurants" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рестораны"
+          }
+        }
+      }
+    },
     "Save" : {
       "localizations" : {
         "ru" : {

@@ -14,3 +14,11 @@ struct MenuEditorView<RestaurantManagerType: RestaurantManager,
         Text(verbatim: "MenuEditorView")
     }
 }
+
+#Preview {
+    MenuEditorView<RestaurantManagerStub, OrderManagerStub, AuthenticationManagerStub>()
+        .background(.veryLightBrown2)
+        .environmentObject(RestaurantManagerStub())
+        .environmentObject(OrderManagerStub())
+        .environmentObject(AuthenticationManagerStub())
+}

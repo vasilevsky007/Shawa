@@ -68,4 +68,100 @@ class FirestoreRestaurantManager: RestaurantManager {
         }
         return nil
     }
+    
+    func add(restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.add(restaurant: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func add(_ menuItem: MenuItem, to restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.add(menuItem, to: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func add(_ ingredient: Ingredient, to restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.add(ingredient, to: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func add(_ section: MenuSection, to restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.add(section, to: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func remove(restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.remove(restaurant: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func remove(_ menuItem: MenuItem, from restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.remove(menuItem, from: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func remove(_ ingredient: Ingredient, from restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.remove(ingredient, from: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
+    
+    func remove(_ section: MenuSection, from restaurant: Restaurant) {
+        Task.detached {
+            do {
+                try await self.repository.remove(section, from: restaurant)
+            } catch {
+                Task {
+                    await self.loadRestaurants()
+                }
+            }
+        }
+    }
 }
