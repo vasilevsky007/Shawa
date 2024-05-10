@@ -223,6 +223,16 @@
         }
       }
     },
+    "Adding new restaurant" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавление нового ресторана"
+          }
+        }
+      }
+    },
     "Address" : {
       "localizations" : {
         "ru" : {
@@ -283,6 +293,16 @@
         }
       }
     },
+    "Belongs to:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относится к:"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -300,6 +320,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "отменённый"
+          }
+        }
+      }
+    },
+    "Change name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переименовать"
           }
         }
       }
@@ -375,6 +405,16 @@
         }
       }
     },
+    "Date added:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата добавления:"
+          }
+        }
+      }
+    },
     "Delete your account" : {
       "localizations" : {
         "ru" : {
@@ -403,6 +443,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "доставлемый"
+          }
+        }
+      }
+    },
+    "Description:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
           }
         }
       }
@@ -507,6 +557,36 @@
         }
       }
     },
+    "ID: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID: %@"
+          }
+        }
+      }
+    },
+    "Ingredients" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ингредиенты"
+          }
+        }
+      }
+    },
+    "Ingredients included:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включенные ингредиенты:"
+          }
+        }
+      }
+    },
     "Loading" : {
       "localizations" : {
         "ru" : {
@@ -587,6 +667,16 @@
         }
       }
     },
+    "Menu Items" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиции в меню"
+          }
+        }
+      }
+    },
     "My orders" : {
       "localizations" : {
         "ru" : {
@@ -633,6 +723,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет"
+          }
+        }
+      }
+    },
+    "No image URL" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL фото отсутсвует"
           }
         }
       }
@@ -741,6 +841,16 @@
         }
       }
     },
+    "Photo:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фото"
+          }
+        }
+      }
+    },
     "placeholder. will not be seen" : {
       "localizations" : {
         "ru" : {
@@ -767,6 +877,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Популярность"
+          }
+        }
+      }
+    },
+    "Popularity:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Популярность:"
+          }
+        }
+      }
+    },
+    "Price:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена:"
           }
         }
       }
@@ -821,6 +951,16 @@
         }
       }
     },
+    "Renaming %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переименование %@"
+          }
+        }
+      }
+    },
     "Restaurant name" : {
       "localizations" : {
         "ru" : {
@@ -857,6 +997,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поиск по блюдам"
+          }
+        }
+      }
+    },
+    "Sections" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Секции"
           }
         }
       }

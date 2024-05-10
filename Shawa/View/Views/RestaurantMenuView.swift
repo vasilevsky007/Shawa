@@ -13,7 +13,6 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
     
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
     @Environment(\.dismiss) private var dismissThisView
-    @GestureState private var dragOffset = CGSize.zero
     private var restaurant: Restaurant {
         (restaurantManager.restaurants.value?.first(where: { $0.id == restaurantId}))!
     }
@@ -57,11 +56,9 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {}
-        .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
-            if(value.startLocation.x < 50 && value.translation.width > 100) {
-                dismissThisView()
-            }
-        }))
+        .backGesture {
+            dismissThisView()
+        }
     }
     
     var backgroundBody: some View {

@@ -11,7 +11,6 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
     @EnvironmentObject private var orderManager: OrderManagerType
     
     @Environment(\.dismiss) private var dismissThisView
-    @GestureState private var dragOffset = CGSize.zero
     
     var body: some View {
         NavigationView {
@@ -68,11 +67,9 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
         .toolbar {
             
         }
-        .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
-            if(value.startLocation.x < 50 && value.translation.width > 100) {
-                dismissThisView()
-            }
-        }))
+        .backGesture {
+            dismissThisView()
+        }
     }
     
     var backgroundBody: some View {

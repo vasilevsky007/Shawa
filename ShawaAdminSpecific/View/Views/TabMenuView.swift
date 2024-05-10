@@ -28,7 +28,7 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
             ZStack(alignment: .top) {
                 Color.veryLightBrown2
                     .ignoresSafeArea()
-                RestaurantEditorListView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+                RestaurantEditorListView<RestaurantManagerType, AuthenticationManagerType>()
             }
                 .tabItem {
                     VStack(alignment: .center) {

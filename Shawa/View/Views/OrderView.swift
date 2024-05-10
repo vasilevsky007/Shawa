@@ -12,7 +12,6 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     
     @Environment(\.dismiss) private var dismiss
-    @GestureState private var dragOffset = CGSize.zero
     
     private enum FocusableField: Hashable {
         case phone, street, house, apartament, comment;
@@ -119,13 +118,9 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
         .toolbar {
             
         }
-        .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
-            if(value.startLocation.x < 50 && value.translation.width > 100) {
-                Task(priority: .userInitiated) {
-                    await closethisView()
-                }
-            }
-        }))
+        .backGesture {
+            dismiss()
+        }
         .onAppear {
             loadFromModel()
         }

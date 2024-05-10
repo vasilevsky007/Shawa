@@ -13,7 +13,6 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     
     @Environment(\.dismiss) private var dismiss
-    @GestureState private var dragOffset = CGSize.zero
     
     private enum FocusableField: Hashable {
         case name, comment;
@@ -175,11 +174,9 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
         .toolbar {
             
         }
-        .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
-            if(value.startLocation.x < 50 && value.translation.width > 100) {
-                closeThisView()
-            }
-        }))
+        .backGesture {
+            dismiss()
+        }
         .task {
             loadUserInfo()
         }

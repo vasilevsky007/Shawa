@@ -11,7 +11,6 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
     @EnvironmentObject private var orderManager: OrderManagerType
     
     @Environment(\.dismiss) private var dismiss
-    @GestureState private var dragOffset = CGSize.zero
     
     let userID: String
     
@@ -67,13 +66,10 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
         .toolbar {
             
         }
-        .highPriorityGesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
-            if(value.startLocation.x < 50 && value.translation.width > 100) {
-                closeThisView()
-            }
-        }))
+        .backGesture {
+            closeThisView()
+        }
         .task {
-            //TODO: load orders from firebase
             try? await orderManager.getUserOrders(uid: userID)
         }
     }

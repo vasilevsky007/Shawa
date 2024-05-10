@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-class FirestoreRestaurantManager: RestaurantManager {
+final class FirestoreRestaurantManager: RestaurantManager {
     
     private var repository = FirestoreRestaurantRepository()
     
@@ -22,13 +22,37 @@ class FirestoreRestaurantManager: RestaurantManager {
         }
         return result
     }
-    
-    private func updateRestaurants(to newRestaurants: Loadable<[Restaurant]>) {
+}
+
+
+//MARK: - Convinience funcs
+
+private extension FirestoreRestaurantManager {
+    func updateRestaurants(to newRestaurants: Loadable<[Restaurant]>) {
         withAnimation {
             restaurants = newRestaurants
         }
     }
     
+    func makeChangeUpdatingRestaurants(_ makeChange: @escaping () async throws -> Void) {
+        Task {
+            let task = Task.detached {
+                try await makeChange()
+            }
+            do {
+                try await task.value
+                loadRestaurants()
+            } catch {
+                loadRestaurants()
+            }
+        }
+    }
+}
+
+
+//MARK: - General intents
+
+extension FirestoreRestaurantManager {
     func loadRestaurants() {
         updateRestaurants(to: .loading(last: restaurants.value))
         Task.detached {
@@ -68,100 +92,57 @@ class FirestoreRestaurantManager: RestaurantManager {
         }
         return nil
     }
-    
+}
+
+
+//MARK: - Edit Intents
+
+extension FirestoreRestaurantManager {
     func add(restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.add(restaurant: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.add(restaurant: restaurant)
         }
     }
     
     func add(_ menuItem: MenuItem, to restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.add(menuItem, to: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.add(menuItem, to: restaurant)
         }
     }
     
     func add(_ ingredient: Ingredient, to restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.add(ingredient, to: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.add(ingredient, to: restaurant)
         }
     }
     
     func add(_ section: MenuSection, to restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.add(section, to: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.add(section, to: restaurant)
         }
     }
     
     func remove(restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.remove(restaurant: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.remove(restaurant: restaurant)
         }
     }
     
     func remove(_ menuItem: MenuItem, from restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.remove(menuItem, from: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.remove(menuItem, from: restaurant)
         }
     }
     
     func remove(_ ingredient: Ingredient, from restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.remove(ingredient, from: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.remove(ingredient, from: restaurant)
         }
     }
     
     func remove(_ section: MenuSection, from restaurant: Restaurant) {
-        Task.detached {
-            do {
-                try await self.repository.remove(section, from: restaurant)
-            } catch {
-                Task {
-                    await self.loadRestaurants()
-                }
-            }
+        makeChangeUpdatingRestaurants {
+            try await self.repository.remove(section, from: restaurant)
         }
     }
 }

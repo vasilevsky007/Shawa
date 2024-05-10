@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
-                      OrderManagerType: OrderManager,
-                      AuthenticationManagerType: AuthenticationManager>: View {
+                                AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
     
     @State private var restaurantAdderPresented = false
@@ -29,7 +28,11 @@ struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
                                 .tint(.defaultBrown)
                         }
                         Spacer()
-                        PrettyButton(text: "Add restaurant", systemImage: "plus.circle", fontsize: 16, unactiveColor: .defaultBrown, isActive: false) {
+                        PrettyButton(text: "Add restaurant",
+                                     systemImage: "plus.circle",
+                                     fontsize: 16,
+                                     unactiveColor: .defaultBrown,
+                                     isActive: false) {
                             restaurantAdderPresented = true
                         }
                         .frame(height: .Constants.MenuEditorView.addButtonHeight)
@@ -38,7 +41,7 @@ struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
                     List{
                         ForEach(restaurantManager.restaurants.value ?? []) { restaurant in
                             NavigationLink {
-                                Text(restaurant.id)
+                                RestaurantEditorView<RestaurantManagerType, AuthenticationManagerType>(currentRestaurant: restaurant)
                             } label: {
                                 VStack(alignment: .leading, spacing:0) {
                                     Text(restaurant.name)
@@ -88,10 +91,16 @@ struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
             .background(.veryLightBrown2)
             .sheet(isPresented: $restaurantAdderPresented) {
                 if #available(iOS 16.0, *) {
-                    RestaurantAdderView<RestaurantManagerType>()
+                    RestaurantNameEditorView<RestaurantManagerType>(
+                        restaurant: .init(name: "", menu: [], ingredients: [], sections: []),
+                        isNew: true
+                    )
                         .presentationDetents(.init(arrayLiteral: .small))
                 } else {
-                    RestaurantAdderView<RestaurantManagerType>()
+                    RestaurantNameEditorView<RestaurantManagerType>(
+                        restaurant: .init(name: "", menu: [], ingredients: [], sections: []),
+                        isNew: true
+                    )
                 }
             }
         }
@@ -99,9 +108,8 @@ struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
 }
 
 #Preview {
-    RestaurantEditorListView<RestaurantManagerStub, OrderManagerStub, AuthenticationManagerStub>()
+    RestaurantEditorListView<RestaurantManagerStub, AuthenticationManagerStub>()
         .background(.veryLightBrown2)
         .environmentObject(RestaurantManagerStub())
-        .environmentObject(OrderManagerStub())
         .environmentObject(AuthenticationManagerStub())
 }

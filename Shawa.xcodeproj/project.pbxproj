@@ -19,7 +19,8 @@
 		FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */; };
 		FA2775F02A87C5F000A55405 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775EF2A87C5F000A55405 /* CartView.swift */; };
 		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
-		FA3357042BEE0C67001C11F8 /* RestaurantAdderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3357032BEE0C67001C11F8 /* RestaurantAdderView.swift */; };
+		FA3357062BEE2252001C11F8 /* RestaurantEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */; };
+		FA3357082BEE24B5001C11F8 /* RestaurantNameEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
@@ -174,7 +175,8 @@
 		FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemUnchangable.swift; sourceTree = "<group>"; };
 		FA2775EF2A87C5F000A55405 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
-		FA3357032BEE0C67001C11F8 /* RestaurantAdderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAdderView.swift; sourceTree = "<group>"; };
+		FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantEditorView.swift; sourceTree = "<group>"; };
+		FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNameEditorView.swift; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
@@ -332,7 +334,8 @@
 				FA7CE4392BE3A8AF005EEA88 /* TabMenuView.swift */,
 				FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */,
 				FA7CE4952BE3D2F1005EEA88 /* RestaurantEditorListView.swift */,
-				FA3357032BEE0C67001C11F8 /* RestaurantAdderView.swift */,
+				FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */,
+				FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -695,13 +698,13 @@
 			files = (
 				FA7CE4492BE3A96D005EEA88 /* AuthenticationStub.swift in Sources */,
 				FA7CE4512BE3A99F005EEA88 /* ConditionalTextEditor.swift in Sources */,
+				FA3357062BEE2252001C11F8 /* RestaurantEditorView.swift in Sources */,
 				FA7CE4522BE3A99F005EEA88 /* ActionButton.swift in Sources */,
 				FA7CE4532BE3A99F005EEA88 /* PrettyButton.swift in Sources */,
 				FA7CE4542BE3A99F005EEA88 /* PrettyEditButton.swift in Sources */,
 				FA7CE4852BE3BED4005EEA88 /* AuthoriseView.swift in Sources */,
 				FA7CE42C2BE3A655005EEA88 /* ShawaAdminApp.swift in Sources */,
 				FA7CE43F2BE3A91F005EEA88 /* AuthenticationManager.swift in Sources */,
-				FA3357042BEE0C67001C11F8 /* RestaurantAdderView.swift in Sources */,
 				FA7CE4742BE3ACDE005EEA88 /* DrawingConstants.swift in Sources */,
 				FA7CE43D2BE3A913005EEA88 /* OrderRepository.swift in Sources */,
 				FA7CE43C2BE3A90F005EEA88 /* RestaurantRepository.swift in Sources */,
@@ -727,6 +730,7 @@
 				FA7CE49E2BE635DE005EEA88 /* SegmentedProgressBar.swift in Sources */,
 				FA7CE4752BE3AFE1005EEA88 /* Fonts.swift in Sources */,
 				FA7CE49A2BE4F930005EEA88 /* UserOrder.swift in Sources */,
+				FA3357082BEE24B5001C11F8 /* RestaurantNameEditorView.swift in Sources */,
 				FA72E7822BE909B9007F1CF3 /* FlowLayout.swift in Sources */,
 				FA7CE44E2BE3A982005EEA88 /* FirebaseRTDBOrderManager.swift in Sources */,
 				FA7CE4452BE3A951005EEA88 /* Order.swift in Sources */,

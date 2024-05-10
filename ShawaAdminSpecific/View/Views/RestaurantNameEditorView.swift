@@ -1,5 +1,5 @@
 //
-//  RestaurantAdderView.swift
+//  RestaurantNameEditorView.swift
 //  ShawaAdmin
 //
 //  Created by Alex on 10.05.24.
@@ -7,16 +7,29 @@
 
 import SwiftUI
 
-struct RestaurantAdderView<RestaurantManagerType: RestaurantManager>: View {
+struct RestaurantNameEditorView<RestaurantManagerType: RestaurantManager>: View {
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
     
     @Environment(\.dismiss) private var dismiss
     
-    @State private var enteredName = ""
+    @State private var enteredName: String
+    
+    private var isNew: Bool
+    private var restaurant: Restaurant
+    
+    init(restaurant: Restaurant, isNew: Bool = false) {
+        self.enteredName = restaurant.name
+        self.restaurant = restaurant
+        self.isNew = isNew
+    }
     
     var body: some View {
         VStack {
-            HStack {
+            HStack(alignment:.top) {
+                Text(isNew ? "Adding new restaurant" : "Renaming \(restaurant.name)")
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.defaultBrown)
+                    .font(.montserratBold(size: 24))
                 Spacer()
                 Button {
                     dismiss()
@@ -26,7 +39,9 @@ struct RestaurantAdderView<RestaurantManagerType: RestaurantManager>: View {
                         .foregroundColor(.lighterBrown)
                 }
             }
+            
             Spacer(minLength: 0)
+            
             PrettyTextField<Bool>(
                 text: $enteredName,
                 label: "Restaurant name",
@@ -35,16 +50,24 @@ struct RestaurantAdderView<RestaurantManagerType: RestaurantManager>: View {
                 image: "rectangle.and.paperclip",
                 keyboardType: .default,
                 submitLabel: .done)
-            .padding(.bottom, .Constants.quadripleSpacing)
+            .padding(.bottom, .Constants.tripleSpacing)
+            
+            HStack(spacing: 0) {
+                Spacer(minLength: 0)
+                Text("ID: \(restaurant.id)")
+                    .font(.main(size: 10))
+                    .foregroundStyle(.lighterBrown)
+            }
+            
             HStack {
-                PrettyButton(text: "Add restaurant",
+                PrettyButton(text: isNew ? "Add restaurant" : "Change name",
                              color: .primaryBrown,
                              unactiveColor: .lightBrown,
                              isActive: !enteredName.isEmpty,
                              infiniteWidth: true) {
-                    
-                    let newRestaurant = Restaurant(name: enteredName, menu: [], ingredients: [], sections: [])
-                    restaurantManager.add(restaurant: newRestaurant)
+                    var edited = restaurant
+                    edited.name = enteredName
+                    restaurantManager.add(restaurant: edited)
                     dismiss()
                 }.frame(minWidth: .Constants.RestaurantAdderView.addButtonMinWidth)
                 
@@ -63,11 +86,14 @@ struct RestaurantAdderView<RestaurantManagerType: RestaurantManager>: View {
 }
 
 #Preview {
-    Color.red
+    @State var rm = RestaurantManagerStub()
+    
+    return Color.red
         .sheet(isPresented: .constant(true)) {
+            
             if #available(iOS 16.0, *) {
-                RestaurantAdderView<RestaurantManagerStub>()
-                    .environmentObject(RestaurantManagerStub())
+                RestaurantNameEditorView<RestaurantManagerStub>(restaurant: rm.restaurants.value!.first!)
+                    .environmentObject(rm)
                     .presentationDetents(.init([.small]))
             } else {
                 // Fallback on earlier versions
