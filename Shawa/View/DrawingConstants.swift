@@ -40,7 +40,7 @@ extension CGFloat {
         }
         
         struct PrettyButton {
-            static let imageInsets: CGFloat = standardSpacing * 2 + 6
+            static let imageInsets: CGFloat = standardSpacing * 2// + 6
         }
         
         struct PrettyEditButton {
@@ -116,6 +116,14 @@ extension CGFloat {
         
         struct ReceivedOrdersListView {
             static let filterItemHeight: CGFloat = 36
+        }
+        
+        struct MenuEditorView {
+            static let addButtonHeight: CGFloat = 32
+        }
+        
+        struct RestaurantAdderView {
+            static let addButtonMinWidth: CGFloat = 180
         }
     }
 }

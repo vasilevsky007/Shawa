@@ -16,7 +16,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
     
     @State private var tappedItem: MenuItem? = nil;
     @State private var showingSearch = false
-    @State private var showingMenu = false
+    @State private var showingMenu = true
     
     var body: some View {
         NavigationView {
@@ -102,7 +102,8 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
             PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false, infiniteWidth: true) {
                 authenticationManager.logout()
             }
-            .frame(height: .Constants.lineElementHeight)
+            .frame(height: 42)
+            .padding(.bottom, 6)
         }
     }
     

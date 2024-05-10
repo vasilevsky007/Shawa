@@ -20,7 +20,10 @@ extension Image {
 
 @available(iOS 16.0, *)
 extension PresentationDetent {
+    /// 95% of safe area
     static let extraLarge = Self.fraction(0.95)
+    /// 240 points
+    static let small = Self.height(240)
 }
 
 fileprivate struct FormHiddenBackground: ViewModifier {
@@ -56,6 +59,7 @@ struct RefreshControlColor: ViewModifier {
         }
     }
 }
+
 extension View {
     func refreshControlColor(_ color: Color) -> some View  {
         self.modifier(RefreshControlColor(color: color))

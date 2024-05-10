@@ -20,5 +20,65 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5672F4CD-29C3-4B3A-ACF6-077ACD436BA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shawa/ViewModel/RestaurantManager/FirestoreRestaurantManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "remove(restaurant:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5672F4CD-29C3-4B3A-ACF6-077ACD436BA0 - b469777200051bac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShawaAdmin.FirestoreRestaurantManager.remove(restaurant: ShawaAdmin.Restaurant) -&gt; ()"
+                  moduleName = "ShawaAdmin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex/XcodeProjects/Shawa/Shawa/ViewModel/RestaurantManager/FirestoreRestaurantManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
+               </Location>
+               <Location
+                  uuid = "5672F4CD-29C3-4B3A-ACF6-077ACD436BA0 - 6db2919541691198"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in ShawaAdmin.FirestoreRestaurantManager.remove(restaurant: ShawaAdmin.Restaurant) -&gt; ()"
+                  moduleName = "ShawaAdmin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex/XcodeProjects/Shawa/Shawa/ViewModel/RestaurantManager/FirestoreRestaurantManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
+               </Location>
+               <Location
+                  uuid = "5672F4CD-29C3-4B3A-ACF6-077ACD436BA0 - a0369819bcf5d8da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in ShawaAdmin.FirestoreRestaurantManager.remove(restaurant: ShawaAdmin.Restaurant) -&gt; ()"
+                  moduleName = "ShawaAdmin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex/XcodeProjects/Shawa/Shawa/ViewModel/RestaurantManager/FirestoreRestaurantManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -28,7 +28,7 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
             ZStack(alignment: .top) {
                 Color.veryLightBrown2
                     .ignoresSafeArea()
-                MenuEditorView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
+                RestaurantEditorListView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
             }
                 .tabItem {
                     VStack(alignment: .center) {
@@ -47,9 +47,9 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
 }
 
 #Preview {
-    @ObservedObject var am = AuthenticationManagerStub()
-    @ObservedObject var rm = RestaurantManagerStub()
-    @ObservedObject var om = OrderManagerStub()
+    @State var am = AuthenticationManagerStub()
+    @State var rm = RestaurantManagerStub()
+    @State var om = OrderManagerStub()
     
     return TabMenuView<RestaurantManagerStub, OrderManagerStub, AuthenticationManagerStub>()
         .environmentObject(rm)

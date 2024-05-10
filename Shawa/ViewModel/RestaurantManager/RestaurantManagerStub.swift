@@ -15,7 +15,6 @@ class RestaurantManagerStub: RestaurantManager {
     
     var restaurants: Loadable<[Restaurant]> = .loaded([
         .init(
-            id: "1",
             name: "rest1",
             menu: [
                 .init(id: "1", sectionIDs: .init(arrayLiteral: "1"), name: "Agdsuhbjlk;lm geyaduhjlskm ufeyhodijakmo gufehdijkm yguefhoidjskm hefij", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
@@ -36,7 +35,6 @@ class RestaurantManagerStub: RestaurantManager {
             sections: [.init(id: "1", name: "sect1"), .init(id: "2", name: "sect2")]
         ),
         .init(
-            id: "2",
             name: "rest2",
             menu: [
                 .init(id: "1", sectionIDs: .init(arrayLiteral: "1"), name: "Agdsuhbjlk;lm geyaduhjlskm ufeyhodijakmo gufehdijkm yguefhoidjskm hefij", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),

@@ -19,6 +19,7 @@
 		FA1AFA252B07AACB0092A46A /* OrderItemUnchangable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */; };
 		FA2775F02A87C5F000A55405 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775EF2A87C5F000A55405 /* CartView.swift */; };
 		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
+		FA3357042BEE0C67001C11F8 /* RestaurantAdderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3357032BEE0C67001C11F8 /* RestaurantAdderView.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
@@ -81,7 +82,7 @@
 		FA7CE48F2BE3CD14005EEA88 /* DM-Sans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEF329BC567D004DAE5C /* DM-Sans-Regular.ttf */; };
 		FA7CE4902BE3CD17005EEA88 /* DM-Sans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8DDEF129BC5646004DAE5C /* DM-Sans-Bold.ttf */; };
 		FA7CE4912BE3CD19005EEA88 /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
-		FA7CE4962BE3D2F1005EEA88 /* MenuEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */; };
+		FA7CE4962BE3D2F1005EEA88 /* RestaurantEditorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4952BE3D2F1005EEA88 /* RestaurantEditorListView.swift */; };
 		FA7CE4982BE3D354005EEA88 /* ReceivedOrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */; };
 		FA7CE4992BE4F91E005EEA88 /* OrderItemUnchangable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */; };
 		FA7CE49A2BE4F930005EEA88 /* UserOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AFA222B07A5BC0092A46A /* UserOrder.swift */; };
@@ -173,6 +174,7 @@
 		FA1AFA242B07AACB0092A46A /* OrderItemUnchangable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemUnchangable.swift; sourceTree = "<group>"; };
 		FA2775EF2A87C5F000A55405 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		FA3357032BEE0C67001C11F8 /* RestaurantAdderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAdderView.swift; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
@@ -184,7 +186,7 @@
 		FA7CE4862BE3C57F005EEA88 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA7CE4882BE3C6BD005EEA88 /* RTDBSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RTDBSettings.plist; sourceTree = "<group>"; };
 		FA7CE4922BE3D02B005EEA88 /* ShawaAdmin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShawaAdmin-Info.plist"; sourceTree = "<group>"; };
-		FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEditorView.swift; sourceTree = "<group>"; };
+		FA7CE4952BE3D2F1005EEA88 /* RestaurantEditorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantEditorListView.swift; sourceTree = "<group>"; };
 		FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedOrdersListView.swift; sourceTree = "<group>"; };
 		FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressBar.swift; sourceTree = "<group>"; };
 		FA82F1A82BBE8EBC00AD2C12 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
@@ -329,7 +331,8 @@
 			children = (
 				FA7CE4392BE3A8AF005EEA88 /* TabMenuView.swift */,
 				FA7CE4972BE3D354005EEA88 /* ReceivedOrdersListView.swift */,
-				FA7CE4952BE3D2F1005EEA88 /* MenuEditorView.swift */,
+				FA7CE4952BE3D2F1005EEA88 /* RestaurantEditorListView.swift */,
+				FA3357032BEE0C67001C11F8 /* RestaurantAdderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				FA7CE4852BE3BED4005EEA88 /* AuthoriseView.swift in Sources */,
 				FA7CE42C2BE3A655005EEA88 /* ShawaAdminApp.swift in Sources */,
 				FA7CE43F2BE3A91F005EEA88 /* AuthenticationManager.swift in Sources */,
+				FA3357042BEE0C67001C11F8 /* RestaurantAdderView.swift in Sources */,
 				FA7CE4742BE3ACDE005EEA88 /* DrawingConstants.swift in Sources */,
 				FA7CE43D2BE3A913005EEA88 /* OrderRepository.swift in Sources */,
 				FA7CE43C2BE3A90F005EEA88 /* RestaurantRepository.swift in Sources */,
@@ -732,7 +736,7 @@
 				FA7CE4722BE3AC3D005EEA88 /* ShawaAdminAppView.swift in Sources */,
 				FA7CE4442BE3A94D005EEA88 /* MenuSection.swift in Sources */,
 				FA7CE4432BE3A949005EEA88 /* Ingredient.swift in Sources */,
-				FA7CE4962BE3D2F1005EEA88 /* MenuEditorView.swift in Sources */,
+				FA7CE4962BE3D2F1005EEA88 /* RestaurantEditorListView.swift in Sources */,
 				FA7CE4472BE3A966005EEA88 /* FirebaseRTDBOrderRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

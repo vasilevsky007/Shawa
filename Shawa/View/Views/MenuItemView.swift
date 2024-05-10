@@ -52,7 +52,7 @@ struct MenuItemView: View {
                                 .foregroundColor(.gray)
                                 .frame(width: imageSize, height: imageSize / 2)
                         }
-                        HStack(alignment: .center, spacing: .Constants.standardSpacing) {
+                        HStack(alignment: .center, spacing: 0) {
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(thisItem.name)
                                     .font(.main(size: 32))
@@ -67,13 +67,14 @@ struct MenuItemView: View {
                                 .foregroundColor(.defaultBrown)
                                 .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
                             }
+                            Spacer(minLength: 0)
                             PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
                                 addToCart(thisOrderItem)
                             }
-                                .frame(height:.Constants.MenuItemView.addButtonHeight)
-                                .frame(idealWidth: .Constants.MenuItemView.addButtonWidth,
-                                       maxWidth: .Constants.MenuItemView.addButtonMaxWidth)
-                                .padding(.trailing, .Constants.standardSpacing)
+                            .frame(height:.Constants.MenuItemView.addButtonHeight)
+                            .frame(idealWidth: .Constants.MenuItemView.addButtonWidth,
+                                   maxWidth: .Constants.MenuItemView.addButtonMaxWidth)
+                            .padding(.trailing, .Constants.standardSpacing)
                         }
                         
                         LazyVGrid(columns: [.init(.adaptive(minimum: .Constants.MenuItemView.ingredientBoxMinWidth), spacing: .Constants.standardSpacing, alignment: .center)], alignment: .center, spacing: .Constants.standardSpacing) {
@@ -106,6 +107,9 @@ struct MenuItemView: View {
             }
         }
     }
+}
+ 
+private extension MenuItemView {
     @ViewBuilder
     func ingredientTagBox(id: String) -> some View {
         if let ingredient = restaurant.ingredients.first(where: {$0.id == id}) {
