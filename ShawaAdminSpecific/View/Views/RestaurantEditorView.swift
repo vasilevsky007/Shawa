@@ -36,6 +36,11 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
                 
                 Text(currentRestaurant.name)
                 
+                if restaurantManager.restaurants.isLoading {
+                    ProgressView()
+                        .tint(.defaultBrown)
+                }
+                
                 Spacer(minLength: 0)
                 Button {
                     restaurantNameEditorPresented = true
@@ -90,7 +95,8 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
                                     .foregroundStyle(.defaultBrown)
                                 Spacer(minLength: 0)
                                 Button {
-                                    //TODO: open editor
+                                    let newSection = MenuSection(name: "")
+                                    editingSection = newSection
                                 } label: {
                                     Image(systemName: "plus.circle")
                                         .foregroundStyle(.primaryBrown)
@@ -168,7 +174,12 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
             }
         }
         .sheet(item: $editingSection) { section in
-            Text(section.name)
+            if #available(iOS 16.0, *) {
+                SectionEditorView<RestaurantManagerType>(section: section, restaurant: currentRestaurant)
+                    .presentationDetents(.init([.small]))
+            } else {
+                SectionEditorView<RestaurantManagerType>(section: section, restaurant: currentRestaurant)
+            }
         }
         .sheet(item: $editingIngredient) { ingredient in
             Text(ingredient.name)

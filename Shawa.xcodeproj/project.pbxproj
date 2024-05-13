@@ -143,6 +143,7 @@
 		FAC11D042BB8B715008BE48A /* AuthenticationStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC11D032BB8B715008BE48A /* AuthenticationStub.swift */; };
 		FAD8E0FD2ABDB098007F95B1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */; };
 		FADFB98C2BB97AD2002F1633 /* LoadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */; };
+		FAEBDD502BF2513B00B8EA7C /* SectionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,7 @@
 		FAC11D032BB8B715008BE48A /* AuthenticationStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStub.swift; sourceTree = "<group>"; };
 		FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImage.swift; sourceTree = "<group>"; };
+		FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionEditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 				FA7CE4952BE3D2F1005EEA88 /* RestaurantEditorListView.swift */,
 				FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */,
 				FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */,
+				FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				FA7CE44A2BE3A974005EEA88 /* FirebaseAuthenticationManager.swift in Sources */,
 				FA7CE4712BE3AC38005EEA88 /* TabMenuView.swift in Sources */,
 				FA7CE44F2BE3A984005EEA88 /* OrderManagerStub.swift in Sources */,
+				FAEBDD502BF2513B00B8EA7C /* SectionEditorView.swift in Sources */,
 				FA7CE47F2BE3B415005EEA88 /* PrettyLabel.swift in Sources */,
 				FA7CE4422BE3A941005EEA88 /* MenuItem.swift in Sources */,
 				FA7CE4982BE3D354005EEA88 /* ReceivedOrdersListView.swift in Sources */,

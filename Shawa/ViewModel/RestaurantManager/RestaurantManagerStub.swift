@@ -32,7 +32,7 @@ class RestaurantManagerStub: RestaurantManager {
                 .init(id: "13", sectionIDs: .init(arrayLiteral: "1"), name: "цйу", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
             ],
             ingredients: [.init(id: "1", name: "ingr1", cost: 0.30),.init(id: "2", name: "ingr2", cost: 3.001),],
-            sections: [.init(id: "1", name: "sect1"), .init(id: "2", name: "sect2")]
+            sections: [.init(name: "sect1"), .init(name: "sect2")]
         ),
         .init(
             name: "rest2",
@@ -52,7 +52,7 @@ class RestaurantManagerStub: RestaurantManager {
                 .init(id: "13", sectionIDs: .init(arrayLiteral: "1"), name: "цйу", price: 3.99, image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"), dateAdded: Date.now, popularity: 12, ingredientIDs: .init(arrayLiteral: "1"), description: "sad qwd"),
             ],
             ingredients: [.init(id: "1", name: "ingr1", cost: 0.3)],
-            sections: [.init(id: "1", name: "sect1"), .init(id: "2", name: "sect2")]
+            sections: [.init(name: "sect1"), .init(name: "sect2")]
         ),
         
     ])

@@ -125,5 +125,9 @@ extension CGFloat {
         struct RestaurantAdderView {
             static let addButtonMinWidth: CGFloat = 180
         }
+        
+        struct EditorViews {
+            static let addButtonMinWidth: CGFloat = 200
+        }
     }
 }

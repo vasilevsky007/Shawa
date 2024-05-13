@@ -213,6 +213,16 @@
         }
       }
     },
+    "Add section" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить секцию"
+          }
+        }
+      }
+    },
     "Add to cart" : {
       "localizations" : {
         "ru" : {
@@ -229,6 +239,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавление нового ресторана"
+          }
+        }
+      }
+    },
+    "Adding new section" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавление новой секции меню"
           }
         }
       }
@@ -483,6 +503,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить"
+          }
+        }
+      }
+    },
+    "Editing %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирование %@"
           }
         }
       }
@@ -991,12 +1021,32 @@
         }
       }
     },
+    "Save changes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить изменения"
+          }
+        }
+      }
+    },
     "Search for meals" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поиск по блюдам"
+          }
+        }
+      }
+    },
+    "Section name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название секции"
           }
         }
       }

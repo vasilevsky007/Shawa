@@ -57,9 +57,9 @@ struct FirestoreRestaurantRepository: RestaurantRepository {
             restaurants.append(.init(
                     id: document.data()["id"] as! String,
                     name: document.data()["name"] as! String,
-                    menu: menuItems,
-                    ingredients: ingredients,
-                    sections: sections
+                    menu: menuItems.sorted(by: {$0.name < $1.name}),
+                    ingredients: ingredients.sorted(by: {$0.name < $1.name}),
+                    sections: sections.sorted(by: {$0.name < $1.name})
                 )
             )
         }
