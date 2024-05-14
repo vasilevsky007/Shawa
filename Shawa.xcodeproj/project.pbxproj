@@ -144,6 +144,7 @@
 		FAD8E0FD2ABDB098007F95B1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */; };
 		FADFB98C2BB97AD2002F1633 /* LoadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */; };
 		FAEBDD502BF2513B00B8EA7C /* SectionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */; };
+		FAEBDD522BF2614300B8EA7C /* IngredientEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +242,7 @@
 		FAD8E0FC2ABDB098007F95B1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImage.swift; sourceTree = "<group>"; };
 		FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionEditorView.swift; sourceTree = "<group>"; };
+		FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +341,7 @@
 				FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */,
 				FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */,
 				FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */,
+				FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				FA7CE4412BE3A929005EEA88 /* OrderManager.swift in Sources */,
 				FA7CE44C2BE3A97B005EEA88 /* FirestoreRestaurantManager.swift in Sources */,
 				FA7CE46D2BE3AB44005EEA88 /* SwiftUIHelpers.swift in Sources */,
+				FAEBDD522BF2614300B8EA7C /* IngredientEditorView.swift in Sources */,
 				FA7CE44D2BE3A97E005EEA88 /* RestaurantManagerStub.swift in Sources */,
 				FA7CE4402BE3A924005EEA88 /* RestaurantManager.swift in Sources */,
 				FA7CE4482BE3A96A005EEA88 /* FirebaseAuthentication.swift in Sources */,

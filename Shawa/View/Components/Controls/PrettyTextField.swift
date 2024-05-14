@@ -38,7 +38,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
         height: CGFloat = .Constants.lineElementHeight,
         focusState: FocusState<FocusStateType>.Binding? = nil,
         focusedValue: FocusStateType? = nil,
-        keyboardType:UIKeyboardType = .default,
+        keyboardType: UIKeyboardType = .default,
         submitLabel: SubmitLabel = .next,
         submitAction: (()->Void)? = nil) {
         self.cornerRadius = cornerRadius

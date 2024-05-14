@@ -114,7 +114,8 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
                                     .foregroundStyle(.defaultBrown)
                                 Spacer(minLength: 0)
                                 Button {
-                                    //TODO: open editor
+                                    let newIngredient = Ingredient(name: "", cost: 0)
+                                    editingIngredient = newIngredient
                                 } label: {
                                     Image(systemName: "plus.circle")
                                         .foregroundStyle(.primaryBrown)
@@ -182,7 +183,12 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
             }
         }
         .sheet(item: $editingIngredient) { ingredient in
-            Text(ingredient.name)
+            if #available(iOS 16.0, *) {
+                IngredientEditorView<RestaurantManagerType>(ingredient: ingredient, restaurant: currentRestaurant)
+                    .presentationDetents(.init([.small]))
+            } else {
+                IngredientEditorView<RestaurantManagerType>(ingredient: ingredient, restaurant: currentRestaurant)
+            }
         }
         .sheet(item: $editingMenuItem) { menuItem in
             Text(menuItem.name)

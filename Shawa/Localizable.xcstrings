@@ -193,6 +193,16 @@
         }
       }
     },
+    "Add ingredient" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить ингредиент"
+          }
+        }
+      }
+    },
     "Add ingredients" : {
       "localizations" : {
         "ru" : {
@@ -229,6 +239,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить в корзину"
+          }
+        }
+      }
+    },
+    "Adding new ingredient" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавление нового ингридиента"
           }
         }
       }
@@ -593,6 +613,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ID: %@"
+          }
+        }
+      }
+    },
+    "Ingredient name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название ингридиента"
+          }
+        }
+      }
+    },
+    "Ingredient price" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена ингридиента"
           }
         }
       }

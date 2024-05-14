@@ -11,4 +11,10 @@ struct Ingredient: Codable, Hashable, Identifiable{
     var id: String
     var name: String
     var cost: Double
+    
+    init(name: String, cost: Double) {
+        self.id = UUID().uuidString
+        self.name = name
+        self.cost = cost
+    }
 }
