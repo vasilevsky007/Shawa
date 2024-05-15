@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MenuSection: Codable, Identifiable {
+struct MenuSection: Codable, Identifiable, Hashable {
     var id: String
     var name: String
     

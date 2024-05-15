@@ -145,6 +145,9 @@
 		FADFB98C2BB97AD2002F1633 /* LoadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */; };
 		FAEBDD502BF2513B00B8EA7C /* SectionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */; };
 		FAEBDD522BF2614300B8EA7C /* IngredientEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */; };
+		FAEBDD552BF366F200B8EA7C /* MenuItemEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD542BF366F200B8EA7C /* MenuItemEditorView.swift */; };
+		FAEBDD572BF393DB00B8EA7C /* TagBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD562BF393DB00B8EA7C /* TagBox.swift */; };
+		FAEBDD582BF393DB00B8EA7C /* TagBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD562BF393DB00B8EA7C /* TagBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +246,8 @@
 		FADFB98B2BB97AD2002F1633 /* LoadableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImage.swift; sourceTree = "<group>"; };
 		FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionEditorView.swift; sourceTree = "<group>"; };
 		FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditorView.swift; sourceTree = "<group>"; };
+		FAEBDD542BF366F200B8EA7C /* MenuItemEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEditorView.swift; sourceTree = "<group>"; };
+		FAEBDD562BF393DB00B8EA7C /* TagBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +347,7 @@
 				FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */,
 				FAEBDD4F2BF2513B00B8EA7C /* SectionEditorView.swift */,
 				FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */,
+				FAEBDD542BF366F200B8EA7C /* MenuItemEditorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				FAA8717029BDE1BB0036488A /* MenuItemCard.swift */,
 				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
 				FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */,
+				FAEBDD562BF393DB00B8EA7C /* TagBox.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -742,12 +749,14 @@
 				FA72E7822BE909B9007F1CF3 /* FlowLayout.swift in Sources */,
 				FA7CE44E2BE3A982005EEA88 /* FirebaseRTDBOrderManager.swift in Sources */,
 				FA7CE4452BE3A951005EEA88 /* Order.swift in Sources */,
+				FAEBDD582BF393DB00B8EA7C /* TagBox.swift in Sources */,
 				FA7CE46C2BE3AB41005EEA88 /* Loadable.swift in Sources */,
 				FA7CE46B2BE3AB00005EEA88 /* FirebaseHelpers.swift in Sources */,
 				FA7CE47E2BE3B400005EEA88 /* PrettyTextField.swift in Sources */,
 				FA7CE4722BE3AC3D005EEA88 /* ShawaAdminAppView.swift in Sources */,
 				FA7CE4442BE3A94D005EEA88 /* MenuSection.swift in Sources */,
 				FA7CE4432BE3A949005EEA88 /* Ingredient.swift in Sources */,
+				FAEBDD552BF366F200B8EA7C /* MenuItemEditorView.swift in Sources */,
 				FA7CE4962BE3D2F1005EEA88 /* RestaurantEditorListView.swift in Sources */,
 				FA7CE4472BE3A966005EEA88 /* FirebaseRTDBOrderRepository.swift in Sources */,
 			);
@@ -792,6 +801,7 @@
 				FA82F1AB2BBE912700AD2C12 /* DrawingConstants.swift in Sources */,
 				FAC11CDA2BB814B9008BE48A /* Authentication.swift in Sources */,
 				FAC11CD62BB710FB008BE48A /* FirebaseAuthentication.swift in Sources */,
+				FAEBDD572BF393DB00B8EA7C /* TagBox.swift in Sources */,
 				FA8320D52A0B9FB6000C37B9 /* SearchItem.swift in Sources */,
 				FAA8717129BDE1BB0036488A /* MenuItemCard.swift in Sources */,
 				FAC11CB12BB55F85008BE48A /* Restaurant.swift in Sources */,

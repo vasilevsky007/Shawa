@@ -176,3 +176,13 @@ extension View {
         modifier(SwipeToDeleteModifier(onDelete: onDelete))
     }
 }
+
+extension View {
+    func borderedElement() -> some View {
+        self
+            .background(.defaultBrown,
+                        in: .rect(cornerRadius: .Constants.elementCornerRadius)
+                            .stroke(lineWidth: .Constants.borderWidth)
+            )
+    }
+}

@@ -193,6 +193,16 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить"
+          }
+        }
+      }
+    },
     "Add ingredient" : {
       "localizations" : {
         "ru" : {
@@ -209,6 +219,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавьте ингидиенты"
+          }
+        }
+      }
+    },
+    "Add menu item" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить элемент меню"
           }
         }
       }
@@ -243,12 +263,32 @@
         }
       }
     },
+    "Adding ingredients" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавление ингредиентов"
+          }
+        }
+      }
+    },
     "Adding new ingredient" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавление нового ингридиента"
+          }
+        }
+      }
+    },
+    "Adding new menu item" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавление нового элемента меню"
           }
         }
       }
@@ -269,6 +309,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавление новой секции меню"
+          }
+        }
+      }
+    },
+    "Adding sections" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавление секций"
           }
         }
       }
@@ -380,6 +430,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить пароль"
+          }
+        }
+      }
+    },
+    "Choose ingredient to add" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите ингредиент для добавления"
+          }
+        }
+      }
+    },
+    "Choose section to add" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите секцию для добавления"
           }
         }
       }
@@ -637,6 +707,17 @@
         }
       }
     },
+    "Ingredient with such id cannot be found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ингредиент с таким id не был найден"
+          }
+        }
+      }
+    },
     "Ingredients" : {
       "localizations" : {
         "ru" : {
@@ -733,6 +814,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Редактирование меню"
+          }
+        }
+      }
+    },
+    "Menu item description" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание элемента меню"
+          }
+        }
+      }
+    },
+    "Menu item image URL" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL изображения"
+          }
+        }
+      }
+    },
+    "Menu item name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название элемента меню"
+          }
+        }
+      }
+    },
+    "Menu item price" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена элемента меню"
           }
         }
       }
@@ -1087,6 +1208,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Название секции"
+          }
+        }
+      }
+    },
+    "Section with such id cannot be found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Секция с таким id не была найдена"
           }
         }
       }

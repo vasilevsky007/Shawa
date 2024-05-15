@@ -45,12 +45,10 @@ struct SearchItem: View {
 
 #Preview {
     SearchItem(.init(
-        id: "",
         sectionIDs: Set<String>(),
         name: "Item1 xdd",
         price: 8.99,
         image: .init(string: "https://upload.wikimedia.org/wikipedia/ru/d/d8/Tianasquare.jpg"),
-        dateAdded: Date(),
         popularity: 123,
         ingredientIDs: Set<String>(),
         description: ""))

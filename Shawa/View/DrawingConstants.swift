@@ -127,7 +127,7 @@ extension CGFloat {
         }
         
         struct EditorViews {
-            static let addButtonMinWidth: CGFloat = 200
+            static let addButtonMinWidth: CGFloat = 220
         }
     }
 }

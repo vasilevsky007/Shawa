@@ -133,7 +133,14 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
                                     .foregroundStyle(.defaultBrown)
                                 Spacer(minLength: 0)
                                 Button {
-                                    //TODO: open editor
+                                    let newItem = MenuItem(
+                                        sectionIDs: .init(),
+                                        name: "",
+                                        price: 0,
+                                        ingredientIDs: .init(),
+                                        description: ""
+                                    )
+                                    editingMenuItem = newItem
                                 } label: {
                                     Image(systemName: "plus.circle")
                                         .foregroundStyle(.primaryBrown)
@@ -176,22 +183,51 @@ struct RestaurantEditorView<RestaurantManagerType: RestaurantManager,
         }
         .sheet(item: $editingSection) { section in
             if #available(iOS 16.0, *) {
-                SectionEditorView<RestaurantManagerType>(section: section, restaurant: currentRestaurant)
+                SectionEditorView<RestaurantManagerType>(
+                    section: section,
+                    restaurant: currentRestaurant,
+                    isNew: section.name.isEmpty
+                )
                     .presentationDetents(.init([.small]))
             } else {
-                SectionEditorView<RestaurantManagerType>(section: section, restaurant: currentRestaurant)
+                SectionEditorView<RestaurantManagerType>(
+                    section: section,
+                    restaurant: currentRestaurant,
+                    isNew: section.name.isEmpty
+                )
             }
         }
         .sheet(item: $editingIngredient) { ingredient in
             if #available(iOS 16.0, *) {
-                IngredientEditorView<RestaurantManagerType>(ingredient: ingredient, restaurant: currentRestaurant)
+                IngredientEditorView<RestaurantManagerType>(
+                    ingredient: ingredient, 
+                    restaurant: currentRestaurant,
+                    isNew: ingredient.name.isEmpty
+                )
                     .presentationDetents(.init([.small]))
             } else {
-                IngredientEditorView<RestaurantManagerType>(ingredient: ingredient, restaurant: currentRestaurant)
+                IngredientEditorView<RestaurantManagerType>(
+                    ingredient: ingredient,
+                    restaurant: currentRestaurant,
+                    isNew: ingredient.name.isEmpty
+                )
             }
         }
         .sheet(item: $editingMenuItem) { menuItem in
-            Text(menuItem.name)
+            if #available(iOS 16.0, *) {
+                MenuItemEditorView<RestaurantManagerType>(
+                    menuItem: menuItem,
+                    restaurant: currentRestaurant,
+                    isNew: menuItem.name.isEmpty
+                )
+                    .presentationDetents(.init([.extraLarge]))
+            } else {
+                MenuItemEditorView<RestaurantManagerType>(
+                    menuItem: menuItem,
+                    restaurant: currentRestaurant,
+                    isNew: menuItem.name.isEmpty
+                )
+            }
         }
         .navigationBarBackButtonHidden()
         .backGesture {

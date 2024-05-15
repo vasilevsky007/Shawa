@@ -116,6 +116,7 @@ struct IngredientEditorView<RestaurantManagerType: RestaurantManager>: View {
                              infiniteWidth: true) {
                     var edited = ingredient
                     edited.name = enteredName
+                    edited.cost = Double(enteredCost)!
                     restaurantManager.add(edited, to: restaurant)
                     dismiss()
                 }

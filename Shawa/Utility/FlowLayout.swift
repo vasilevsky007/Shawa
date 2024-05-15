@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FlowLayout<Id: Hashable, Content: View>: View {
     var items: [Id]
-    var viewForItem: (Id) -> Content
+    @ViewBuilder var viewForItem: (Id) -> Content
     @State private var totalHeight: CGFloat = 0
 
     var body: some View {
