@@ -9,10 +9,34 @@ import SwiftUI
 
 @MainActor
 class OrderManagerStub: OrderManager {
+    var numberOfActiveOrdersForUser: Int {
+        var result = 0
+        for order in userOrders {
+            if order.state == .sended || order.state == .confirmed || order.state == .delivering {
+                result += 1
+            }
+        }
+        return 2
+    }
+    var numberOfActiveOrdersForAdmin: Int {
+        var result = 0
+        for order in userOrders {
+            if order.state == .sended || order.state == .confirmed || order.state == .delivering {
+                result += 1
+            }
+        }
+        return result
+    }
     
-    @Published private(set) var userOrders: Loadable<[Order]> = .loaded([
+    var numberOfItemsInCurrentOrder: Int {
+        currentOrder.orderItems.count
+        return 99
+    }
+    
+    
+    @Published private(set) var userOrders: [Order] = [
         order, order, order, order
-    ])
+    ]
     
     @Published private(set) var currentOrder: Order = .init()
     
@@ -24,21 +48,17 @@ class OrderManagerStub: OrderManager {
         throw DecodingError.dataCorrupted(.init(codingPath: .init(), debugDescription: "xdddddd"))
     }
     
+    func startListeningToUserOrders(userID: String) {
+        
+    }
+    
+    func stopListeningToUserOrders() {
+        
+    }
+    
     func updateOrderState(to state: Order.OrderState, in order: Order) async throws {
         guard let index = allOrders.firstIndex(where: { $0.id == order.id }) else { return }
         allOrders[index].updateState(state)
-    }
-    
-    func getUserOrders(uid: String) async throws {
-        withAnimation {
-            userOrders = .loading(last: userOrders.value)
-        }
-        Task {
-            try? await Task.sleep(nanoseconds: 2_000_000_000)
-            withAnimation {
-                userOrders = .loaded(userOrders.value!)
-            }
-        }
     }
     
     var isCurrentOrderEmpty: Bool {

@@ -12,6 +12,7 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
     @Binding var tappedItem: MenuItem?
     
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
+    @EnvironmentObject private var orderManager: OrderManagerType
     @Environment(\.dismiss) private var dismissThisView
     private var restaurant: Restaurant {
         (restaurantManager.restaurants.value?.first(where: { $0.id == restaurantId}))!
@@ -23,9 +24,11 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }){
+                Header(leadingIcon: "BackIcon", trailingNumber: orderManager.numberOfItemsInCurrentOrder){ dismissThisView()
+                } trailingLink: {
                     CartView<AuthenticationManagerType,RestaurantManagerType, OrderManagerType>()
-                }.padding(.horizontal, .Constants.horizontalSafeArea)
+                }
+                .padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text(restaurant.name)
                     .foregroundColor(.defaultBrown)
@@ -33,17 +36,24 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
                     .padding(.top, .Constants.standardSpacing)
                     .frame(maxWidth: .infinity, alignment: .center)
                 
-                ScrollView (.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        //TODO: rework frames
-                        PrettyButton(text: "Filter", systemImage: "slider.vertical.3", unactiveColor: .lightBrown, onTap: {}).frame(width: 96, height: 40).padding(.leading, 24.5)
-                        PrettyButton(text: "Popularity", isActive: true, onTap: {}).frame(width: 96, height: 40)
-                        PrettyButton(text: "High Price", onTap: {}).frame(width: 96, height: 40)
-                        PrettyButton(text: "Low Price", onTap: {}).frame(width: 88, height: 40)
-                        PrettyButton(text: "Newest", onTap: {}).frame(width: 72, height: 40)
-                        PrettyButton(text: "Oldest", onTap: {}).frame(width: 72, height: 40)
-                    }.fixedSize()
-                }
+////                ScrollView (.horizontal, showsIndicators: false) {
+//                    LazyHStack {
+//                        //TODO: rework frames
+//                        PrettyButton(text: "Filter", systemImage: "slider.vertical.3", unactiveColor: .lightBrown, onTap: {}).padding(.leading, .Constants.blockCornerRadius)
+//                            .frame(height: .Constants.lineElementHeight).fixedSize()
+//                        PrettyButton(text: "Popularity", isActive: true, onTap: {})
+//                            .frame(height: .Constants.lineElementHeight).fixedSize()
+//                        PrettyButton(text: "High Price", onTap: {})
+//                            .frame(height: .Constants.lineElementHeight).fixedSize()
+//                        PrettyButton(text: "Low Price", onTap: {})
+//                            .frame(height: .Constants.lineElementHeight).fixedSize()
+//                        PrettyButton(text: "Newest", onTap: {})
+//                            .frame(height: .Constants.lineElementHeight).fixedSize()
+//                        PrettyButton(text: "Oldest", onTap: {})
+//                            .frame(height: .Constants.lineElementHeight).fixedSize()
+//                    } .frame(height: .Constants.lineElementHeight)
+////                }
+                .frame(height: .Constants.lineElementHeight)
                 ScrollView {
                     LazyVStack(spacing: .Constants.doubleSpacing) {
                         ForEach(restaurant.sections) { thisSection in
@@ -94,8 +104,12 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
 
 #Preview {
     @State var tapped: MenuItem? = nil
-    return RestaurantMenuView<AuthenticationManagerStub,RestaurantManagerStub, OrderManagerStub>(restaurantId: "1", tappedItem: $tapped)
-        .environmentObject(RestaurantManagerStub())
-        .environmentObject(AuthenticationManagerStub())
-        .environmentObject(OrderManagerStub())
+    @State var rm = RestaurantManagerStub()
+    @State var am = AuthenticationManagerStub()
+    @State var om = OrderManagerStub()
+    
+    return RestaurantMenuView<AuthenticationManagerStub,RestaurantManagerStub, OrderManagerStub>(restaurantId: rm.restaurants.value!.first!.id, tappedItem: $tapped)
+        .environmentObject(rm)
+        .environmentObject(am)
+        .environmentObject(om)
 }

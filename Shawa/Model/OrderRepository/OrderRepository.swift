@@ -9,7 +9,8 @@ import Foundation
 
 protocol OrderRepository {
     func sendOrder(_ order: Order) async throws
-    func getUserOrders(userID: String) async throws -> [Order]
+    func startListeningToUserOrders(userID: String, publishNewOrders: @escaping ([Order]) -> Void)
+    func stopListeningToUserOrders(userID: String)
     func startListeningToALLOrders(publishNewOrders: @escaping ([Order]) -> Void)
     func stopListeningToALLOrders()
     func updateOrderState(to state: Order.OrderState, in order: Order) async throws

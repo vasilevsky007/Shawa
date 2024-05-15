@@ -16,7 +16,7 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
     
     @State private var tappedItem: MenuItem? = nil;
     @State private var showingSearch = false
-    @State private var showingMenu = true
+    @State private var showingMenu = false
     
     var body: some View {
         NavigationView {
@@ -64,6 +64,9 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
             }
         }
         .navigationViewStyle(.stack)
+        .onAppear {
+            orderManager.startListeningToUserOrders(userID: authenticationManager.auth.uid!)
+        }
     }
     
     var backgroundBody: some View {
@@ -72,7 +75,9 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
     
     
     var headerBody: some View {
-        Header(leadingIcon: "MenuIcon") {
+        Header(leadingIcon: "MenuIcon",
+               leadingNumber: orderManager.numberOfActiveOrdersForUser,
+               trailingNumber: orderManager.numberOfItemsInCurrentOrder) {
             withAnimation {
                 showingMenu.toggle()
             }
@@ -98,8 +103,15 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
                 PrettyButton(text: "My orders", unactiveColor: .lightBrown, isActive: false, infiniteWidth: true, onTap: {})
                     .disabled(true)
                     .frame(height: .Constants.lineElementHeight)
+                    .overlay(alignment: .trailing) {
+                        if orderManager.numberOfActiveOrdersForUser > 0 {
+                            NumberSticker(numberToDisplay: orderManager.numberOfActiveOrdersForUser)
+                                .padding(.trailing, .Constants.doubleSpacing)
+                        }
+                    }
             }
             PrettyButton(text: "Log out", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false, infiniteWidth: true) {
+                orderManager.stopListeningToUserOrders()
                 authenticationManager.logout()
             }
             .frame(height: 42)
@@ -124,11 +136,6 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
                                     } label: {
                                         MainMenuRestaurant(restaurant: restaurant, tappedItem: $tappedItem)
                                             .padding(.bottom, .Constants.doubleSpacing)
-                                        
-//FIXME: navigation stuff                                            .id(section)
-//                                            .onAppear(){
-//                                                app.navbar.actions[section] = { proxy.scrollTo(section, anchor: .topLeading) }
-//                                            }
                                     }
                                 }
                             }

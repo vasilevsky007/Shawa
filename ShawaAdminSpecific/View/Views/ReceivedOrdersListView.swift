@@ -69,9 +69,6 @@ struct ReceivedOrdersListView<RestaurantManagerType: RestaurantManager,
             .refreshable {
                 restaurantManager.loadRestaurants()
             }
-            .task {
-                restaurantManager.loadRestaurants()
-            }
         }
     }
 }

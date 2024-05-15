@@ -10,10 +10,39 @@ import SwiftUI
 @MainActor
 class FirebaseRTDBOrderManager: OrderManager {
     private var repository = FirebaseRTDBOrderRepository()
+    private var userIdListeningOrders: String?
     
-    @Published private(set) var userOrders: Loadable<[Order]> = .notLoaded(error: nil)
+    @Published private(set) var userOrders = [Order]()
     @Published private(set) var currentOrder = Order()
     @Published private(set) var allOrders = [Order]()
+    
+    var numberOfActiveOrdersForUser: Int {
+        var result = 0
+        for order in userOrders {
+            if order.state == .sended || order.state == .confirmed || order.state == .delivering {
+                result += 1
+            }
+        }
+        return result
+    }
+    
+    var numberOfActiveOrdersForAdmin: Int {
+        var result = 0
+        for order in allOrders {
+            if order.state == .sended || order.state == .confirmed || order.state == .delivering {
+                result += 1
+            }
+        }
+        return result
+    }
+    
+    var numberOfItemsInCurrentOrder: Int {
+        currentOrder.orderItems.count
+    }
+    
+    var isCurrentOrderEmpty: Bool {
+        currentOrder.orderItems.isEmpty
+    }
     
     init(isAdmin: Bool = false) {
         if (isAdmin) {
@@ -34,13 +63,34 @@ class FirebaseRTDBOrderManager: OrderManager {
     
     deinit {
         repository.stopListeningToALLOrders()
+        guard let userIdListeningOrders = userIdListeningOrders else { return }
+        repository.stopListeningToUserOrders(userID: userIdListeningOrders)
     }
     
-    var isCurrentOrderEmpty: Bool {
-        currentOrder.orderItems.isEmpty
+    func startListeningToUserOrders(userID: String) {
+        stopListeningToUserOrders()
+        userIdListeningOrders = userID
+        repository.startListeningToUserOrders(userID: userID) { [weak self] orders in
+            Task {
+                withAnimation {
+                    self?.userOrders = orders.sorted{ order1, order2 in
+                        if let time1 = order1.timestamp, let time2 = order2.timestamp {
+                            return time1 < time2
+                        }
+                        return true
+                    }
+                }
+            }
+        }
     }
     
-    private func updateUserOrders(newOrders: Loadable<[Order]>) {
+    func stopListeningToUserOrders() {
+        guard let userIdListeningOrders = userIdListeningOrders else { return }
+        repository.stopListeningToUserOrders(userID: userIdListeningOrders)
+        self.userIdListeningOrders = nil
+    }
+    
+    private func updateUserOrders(newOrders: [Order]) {
         withAnimation {
             userOrders = newOrders
         }
@@ -61,22 +111,6 @@ class FirebaseRTDBOrderManager: OrderManager {
             try await self.repository.updateOrderState(to: state, in: order)
         }
         try await sendTask.result.get()
-    }
-    
-    func getUserOrders(uid: String) async throws {
-        updateUserOrders(newOrders: .loading(last: userOrders.value))
-        Task.detached {
-            do {
-                let ordersLoaded = try await self.repository.getUserOrders(userID: uid)
-                Task {
-                    await self.updateUserOrders(newOrders: .loaded(ordersLoaded))
-                }
-            } catch {
-                Task {
-                    await self.updateUserOrders(newOrders: .notLoaded(error: error))
-                }
-            }
-        }
     }
     
     func addOneOrderItem(_ item: Order.Item) {

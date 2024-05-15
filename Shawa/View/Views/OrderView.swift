@@ -72,12 +72,12 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: {
+                Header(leadingIcon: "BackIcon", noTrailingLink: true) {
                     Task(priority: .userInitiated) {
                         await closethisView()
                     }
-                }, noTrailingLink: true) {
-                    Text("placeholder. will not be seen")
+                } trailingLink: {
+                    Text("")
                 }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Please provide some info to order:")
@@ -99,7 +99,9 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                                 .foregroundColor(.defaultBrown)
                                 .font(.montserratBold(size: 24))
                                 .padding(.trailing, .Constants.standardSpacing)
-                                
+                            
+                            Spacer(minLength: 0)
+                            
                             Text(String(format: "%.2f BYN", orderManager.currentOrder.totalPrice))
                                 .foregroundColor(.defaultBrown)
                                 .font(.interBold(size: 20))

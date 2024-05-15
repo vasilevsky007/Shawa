@@ -50,7 +50,31 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "FIRFirestore.Decoder.decode&lt;&#x3c4;_0_0&gt;(_:from:in:):EncoderDecoder.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userInfo">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #3 in closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in closure #1 in closure #1 in OrderItem.body.getter:OrderItem.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FirestoreRestaurantRepository.getRestaurants():FirestoreRestaurantRepository.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ingredientDocument">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FirestoreRestaurantManager.loadRestaurants():FirestoreRestaurantManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "loadTask">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "OrderItem.thisItem.getter:OrderItem.swift">
@@ -112,6 +136,14 @@
          <PersistentStrings>
             <PersistentString
                value = "UIRefreshControl.appearance().tintColor">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OrderItem.menuItem.getter:OrderItem.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._restaurantManager._store.menuItem(withId: thisItem.itemID)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

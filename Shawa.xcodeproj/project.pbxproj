@@ -148,6 +148,8 @@
 		FAEBDD552BF366F200B8EA7C /* MenuItemEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD542BF366F200B8EA7C /* MenuItemEditorView.swift */; };
 		FAEBDD572BF393DB00B8EA7C /* TagBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD562BF393DB00B8EA7C /* TagBox.swift */; };
 		FAEBDD582BF393DB00B8EA7C /* TagBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD562BF393DB00B8EA7C /* TagBox.swift */; };
+		FAEBDD5A2BF4DCFB00B8EA7C /* NumberSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD592BF4DCFB00B8EA7C /* NumberSticker.swift */; };
+		FAEBDD5B2BF4DCFB00B8EA7C /* NumberSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBDD592BF4DCFB00B8EA7C /* NumberSticker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +250,7 @@
 		FAEBDD512BF2614300B8EA7C /* IngredientEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditorView.swift; sourceTree = "<group>"; };
 		FAEBDD542BF366F200B8EA7C /* MenuItemEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEditorView.swift; sourceTree = "<group>"; };
 		FAEBDD562BF393DB00B8EA7C /* TagBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBox.swift; sourceTree = "<group>"; };
+		FAEBDD592BF4DCFB00B8EA7C /* NumberSticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSticker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +372,7 @@
 				FA2775F12A87CA9B00A55405 /* OrderItem.swift */,
 				FA7CE49C2BE635DE005EEA88 /* SegmentedProgressBar.swift */,
 				FAEBDD562BF393DB00B8EA7C /* TagBox.swift */,
+				FAEBDD592BF4DCFB00B8EA7C /* NumberSticker.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -715,6 +719,7 @@
 				FA7CE4522BE3A99F005EEA88 /* ActionButton.swift in Sources */,
 				FA7CE4532BE3A99F005EEA88 /* PrettyButton.swift in Sources */,
 				FA7CE4542BE3A99F005EEA88 /* PrettyEditButton.swift in Sources */,
+				FAEBDD5B2BF4DCFB00B8EA7C /* NumberSticker.swift in Sources */,
 				FA7CE4852BE3BED4005EEA88 /* AuthoriseView.swift in Sources */,
 				FA7CE42C2BE3A655005EEA88 /* ShawaAdminApp.swift in Sources */,
 				FA7CE43F2BE3A91F005EEA88 /* AuthenticationManager.swift in Sources */,
@@ -818,6 +823,7 @@
 				FAA91A0729BB4D03004B3C71 /* ShawaApp.swift in Sources */,
 				FA72E7812BE909B9007F1CF3 /* FlowLayout.swift in Sources */,
 				FAC11CE92BB8537E008BE48A /* Loadable.swift in Sources */,
+				FAEBDD5A2BF4DCFB00B8EA7C /* NumberSticker.swift in Sources */,
 				FAC11CFC2BB8ABFC008BE48A /* SwiftUIHelpers.swift in Sources */,
 				FAA4238329C0A809007818F7 /* Header.swift in Sources */,
 				FAC11CB22BB55F85008BE48A /* Ingredient.swift in Sources */,

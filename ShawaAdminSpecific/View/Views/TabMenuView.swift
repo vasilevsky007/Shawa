@@ -10,6 +10,8 @@ import SwiftUI
 struct TabMenuView<RestaurantManagerType: RestaurantManager,
                    OrderManagerType: OrderManager,
                    AuthenticationManagerType: AuthenticationManager>: View {
+    @EnvironmentObject private var restaurantManager: RestaurantManagerType
+    
     var body: some View {
         TabView {
             ZStack(alignment: .top) {
@@ -42,6 +44,9 @@ struct TabMenuView<RestaurantManagerType: RestaurantManager,
         .onAppear{
             UITabBar.appearance().unselectedItemTintColor = .lighterBrown
             UITabBar.appearance().backgroundColor = .systemBackground
+        }
+        .task {
+            restaurantManager.loadRestaurants()
         }
     }
 }

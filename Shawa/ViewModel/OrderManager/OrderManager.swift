@@ -9,15 +9,19 @@ import Foundation
 
 @MainActor
 protocol OrderManager: ObservableObject {
-    var userOrders: Loadable<[Order]> { get }
+    var userOrders: [Order] { get }
     var currentOrder: Order { get }
     var allOrders: [Order] { get }
     
+    var numberOfActiveOrdersForUser: Int { get }
+    var numberOfActiveOrdersForAdmin: Int { get }
+    var numberOfItemsInCurrentOrder: Int { get }
     var isCurrentOrderEmpty: Bool { get }
     
     func sendCurrentOrder() async throws
     func updateOrderState(to state: Order.OrderState, in order: Order) async throws
-    func getUserOrders(uid: String) async throws
+    func startListeningToUserOrders(userID: String)
+    func stopListeningToUserOrders()
     
     func addOneOrderItem(_ item: Order.Item)
     func removeOneOrderItem(_ item: Order.Item)

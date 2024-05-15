@@ -628,6 +628,7 @@
       }
     },
     "Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -658,6 +659,7 @@
       }
     },
     "High Price" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -738,6 +740,16 @@
         }
       }
     },
+    "Item not found in current menu" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Элемент не найден в меню"
+          }
+        }
+      }
+    },
     "Loading" : {
       "localizations" : {
         "ru" : {
@@ -789,6 +801,7 @@
       }
     },
     "Low Price" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -899,6 +912,7 @@
       }
     },
     "Newest" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -949,6 +963,7 @@
       }
     },
     "Oldest" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -1063,6 +1078,7 @@
       }
     },
     "Popularity" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

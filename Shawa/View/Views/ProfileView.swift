@@ -83,10 +83,10 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: {
+                Header(leadingIcon: "BackIcon", noTrailingLink: true) {
                     closeThisView()
-                }, noTrailingLink: true) {
-                    Text("placeholder. will not be seen")
+                } trailingLink: {
+                    Text("")
                 }.padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Profile")

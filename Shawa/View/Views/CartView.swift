@@ -17,9 +17,12 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
             ZStack(alignment: .top) {
                 backgroundBody
                 VStack(alignment: .leading) {
-                    Header(leadingIcon: "BackIcon", leadingAction: { dismissThisView() }, noTrailingLink: true) {
+                    Header(leadingIcon: "BackIcon", noTrailingLink: true) {
+                        dismissThisView()
+                    } trailingLink: {
                         Text("")
-                    }.padding(.horizontal, .Constants.horizontalSafeArea)
+                    }
+                        .padding(.horizontal, .Constants.horizontalSafeArea)
                     
                     Text("Your order:")
                         .foregroundColor(Color.defaultBrown)

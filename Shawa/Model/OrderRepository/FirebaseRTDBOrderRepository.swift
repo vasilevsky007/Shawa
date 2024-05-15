@@ -32,29 +32,28 @@ struct FirebaseRTDBOrderRepository: OrderRepository {
             .setValue(orderSerialized)
     }
     
-    func getUserOrders(userID: String) async throws -> [Order] {
-        var result = [Order]()
-        let userOrders = (
-            try await realtimeDatabase
-                .child("orders")
-                .child(userID)
-                .getData().value as? [String:[String:Any]]
-        )?.values
-        if let userOrders = userOrders {
-            for order in userOrders {
-                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
-                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
-                result.append(orderDecoded)
+    func startListeningToUserOrders(userID: String, publishNewOrders: @escaping ([Order]) -> Void) {
+        realtimeDatabase
+            .child("orders")
+            .child(userID)
+            .observe(.value) { snapshot in
+                let orders = Self.decodeUserOrders(snapshot: snapshot)
+                publishNewOrders(orders)
             }
-        }
-        return result
+    }
+    
+    func stopListeningToUserOrders(userID: String) {
+        realtimeDatabase
+            .child("orders")
+            .child(userID)
+            .removeAllObservers()
     }
     
     func startListeningToALLOrders(publishNewOrders: @escaping ([Order]) -> Void) {
         realtimeDatabase
             .child("orders")
             .observe(.value) { snapshot in
-                let orders = Self.processAllOrders(snapshot: snapshot)
+                let orders = Self.decodeAllOrders(snapshot: snapshot)
                 publishNewOrders(orders)
             }
     }
@@ -72,8 +71,26 @@ struct FirebaseRTDBOrderRepository: OrderRepository {
             .child("state")
             .setValue(state.rawValue)
     }
+}
+
+
+// MARK: - Helper funcs
+
+private extension FirebaseRTDBOrderRepository {
+    static func decodeUserOrders(snapshot: DataSnapshot) -> [Order] {
+        var result = [Order]()
+        let userOrders = (snapshot.value as? [String:[String:Any]])?.values
+        if let userOrders = userOrders {
+            for order in userOrders {
+                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
+                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
+                result.append(orderDecoded)
+            }
+        }
+        return result
+    }
     
-    private static func processAllOrders(snapshot: DataSnapshot) -> [Order] {
+    static func decodeAllOrders(snapshot: DataSnapshot) -> [Order] {
         var result = [Order]()
         let ordersByUsers = (
             snapshot.value as? [String:[String:[String:Any]]]

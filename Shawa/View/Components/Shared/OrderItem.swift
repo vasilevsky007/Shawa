@@ -18,8 +18,8 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
         self.thisItem = thisItem
     }
     
-    var menuItem: MenuItem {
-        restaurantManager.menuItem(withId: thisItem.itemID)!
+    var menuItem: MenuItem? {
+        restaurantManager.menuItem(withId: thisItem.itemID)
     }
     
     var numberOfCurrentItems: Int {
@@ -34,87 +34,93 @@ struct OrderItem<RestaurantManagerType: RestaurantManager, OrderManagerType: Ord
                 .strokeBorder(lineWidth: 1)
                 .foregroundColor(.lighterBrown)
             VStack(alignment: .trailing, spacing: 0) {
-                HStack(alignment: .top, spacing: 0) {
-                    LoadableImage(imageUrl: menuItem.image)
-                        .frame(width: .Constants.OrderItem.imageSize, height: .Constants.OrderItem.imageSize, alignment: .center)
-                        .cornerRadius(.Constants.elementCornerRadius)
-                        .padding([.trailing, .bottom], .Constants.standardSpacing)
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack(alignment: .center) {
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text(menuItem.name)
-                                    .font(.main(size: 20))
-                                    .foregroundColor(.defaultBrown)
-                                    .padding(.top, .Constants.standardSpacing)
-                                Text(String(format: "%.2f", menuItem.price) + " BYN")
-                                    .font(.mainBold(size: mainFontSize))
-                                    .foregroundColor(.defaultBrown)
+                if let menuItem = menuItem {
+                    HStack(alignment: .top, spacing: 0) {
+                        LoadableImage(imageUrl: menuItem.image)
+                            .frame(width: .Constants.OrderItem.imageSize, height: .Constants.OrderItem.imageSize, alignment: .center)
+                            .cornerRadius(.Constants.elementCornerRadius)
+                            .padding([.trailing, .bottom], .Constants.standardSpacing)
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack(alignment: .center) {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(menuItem.name)
+                                        .font(.main(size: 20))
+                                        .foregroundColor(.defaultBrown)
+                                        .padding(.top, .Constants.standardSpacing)
+                                    Text(String(format: "%.2f", menuItem.price) + " BYN")
+                                        .font(.mainBold(size: mainFontSize))
+                                        .foregroundColor(.defaultBrown)
+                                }
+                                Spacer(minLength: 0)
+                                Button(role: .destructive) {
+                                    orderManager.removeOrderItem(thisItem)
+                                } label: {
+                                    Image(systemName: "trash")
+                                        .font(.main(size: .Constants.OrderItem.deleteIconSize))
+                                }.padding(.trailing, .Constants.doubleSpacing)
+                                
                             }
-                            Spacer(minLength: 0)
-                            Button(role: .destructive) {
-                                orderManager.removeOrderItem(thisItem)
-                            } label: {
-                                Image(systemName: "trash")
-                                    .font(.main(size: .Constants.OrderItem.deleteIconSize))
-                            }.padding(.trailing, .Constants.doubleSpacing)
-
-                        }
-                        
-                        ForEach(thisItem.additions.keys.sorted(), id: \.self) { additionID in
-                            if let addition =  restaurantManager.ingredient(withId: additionID) {
-                                if thisItem.additions[additionID] ?? 0 != 0 {
-                                    VStack(alignment: .trailing, spacing: 0) {
-                                        ZStack (alignment: .leading) {
-                                            Text("+ " + (thisItem.additions[additionID]! > 0 ?
-                                                         String(thisItem.additions[additionID]!) + " x "
-                                                         : "No ")
-                                                 + addition.name)
+                            
+                            ForEach(thisItem.additions.keys.sorted(), id: \.self) { additionID in
+                                if let addition =  restaurantManager.ingredient(withId: additionID) {
+                                    if thisItem.additions[additionID] ?? 0 != 0 {
+                                        VStack(alignment: .trailing, spacing: 0) {
+                                            ZStack (alignment: .leading) {
+                                                Text("+ " + (thisItem.additions[additionID]! > 0 ?
+                                                             String(thisItem.additions[additionID]!) + " x "
+                                                             : "No ")
+                                                     + addition.name)
+                                                .font(.main(size: mainFontSize))
+                                                .foregroundColor(.defaultBrown)
+                                                Spacer()
+                                                Stepper {
+                                                    
+                                                } onIncrement: {
+                                                    orderManager.addOneIngredient(addition, to: thisItem)
+                                                    thisItem.addOneIngredient(addition)
+                                                } onDecrement: {
+                                                    orderManager.removeOneIngredient(addition, from: thisItem)
+                                                    thisItem.removeOneIngredient(addition)
+                                                }
+                                                .scaleEffect(0.7, anchor: .trailing)
+                                            }
+                                            Text("+" + (thisItem.additions[additionID]! > 0 ?
+                                                        String(format: "%.2f", Double(thisItem.additions[additionID]!) * addition.cost)
+                                                        : "0")
+                                                 + " BYN")
                                             .font(.main(size: mainFontSize))
                                             .foregroundColor(.defaultBrown)
-                                            Spacer()
-                                            Stepper {
-                                                
-                                            } onIncrement: {
-                                                orderManager.addOneIngredient(addition, to: thisItem)
-                                                thisItem.addOneIngredient(addition)
-                                            } onDecrement: {
-                                                orderManager.removeOneIngredient(addition, from: thisItem)
-                                                thisItem.removeOneIngredient(addition)
-                                            }
-                                            .scaleEffect(0.7, anchor: .trailing)
                                         }
-                                        Text("+" + (thisItem.additions[additionID]! > 0 ?
-                                                    String(format: "%.2f", Double(thisItem.additions[additionID]!) * addition.cost)
-                                                    : "0")
-                                             + " BYN")
-                                        .font(.main(size: mainFontSize))
-                                        .foregroundColor(.defaultBrown)
                                     }
                                 }
                             }
+                            
+                            Divider()
+                                .overlay{ Color.primaryBrown }
+                                .padding(.top, .Constants.standardSpacing)
+                            
                         }
-                        
-                        Divider()
-                            .overlay{ Color.primaryBrown }
-                            .padding(.top, .Constants.standardSpacing)
-
+                    }.padding(.all, .Constants.standardSpacing)
+                    HStack(spacing: 0) {
+                        Stepper {
+                            Spacer(minLength: 0)
+                        } onIncrement: {
+                            orderManager.addOneOrderItem(thisItem)
+                        } onDecrement: {
+                            orderManager.removeOneOrderItem(thisItem)
+                        }
+                        Spacer(minLength: .Constants.standardSpacing)
+                        Text(String(format: "%d x %.2f BYN", numberOfCurrentItems, thisItem.price))
+                            .font(.interBold(size: mainFontSize))
+                            .foregroundColor(.defaultBrown)
                     }
-                }.padding(.all, .Constants.standardSpacing)
-                HStack(spacing: 0) {
-                    Stepper {
-                        Spacer(minLength: 0)
-                    } onIncrement: {
-                        orderManager.addOneOrderItem(thisItem)
-                    } onDecrement: {
-                        orderManager.removeOneOrderItem(thisItem)
-                    }
-                    Spacer(minLength: .Constants.standardSpacing)
-                    Text(String(format: "%d x %.2f BYN", numberOfCurrentItems, thisItem.price))
-                        .font(.interBold(size: mainFontSize))
-                    .foregroundColor(.defaultBrown)
+                    .padding([.bottom, .horizontal], .Constants.standardSpacing)
+                } else {
+                    Text("Item not found in current menu")
+                        .font(.main(size: 20))
+                        .foregroundColor(.defaultBrown)
+                        .padding(.all, .Constants.standardSpacing)
                 }
-                .padding([.bottom, .horizontal], .Constants.standardSpacing)
-
             }
 
         }

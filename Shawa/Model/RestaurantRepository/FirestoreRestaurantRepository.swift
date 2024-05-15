@@ -25,38 +25,51 @@ struct FirestoreRestaurantRepository: RestaurantRepository {
     
     func getRestaurants () async throws -> [Restaurant] {
         var restaurants: [Restaurant] = []
+        try Task.checkCancellation()
         let documents = try await firestore.collection("restaurants").getDocuments().documents
+        try Task.checkCancellation()
         for document in documents {
+            try Task.checkCancellation()
             let ingredientsDocuments = try await document.reference.collection("ingredients").getDocuments().documents
+            try Task.checkCancellation()
             var ingredients: [Ingredient] = []
             
             for ingredientDocument in ingredientsDocuments {
+                try Task.checkCancellation()
                 if let ingredient = try? ingredientDocument.data(as: Ingredient.self, decoder: decoder) {
                     ingredients.append(ingredient)
                 }
             }
-
+            
+            try Task.checkCancellation()
             let sectionsDocuments = try await document.reference.collection("sections").getDocuments().documents
+            try Task.checkCancellation()
             var sections: [MenuSection] = []
             
             for sectionDocument in sectionsDocuments {
+                try Task.checkCancellation()
                 if let section = try? sectionDocument.data(as: MenuSection.self, decoder: decoder) {
                     sections.append(section)
                 }
             }
-            
+            try Task.checkCancellation()
             let menuDocuments = try await document.reference.collection("menu").getDocuments().documents
+            try Task.checkCancellation()
             var menuItems: [MenuItem] = []
             
             for menuDocument in menuDocuments {
-                let item = try menuDocument.data(as: MenuItem.self, decoder: decoder)
+                try Task.checkCancellation()
+                if let item = try? menuDocument.data(as: MenuItem.self, decoder: decoder) {
                     menuItems.append(item)
-                
+                }
             }
             
+            guard let id = document.data()["id"] as? String else { continue }
+            guard let name = document.data()["name"] as? String else { continue }
+            
             restaurants.append(.init(
-                    id: document.data()["id"] as! String,
-                    name: document.data()["name"] as! String,
+                    id: id,
+                    name: name,
                     menu: menuItems.sorted(by: {$0.name < $1.name}),
                     ingredients: ingredients.sorted(by: {$0.name < $1.name}),
                     sections: sections.sorted(by: {$0.name < $1.name})

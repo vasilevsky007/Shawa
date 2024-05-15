@@ -9,17 +9,13 @@ import SwiftUI
 
 
 struct Header<TrailingLink>: View where TrailingLink: View {
-    var leadingIcon: String
-    var leadingAction: () -> Void
-    var noTrailingLink: Bool
+    var leadingIcon: String = "MenuIcon"
+    var leadingNumber: Int = 0
+    var trailingNumber: Int = 0
+    var noTrailingLink: Bool = false
+    var leadingAction: () -> Void = { }
     var trailingLink: () -> TrailingLink
     
-    init(leadingIcon: String = "MenuIcon", leadingAction: @escaping () -> Void = { }, noTrailingLink: Bool = false, trailingLink: @escaping ()-> TrailingLink) {
-        self.leadingIcon = leadingIcon
-        self.leadingAction = leadingAction
-        self.noTrailingLink = noTrailingLink
-        self.trailingLink = trailingLink
-    }
     
     var body: some View {
         HStack {
@@ -29,6 +25,13 @@ struct Header<TrailingLink>: View where TrailingLink: View {
                 Image(leadingIcon)
                     .resizable(resizingMode: .stretch)
                     .frame(width: .Constants.Header.iconSize, height: .Constants.Header.iconSize)
+                    .overlay(alignment: .topTrailing) {
+                        if leadingNumber > 0 {
+                            NumberSticker(numberToDisplay: leadingNumber)
+                                .fixedSize()
+                                .position(x: .Constants.Header.iconSize + .Constants.standardSpacing)
+                        }
+                    }
             }
             Spacer()
             logoBody
@@ -40,6 +43,13 @@ struct Header<TrailingLink>: View where TrailingLink: View {
                     Image("CartIcon")
                         .resizable(resizingMode: .stretch)
                         .frame(width: .Constants.Header.iconSize, height: .Constants.Header.iconSize)
+                        .overlay(alignment: .topTrailing) {
+                            if trailingNumber > 0 {
+                                NumberSticker(numberToDisplay: trailingNumber)
+                                    .fixedSize()
+                                    .position(x: .Constants.Header.iconSize + .Constants.standardSpacing)
+                            }
+                        }
                 }
             } else {
                 Color.clear.frame(width: .Constants.Header.iconSize)
@@ -60,6 +70,8 @@ struct Header<TrailingLink>: View where TrailingLink: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        Header(trailingLink: {Text("")})
+        Header(leadingNumber: 99, trailingNumber: 99) {
+            Text("")
+        }
     }
 }

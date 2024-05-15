@@ -9,8 +9,8 @@ import SwiftUI
 
 @MainActor
 final class FirestoreRestaurantManager: RestaurantManager {
-    
     private var repository = FirestoreRestaurantRepository()
+    private var loadTask: Task<(), Never>? = nil
     
     @Published private(set) var restaurants: Loadable<[Restaurant]> = .notLoaded(error: nil)
     
@@ -55,12 +55,15 @@ private extension FirestoreRestaurantManager {
 extension FirestoreRestaurantManager {
     func loadRestaurants() {
         updateRestaurants(to: .loading(last: restaurants.value))
-        Task.detached {
+        loadTask?.cancel()
+        loadTask = Task.detached {
             do {
                 let loadedRestaurants = try await self.repository.getRestaurants()
                 Task {
                     await self.updateRestaurants(to: .loaded(loadedRestaurants))
                 }
+            } catch is CancellationError {
+                print("task cancelled")
             } catch {
                 Task {
                     await self.updateRestaurants(to: .notLoaded(error: error))
@@ -80,7 +83,9 @@ extension FirestoreRestaurantManager {
     func menuItem(withId id: String) -> MenuItem? {
         guard let restaurants = restaurants.value else { return nil }
         for restaurant in restaurants {
-            return restaurant.menu.first(where: { $0.id == id })
+            if let item = restaurant.menu.first(where: { $0.id == id }) {
+                return item
+            }
         }
         return nil
     }
@@ -88,7 +93,9 @@ extension FirestoreRestaurantManager {
     func ingredient(withId id: String) -> Ingredient? {
         guard let restaurants = restaurants.value else { return nil }
         for restaurant in restaurants {
-            return restaurant.ingredients.first(where: { $0.id == id })
+            if let ingredient = restaurant.ingredients.first(where: { $0.id == id }) {
+                return ingredient
+            }
         }
         return nil
     }

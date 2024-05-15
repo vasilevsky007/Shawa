@@ -84,9 +84,6 @@ struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
                 .refreshable {
                     restaurantManager.loadRestaurants()
                 }
-                .task {
-                    restaurantManager.loadRestaurants()
-                }
             }
             .background(.veryLightBrown2)
             .sheet(isPresented: $restaurantAdderPresented) {

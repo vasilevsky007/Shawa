@@ -146,7 +146,7 @@ private extension MenuItemEditorView {
                 break
             }
         }
-        return result
+        return result && !menuItem.sectionIDs.isEmpty
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 struct AuthenticationStub: Authentication {
-    private(set) var uid: String?
+    private(set) var uid: String? = "uid6127890"
     
     private(set) var name: String? = "user Name"
     

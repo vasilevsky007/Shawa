@@ -28,11 +28,12 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
         ZStack(alignment: .top) {
             backgroundBody
             VStack(alignment: .leading) {
-                Header(leadingIcon: "BackIcon", leadingAction: {
+                Header(leadingIcon: "BackIcon", noTrailingLink: true) {
                     closeThisView()
-                }, noTrailingLink: true) {
+                } trailingLink: {
                     Text("placeholder. will not be seen")
-                }.padding(.horizontal, .Constants.horizontalSafeArea)
+                }
+                .padding(.horizontal, .Constants.horizontalSafeArea)
                 
                 Text("Your orders:")
                     .foregroundColor(.defaultBrown)
@@ -45,19 +46,12 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
                         .foregroundColor(.veryLightBrown2)
                     ScrollView {
                         LazyVStack (alignment: .leading, spacing: .Constants.standardSpacing) {
-                            fetchingProgressBody
-                            if let orders = orderManager.userOrders.value {
-                                ForEach(orders.sorted(by: { $0.timestamp! > $1.timestamp! })) { order in
-                                    UserOrder<RestaurantManagerType, OrderManagerType>(order: order)
-                                }
+                            ForEach(orderManager.userOrders.sorted(by: { $0.timestamp! > $1.timestamp! })) { order in
+                                UserOrder<RestaurantManagerType, OrderManagerType>(order: order)
                             }
                         }.padding(.Constants.horizontalSafeArea)
                     }
                     .refreshControlColor(.defaultBrown)
-                    .refreshable {
-                        //TODO: load orders from firebase
-                        try? await orderManager.getUserOrders(uid: userID)
-                    }
                 }.ignoresSafeArea( .container)
             }
             
@@ -69,27 +63,6 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
         .backGesture {
             closeThisView()
         }
-        .task {
-            try? await orderManager.getUserOrders(uid: userID)
-        }
-    }
-    
-    var fetchingProgressBody: some View {
-        ZStack {
-            if (orderManager.userOrders.isLoading) {
-                HStack(spacing: 0){
-                    Spacer(minLength: 0)
-                    ProgressView()
-                        .tint(.defaultBrown)
-                        .scaleEffect(1.5)
-                    Spacer(minLength: 0)
-                }.transition(.asymmetric(
-                    insertion: .opacity.animation(.linear(duration: 1)),
-                    removal: .identity))
-            }
-            Color.clear
-        }
-        .frame(minWidth: 0, minHeight: orderManager.userOrders.isLoading ? .Constants.spinnerHeight : 0)
     }
 }
 
