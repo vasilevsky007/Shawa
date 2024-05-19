@@ -27,7 +27,7 @@ struct ProfileView<AuthenticationManagerType: AuthenticationManager>: View {
     @State private var enteredEmail = ""
     //    @State private var enteredPhone = ""
     private var errorDescription: String? {
-        authenticationManager.auth.currentError?.localizedDescription
+        authenticationManager.currentError?.localizedDescription
     }
     
     @State private var isEditingName = false

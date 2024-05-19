@@ -9,6 +9,12 @@ import Foundation
 
 @MainActor
 class AuthenticationManagerStub: AuthenticationManager {
+    var state: AuthenticationState = .notAuthenticated
+    
+    var isEditing: Bool = false
+    
+    var currentError: (any Error)?
+    
     var auth: Authentication = AuthenticationStub()
     
     func register(withEmail email: String, password: String) async {
@@ -17,11 +23,11 @@ class AuthenticationManagerStub: AuthenticationManager {
     
     func login(withEmail email: String, password: String) async {
         try? await Task.sleep(nanoseconds: 2_000_000_000)
-        await auth.login(withEmail: email, password: password)
+        try? await auth.login(withEmail: email, password: password)
     }
     
     func logout() {
-        auth.logout()
+        try? auth.logout()
     }
     
     func deleteAccount() async {

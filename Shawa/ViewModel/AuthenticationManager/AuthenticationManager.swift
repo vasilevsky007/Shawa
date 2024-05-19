@@ -10,6 +10,11 @@ import Foundation
 @MainActor
 protocol AuthenticationManager: ObservableObject {
     var auth: Authentication { get }
+    
+    var state: AuthenticationState { get }
+    var isEditing: Bool { get }
+    var currentError: Error? { get }
+    
     func register(withEmail email: String, password: String) async
     func login(withEmail email: String, password: String) async
     func logout()
@@ -18,4 +23,10 @@ protocol AuthenticationManager: ObservableObject {
     func updateName(to name: String) async
     func updatePassword(to password: String) async
     func clearError()
+}
+
+enum AuthenticationState {
+    case notAuthenticated
+    case authenticated
+    case inProgress
 }

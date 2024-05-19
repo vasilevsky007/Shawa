@@ -12,14 +12,13 @@ struct ShawaAppView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
     
     var body: some View {
         ZStack {
-            if authenticationManager.auth.state == .authenticated {
+            if authenticationManager.state == .authenticated {
                 MainMenuView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
                     .transition(.opacity)
             } else {
                 AuthoriseView<AuthenticationManagerType>()
                     .transition(.opacity)
             }
-            
         }
         .onAppear {
             UIRefreshControl.appearance().tintColor = UIColor(resource: .lightBrown)

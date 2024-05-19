@@ -12,22 +12,12 @@ protocol Authentication {
     var name: String? { get }
     var email: String? { get }
     var phone: String? { get }
-    var state: AuthenticationState { get }
-    var isEditing: Bool { get }
-    var currentError: Error? { get }
     
-    mutating func register(withEmail email: String, password: String) async
-    mutating func login(withEmail email: String, password: String) async
-    mutating func logout()
-    mutating func deleteAccount() async
-    mutating func updateEmail(to email: String) async
-    mutating func updateName(to name: String) async
-    mutating func updatePassword(to password: String) async
-    mutating func clearError()
-}
-
-enum AuthenticationState {
-    case notAuthenticated
-    case authenticated
-    case inProgress
+    mutating func register(withEmail email: String, password: String) async throws
+    mutating func login(withEmail email: String, password: String) async throws
+    mutating func logout() throws
+    mutating func deleteAccount() async throws
+    mutating func updateEmail(to email: String) async throws
+    mutating func updateName(to name: String) async throws
+    mutating func updatePassword(to password: String) async throws
 }

@@ -28,9 +28,9 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
     }
     
     private var loginButtonState: ActionButton.State {
-        switch authenticationManager.auth.state {
+        switch authenticationManager.state {
         case .notAuthenticated:
-            if let error = authenticationManager.auth.currentError {
+            if let error = authenticationManager.currentError {
                 .disabled(label: LocalizedStringKey(error.localizedDescription))
             } else {
                 switch currentAuthenticationFlow {
