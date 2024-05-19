@@ -14,7 +14,7 @@ struct ShawaAdminAppView<RestaurantManagerType: RestaurantManager,
     
     var body: some View {
         ZStack {
-            if authenticationManager.auth.state == .authenticated {
+            if authenticationManager.state == .authenticated {
                 TabMenuView<RestaurantManagerType, OrderManagerType, AuthenticationManagerType>()
                     .transition(.opacity)
             } else {

@@ -82,8 +82,8 @@ private extension FirebaseRTDBOrderRepository {
         let userOrders = (snapshot.value as? [String:[String:Any]])?.values
         if let userOrders = userOrders {
             for order in userOrders {
-                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
-                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
+                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { continue }
+                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { continue }
                 result.append(orderDecoded)
             }
         }
@@ -107,8 +107,8 @@ private extension FirebaseRTDBOrderRepository {
                 }
             }
             for order in ordersArray {
-                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { break }
-                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { break }
+                guard let orderData = try? JSONSerialization.data(withJSONObject: order) else { continue }
+                guard let orderDecoded = try? JSONDecoder().decode(Order.self, from: orderData) else { continue }
                 result.append(orderDecoded)
             }
         }

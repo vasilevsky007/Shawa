@@ -57,13 +57,12 @@ struct PrettyButton: View {
                                 RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
                                     .strokeBorder(unactiveColor)
                             }
-                        }.onAppear {
-                            DispatchQueue.main.async {
-                                withAnimation {
-                                    totalWidth = geometry.frame(in: .local).size.width
-                                }
-                                
-                            }
+                        }
+                        .onAppear {
+                            totalWidth = geometry.frame(in: .local).size.width + 1
+                        }
+                        .onChange(of: geometry.frame(in: .local)) { _ in
+                            totalWidth = geometry.frame(in: .local).size.width + 1
                         }
                     }
                 }

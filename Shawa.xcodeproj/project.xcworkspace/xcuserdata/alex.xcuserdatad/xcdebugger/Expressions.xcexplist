@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "static FirebaseRTDBOrderRepository.decodeUserOrders(snapshot:):FirebaseRTDBOrderRepository.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "String(data: try! JSONSerialization.data(withJSONObject: order), encoding: .utf8)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "FirebaseRTDBOrderRepository.getAllOrders():FirebaseRTDBOrderRepository.swift">
       </ContextState>
       <ContextState

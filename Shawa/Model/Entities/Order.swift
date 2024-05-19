@@ -8,7 +8,7 @@
 import Foundation
 
 struct Order: Codable, Identifiable {
-    struct Item: Hashable, Identifiable, Codable {
+    struct Item: Hashable, Identifiable {
         var itemID: String
         ///ingredientID : count
         private(set) var additions: [String:Int]
@@ -179,6 +179,19 @@ extension Order.OrderState {
             "Order delivered"
         case .cancelled:
             "Order cancelled"
+        }
+    }
+}
+
+extension Order.Item: Codable {
+    init(from decoder: any Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        itemID = try values.decode(String.self, forKey: .itemID)
+        price = try values.decode(Double.self, forKey: .price)
+        if let additions = try? values.decode([String: Int].self, forKey: .additions) {
+            self.additions = additions
+        } else {
+            self.additions = .init()
         }
     }
 }

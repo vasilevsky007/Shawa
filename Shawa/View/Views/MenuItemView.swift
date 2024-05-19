@@ -66,20 +66,21 @@ struct MenuItemView: View {
                                 .font(.mainBold(size: 24))
                                 .foregroundColor(.defaultBrown)
                                 .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
-                            }
+                            }.layoutPriority(50)
                             Spacer(minLength: 0)
-                            PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true) {
+                                .layoutPriority(1)
+                            PrettyButton(text: "Add to cart",systemImage: "cart.badge.plus", fontsize: 16, isActive: true, infiniteWidth: true) {
                                 addToCart(thisOrderItem)
                             }
                             .frame(height:.Constants.MenuItemView.addButtonHeight)
                             .frame(idealWidth: .Constants.MenuItemView.addButtonWidth,
                                    maxWidth: .Constants.MenuItemView.addButtonMaxWidth)
                             .padding(.trailing, .Constants.standardSpacing)
+                            .layoutPriority(100)
                         }
-                        
-                        LazyVGrid(columns: [.init(.adaptive(minimum: .Constants.MenuItemView.ingredientBoxMinWidth), spacing: .Constants.standardSpacing, alignment: .center)], alignment: .center, spacing: .Constants.standardSpacing) {
-                            ForEach(thisItem.ingredientIDs.sorted(), id: \.self) { ingredientId in
-                                ingredientTagBox(id: ingredientId)
+                        FlowLayout(items: thisItem.ingredientIDs.sorted()) { ingredientId in
+                            if let ingredient = restaurant.ingredients.first(where: {$0.id == ingredientId}) {
+                                TagBox(text: LocalizedStringKey(stringLiteral: ingredient.name))
                             }
                         }
                         .padding([.leading, .bottom, .trailing], .Constants.doubleSpacing)
@@ -110,24 +111,6 @@ struct MenuItemView: View {
 }
  
 private extension MenuItemView {
-    @ViewBuilder
-    func ingredientTagBox(id: String) -> some View {
-        if let ingredient = restaurant.ingredients.first(where: {$0.id == id}) {
-            ZStack(alignment: .center) {
-                Capsule()
-                    .stroke(lineWidth: 2)
-                    .foregroundColor(.primaryBrown)
-                
-                Text (ingredient.name)
-                    .font(.main(size: fontSize))
-                    .foregroundColor(.lightBrown)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical, 2)
-            }
-            .frame(minHeight: .Constants.MenuItemView.ingredientBoxHeight)
-        }
-    }
-    
     var ingredientsAdder: some View {
         VStack (alignment: .leading) {
             Text("Add ingredients")

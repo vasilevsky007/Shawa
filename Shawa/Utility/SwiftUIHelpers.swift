@@ -121,13 +121,14 @@ struct SwipeToDeleteModifier: ViewModifier {
             content
                 .background {
                     GeometryReader { geometry  in
-                        DispatchQueue.main.async {
-                            withAnimation {
+                        Color(UIColor.systemBackground)
+                            .onAppear {
+                                contentHeight = geometry.frame(in: .local).size.height
+                                contentWidth = geometry.frame(in: .local).size.width
+                            }.onChange(of: geometry.size) { newSize in
                                 contentHeight = geometry.frame(in: .local).size.height
                                 contentWidth = geometry.frame(in: .local).size.width
                             }
-                        }
-                        return Color(UIColor.systemBackground)
                     }
                 }
                 .offset(x: offset)
