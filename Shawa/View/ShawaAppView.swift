@@ -21,7 +21,6 @@ struct ShawaAppView<RestaurantManagerType: RestaurantManager, OrderManagerType: 
             }
             
         }
-        .preferredColorScheme(.light)
         .onAppear {
             UIRefreshControl.appearance().tintColor = UIColor(resource: .lightBrown)
         }

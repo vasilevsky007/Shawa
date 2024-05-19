@@ -10,6 +10,7 @@ import SwiftUI
 struct ReceivedOrdersListView<RestaurantManagerType: RestaurantManager,
                               OrderManagerType: OrderManager,
                               AuthenticationManagerType: AuthenticationManager>: View {
+    @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
     @EnvironmentObject private var orderManager: OrderManagerType
     
@@ -24,11 +25,18 @@ struct ReceivedOrdersListView<RestaurantManagerType: RestaurantManager,
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Received orders")
-                .foregroundColor(.defaultBrown)
-                .font(.montserratBold(size: 24))
-                .padding(.top, .Constants.standardSpacing)
-                .padding(.horizontal, .Constants.horizontalSafeArea)
+            HStack(spacing: 0) {
+                Text("Received orders")
+                    .foregroundColor(.defaultBrown)
+                    .font(.montserratBold(size: 24))
+                Spacer(minLength: 0)
+                PrettyButton(text: "", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
+                    authenticationManager.logout()
+                }
+                .frame(height: .Constants.quadripleSpacing)
+            }
+            .padding(.top, .Constants.standardSpacing)
+            .padding(.horizontal, .Constants.horizontalSafeArea)
             
             FlowLayout(items: Order.OrderState.allCases) { option in
                 PrettyButton(

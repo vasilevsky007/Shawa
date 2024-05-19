@@ -17,7 +17,7 @@ struct ConditionalTextEditor: View {
     var body: some View {
         if isEditing {
             PrettyTextField<String>(text: $value, color: .lighterBrown, isSystemImage: true, image: systemImage, width: nil)
-                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+                .background(.background, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
                 .overlay(alignment: .trailing) {
                     PrettyEditButton(isEditing: $isEditing, color: .lighterBrown){
                         onEditingEnded()
@@ -26,7 +26,7 @@ struct ConditionalTextEditor: View {
                 }
         } else {
             PrettyLabel(LocalizedStringKey(value), systemImage: systemImage, color: .lighterBrown)
-                .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+                .background(.background, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
                 .overlay(alignment: .trailing) {
                     PrettyEditButton(isEditing: $isEditing, color: .lighterBrown) {
                         onEditingEnded()

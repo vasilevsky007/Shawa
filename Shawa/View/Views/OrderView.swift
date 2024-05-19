@@ -143,7 +143,7 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
             submitLabel: .next) {
                 focusedField = .street
             }
-        
+            .listRowBackground(Color.clear)
         Section {
             PrettyTextField(
                 text: $enteredStreet,
@@ -187,7 +187,9 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
             Text("Address")
                 .font(.main(size: 16))
                 .foregroundColor(.defaultBrown)
-        }.textCase(nil)
+        }
+            .textCase(nil)
+            .listRowBackground(Color.clear)
         Section {
             ZStack {
                 RoundedRectangle(cornerRadius: .Constants.elementCornerRadius)
@@ -211,7 +213,9 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
             Text("Comments to your order")
                 .font(.main(size: 16))
                 .foregroundColor(.defaultBrown)
-        } .textCase(nil)
+        } 
+            .textCase(nil)
+            .listRowBackground(Color.clear)
         ActionButton(state: sendButtonState) {
             sendButtonState = .loading(label: "Loading")
             Task {
@@ -229,10 +233,11 @@ struct OrderView<AuthenticationManagerType: AuthenticationManager, OrderManagerT
                 }
             }
         }
+        .listRowBackground(Color.clear)
     }
     
     var backgroundBody: some View {
-        Rectangle().ignoresSafeArea().foregroundColor(.white)
+        Rectangle().ignoresSafeArea().foregroundStyle(.background)
     }
 }
 

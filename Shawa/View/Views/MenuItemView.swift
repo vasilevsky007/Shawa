@@ -32,7 +32,7 @@ struct MenuItemView: View {
         ZStack(alignment: .leading) {
             GeometryReader { geometry in
                 Rectangle()
-                    .foregroundColor(.white)
+                    .foregroundStyle(.background)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
                         let imageSize = geometry.size.width

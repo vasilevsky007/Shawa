@@ -68,7 +68,6 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                 backgroundBody
             }
             .ignoresSafeArea(.container)
-            .preferredColorScheme(.dark)
             .animation(.default, value: focusedField)
     }
     
@@ -77,7 +76,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
             Image(.loginBackground)
                 .fillWithoutStretch()
             Rectangle()
-                .foregroundStyle(LinearGradient(colors: [.defaultBrown,.clear], startPoint: .top, endPoint: .bottom))
+                .foregroundStyle(LinearGradient(colors: [.defaultBrownUnchangable, .clear], startPoint: .top, endPoint: .bottom))
         }
     }
     
@@ -110,7 +109,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                 }
                 
             }.padding(.horizontal, .Constants.doubleSpacing)
-                .background(.white, in: .rect(cornerRadius: .Constants.blockCornerRadius))
+                .background(.background, in: .rect(cornerRadius: .Constants.blockCornerRadius))
             .padding(.horizontal, isPhone ? .Constants.doubleSpacing : 0)
             .frame(width: isPhone ? nil : .Constants.AuthoriseView.padFormWidth)
                 

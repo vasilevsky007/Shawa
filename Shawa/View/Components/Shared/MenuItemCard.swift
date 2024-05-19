@@ -35,7 +35,7 @@ struct MenuItemCard: View {
         }
         .padding(.all, .Constants.standardSpacing)
         .padding(.vertical, .Constants.halfSpacing)
-        .background(Color.white, in: .rect(cornerRadius: .Constants.MenuItemCard.cornerRadius))
+        .background(.background, in: .rect(cornerRadius: .Constants.MenuItemCard.cornerRadius))
     }
 }
 

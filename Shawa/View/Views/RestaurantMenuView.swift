@@ -72,7 +72,7 @@ struct RestaurantMenuView<AuthenticationManagerType: AuthenticationManager,Resta
     }
     
     var backgroundBody: some View {
-        Rectangle().ignoresSafeArea().foregroundColor(.white)
+        Rectangle().ignoresSafeArea().foregroundStyle(.background)
     }
     
     @ViewBuilder

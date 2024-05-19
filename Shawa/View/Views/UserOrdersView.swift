@@ -21,7 +21,7 @@ struct UserOrdersView<OrderManagerType: OrderManager, RestaurantManagerType: Res
     private var backgroundBody: some View {
         Rectangle()
             .ignoresSafeArea()
-            .foregroundColor(.white)
+            .foregroundStyle(.background)
     }
     
     var body: some View {

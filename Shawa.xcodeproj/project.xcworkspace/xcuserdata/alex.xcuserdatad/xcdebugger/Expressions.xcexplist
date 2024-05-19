@@ -31,6 +31,9 @@
          contextName = "-[FIRDatabaseComponent databaseForApp:URL:]:FIRDatabaseComponent.m">
       </ContextState>
       <ContextState
+         contextName = "closure #4 in FirebaseAuthentication.login(withEmail:password:):FirebaseAuthentication.swift">
+      </ContextState>
+      <ContextState
          contextName = "Order.addOneOrderItem(_:):Order.swift">
          <PersistentStrings>
             <PersistentString
@@ -110,7 +113,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in FirebaseAuthentication.login(withEmail:password:):FirebaseAuthentication.swift">
+      </ContextState>
+      <ContextState
          contextName = "Firebase.sendOrder():Firebase.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FirebaseAuthentication.login(withEmail:password:):FirebaseAuthentication.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in AuthoriseView.authoriseContentBody.getter:AuthoriseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._authenticationManager._store">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in Firebase.init(app:):Firebase.swift">
@@ -187,6 +209,9 @@
                value = "orderByUser.values">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FirebaseAuthentication.state.getter:FirebaseAuthentication.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

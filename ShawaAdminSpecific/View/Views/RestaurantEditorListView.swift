@@ -10,17 +10,26 @@ import SwiftUI
 struct RestaurantEditorListView<RestaurantManagerType: RestaurantManager,
                                 AuthenticationManagerType: AuthenticationManager>: View {
     @EnvironmentObject private var restaurantManager: RestaurantManagerType
+    @EnvironmentObject private var authenticationManager: AuthenticationManagerType
     
     @State private var restaurantAdderPresented = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text("Restaurants")
-                    .foregroundColor(.defaultBrown)
-                    .font(.montserratBold(size: 24))
-                    .padding(.top, .Constants.standardSpacing)
-                    .padding(.horizontal, .Constants.horizontalSafeArea)
+                HStack(spacing: 0) {
+                    Text("Restaurants")
+                        .foregroundColor(.defaultBrown)
+                        .font(.montserratBold(size: 24))
+                    Spacer(minLength: 0)
+                    PrettyButton(text: "", systemImage: "rectangle.portrait.and.arrow.right", unactiveColor: .red, isActive: false) {
+                        authenticationManager.logout()
+                    }
+                    .frame(height: .Constants.quadripleSpacing)
+                }
+                .padding(.top, .Constants.standardSpacing)
+                .padding(.horizontal, .Constants.horizontalSafeArea)
+                
                 VStack {
                     HStack {
                         if restaurantManager.restaurants.isLoading {

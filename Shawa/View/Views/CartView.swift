@@ -76,7 +76,7 @@ struct CartView<AuthenticationManagerType: AuthenticationManager, RestaurantMana
     }
     
     var backgroundBody: some View {
-        Rectangle().ignoresSafeArea().foregroundColor(.white)
+        Rectangle().ignoresSafeArea().foregroundStyle(.background)
     }
     
     var proceedOverlayBody: some View {

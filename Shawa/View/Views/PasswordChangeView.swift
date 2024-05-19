@@ -83,7 +83,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .oldPassword
             )
-            .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+            .background(.background, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             
             Text("New password")
                 .font(.main(size: 16))
@@ -97,7 +97,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .newPassword
             )
-            .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+            .background(.background, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             
             Text("Confirm new password")
                 .font(.main(size: 16))
@@ -111,7 +111,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 focusState: $focusedField,
                 focusedValue: .newPasswordConfirm
             )
-            .background(.white, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
+            .background(.background, in: RoundedRectangle(cornerRadius: .Constants.elementCornerRadius))
             //TODO: better validation
             PrettyButton(text: "Change Password", unactiveColor: .red , isActive: newPasswordsValidated, infiniteWidth: true) {
                 Task {
@@ -134,7 +134,7 @@ struct PasswordChangeView<AuthenticationManagerType: AuthenticationManager>: Vie
                 PasswordChangeView<AuthenticationManagerStub>()
                     .presentationDetents([.medium])
             } else {
-                // Fallback on earlier versions
+//                 Fallback on earlier versions
             }
         }
 }

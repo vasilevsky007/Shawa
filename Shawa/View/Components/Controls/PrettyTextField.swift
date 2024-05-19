@@ -99,6 +99,7 @@ struct PrettyTextField<FocusStateType: Hashable>: View {
         } else {
             Image(image)
                 .resizable(resizingMode: .stretch)
+                .foregroundColor(color)
                 .frame(width: .Constants.PrettyTextField.imageSize, height: .Constants.PrettyTextField.imageSize)
                 .padding(.horizontal, .Constants.PrettyTextField.imagePadding)
         }

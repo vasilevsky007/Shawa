@@ -32,7 +32,7 @@ struct PrettyButton: View {
                     }
                     if systemImage != "noImage" {
                         Image(systemName: systemImage)
-                            .foregroundStyle(isActive ? Color.init(uiColor: .systemBackground) : .defaultBrown)
+                            .foregroundStyle(isActive ? .white : .defaultBrown)
                             .font(.system(size: geometry.size.height - .Constants.PrettyButton.imageInsets))
                             .padding(.trailing, .Constants.standardSpacing)
                     } else {
@@ -41,7 +41,7 @@ struct PrettyButton: View {
                     }
                     Text(text)
                         .font(.main(size: fontsize))
-                        .foregroundColor(isActive ? Color.init(uiColor: .systemBackground) : .defaultBrown)
+                        .foregroundColor(isActive ? .white : .defaultBrown)
                     if (infiniteWidth) {
                         Spacer(minLength: 0)
                     }
