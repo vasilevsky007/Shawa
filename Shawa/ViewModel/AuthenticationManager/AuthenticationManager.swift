@@ -15,7 +15,7 @@ protocol AuthenticationManager: ObservableObject {
     var isEditing: Bool { get }
     var currentError: Error? { get }
     
-    func register(withEmail email: String, password: String) async
+    func register(withEmail email: String, password: String, confirmation: String) async
     func login(withEmail email: String, password: String) async
     func logout()
     func deleteAccount() async

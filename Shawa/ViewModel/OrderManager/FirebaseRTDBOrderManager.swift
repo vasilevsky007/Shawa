@@ -97,6 +97,13 @@ class FirebaseRTDBOrderManager: OrderManager {
     }
     
     func sendCurrentOrder() async throws {
+        guard validateIsPhone(stringToValidate: currentOrder.user.phoneNumber ?? "") else { throw  InputValidationError.cannotConvertToPhone }
+        guard !(currentOrder.user.address.street ?? "").isEmpty else {
+            throw  InputValidationError.fieldCannotBeEmpty(nameOfField: String(localized: "Street"))
+        }
+        guard !(currentOrder.user.address.house ?? "").isEmpty else {
+            throw  InputValidationError.fieldCannotBeEmpty(nameOfField: String(localized: "House"))
+        }
         currentOrder.addTimestamp(date: .now)
         currentOrder.updateState(.sended)
         let sendTask = Task.detached {

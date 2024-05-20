@@ -25,6 +25,7 @@ struct MenuItemEditorView<RestaurantManagerType: RestaurantManager>: View {
     @State private var selectedSectionID: String
     @State private var selectedIngredientID: String
     
+    @State private var error: Error? = nil
     @State private var menuItem: MenuItem
     
     private var isNew: Bool
@@ -80,6 +81,10 @@ struct MenuItemEditorView<RestaurantManagerType: RestaurantManager>: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     contentBody
                 }
+            }
+            
+            if let error =  error {
+                PrettyLabel("\(error.localizedDescription)", systemImage: "exclamationmark.triangle", font: .main(size: 10), color: .red)
             }
             
             HStack(spacing: 0) {
@@ -153,7 +158,41 @@ private extension MenuItemEditorView {
 // MARK: - Intents
 
 private extension MenuItemEditorView {
+    func setError(to error: Error) {
+        self.error = error
+        Task {
+            try? await Task.sleep(nanoseconds: 5_000_000_000)
+            withAnimation {
+                self.error = nil
+            }
+        }
+    }
+    
     func save() {
+        guard !enteredName.isEmpty else {
+            setError(to:
+                        InputValidationError.fieldCannotBeEmpty(
+                            nameOfField: String(localized: "Ingredient name")
+                        )
+            )
+            return
+        }
+        guard Double(enteredPrice) != nil else {
+            setError(to:
+                        InputValidationError.cannotConvertToNumber(
+                            nameOfField: String(localized: "Ingredient price")
+                        )
+            )
+            return
+        }
+        guard !menuItem.sectionIDs.isEmpty || !isNew else {
+            setError(to:
+                        InputValidationError.fieldCannotBeEmpty(
+                            nameOfField: String(localized: "Ingredient name")
+                        )
+            )
+            return
+        }
         var edited = menuItem
         edited.name = enteredName
         edited.price = Double(enteredPrice)!

@@ -11,6 +11,16 @@
         }
       }
     },
+    "%@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "%@ BYN" : {
       "localizations" : {
         "ru" : {
@@ -617,12 +627,42 @@
         }
       }
     },
+    "Email is badly formatted" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email имеет неверный формат"
+          }
+        }
+      }
+    },
     "Error: %@" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка: %@"
+          }
+        }
+      }
+    },
+    "Field %@ cannot be emty" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поле %@ не может быть пустым"
+          }
+        }
+      }
+    },
+    "Field %@ should nave a number" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В поле %@ должно быть число"
           }
         }
       }
@@ -1037,12 +1077,42 @@
         }
       }
     },
+    "Password and confirmatiom do not match" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль и его подтверждение не совпадают"
+          }
+        }
+      }
+    },
+    "Password should be at least 6 characters long" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль должен состоять не менее чем из 6 символов"
+          }
+        }
+      }
+    },
     "Phone" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Телефон"
+          }
+        }
+      }
+    },
+    "Phone number invalid" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введен некорректный номер телефона"
           }
         }
       }

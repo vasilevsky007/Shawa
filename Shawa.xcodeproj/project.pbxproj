@@ -21,6 +21,10 @@
 		FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2775F12A87CA9B00A55405 /* OrderItem.swift */; };
 		FA3357062BEE2252001C11F8 /* RestaurantEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */; };
 		FA3357082BEE24B5001C11F8 /* RestaurantNameEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */; };
+		FA367B292BFB473F0084B80C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA367B282BFB473F0084B80C /* Errors.swift */; };
+		FA367B2A2BFB473F0084B80C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA367B282BFB473F0084B80C /* Errors.swift */; };
+		FA367B2C2BFB4C8F0084B80C /* EmailVaildation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA367B2B2BFB4C8F0084B80C /* EmailVaildation.swift */; };
+		FA367B2D2BFB4C8F0084B80C /* EmailVaildation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA367B2B2BFB4C8F0084B80C /* EmailVaildation.swift */; };
 		FA5173C829BC65D600F8ADFA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5173C729BC65D600F8ADFA /* MainMenuView.swift */; };
 		FA5173CC29BC704D00F8ADFA /* tangak.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA5173CB29BC704D00F8ADFA /* tangak.otf */; };
 		FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64F12A2A8F930D00CC8558 /* OrderView.swift */; };
@@ -184,6 +188,8 @@
 		FA2775F12A87CA9B00A55405 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		FA3357052BEE2251001C11F8 /* RestaurantEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantEditorView.swift; sourceTree = "<group>"; };
 		FA3357072BEE24B5001C11F8 /* RestaurantNameEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNameEditorView.swift; sourceTree = "<group>"; };
+		FA367B282BFB473F0084B80C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		FA367B2B2BFB4C8F0084B80C /* EmailVaildation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVaildation.swift; sourceTree = "<group>"; };
 		FA5173C729BC65D600F8ADFA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		FA5173CB29BC704D00F8ADFA /* tangak.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tangak.otf; sourceTree = "<group>"; };
 		FA64F12A2A8F930D00CC8558 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
@@ -438,6 +444,7 @@
 				FAA8792429BB52BD00F67D6E /* View */,
 				FAC11CD12BB6CE09008BE48A /* Utility */,
 				FAA91A0629BB4D03004B3C71 /* ShawaApp.swift */,
+				FA367B282BFB473F0084B80C /* Errors.swift */,
 				FAC11CCE2BB6AED7008BE48A /* GoogleService-Info.plist */,
 				FAA91A0A29BB4D04004B3C71 /* Assets.xcassets */,
 				FAA91A0C29BB4D04004B3C71 /* Preview Content */,
@@ -496,6 +503,7 @@
 				FAC11CE82BB8537E008BE48A /* Loadable.swift */,
 				FAC11CFB2BB8ABFC008BE48A /* SwiftUIHelpers.swift */,
 				FA72E7802BE909B8007F1CF3 /* FlowLayout.swift */,
+				FA367B2B2BFB4C8F0084B80C /* EmailVaildation.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -733,11 +741,13 @@
 				FAEBDD522BF2614300B8EA7C /* IngredientEditorView.swift in Sources */,
 				FA7CE44D2BE3A97E005EEA88 /* RestaurantManagerStub.swift in Sources */,
 				FA7CE4402BE3A924005EEA88 /* RestaurantManager.swift in Sources */,
+				FA367B2A2BFB473F0084B80C /* Errors.swift in Sources */,
 				FA7CE4482BE3A96A005EEA88 /* FirebaseAuthentication.swift in Sources */,
 				FA7CE4462BE3A962005EEA88 /* FirestoreRestaurantRepository.swift in Sources */,
 				FA7CE4802BE3B418005EEA88 /* Header.swift in Sources */,
 				FA7CE43E2BE3A918005EEA88 /* Authentication.swift in Sources */,
 				FA7CE4812BE3B41E005EEA88 /* LoadableImage.swift in Sources */,
+				FA367B2D2BFB4C8F0084B80C /* EmailVaildation.swift in Sources */,
 				FA7CE44B2BE3A976005EEA88 /* AuthenticationManagerStub.swift in Sources */,
 				FA7CE4992BE4F91E005EEA88 /* OrderItemUnchangable.swift in Sources */,
 				FA7CE44A2BE3A974005EEA88 /* FirebaseAuthenticationManager.swift in Sources */,
@@ -778,6 +788,7 @@
 				FAC11CF42BB882D7008BE48A /* OrderManager.swift in Sources */,
 				FAC11CFA2BB89EDD008BE48A /* SearchArea.swift in Sources */,
 				FA1AFA1B2B04EC4A0092A46A /* ConditionalTextEditor.swift in Sources */,
+				FA367B292BFB473F0084B80C /* Errors.swift in Sources */,
 				FA2775F22A87CA9B00A55405 /* OrderItem.swift in Sources */,
 				FAC11CE22BB82270008BE48A /* FirebaseAuthenticationManager.swift in Sources */,
 				FA7CE49D2BE635DE005EEA88 /* SegmentedProgressBar.swift in Sources */,
@@ -803,6 +814,7 @@
 				FA64F12B2A8F930D00CC8558 /* OrderView.swift in Sources */,
 				FAC11CB42BB56004008BE48A /* MenuSection.swift in Sources */,
 				FA2775F02A87C5F000A55405 /* CartView.swift in Sources */,
+				FA367B2C2BFB4C8F0084B80C /* EmailVaildation.swift in Sources */,
 				FA82F1AB2BBE912700AD2C12 /* DrawingConstants.swift in Sources */,
 				FAC11CDA2BB814B9008BE48A /* Authentication.swift in Sources */,
 				FAC11CD62BB710FB008BE48A /* FirebaseAuthentication.swift in Sources */,

@@ -224,7 +224,7 @@ struct AuthoriseView<AuthenticationManagerType :AuthenticationManager>: View {
                 }
             case .register:
                 Task {
-                    await authenticationManager.register(withEmail: enteredEmail, password: enteredPassword)
+                    await authenticationManager.register(withEmail: enteredEmail, password: enteredPassword, confirmation: enteredPasswordConfirm)
                 }
             }
         }.padding(.top, .Constants.doubleSpacing)

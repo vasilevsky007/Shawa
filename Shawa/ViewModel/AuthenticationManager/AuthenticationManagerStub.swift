@@ -17,7 +17,7 @@ class AuthenticationManagerStub: AuthenticationManager {
     
     var auth: Authentication = AuthenticationStub()
     
-    func register(withEmail email: String, password: String) async {
+    func register(withEmail email: String, password: String, confirmation: String) async {
         
     }
     

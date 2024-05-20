@@ -146,7 +146,13 @@ struct MainMenuView<RestaurantManagerType: RestaurantManager,
                         restaurantManager.loadRestaurants()
                     }
                     .task {
-                        restaurantManager.loadRestaurants()
+                        switch restaurantManager.restaurants {
+                        case .notLoaded:
+                            restaurantManager.loadRestaurants()
+                        default:
+                            break
+                        }
+                        
                     }
                 }
             }.padding(.horizontal, .Constants.tripleSpacing)

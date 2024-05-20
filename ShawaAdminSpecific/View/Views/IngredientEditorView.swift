@@ -20,6 +20,7 @@ struct IngredientEditorView<RestaurantManagerType: RestaurantManager>: View {
     
     @State private var enteredName: String
     @State private var enteredCost: String
+    @State private var error: Error? = nil
     
     private var isNew: Bool
     private var ingredient: Ingredient
@@ -42,6 +43,16 @@ struct IngredientEditorView<RestaurantManagerType: RestaurantManager>: View {
         self.ingredient = ingredient
         self.restaurant = restaurant
         self.isNew = isNew
+    }
+    
+    private func setError(to error: Error) {
+        self.error = error
+        Task {
+            try? await Task.sleep(nanoseconds: 5_000_000_000)
+            withAnimation {
+                self.error = nil
+            }
+        }
     }
     
     var body: some View {
@@ -88,7 +99,6 @@ struct IngredientEditorView<RestaurantManagerType: RestaurantManager>: View {
                 submitLabel: .done) {
                     focusedField = nil
                 }
-            .padding(.bottom, .Constants.standardSpacing)
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
@@ -99,6 +109,11 @@ struct IngredientEditorView<RestaurantManagerType: RestaurantManager>: View {
             }
             .onChange(of: enteredCost) { _ in
                 enteredCost = enteredCost.replacingOccurrences(of: ",", with: ".")
+            }
+            .padding(.bottom, error == nil ? .Constants.standardSpacing : nil)
+            
+            if let error =  error {
+                PrettyLabel("\(error.localizedDescription)", systemImage: "exclamationmark.triangle", font: .main(size: 10), color: .red)
             }
             
             HStack(spacing: 0) {
@@ -114,6 +129,22 @@ struct IngredientEditorView<RestaurantManagerType: RestaurantManager>: View {
                              unactiveColor: .lightBrown,
                              isActive: isEnteredInfoValidated,
                              infiniteWidth: true) {
+                    guard !enteredName.isEmpty else {
+                        setError(to:
+                                    InputValidationError.fieldCannotBeEmpty(
+                                        nameOfField: String(localized: "Ingredient name")
+                                    )
+                        )
+                        return
+                    }
+                    guard Double(enteredCost) != nil else {
+                        setError(to:
+                                    InputValidationError.cannotConvertToNumber(
+                                        nameOfField: String(localized: "Ingredient price")
+                                    )
+                        )
+                        return
+                    }
                     var edited = ingredient
                     edited.name = enteredName
                     edited.cost = Double(enteredCost)!

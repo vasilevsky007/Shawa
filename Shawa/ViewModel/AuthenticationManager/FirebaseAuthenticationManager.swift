@@ -27,12 +27,15 @@ class FirebaseAuthenticationManager: AuthenticationManager {
         }
     }
     
-    func register(withEmail email: String, password: String) async {
+    func register(withEmail email: String, password: String, confirmation: String) async {
         do {
             withAnimation {
                 isAuthenticating = true
                 clearError()
             }
+            guard validateIsEmail(stringToValidate: email) else { throw AuthenticationError.emailMalformed }
+            guard password.count >= 6 else { throw AuthenticationError.shortPassword }
+            guard password == confirmation else { throw AuthenticationError.passwordAndConfirmNotMatch }
             try await self.auth.register(withEmail: email, password: password)
             withAnimation {
                 isAuthenticating = false
@@ -53,6 +56,8 @@ class FirebaseAuthenticationManager: AuthenticationManager {
                 isAuthenticating = true
                 clearError()
             }
+            guard validateIsEmail(stringToValidate: email) else { throw AuthenticationError.emailMalformed }
+            guard password.count >= 6 else { throw AuthenticationError.shortPassword }
             try await auth.login(withEmail: email, password: password)
             withAnimation {
                 isAuthenticating = false
